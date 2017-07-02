@@ -1,0 +1,23 @@
+34.209.133.11
+
+Databases:
+  Instance Identifier:	Dev1
+  Master Username: 	admin
+  Master Password:	shagcanvas
+  Database Name: 	DB1
+  Databse Port:		3306
+
+RDS Instance:
+  username: root
+  password: 12345678
+
+For local mysql database:
+  username: ec2-user @ 'localhost'
+  password: [blank]
+
+
+
+
+~~~~~ notes~~~~
+
+potentially change name to Habari (hello in Swahili)

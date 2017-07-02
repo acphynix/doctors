@@ -1,0 +1,38 @@
+body {
+    padding: 10px;
+}
+input, select{
+  border-width: 2px !important;
+  padding: 5px;
+}
+.row.date>.column, .row.date>.columns {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+.ng-dirty.ng-valid{
+    border-color: blue !important;
+}
+.ng-invalid{
+    border-color: red !important;
+}
+#submit {
+    width: 100%;
+}
+.no-pad-left {
+    padding-left: 0;
+}
+.no-pad-right {
+    padding-right: 0;
+}
+select
+{
+    color: #fff;
+}
+option
+{
+    color: #000;
+}
+option:first-child
+{
+    color: #ccc;
+}

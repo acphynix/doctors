@@ -1,0 +1,45 @@
+1,anesthesiology
+2,cardiology
+3,cardiovascular surgery
+4,dermatology
+5,dietetics
+6,endocrinology
+7,family medicine
+8,forensic medicine
+9,gastroenterology
+10,general surgery
+11,geriatrics
+12,gynecology
+13,hepatology
+14,hospital medicine
+15,immunology
+16,infectious disease
+17,intensive care medicine
+18,nephrology
+19,neurology
+20,neurosurgery
+21,obstetrics and gynecology
+22,oncology
+23,ophthalmology
+24,oral surgery
+25,orthopedic surgery
+26,otorhinolaryngology
+27,palliative care
+28,pathology
+29,pediatric surgery
+30,pediatrics
+31,physiatry
+32,plastic surgery
+33,podiatry
+34,proctology
+35,psychiatry
+36,pulmonology
+37,radiology
+38,rheumatology
+39,stomatology
+40,surgical oncology
+41,thoracic surgery
+42,transplant surgery
+43,urgent care medicine
+44,urology
+45,vascular surgery

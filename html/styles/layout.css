@@ -1,0 +1,16 @@
+div.layout_center{
+  justify-content: center;
+  margin:auto;
+  width:80%;
+  padding:10px;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  border:3px solid black;
+  margin: 0 auto;
+  background:{{is_doctor?'#3a5aae':'#2a7aae'}};
+  min-height:100% 
+}
+body.layout_fullpage{
+  background: #0a6a8e;
+}
