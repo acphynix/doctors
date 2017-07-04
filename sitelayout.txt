@@ -1,0 +1,48 @@
+Index:
+  if not logged in:
+    . sign in
+    . create account
+    . search for doctor
+  if logged in as patient:
+    . view calendar
+    . upcoming appointments
+    . past appointments
+    . search for doctor
+    . manage profile
+  if logged in as doctor
+    . switch view (doctor vs. patient)
+    . view calendar
+    . requested appointments
+    . upcoming appointments
+    . past appointments
+    . manage profile
+
+View calendar (patient)
+  - view by month or week
+  . view appointment (patient)
+
+View appointment (patient)  # usually opens inline (ajax)
+  . request cancellation
+  . add notes to doctor
+  . view doctor profile
+
+View past appointment (patient)
+  . provide feedback/rating
+  . view doctor profile
+
+Upcoming appointments
+  -- lists appointments in row
+  . view appointment (patient)
+
+Past appointments
+  -- lists appointments in a row
+  . view past appointment (patient)
+
+Requested appointments:
+  . Confirm appointment
+  . Reject appointment with message
+
+Search for Doctor
+  -- choose search criteria (in request)
+  . view doctor information
+  . request appointment
