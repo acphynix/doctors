@@ -30,62 +30,53 @@
 <link rel="stylesheet" type="text/css" href="../styles/layout.css"> 
 <link rel="stylesheet" type="text/css" href="../forms.css"> 
 <script>
-  window.query = { search: '<?php echo $query?>' };
-  function goto(newpage){
-    window.location.href = newpage
-  }
-  function submit_request_create(){
-    console.log('hi');
-    return false;
-  }
-  $(document).ready(function () {
-    $("#iUr").click(function () {
-        var formData = $("#form_req").serialize();
-        $.ajax({
-            type: "POST",
-            url: "ajax/try_create_account.php", //serverside
-            data: formData,
-            beforeSend: function () {
-                //show loading image
-            },
-            success: function (result) {
-                console.log(result); //use this to see the response from serverside
-                value = JSON.parse(result);
-                // if(value.success == "true")location.href = 'accountcreatesuccess.php'
-            },
-            error: function (e) {
-                console.log(e); //use this to see an error in ajax request
-            }
-        });
-    });
-    $("#toggle_regr_type").click(function (){
-      // $scope.is_doctor = !$scope.is_doctor;
-    });
-});
+
+window.query = { search: '<?php echo $query?>' };
+
 </script>
 <title>Ekuojumo</title>
 </head>
 <body ng-app="doctor_search" ng-controller="search" class='layout_fullpage'>
   <div class='layout_center'>
     <div class="form-style-8">
-    <h2>Search for a Doctor</h2>
-    <form ng-submit='perform_search()'>
-      <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
-        autofocus ng-change='update_dropdown()'
-        placeholder="Enter your symptoms, a doctor's name, or a medical speciality"
-        ng-init='<?php echo htmlspecialchars($query); ?>'
-      />
-      <input type="submit" ng-click="update(user)" value="SEARCH" />
-    </form>
-    
-    <div class='clickme' ng-repeat='r in result_list'>
-      <p class='clickme' style='background-color:lightgray'>
-      {{r.user_first_name}} {{r.user_last_name}} <br />
-      Speciality: {{r.speciality_name}} <br />
-    </div>
-
-    <br />
-
+      <div id='panel_search' ng-show="action == 'search'">
+        <h2>Search for a Doctor</h2>
+        <form ng-submit='perform_search()'>
+          <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
+            autofocus ng-change='update_dropdown()'
+            placeholder="Enter your symptoms, a doctor's name, or a medical speciality"
+            ng-init='<?php echo htmlspecialchars($query); ?>'
+          />
+          <input type="submit" ng-click="update(user)" value="SEARCH" />
+        </form>
+        
+        <div class='clickme' ng-repeat='r in result_list'>
+          <p class='clickme' style='background-color:lightgray' ng-click="r.show=!r.show; load_info(r)">
+            {{r.user_first_name}} {{r.user_last_name}} <br />
+            Speciality: {{r.speciality_name}} <br />
+            Click for more details.
+            <div ng-show='r.show'>
+              <b>More details about {{r.user_first_name}}</b>
+              <br /><br />
+              Availabilities:
+              <div ng-repeat='time in r.schedule'>
+                {{to_date_string(time.s)}}
+                <input type='button' value='make an appointment' ng-click="action_book(r, time)">
+              </div>
+            </div>
+          </p>
+        </div>
+      </div>
+      <div id='panel_book' ng-show="action == 'book'">
+        <h2>Book Appointment</h2>
+        <input type='button' value='search results' ng-click="action='search'">
+        <br />
+        <br />
+        Confirm appointment with {{book.doctor.user_first_name}}
+        {{book.doctor.user_last_name}} at {{book.time.s}} to {{book.time.e}}.
+        <br />
+        <input type="submit" ng-click="book_appointment()" value="SEARCH" />
+      </div>
     </div>
   </div>
 </body>

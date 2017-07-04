@@ -40,13 +40,7 @@ function goto(newpage){
 }
 
 $(document).ready(function(){
-  if(window.location.hash) {
-    view = (window.location.hash.substring(window.location.hash.lastIndexOf("#")+1));
-    // alert(view);
-    navView(view);
-  } else {
 
-  }
   $( "#ikeyword_search" ).on('update_dropdown',function(event) {
     // alert($('').text);
   });
@@ -69,6 +63,7 @@ $(document).ready(function(){
 </head>
 
 <body ng-controller="HealthController" style="background: #0a6a8e">
+  <span ng-init='init_view()' />
   <div style="justify-content: center; margin:auto; width:80%; padding:10px; display:block; margin-left:auto; margin-right:auto; border:3px solid green; margin: 0 auto; background:#2a7aae; min-height:100% ">
 <?php if($_SESSION['valid']): ?>
 

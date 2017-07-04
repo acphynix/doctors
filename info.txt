@@ -1,22 +1,6 @@
-34.209.133.11
+TODO:
 
-Databases:
-  Instance Identifier:	Dev1
-  Master Username: 	admin
-  Master Password:	shagcanvas
-  Database Name: 	DB1
-  Databse Port:		3306
-
-RDS Instance:
-  username: root
-  password: 12345678
-
-For local mysql database:
-  username: ec2-user @ 'localhost'
-  password: [blank]
-
-
-
+http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx/
 
 ~~~~~ notes~~~~
 
