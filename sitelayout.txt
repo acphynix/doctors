@@ -17,6 +17,11 @@ Index:
     . past appointments
     . manage profile
 
+View calendar (doctor)
+  - view by month of week
+  . view all appointments
+  . set availability (specify times and prices)
+
 View calendar (patient)
   - view by month or week
   . view appointment (patient)

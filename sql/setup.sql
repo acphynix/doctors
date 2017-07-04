@@ -2,7 +2,7 @@
 
 use HealthTechSchema;
 
-drop table users;
+-- drop table if exists users;
 CREATE TABLE `users` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_password` varchar(64) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `user_email_UNIQUE` (`user_email`)
 );
 
-drop table doctors;
+-- drop table if exists doctors;
 CREATE TABLE `doctors` (
   `user_id` int(10) unsigned NOT NULL,
   `doctor_prof_picture` varchar(127) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE `doctors` (
   UNIQUE KEY `user_id_UNIQUE` (`user_id`)
 );
 
-drop table email_verify;
+-- drop table if exists email_verify;
 CREATE TABLE `email_verify` (
   `user_id` int(10) unsigned NOT NULL,
   `verify_code` varchar(24) NOT NULL,

@@ -1,4 +1,4 @@
-drop table specialities;
+-- drop table if exists specialities;
 create table `specialities` (
   `speciality` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `speciality_name` varchar(32) NOT NULL,
@@ -11,7 +11,7 @@ load data local infile '../rsc/list_specialities.txt' into table specialities
 
 
 
-drop table speciality_keywords;
+-- drop table if exists speciality_keywords;
 create table `speciality_keywords` (
   `id`         int(10) unsigned NOT NULL AUTO_INCREMENT,
   `speciality` int(10) unsigned NOT NULL,
