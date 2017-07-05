@@ -111,7 +111,7 @@ $(document).ready(function(){
       <div class='question-container'>
         <div class='question'>
           <h2>Looking for a doctor?</h2>
-          <form method='GET' action='views/doctor_search.php' class="form-style-8">
+          <form method='GET' action='views/doctor_search.php' class="form-style-8 white">
             <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
                    autofocus ng-change='update_dropdown()' />
           </form>

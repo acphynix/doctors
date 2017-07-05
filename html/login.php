@@ -80,10 +80,10 @@
     <div class='frontpage-container'>
       <div class='frontpage-entry' style='height:100%'>
         <h2 class='soloheading'>Sign in to Neolafia</h2>
-        <form class="form-style-8 borderless centered" role = "form" 
+        <form class="form-style-8 borderless centered white-plc" role = "form" 
                 action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
                 ?>" method = "post">
-          <input name="uname" type="text" ng-model="uname" placeholder="Username">
+          <input name="uname" type="text"     ng-model="uname" placeholder="Username">
           <input name="pword" type="password" ng-model="pword" placeholder="Password">
           <input name="login" type="submit" ng-click="update(user)" value="Sign in" />
         </form>

@@ -144,18 +144,18 @@ div.loggedinheader{
 }
 
 /* do not group these rules */
-*::-webkit-input-placeholder {
+input[id="ikeyword_search"]::-webkit-input-placeholder {
     color: white;
 }
-*:-moz-placeholder {
+input[id="ikeyword_search"]:-moz-placeholder {
     /* FF 4-18 */
     color: white;
 }
-*::-moz-placeholder {
+input[id="ikeyword_search"]::-moz-placeholder {
     /* FF 19+ */
     color: white;
 }
-*:-ms-input-placeholder {
+input[id="ikeyword_search"]:-ms-input-placeholder {
     /* IE 10+ */
     color: white;
 }
