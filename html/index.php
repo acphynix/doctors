@@ -60,7 +60,7 @@ $(document).ready(function(){
 
 </head>
 
-<body ng-controller="HealthController" style="background: #97d23b">
+<body ng-controller="HealthController">
   <span ng-init='init_view()' />
 <?php if($_SESSION['valid']): ?>
   <div style="justify-content: center; margin:auto; width:80%; padding:10px; display:block; margin-left:auto; margin-right:auto; border:3px solid green; margin: 0 auto; background:#2a7aae; min-height:100% ">
