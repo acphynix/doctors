@@ -75,3 +75,26 @@ div.frontpage-text{
 .right{
   float:right;
 }
+
+.banner-button{
+  font-family:'Cabin';
+  font-size:70%;
+  vertical-align:middle;
+  /*background-color:/*rgba()*/;*/
+  height:100%;
+  color:white;
+  padding:10px;
+  /*margin:10%;*/
+  width:100%;
+  cursor:pointer;
+  text-decoration: none;
+}
+span.banner-button-container{
+  position:absolute;
+  right:0px;
+  height:100%;
+  padding-right:5%;
+}
+.banner-button:hover{
+  background-color:rgba(255,255,255,0.2);
+}

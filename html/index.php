@@ -98,9 +98,14 @@ $(document).ready(function(){
   </div>
 <?php else: ?>
   <div class='boat'>
-    <h1 class='Neolafia'>
+    <span>
+    <h1 class='Neolafia' style='position:relative'>
       <img src='../images/logo.png' style='height:1em;'/>
       Neolafia
+      <span class='banner-button-container' >
+        <a class='banner-button' href='createaccount.php'>sign up</a>
+        <a class='banner-button' href='login.php'>sign in</a>
+      </span>
     </h1>
     <div>
       <div class='question-container'>
