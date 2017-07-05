@@ -1,0 +1,77 @@
+h1{
+  font-family: 'Zilla Slab', serif;
+}
+h2{
+  font-size:200%;
+  font-family: 'Poiret One', cursive;
+}
+h2.frontpage-heading{
+  margin-top:0;
+  padding-top:1em;
+  font-size:250%;
+}
+div.frontpage-text{
+  font-family: 'Cabin';
+  font-size:150%;
+}
+.boat {
+  /*background-image: url("../images/skater-large.jpg");*/
+  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1.0) ), url('../images/skater-large.jpg');
+  min-height:200px;
+  height:30%;
+  background-position: left top;
+  background-repeat: no-repeat;
+  width:100%;
+  position:relative;
+  padding:0;
+  margin:0;
+}
+.Neolafia {
+  padding:10px;
+  color:white;
+  width:100%;
+  background:rgba(0,40,0,0.6);
+  /*background-image: url("../images/skater-large.jpg");*/
+}
+.logo {
+  min-height:100%;
+  margin:0px;
+  padding:0px;
+}
+.question-container {
+  background: linear-gradient( rgba(0, 0, 0, 0.0), rgba(100,100,100, 0.8) );
+  width:100%;
+  text-align:center;
+  position:absolute;
+  bottom:0;
+  color:white;
+}
+.question {
+  margin:auto;
+}
+.frontpage-body {
+  /*background: linear-gradient( rgba(255,255,255, 0.5), rgba(255,255,255,1) );*/
+  background: rgba(255,200,170,0.5);
+}
+.frontpage-container {
+  /*margin-left:10%;*/
+  /*width:90%;*/
+  text-align:center;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  min-height:100%;
+}
+
+.frontpage-entry {
+  padding:5%;
+  background-color:rgba(255,255,255,0.9);
+  padding-left:5%;
+  text-align:left;
+}
+.left{
+  float:left;
+}
+.right{
+  float:right;
+}
