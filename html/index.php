@@ -1,9 +1,8 @@
 <?php
-   ob_start();
-   session_start();
-   // if($_SESSION['valid']){
-   //   header('Location: http://www.yoursite.com/new_page.html') ;
-   // }
+  session_start();
+  if($_SESSION['valid']){
+    // header('Location: page/home.php') ;
+  }
 ?>
 <html ng-app="healthapp">
 <head>
@@ -19,25 +18,6 @@
 <script>
 
 function navView(page){
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      // alert(this.responseText);
-      var result = $('<div />').append(this.responseText).html();
-      $('#c_navpage').html(result);
-
-    }
-    else{
-      
-    }
-  };
-  xmlhttp.open("GET", "views/"+page+".php", true);
-  xmlhttp.send();
-}
-
-function goto(newpage){
-  window.location.href = newpage
-}
 
 $(document).ready(function(){
 
@@ -62,41 +42,6 @@ $(document).ready(function(){
 
 <body ng-controller="HealthController">
   <span ng-init='init_view()' />
-<?php if($_SESSION['valid']): ?>
-  <div style="justify-content: center; margin:auto; width:80%; padding:10px; display:block; margin-left:auto; margin-right:auto; border:3px solid green; margin: 0 auto; background:#2a7aae; min-height:100% ">
-
-  <div class="loggedinheader" style="">
-    <div style="vertical-align:middle">
-      <span>
-      <img src="images/banner.jpg" style="width:120">
-      </span>
-      <span class="headeruname">
-        <?php
-          echo $_SESSION['displayname'];
-        ?>
-      </span>
-      <div style="float:right">
-      <a href="logout.php"> Sign out</a>
-      </div>
-    </div>
-  </div>
-  <hr>
-
-  <table style="width:100%">
-    <tr>
-      <td class="sidepanel" style="">
-        <div id="e_search" ng-click="lcurrent_view='views/view_search.php'"             class="panelentry clickme">Search</div>
-        <div id="e_profile" ng-click="lcurrent_view='views/view_profile.php'"           class="panelentry clickme">My Profile</div>
-        <div id="e_patientappts" ng-click="lcurrent_view='views/view_patientappts.php'" class="panelentry clickme">My Appointments (Pt)</div>
-        <div id="e_doctorappts" ng-click="lcurrent_view='views/view_doctorappts.php'"   class="panelentry clickme">My Appointments (Dr)</div>
-      </td>
-    <td id="c_navpages" class="form-style-8" style="overflow:hidden">
-      <ng-include src="lcurrent_view"> </ng-include>
-    </td>
-    </tr>
-  </table>
-  </div>
-<?php else: ?>
   <div class='boat'>
     <span>
     <h1 class='Neolafia' style='position:relative'>
@@ -136,6 +81,5 @@ $(document).ready(function(){
       </div>
     </div>
   </div>
-<?php endif; ?>
 </body>
 </html>
