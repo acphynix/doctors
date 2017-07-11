@@ -1,4 +1,4 @@
-drop table if exists timeslots;
+-- drop table if exists timeslots;
 create table `timeslots` (
   `timeslot_id`     int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id`         int(10),
@@ -11,7 +11,7 @@ create table `timeslots` (
   PRIMARY KEY (`timeslot_id`)
 );
 
-drop table if exists appointments;
+-- drop table if exists appointments;
 create table `appointments` (
   `appointment_id`  int(10) unsigned NOT NULL AUTO_INCREMENT,
   `price`           int(10),

@@ -16,7 +16,7 @@ healthapp.controller('HealthController', function($scope){
   $scope.init_view=function(){
     if(window.location.hash) {
       view = (window.location.hash.substring(window.location.hash.lastIndexOf("#")+1));
-      $scope.lcurrent_view='views/'+view+'.php';
+      $scope.lcurrent_view='../views/'+view+'.php';
     }
   };
 });
@@ -34,7 +34,6 @@ healthapp.controller('PatientAppointments', function($scope, $http){
        // code to execute in case of error
     });
   };
-  // alert('hi!');
 });
 healthapp.controller('CreateAccount',function($scope,$http){
   $scope.isDoctor = true;

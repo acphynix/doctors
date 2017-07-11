@@ -2,22 +2,6 @@
   require('../util/sanitize.php');
   $database = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
   $query = sanitize_plaintext($_GET['q']);
-  // $terms = (explode(" ",$query));
-  // 1. find specialities associated with the search term.
-  $db_1 =
-    sprintf("select user_first_name, user_last_name,doctor_prof_picture,".
-                    "doctor_speciality ".
-      "from doctors,users where doctor_speciality in (select speciality from ".
-      "speciality_keywords where keyword like 'lungs') ".
-      "and doctors.user_id=users.user_id",$query);
-
-  $dq_1 = mysqli_query($database, $db_1);
-  $dr_1 = [];
-  $ds_1 = '';
-
-  while ($row = $dq_1->fetch_assoc()) {
-    array_push($dr_1, $row);
-  }
 ?>
 <html>
 <head>

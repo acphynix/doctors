@@ -2,7 +2,7 @@
     require('../util/sanitize.php');
     function send_email($address, $validate_hash){
       $to = $address;
-      $subject = "Welcome to Eku Ojumo";
+      $subject = "Welcome to Neolafia!";
 
       $message = "
         <html>
@@ -10,14 +10,16 @@
             <title>Welcome!</title>
           </head>
           <body>
-            <p> Thank you for registering with Eku Ojumo.
+            <p>
+                Thank you for registering with Neolafia!
+            </p><p>
                 Your account has been created, and now all
-                you have to do is click <a href='verify_acct.php?q={$validate_hash}'>here</a> to verify
+                you have to do is click <a href='neolafia.com/verify_acct.php?q={$validate_hash}'>here</a> to verify
                 your account information.
             </p>
             <p>
-                Regards, <br />
-                <i>The entire Eku Ojumo team</i>
+                Regards, <br /><br />
+                <i>The entire Neolafia team</i>
             </p>
           </body>
         </html>
@@ -26,8 +28,7 @@
       // Always set content-type when sending HTML email
       $headers  = "MIME-Version: 1.0" . "\r\n";
       $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-      $headers .= 'From: <webmaster@ekuojumo.com>' . "\r\n";
-      echo 'sending email to '.$to.'\n';
+      $headers .= 'From: <webmaster@neolafia.com>' . "\r\n";
       mail($to,$subject,$message,$headers);
     }
     function console_log( $data ){
@@ -131,10 +132,7 @@
     *****************/
 
     ob_start();
-    // session_start();
 
-
-    echo 'TRY!';
     // try to build a doctor
     $isdoctor = ($_POST['nIsD'] === 'true');
     $query_user = build_user_query();
@@ -164,7 +162,6 @@
     // get new user id.
     $email = sanitize_email($_POST['nEm']);
     $userid = mysqli_query($database,sprintf("select user_id from users where user_email='%s'",$email))->fetch_assoc()['user_id'];
-    echo '1 ';
     // doctor query
     if($isdoctor){
       // construct doctor query
@@ -181,18 +178,13 @@
         echo '{"success":"false","msg":"Internal database error 2."}';
         return;
       }
-      echo 'built doctor';
     }
-    echo '2 ';
 
     // echo '{"success":"true","msg":"Success"}';
     $verify_str = bin2hex(random_bytes(10));
     $sql_addverify = sprintf("insert into email_verify (user_id, verify_code) values (%s,'%s')",$userid,$verify_str);
     // echo 'hello, world!';
-    echo $sql_addverify;
     $sres = mysqli_query($database, $sql_addverify);
-    echo mysqli_error($connection);
-    echo $sres;
     // echo 'hello, world\n';
     send_email($email,$verify_str);
     mysqli_close($database);

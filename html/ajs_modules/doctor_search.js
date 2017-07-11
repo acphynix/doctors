@@ -19,7 +19,7 @@ doctor_search.controller('search', function($scope, $window, $http){
       }).then(function successCallback(response) {
         console.log('Response: ');
         console.log(response);
-        window.location.href = 'index.php#!#view_patientappts';
+        window.location.href = 'home.php#!#view_patientappts';
         doctor.schedule=JSON.parse(response.data);
       }, function errorCallback(response) {
         console.log('Response: ');

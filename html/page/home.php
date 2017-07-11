@@ -27,7 +27,7 @@ function navView(page){
       
     }
   };
-  xmlhttp.open("GET", "views/"+page+".php", true);
+  xmlhttp.open("GET", "../views/"+page+".php", true);
   xmlhttp.send();
 }
 
