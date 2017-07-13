@@ -52,6 +52,7 @@
         }
         if(($row['user_status'] === 'verified')){
           $_SESSION['user_id']     = $row['user_id'];
+          // $_SESSION['isdoctor']    = $row['user_id'];
           $_SESSION['valid']       = true;
           $_SESSION['timeout']     = time();
           $_SESSION['displayname'] = $row['user_first_name'] . ' ' . $row['user_last_name'];

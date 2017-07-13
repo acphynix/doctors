@@ -21,7 +21,7 @@ div.frontpage-text{
   /*background-image: url("../images/skater-large.jpg");*/
   background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1.0) ), url('../images/skater-large.jpg');
   min-height:200px;
-  height:30%;
+  height:50%;
   background-position: left top;
   background-repeat: no-repeat;
   width:100%;
@@ -91,7 +91,6 @@ div.frontpage-text{
   font-family:'Cabin';
   font-size:70%;
   vertical-align:middle;
-  /*background-color:/*rgba()*/;*/
   height:100%;
   color:white;
   padding:10px;
@@ -99,6 +98,7 @@ div.frontpage-text{
   width:100%;
   cursor:pointer;
   text-decoration: none;
+  /*border-style: solid;*/
 }
 span.banner-button-container{
   position:absolute;
@@ -106,7 +106,12 @@ span.banner-button-container{
   height:100%;
   padding-right:5%;
 }
+a.banner-welcome-text{
+  font-family: 'Courgette', cursive;
+  font-size:70%;
+}
 .banner-button:hover{
+  border-bottom: solid rgba(255,255,255,0.8);
   background-color:rgba(255,255,255,0.2);
 }
 .soloheading{

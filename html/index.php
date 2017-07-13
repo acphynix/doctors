@@ -1,8 +1,9 @@
 <?php
   session_start();
   if($_SESSION['valid']){
-    // header('Location: page/home.php') ;
+    $login=1;
   }
+  $displayname = $_SESSION['displayname'];
 ?>
 <html ng-app="healthapp">
 <head>
@@ -34,7 +35,7 @@ $(document).ready(function(){
 
 
 </script>
-<link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin|Courgette" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="forms.css"> 
 <link rel="stylesheet" type="text/css" href="styles/styles.css"> 
 
@@ -48,8 +49,13 @@ $(document).ready(function(){
       <img src='../images/logo.png' style='height:1em;'/>
       Neolafia
       <span class='banner-button-container' >
-        <a class='banner-button' href='createaccount.php'>sign up</a>
-        <a class='banner-button' href='login.php'>sign in</a>
+        <?php if($login>0){ ?>
+          <a class='banner-welcome-text banner-button' href='page/home.php'><?php echo $displayname ?></a>
+          <a class='banner-button' href='logout.php'>sign out</a>
+        <?php }else{ ?>
+          <a class='banner-button' href='createaccount.php'>sign up</a>
+          <a class='banner-button' href='login.php'>sign in</a>
+        <?php } ?>
       </span>
     </h1>
     <div>

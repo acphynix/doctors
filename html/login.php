@@ -23,7 +23,7 @@
             url: "ajax/login.php",
             data: $("#iform_login").serialize(),
             success: function(data){
-              goto('page/home.php')
+              goto('index.php')
               console.log('data ');
             },
             errfor: function(data){
