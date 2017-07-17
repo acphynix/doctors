@@ -8,6 +8,7 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="/awesomplete/awesomplete.js"></script>
 <script src="../app.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../../styles/styles.css"> 
@@ -17,10 +18,8 @@
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        // alert(this.responseText);
         var result = $('<div />').append(this.responseText).html();
         $('#c_navpage').html(result);
-
       }
       else{
         
@@ -48,21 +47,22 @@
   </div>
   <div class='frontpage-body'>
     <div class='frontpage-container'>
-      <div class='frontpage-entry' style='height:100%'>
         <table style="width:100%">
           <tr>
-            <td class="sidepanel" style="">
+            <td class="sidepanel" style="width:1%;white-space:nowrap;">
               <div id="e_search" ng-click="lcurrent_view='../views/view_search.php'"             class="panelentry clickme">Search</div>
               <div id="e_profile" ng-click="lcurrent_view='../views/view_profile.php'"           class="panelentry clickme">My Profile</div>
+              <div id="e_profile" ng-click="lcurrent_view='../views/view_profile.php'"           class="panelentry clickme">Dashboard</div>
               <div id="e_patientappts" ng-click="lcurrent_view='../views/view_patientappts.php'" class="panelentry clickme">My Appointments (Pt)</div>
               <div id="e_doctorappts" ng-click="lcurrent_view='../views/view_doctorappts.php'"   class="panelentry clickme">My Appointments (Dr)</div>
+              <div id="e_profile" ng-click="lcurrent_view='../views/view_profile.php'"           class="panelentry clickme">My Doctors</div>
+              <div id="e_profile" ng-click="lcurrent_view='../views/view_profile.php'"           class="panelentry clickme">Messages</div>
             </td>
           <td id="c_navpages" class="form-style-8" style="overflow:hidden">
             <ng-include src="lcurrent_view"> </ng-include>
           </td>
           </tr>
         </table>
-      </div>
     </div>
   </div>
 </body>

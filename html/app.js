@@ -3,12 +3,15 @@ var healthapp = angular.module('healthapp', []);
 healthapp.controller('HealthController', function($scope){
   $scope.test = "this is a test";
   $scope.lcurrent_view='views/view_search.php';
-  $scope.search_suggestions=['Ada', 'Java', 'JavaScript', 'Brainfuck', 'LOLCODE', 'Node.js', 'Ruby on Rails'];
   $scope.update_dropdown = function(){
     var ajax = new XMLHttpRequest();
-    ajax.open("GET", "https://restcountries.eu/rest/v1/lang/fr", true);
+    console.log('searching '+$scope.searchbox.value);
+    ajax.open("GET", "ajax/get_keyword_suggestions.php?q='"+$scope.keyword_search+"'", true);
     ajax.onload = function() {
-      var list = JSON.parse(ajax.responseText).map(function(i) { return i.name; });
+      var list = JSON.parse(ajax.responseText).map(function(i) { return i.keyword; });
+      console.log(ajax.responseText);
+      $scope.awesomplete.list = list;
+      $scope.awesomplete.evaluate();
       // new Awesomplete(document.querySelector("#ajax-example input"),{ list: list });
     };
     ajax.send();
@@ -19,7 +22,12 @@ healthapp.controller('HealthController', function($scope){
       $scope.lcurrent_view='../views/'+view+'.php';
     }
   };
+  $scope.searchbox   = document.getElementById("ikeyword_search");
+  if($scope.searchbox != null){
+    $scope.awesomplete = new Awesomplete(document.getElementById("ikeyword_search"), { list: [""] }); 
+  }
 });
+
 healthapp.controller('PatientAppointments', function($scope, $http){
   $scope.test = "this is a test";
   $scope.appointments=[{name:"John Smith"}];

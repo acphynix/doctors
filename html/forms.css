@@ -23,6 +23,9 @@ div.loggedinheader{
   /*-moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);*/
   /*-webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);*/
 }
+.banner_search{
+
+}
 .clickme{
   cursor:pointer;
 }
@@ -54,8 +57,9 @@ div.loggedinheader{
   background:rgba(70,70,70,0.5)
 }
 .panelentry{
-  background-color:rgba(200,200,200,0.2);
-  padding:10px;
+  /*background-color:rgba(200,200,200,0.2);*/
+  padding:1em;
+  padding-right:1em;
   text-align:left;
 }
 .panelentry:hover { 
@@ -64,13 +68,17 @@ div.loggedinheader{
 .form-style-8{
   font-family: 'Open Sans Condensed', arial, sans;
   width: 80%;
-  /*padding: 30px;*/
+  padding: 1em;
+  padding-bottom:0.1em;
   margin: 50px auto;
-  margin-top:0;
+  /*margin-top:0;*/
   background: rgba(255,255,255,0.5);
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
   -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
   -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+  border-radius:1em ;
+  /*border-bottom: 0px solid #ddd;*/
+
 }
 .borderless{
     background: rgba(255,255,255,0);
@@ -114,7 +122,7 @@ div.loggedinheader{
   border-bottom: 1px solid #ddd;
   background: transparent;
   margin-bottom: 10px;
-  font: 16px Arial, Helvetica, sans-serif;
+  font: 16px Cabin, Arial, Helvetica, sans-serif;
   height: 45px;
 }
 .form-style-8 textarea{

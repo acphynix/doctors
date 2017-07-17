@@ -26,6 +26,7 @@
     padding: 0;
     margin: 0;
     background: #fff;
+    text-align:left;
 }
 
 .awesomplete > ul:empty {
@@ -77,6 +78,8 @@
 		position: relative;
 		padding: .2em .5em;
 		cursor: pointer;
+    padding:1em;
+    color:black;
 	}
 	
 	.awesomplete > ul > li:hover {

@@ -5,6 +5,10 @@ h2{
   font-size:200%;
   font-family: 'Poiret One', cursive;
 }
+h3{
+  font-family:'Cabin';
+  /*margin-left:1em;*/
+}
 a{
   text-decoration: none;
 }
@@ -17,17 +21,34 @@ div.frontpage-text{
   font-family: 'Cabin';
   font-size:150%;
 }
+html{
+  height:100%;
+}
+body{
+  margin:0;
+  min-height: 100%;
+}
 .boat {
   /*background-image: url("../images/skater-large.jpg");*/
   background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1.0) ), url('../images/skater-large.jpg');
   min-height:200px;
   height:50%;
   background-position: left top;
-  background-repeat: no-repeat;
+  background-repeat: 
+  no-repeat;
   width:100%;
   position:relative;
   padding:0;
   margin:0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  /*background-size: cover auto;*/
+}
+.boat-smaller{
+  height:20%;
+  min-height:200px;
+  /*width:40%;*/
 }
 .noboat {
   background-position: left top;
@@ -40,7 +61,7 @@ div.frontpage-text{
 .Neolafia {
   padding:10px;
   color:white;
-  width:100%;
+  /*width:100%;*/
   background:rgba(0,40,0,0.6);
   /*background-image: url("../images/skater-large.jpg");*/
 }
@@ -63,6 +84,7 @@ div.frontpage-text{
 .frontpage-body {
   /*background: linear-gradient( rgba(255,255,255, 0.5), rgba(255,255,255,1) );*/
   background: rgba(255,200,170,0.5);
+  height:100%;
 }
 .frontpage-container {
   /*margin-left:10%;*/
@@ -79,6 +101,37 @@ div.frontpage-text{
   background-color:rgba(255,255,255,0.9);
   padding-left:5%;
   text-align:left;
+}
+.results-body {
+  /*background: linear-gradient( rgba(255,255,255, 0.5), rgba(255,255,255,1) );*/
+  background: rgba(255,255,255,1);
+}
+.results-text {
+  font-style: italic;
+  padding:1em;
+}
+.results-container {
+  /*margin-left:10%;*/
+  /*width:90%;*/
+  text-align:center;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  padding-bottom:2em;
+  /*min-height:100%;*/
+}
+.results-entry {
+  padding:1em;
+  /*padding-left:0%;*/
+  text-align:left;
+  width:80%;
+  margin-left:10%;
+  /*margin-right:10%;*/
+  background-color:#eeddcc;
+  margin-top:1em;
+  /*border:1px solid;*/
+  /*height:200px;*/
+  display:block;
 }
 .left{
   float:left;
@@ -103,8 +156,8 @@ div.frontpage-text{
 span.banner-button-container{
   position:absolute;
   right:0px;
-  height:100%;
-  padding-right:5%;
+  /*height:100%;*/
+  padding-right:1em;
 }
 a.banner-welcome-text{
   font-family: 'Courgette', cursive;

@@ -12,7 +12,7 @@
   $database = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
   $query = sanitize_plaintext($_GET['q']);
   $db_1 =
-    sprintf("select keyword from keywords where keyword like '%%%s%%'",$query);
+    sprintf("select distinct keyword from keywords where keyword like '%%%s%%'",$query);
 
   $dq_1 = mysqli_query($database, $db_1);
   $dr_1 = [];

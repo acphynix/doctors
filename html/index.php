@@ -14,26 +14,15 @@
 <script src="app.js"></script>
 
 <link rel="stylesheet" href="awesomplete/awesomplete.css" />
-<script src="awesomplete/awesomplete.js" async></script>
+<script src="awesomplete/awesomplete.js"></script>
 
-<script>
+<script type="text/javascript" async>
+  $( document ).ready(function() {
+    var input_plc = "Enter your symptoms, a doctor\'s name, or a medical speciality";
 
-function navView(page){
-
-$(document).ready(function(){
-
-  $( "#ikeyword_search" ).on('update_dropdown',function(event) {
-    // alert($('').text);
+    $('#ikeyword_search')
+      .attr('placeholder',input_plc);
   });
-
-  var input_plc = "Enter your symptoms, a doctor\'s name, or a medical speciality";
-
-  $('#ikeyword_search')
-    .attr('placeholder',input_plc);
-    
-});
-
-
 </script>
 <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin|Courgette" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="forms.css"> 
@@ -41,7 +30,7 @@ $(document).ready(function(){
 
 </head>
 
-<body ng-controller="HealthController">
+<body ng-controller="HealthController" style='margin:0'>
   <span ng-init='init_view()' />
   <div class='boat'>
     <span>
@@ -62,9 +51,9 @@ $(document).ready(function(){
       <div class='question-container'>
         <div class='question'>
           <h2>Looking for a doctor?</h2>
-          <form method='GET' action='views/doctor_search.php' class="form-style-8 white">
+          <form method='GET' action='views/doctor_search.php' class="form-style-8 white banner_search">
             <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
-                   autofocus ng-change='update_dropdown()' />
+                   autofocus ng-keypress='update_dropdown()' autocomplete="off" />
           </form>
         </div>
       </div>
