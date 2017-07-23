@@ -84,7 +84,7 @@ body{
 .frontpage-body {
   /*background: linear-gradient( rgba(255,255,255, 0.5), rgba(255,255,255,1) );*/
   background: rgba(255,200,170,0.5);
-  height:100%;
+  /*height:100%;*/
 }
 .frontpage-container {
   /*margin-left:10%;*/
@@ -93,7 +93,7 @@ body{
   display:block;
   margin-left:auto;
   margin-right:auto;
-  min-height:100%;
+  /*min-height:100%;*/
 }
 
 .frontpage-entry {
