@@ -1,5 +1,6 @@
 <?php
-  require('../util/sanitize.php');
+  require_once($_SERVER['DOCUMENT_ROOT']."/php/util/global.php");
+  import('php/util/sanitize.php');
   session_start();
   if($_SESSION['valid']){
     $login=1;
@@ -50,8 +51,8 @@
           <a class='banner-welcome-text banner-button' href='page/home.php'><?php echo $displayname ?></a>
           <a class='banner-button' href='logout.php'>sign out</a>
         <?php }else{ ?>
-          <a class='banner-button' href='createaccount.php'>sign up</a>
-          <a class='banner-button' href='login.php'>sign in</a>
+          <a class='banner-button' href='/createaccount.php'>sign up</a>
+          <a class='banner-button' href='/login.php'>sign in</a>
         <?php } ?>
       </span>
     </h1>
@@ -91,7 +92,7 @@
           Availabilities:
           <div ng-repeat='time in r.schedule'>
             {{to_date_string(time.s)}}
-            <a href="/book_appointment.php?t={{time.s}}">Book an appointment</a>
+            <a href="/book_appointment.php?t={{time.s}}&q={{query.text}}&d={{r.user_id}}">Book an appointment</a>
           </div>
         </div>
 

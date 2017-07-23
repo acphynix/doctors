@@ -9,7 +9,9 @@
    *
    */
 
-  require('../util/sanitize.php');
+  require_once($_SERVER['DOCUMENT_ROOT']."/php/util/global.php");
+  import('php/util/sanitize.php');
+
   $database = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
   $query = sanitize_plaintext($_GET['q']);
   $db_1 =

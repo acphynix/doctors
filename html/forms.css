@@ -108,7 +108,6 @@ div.loggedinheader{
 .form-style-8 input[type="time"],
 .form-style-8 input[type="url"],
 .form-style-8 input[type="password"],
-.form-style-8 textarea,
 .form-style-8 select 
 {
   box-sizing: border-box;
@@ -125,9 +124,72 @@ div.loggedinheader{
   font: 16px Cabin, Arial, Helvetica, sans-serif;
   height: 45px;
 }
-.form-style-8 textarea{
+.account-form{
+  font-family: 'Open Sans Condensed', arial, sans;
+  width: 80%;
+  padding: 1em;
+  padding-bottom:0.1em;
+  margin: 50px auto;
+  /*margin-top:0;*/
+  background: rgba(255,255,255,0.5);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+  /*border-radius:1em ;*/
+  /*border-bottom: 0px solid #ddd;*/
+
+}
+.account-form input[type="text"],
+.account-form input[type="date"],
+.account-form input[type="datetime"],
+.account-form input[type="email"],
+.account-form input[type="number"],
+.account-form input[type="search"],
+.account-form input[type="time"],
+.account-form input[type="url"],
+.account-form input[type="password"],
+.account-form textarea,
+.account-form select 
+{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  /*display: block;*/
+  width: 100%;
+  /*padding: 7px;*/
+  border: none;
+  border-bottom: 1px solid #ddd;
+  background: transparent;
+  margin-left: 1em;
+  font: 16px Cabin, Arial, Helvetica, sans-serif;
+  height: 45px;
+  border-radius:0;
+}
+select{
+  color:black;
+}
+textarea{
   resize:none;
   overflow: hidden;
+
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  display: block;
+  width: 80%;
+  padding: 7px;
+  /*border: none;*/
+  border-radius:0.3em;
+  border-bottom: 1px solid #ddd;
+  background: transparent;
+  margin-bottom: 10px;
+  font: 16px Cabin, Arial, Helvetica, sans-serif;
+  height: 45px;
+}
+textarea:focus{
+  background-color:#fffffa;
 }
 .form-style-8 input[type="button"], 
 .form-style-8 input[type="submit"]{
@@ -172,4 +234,32 @@ input[id="ikeyword_search"]:-ms-input-placeholder {
 /* Google Chrome stuff */
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset !important;
+}
+
+input[type="submit"].page-form{
+  font-family: 'Open Sans Condensed', arial, sans;
+  /*width: 80%;*/
+  padding: 1em;
+  padding-bottom:0.1em;
+  margin: 50px auto;
+  /*margin-top:0;*/
+  background: rgba(255,255,255,0.5);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+  /*border-radius:1em ;*/
+
+  -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+  box-shadow: inset 0px 1px 0px 0px #45D6D6;
+  background-color: #2CBBBB;
+  border: 1px solid #27A0A0;
+  display: inline-block;
+  cursor: pointer;
+  color: #FFFFFF;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 14px;
+  padding: 8px 18px;
+  text-decoration: none;
+  text-transform: uppercase;
 }

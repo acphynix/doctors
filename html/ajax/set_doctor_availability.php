@@ -114,7 +114,6 @@ foreach ($conflicts as $conflict){
     }
     else{
       // split.
-      echo 'split!';
       echo json_encode($conflict);
       copy_timeslot ($database, $conflict, $cd1,$date1);
       copy_timeslot ($database, $conflict, $date2,$cd2);

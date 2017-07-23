@@ -17,17 +17,15 @@
   }
   $(document).ready(function(){
     $("#iform_login").submit(function(e) {
-      console.log('yolo!');
       $.ajax({
             type: "POST",
             url: "ajax/login.php",
             data: $("#iform_login").serialize(),
             success: function(data){
               goto('index.php')
-              console.log('data ');
             },
             errfor: function(data){
-              console.log('data ');
+              
             }
            });
       e.preventDefault();

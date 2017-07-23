@@ -29,7 +29,7 @@
     $conn = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
 
     if ($conn->connect_error) {
-      echo '{"success":"false","msg":"bad"}';
+      header( "HTTP/1.1 500 Internal Server Error ");
       return;
     }
     $query = "SELECT user_first_name, user_last_name, user_id, user_email, ".
@@ -37,7 +37,7 @@
              "user_email='".$_POST['uname']."'";
     $result = mysqli_query($conn, $query);
     if (!$result) {
-      echo '{"success":"false","msg":"bad"}';
+      header( "HTTP/1.1 401 Unauthorized ");
       return;
     }
     $msg = 'Incorrect email or password';
@@ -46,25 +46,17 @@
       if(same_email   ($_POST['uname'], $row['user_email'   ]) &&
          same_password($_POST['pword'], $row['user_password'])){
 
-        if(($row['user_status'] != 'verified')){
-          echo '{"success":"false","msg":"unverified"}';
-          return;
-        }
-        if(($row['user_status'] === 'verified')){
-          $_SESSION['user_id']     = $row['user_id'];
-          // $_SESSION['isdoctor']    = $row['user_id'];
-          $_SESSION['valid']       = true;
-          $_SESSION['timeout']     = time();
-          $_SESSION['displayname'] = $row['user_first_name'] . ' ' . $row['user_last_name'];
-          // echo "<script> window.location.assign('index.php'); </script>";
-          echo '{"success":"true","msg":"success"}';
-          return;
-        }
+        $_SESSION['user_id']     = $row['user_id'];
+        $_SESSION['valid']       = true;
+        $_SESSION['timeout']     = time();
+        $_SESSION['displayname'] = $row['user_first_name'] . ' ' . $row['user_last_name'];
+        echo '{"success":"true","msg":"success"}';
+        return;
       }
     }
-    echo '{"success":"false","msg":"bad"}';
+    header( "HTTP/1.1 401 Unauthorized ");
     return;
   } 
-  echo '{"success":"false","msg":"bad"';
+  header( "HTTP/1.1 401 Unauthorized ");
   return;
 ?>

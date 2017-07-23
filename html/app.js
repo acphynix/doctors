@@ -2,7 +2,7 @@ var healthapp = angular.module('healthapp', []);
 
 healthapp.controller('HealthController', function($scope){
   $scope.test = "this is a test";
-  $scope.lcurrent_view='views/view_search.php';
+  $scope.lcurrent_view='/views/view_patientappts.php';
   $scope.update_dropdown = function(){
     var ajax = new XMLHttpRequest();
     console.log('searching '+$scope.searchbox.value);
@@ -19,7 +19,7 @@ healthapp.controller('HealthController', function($scope){
   $scope.init_view=function(){
     if(window.location.hash) {
       view = (window.location.hash.substring(window.location.hash.lastIndexOf("#")+1));
-      $scope.lcurrent_view='../views/'+view+'.php';
+      $scope.lcurrent_view='/views/'+view+'.php';
     }
   };
   $scope.searchbox   = document.getElementById("ikeyword_search");

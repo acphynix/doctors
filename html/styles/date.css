@@ -10,10 +10,16 @@ input, select{
   padding-right: 0.25rem;
 }
 .ng-dirty.ng-valid{
-    border-color: blue !important;
+    background-color: rgba(100,255,0,0.15) !important;
+    border-color: rgba(100,255,0,0.1) !important;
 }
 .ng-invalid{
-    border-color: red !important;
+/*    background-color: rgba(255,100,0,0.1) !important;
+    border-color: rgba(255,100,0,0.1) !important;*/
+}
+form.ng-invalid{
+    background-color: rgba(0,0,0,0) !important;
+    border-color: rgba(256,200,0,0.1) !important;
 }
 #submit {
     width: 100%;

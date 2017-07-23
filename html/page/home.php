@@ -10,6 +10,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="/awesomplete/awesomplete.js"></script>
 <script src="../app.js"></script>
+
+<script src= cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js></script>
+<link rel="stylesheet" type="text/css" href="cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css">
+
 <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../../styles/styles.css"> 
 <link rel="stylesheet" type="text/css" href="../forms.css"> 
@@ -50,7 +54,7 @@
         <table style="width:100%">
           <tr>
             <td class="sidepanel" style="width:1%;white-space:nowrap;">
-              <div id="e_search" ng-click="lcurrent_view='../views/view_search.php'"             class="panelentry clickme">Search</div>
+              <div id="e_search" onclick="goto('/views/doctor_search.php')"                      class="panelentry clickme">Search</div>
               <div id="e_profile" ng-click="lcurrent_view='../views/view_profile.php'"           class="panelentry clickme">My Profile</div>
               <div id="e_profile" ng-click="lcurrent_view='../views/view_profile.php'"           class="panelentry clickme">Dashboard</div>
               <div id="e_patientappts" ng-click="lcurrent_view='../views/view_patientappts.php'" class="panelentry clickme">My Appointments (Pt)</div>
