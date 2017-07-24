@@ -3,6 +3,16 @@
   session_start();
 ?>
 
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/af.js'></script>
+<script src= 'https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js'></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+  alert('hi');
+</script>
 <span ng-controller="patient_appointments">
 <span id= "symptoms_list_container">
     <datalist id="symptoms_list"></datalist>
@@ -37,6 +47,9 @@
   <input type='submit' value='submit'>
 </form>
 
+hi there!
+<div id='calendar'></div>
+ello
 <div style="font-weight:bold">
   
 </div>

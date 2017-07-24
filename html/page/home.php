@@ -6,17 +6,22 @@
 ?>
 <html ng-app="healthapp">
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js'></script>
+
 <script src="/awesomplete/awesomplete.js"></script>
 <script src="../app.js"></script>
 
-<script src= cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js></script>
-<link rel="stylesheet" type="text/css" href="cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css">
 
 <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../../styles/styles.css"> 
 <link rel="stylesheet" type="text/css" href="../forms.css"> 
+
 <script>
   function navView(page){
     var xmlhttp = new XMLHttpRequest();
@@ -35,7 +40,7 @@
 
   function goto(newpage){
     window.location.href = newpage
-  }
+}
 </script>
 <title>Neolafia</title>
 </head>

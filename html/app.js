@@ -48,8 +48,12 @@ healthapp.controller('CreateAccount',function($scope,$http){
 });
 
 healthapp.controller('patient_appointments', function($scope, $http){
-  // todo: remove this.
-
+  $('#calendar').fullCalendar({
+    width: 20
+    // aspectRatio: 0.5
+      // put your options and callbacks here
+  });
+  
   $scope.date_start = '2017-07-02 13:00';
   $scope.date_end   = '2017-07-02 14:30';
   $scope.date_value = 'open';

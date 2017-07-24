@@ -76,7 +76,7 @@
             <tr><td style='white-space:nowrap;'>
               Given Name:
             </td><td style='width:100%'>
-              <input name="nFn" ng-model="nFn" id="iFn" type="text" placeholder="Michael" autocomplete="off" ng-required="true" ng-minlength="3">
+              <input name="nFn" ng-model="nFn" id="iFn" type="text" placeholder="Andrew" autocomplete="off" ng-required="true" ng-minlength="3">
             </td></tr>
             <tr><td style='white-space:nowrap;'>
               Surname:
@@ -86,7 +86,7 @@
             <tr><td style='white-space:nowrap;'>
               E-mail Address:
             </td><td style='width:100%'>
-              <input name="nEm" ng-model="nEm" id="iEm" type="email" placeholder="michael@mydomain.com" ng-required="true">
+              <input name="nEm" ng-model="nEm" id="iEm" type="email" placeholder="andrew@mydomain.com" ng-required="true">
             </td></tr>
             <tr><td style='white-space:nowrap;'>
               Password:
