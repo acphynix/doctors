@@ -1,5 +1,7 @@
 <?php
-    require('../util/sanitize.php');
+    require_once($_SERVER['DOCUMENT_ROOT']."/php/util/global.php");
+    import('/php/util/sanitize.php');
+
     function send_email($address, $validate_hash){
       $to = $address;
       $subject = "Welcome to Neolafia!";
@@ -139,24 +141,24 @@
     $query_doctor = false;
 
     if(!$query_user){
-      echo '{"success":"false","msg":"Please verify that the form is entered fully."}';
+      echo '{"success":"false","msg":"Please enter all fields before submitting"}';
       return;
     }
     if($isdoctor && !verify_can_build_doctor_query()){
-      echo '{"success":"false","msg":"Please verify that the form is entered fully."}';
+      echo '{"success":"false","msg":"Please enter all fields before submitting"}';
       return;
     }
 
     // connect to sql server.
     $database = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
     if ($database->connect_error) {
-      echo '{"success":"false","msg":"There was an error connecting to the database. Please try again later..."}';
+      echo '{"success":"false","msg":"We are currently unable to process your request. Please try again later."}';
       return;
     }
     // perform user query.
     $result = mysqli_query($database, $query_user);
     if (!$result) {
-      echo '{"success":"false","msg":"Failure in creating user."}';
+      echo '{"success":"false","msg":"An account already exists with this email address."}';
       return;
     }
     // get new user id.
@@ -167,7 +169,7 @@
       // construct doctor query
       $query_doctor = build_doctor_query($userid, $database);
       if(!$query_doctor){
-        echo '{"success":"false","msg":"Please verify that the form is entered fully."}';
+        echo '{"success":"false","msg":"Please enter all fields before submitting"}';
         return;
       }
       // perform doctor query.
@@ -175,19 +177,27 @@
       echo $query_doctor;
       // echo $query_doctor;
       if (!$docres) {
-        echo '{"success":"false","msg":"Internal database error 2."}';
+        echo '{"success":"false","msg":"We are currently unable to process your request. Please try again later."}';
         return;
       }
     }
 
-    // echo '{"success":"true","msg":"Success"}';
     $verify_str = bin2hex(random_bytes(10));
     $sql_addverify = sprintf("insert into email_verify (user_id, verify_code) values (%s,'%s')",$userid,$verify_str);
     // echo 'hello, world!';
     $sres = mysqli_query($database, $sql_addverify);
     // echo 'hello, world\n';
     send_email($email,$verify_str);
+
+    session_start();
+    $_SESSION['user_email']  = $email;
+    $_SESSION['user_id']     = $userid;
+    $_SESSION['valid']       = true;
+    $_SESSION['timeout']     = time();
+    $_SESSION['displayname'] = sanitize_plaintext($_POST['nFn']) . ' ' . sanitize_plaintext($_POST['nLn']);
+
     mysqli_close($database);
     ob_end_flush();
+    echo '{"success":"true","msg":"Success"}';
     // echo "<script> alert('".$sql."') </script>";
 ?>

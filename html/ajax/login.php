@@ -47,6 +47,7 @@
          same_password($_POST['pword'], $row['user_password'])){
 
         $_SESSION['user_id']     = $row['user_id'];
+        $_SESSION['user_email']  = $row['user_email'];
         $_SESSION['valid']       = true;
         $_SESSION['timeout']     = time();
         $_SESSION['displayname'] = $row['user_first_name'] . ' ' . $row['user_last_name'];

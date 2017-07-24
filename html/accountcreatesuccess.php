@@ -1,53 +1,62 @@
 <?php
-    ob_start();
-    session_start();
+  session_start();
+  if($_SESSION['valid']){
+    header('Location: page/home.php') ;
+  }
 ?>
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="createaccount.js"></script>
-<link rel="stylesheet" type="text/css" href="styles/date.css"> 
+<link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../styles/styles.css"> 
 <link rel="stylesheet" type="text/css" href="forms.css"> 
 <script>
   function goto(newpage){
     window.location.href = newpage
   }
-  function submit_request_create(){
-    console.log('hi');
-    return false;
-  }
-  $(document).ready(function () {
-    $("#iUr").click(function () {
-        var formData = $("#form_req").serialize();
-        $.ajax({
+  $(document).ready(function(){
+    $("#iform_login").submit(function(e) {
+      $.ajax({
             type: "POST",
-            url: "ajax/try_create_account.php", //serverside
-            data: formData,
-            beforeSend: function () {
-                //show loading image
+            url: "ajax/login.php",
+            data: $("#iform_login").serialize(),
+            success: function(data){
+              goto('index.php')
             },
-            success: function (result) {
-              console.log(result); //use this to see the response from serverside
-            },
-            error: function (e) {
-                console.log(e); //use this to see an error in ajax request
+            errfor: function(data){
+              
             }
-        });
+           });
+      e.preventDefault();
     });
-});
+  });
 </script>
-<title>Ekuojumo</title>
+<title>Neolafia</title>
 </head>
-<body ng-app="InputDOB" ng-controller="DateController" style="background: #0a6a8e">
-  <div style="justify-content: center; margin:auto; width:80%; padding:10px; display:block; margin-left:auto; margin-right:auto; border:3px solid black; margin: 0 auto; background:#2a7aae; min-height:100% ">
-    <div class="form-style-8">
-    <h2>Welcome!</h2>
-    <div>
-      We have sent a verification email to [email address]. Follow the instructions in the email
-      to verify your account. Please allow up to 10 minutes to receive the email. To send it again,
-      click <a style='color:blue'>here</a>.
-    </div>
+<body style='padding:0'>
+<div class='noboat'>
+  <a href='index.php'>
+  <h1 class='Neolafia' style='position:relative'>
+      <img src='../images/logo.png' style='height:1em;'/>
+      Neolafia
+    <!-- </a> -->
+  </h1>
+  </a>
+  </div>
+  <div class='account-body'>
+    <div class='account-container'>
+      <div class='account-entry' style='height:100%;text-align:center'>
+        <h2 class='soloheading'>Welcome to Neolafia!</h2>
+        <div style='font-family:Cabin;font-size:1.2em;width:60%;display: inline-block;text-align:left'>
+          Thank you for creating an account with Neolafia, and becoming
+          a part of one of the fastest-growing medical networks in Africa.
+          We have sent an email to <?php echo $_SESSION['user_email'] ?>
+          with instructions on how to verify your account.
+          <br /><br />
+          If you have not yet received this email, please click <a style='color:blue'>here</a>.
+        </div>
+      </div>
     </div>
   </div>
 </body>

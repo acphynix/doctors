@@ -30,7 +30,14 @@
             success: function (result) {
                 console.log(result); //use this to see the response from serverside
                 value = JSON.parse(result);
-                // if(value.success == "true")location.href = 'accountcreatesuccess.php'
+                if(value.success == "true"){
+                  location.href = 'index.php';
+                }
+                else{
+                  console.log(value);
+                  $('#error').text(value.msg);
+                }
+                console.log('done');
             },
             error: function (e) {
                 console.log(e); //use this to see an error in ajax request
@@ -44,7 +51,7 @@
 </script>
 <title>Neolafia</title>
 </head>
-<body ng-app="InputDOB" ng-controller="DateController">
+<body style='padding:0' ng-app="InputDOB" ng-controller="DateController">
 <div class='noboat'>
   <a href='index.php'>
   <h1 class='Neolafia' style='position:relative'>
@@ -63,7 +70,8 @@
 
         <form class="account-form borderless centered"
               id = "form_req" role = "form" ng-submit="form.$valid && false">
-
+            
+          <div id='error' style='font-style:italic;font-weight:bold;color:red' ></div>
           <table style='width:100%;'>
             <tr><td style='white-space:nowrap;'>
               Given Name:
@@ -179,10 +187,8 @@
             </td></tr>
           </table>
 
-        <br />
-        <br />
           <input type="hidden" name="nIsD" value="{{is_doctor}}"  />
-
+          <br />
           <input name="nUr" id="iUr" name="create" type="submit" value="Create Account" />
 
         </form>
