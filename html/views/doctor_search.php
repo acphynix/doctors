@@ -2,17 +2,25 @@
   require_once($_SERVER['DOCUMENT_ROOT']."/php/util/global.php");
   import('php/util/sanitize.php');
   session_start();
-  if($_SESSION['valid']){
+  if(has_key($_SESSION,'valid') && $_SESSION['valid']){
     $login=1;
+    $displayname = $_SESSION['displayname'];
   }
-  $displayname = $_SESSION['displayname'];
   $database = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
-  $query = sanitize_plaintext($_GET['q']);
+  if(has_key($_GET,'q')){
+    $query = sanitize_plaintext($_GET['q']);
+  }else $query = '';
 ?>
 <head>
 <title>Neolafia</title>
 
+<link rel="stylesheet" type="text/css" href="/lib/fullcalendar/fullcalendar.css">
+<link rel="stylesheet" type="text/css" href="/styles/calendar.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'></script>
+<script src='/lib/fullcalendar/fullcalendar.js'></script>
+<script src='http://momentjs.com/downloads/moment.min.js'></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="/ajs_modules/doctor_search.js"></script>
 
@@ -47,7 +55,7 @@
       <img src='../images/logo.png' style='height:1em;'/>
       Neolafia
       <span class='banner-button-container' >
-        <?php if($login>0){ ?>
+        <?php if(isset($login) && $login>0){ ?>
           <a class='banner-welcome-text banner-button' href='page/home.php'><?php echo $displayname ?></a>
           <a class='banner-button' href='logout.php'>sign out</a>
         <?php }else{ ?>
@@ -77,7 +85,7 @@
         <table class='clickme'>
           <tr>
             <td>
-              <img src='https://ent.doctorondemand.com/wp-content/uploads/2016/09/DoctorHeadshot_ChristopherBailey.jpg' style='display:inline-block;height:6em;padding-right:2em;padding-bottom:1em' />
+              <img src="/ajax/get_file.php?n=profile_picture&u=163" style='display:inline-block;height:6em;padding-right:2em;padding-bottom:1em' />
             </td>
             <td width='100%'>
               <h3>{{r.user_first_name}} {{r.user_last_name}}</h3>
@@ -90,10 +98,14 @@
           <b>More details about {{r.user_first_name}}</b>
           <br /><br />
           Availabilities:
-          <div ng-repeat='time in r.schedule'>
+          <div style='height:300px'>
+            <div ng-attr-id="calendar_{{r.user_id}}"></div>
+          </div>
+<!--           <div ng-repeat='time in r.schedule'>
             {{to_date_string(time.s)}}
             <a href="/book_appointment.php?t={{time.s}}&q={{query.text}}&d={{r.user_id}}">Book an appointment</a>
           </div>
+  -->
         </div>
 
       </div>

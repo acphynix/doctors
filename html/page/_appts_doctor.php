@@ -38,7 +38,7 @@
               </div>
               <div style='padding-right:0.5em;padding-left:1em;font-style:italic'>Code:</div>
               <div style='padding:0.5em;padding-left:2em'>
-                Make sure to provide this code to your doctor at your appointment: {{a.patientcode}}
+                You must provide this code to your doctor during your visit: {{a.patientcode}}
               </div>
             </div>
           </div>
@@ -64,7 +64,8 @@
             </tr>
             <tr>
               <div>
-                <input style='display:inline;width:90px;padding:5px;font-family:Cabin;background-color:rgba(235,220,180,1)' type='button' value='CANCEL' />  
+                <input style='display:inline;width:90px;padding:5px;font-family:Cabin;background-color:rgba(235,220,180,1)'
+                       type='button' value='CANCEL' name='cancel'/>  
                 <input style='display:inline;width:90px;padding:5px;font-family:Cabin;background-color:rgba(235,220,180,1)' type='submit' value='CREATE' />
               </div>
             </tr>

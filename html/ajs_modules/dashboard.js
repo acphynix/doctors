@@ -1,7 +1,7 @@
 var doctor_search = angular.module('dashboard', []);
 
 doctor_search.controller('navigation', function($scope, $window, $http){
-  $scope.view='appts.edit';
+  $scope.view='appts.display';
   $scope.edit_bounds = [undefined, undefined];
   $scope.is_show = function(show){
     return $scope.view.startsWith(show);
@@ -42,6 +42,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
   if($window.is_doctor){
     $('#calendar').fullCalendar({
       events: $scope.calendar_events,
+      displayEventEnd:true,
       width: 20,
       timezone:'local',
       aspectRatio: 1
@@ -148,27 +149,34 @@ doctor_search.controller('navigation', function($scope, $window, $http){
           console.log('3');
         }
       }));
-      if(valid && merge){
-        if(evt.end-merge.start == 0){
-          merge.start = evt.start;
-          valid=false;
-        }
-        if(evt.start-merge.end == 0){
-          merge.end = evt.end;
-          valid=false;  
-        }
-      }
       if(valid){
         $('#popup_appt_create').css('visibility', 'visible');
         $('#popup_appt_create').css('left', Math.max(Math.min(jsEvent.pageX - 200,$(window).width()-400),0));
         $('#popup_appt_create').css('top' , jsEvent.pageY - 240);
         $('#popup_appt_create').css('z-index' , 10);
         $('#popup_appt_create input[type=text]').focus();
+        $('#popup_appt_create input[name=cancel]').click(function(event){
+          $('#popup_appt_create').css('visibility', 'hidden');
+          $('#popup_appt_create form').unbind('submit');
+        });
         $('#popup_appt_create form').unbind('submit').submit(function(event){
           $('#popup_appt_create').css('visibility', 'hidden');
           evt.price=$('#popup_appt_create input[type=text]').val();
           evt.currency=$('#popup_appt_create select').val();
-          $scope.selections.push(evt);
+
+          if(merge && merge.price == evt.price && merge.currency == evt.currency){
+            if(evt.end-merge.start == 0){
+              merge.start = evt.start;
+            }
+            if(evt.start-merge.end == 0){
+              merge.end = evt.end;
+            }
+          }
+          else{
+            evt.title = evt.price+" "+evt.currency;
+            $scope.selections.push(evt);
+          }
+
           update_edit_bounds(evt);
           refresh_calendar();
           return false;
@@ -250,6 +258,13 @@ doctor_search.controller('navigation', function($scope, $window, $http){
     if(new_view.startsWith('appts.edit')){
       refresh_calendar();
     }
+    if(new_view.startsWith('appts.display')){
+      $('#calendar').fullCalendar( 'refetchEvents' );
+      $('#calendar').fullCalendar('prev');
+      $('#calendar').fullCalendar('next');
+      console.log('reeeefresh');
+    }
+    console.log(new_view);
     $scope.view = new_view;
   }
   $scope.get_schedule = function(show){
@@ -270,7 +285,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
           $scope.schedule[i].date_start = moment.utc($scope.schedule[i].start.split(/-|\ |:/), 'YYYY-MM-DD HH:mm:ss');
           $scope.schedule[i].date_end = moment.utc($scope.schedule[i].end.split(/-|\ |:/), 'YYYY-MM-DD HH:mm:ss');
           cal_evt = {
-            title    : 'open',
+            title    : $scope.schedule[i].price+" "+$scope.schedule[i].currency,
             start    : $scope.schedule[i].date_start,
             end      : $scope.schedule[i].date_end,
             id       : i,
@@ -283,9 +298,9 @@ doctor_search.controller('navigation', function($scope, $window, $http){
           }
           // console.log($scope.schedule[i].date_start);
         }
+        refresh_calendar();
         $('#calendar').fullCalendar('prev');
         $('#calendar').fullCalendar('next');
-        refresh_calendar();
       });
     };
     ajax.send();

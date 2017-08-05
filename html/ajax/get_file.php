@@ -16,7 +16,7 @@ session_start();
 
 class FileDownloadRequest{
   function __construct($session, $nature, $uid){
-    if($session['valid']){
+    if(has_key($session, 'valid') && $session['valid']){
       $this->loggedin = $_SESSION['user_id'];
     }
     else $this->loggedin = false;

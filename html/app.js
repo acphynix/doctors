@@ -24,7 +24,7 @@ healthapp.controller('HealthController', function($scope){
   };
   $scope.searchbox   = document.getElementById("ikeyword_search");
   if($scope.searchbox != null){
-    $scope.awesomplete = new Awesomplete(document.getElementById("ikeyword_search"), { list: [""] }); 
+    $scope.awesomplete = new Awesomplete(document.getElementById("ikeyword_search"), { list: ["heartbreak"] }); 
   }
 });
 

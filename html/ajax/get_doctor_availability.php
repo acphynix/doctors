@@ -58,7 +58,13 @@ foreach ($evts as $evt){
     while($start_fwd <= $end){
       $start_s = date_format($start,     $sqlformat);
       $end_s   = date_format($start_fwd, $sqlformat);
-      array_push($availabilities, array('s'=>$start_s, 'e'=>$end_s));
+      array_push($availabilities,
+        array(  's'=>$start_s
+              , 'e'=>$end_s
+              , 'p'=>$evt['price']
+              , 'c'=>$evt['currency']
+              , 'l'=>$evt['timeslot_location']
+      ));
       $start =     date_add($start, $min_appt_length);
       $start_fwd = date_add($start_fwd, $min_appt_length);
     }

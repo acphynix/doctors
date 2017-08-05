@@ -10,6 +10,9 @@ doctor_search.controller('search', function($scope, $window, $http){
     $scope.book={'doctor':doctor,'time':time};
     console.log($scope.book);
   }
+  function goto(newpage){
+    window.location.href = newpage
+  }
   $scope.book_appointment = function(doctor,time){
       $http({
         method: 'POST',
@@ -46,11 +49,28 @@ doctor_search.controller('search', function($scope, $window, $http){
         transformResponse: undefined
       }).then(function successCallback(response) {
         console.log('Response: ');
-        console.log(response);
         doctor.schedule=JSON.parse(response.data);
+        console.log(doctor.schedule);
+        doctor.events = doctor.schedule.map(function(event){
+          var e = {
+            qry_t : event.s,
+            start : moment.utc(event.s.split(/-|\ |:/), 'YYYY-MM-DD HH:mm:ss'),
+            end   : moment.utc(event.e.split(/-|\ |:/), 'YYYY-MM-DD HH:mm:ss'),
+            title : event.p+' '+event.c + ' ('+event.l+')'
+          };
+          return e;
+        });
+        $("#calendar_"+doctor.user_id).fullCalendar({
+          defaultView : 'listWeek',
+          title       : false,
+          height      : 300,
+          events      : doctor.events,
+          eventClick  : function(event, jsEvent, view){
+            goto('/book_appointment.php?t='+event.qry_t+'&q='+$scope.keyword_search+'&d='+doctor.user_id);
+          }
+        });
       }, function errorCallback(response) {
         console.log('Response: ');
-        console.log(response);
       });
     }
   }
@@ -71,7 +91,7 @@ doctor_search.controller('search', function($scope, $window, $http){
   $scope.to_date_string = function(date){
     // alert(date);
     var comps = date.split(/[/\-: ]/);
-    console.log(comps);
+    // console.log(comps);
     return comps[2]+" "+$scope.month(comps[1])+" "+comps[0]+" "+comps[3]+":"+comps[4];
   }
   $scope.keyword_search = $window.query.search;
