@@ -70,7 +70,7 @@
   <div class='results-body'>
     <div class='results-container'>
       <div class='results-text'>
-        We found {{result_list.length}} doctors matching your query.
+        Congratulations! We found {{result_list.length}} doctors matching your search criteria.
       </div>
       <div class='results-entry clickme' style="display:table;clear:both;position:relative"
            ng-repeat='r in result_list' ng-click="r.show=!r.show; load_info(r)">
@@ -82,7 +82,7 @@
             <td width='100%'>
               <h3>{{r.user_first_name}} {{r.user_last_name}}</h3>
                 <h3>{{r.speciality_name}}</h3>
-                Click for more details.
+                Click here to book an appointment.
             </td>
           </tr>
         </table>

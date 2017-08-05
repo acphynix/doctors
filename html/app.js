@@ -67,7 +67,7 @@ healthapp.controller('patient_appointments', function($scope, $http){
       $scope.$apply(function(){
         console.log('response: ');
         console.log(ajax.responseText);
-        $scope.schedule=JSON.parse(ajax.responseText);        
+        $scope.schedule = JSON.parse(ajax.responseText);
       });
     };
     ajax.send();

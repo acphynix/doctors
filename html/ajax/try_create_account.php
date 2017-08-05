@@ -192,6 +192,7 @@
     session_start();
     $_SESSION['user_email']  = $email;
     $_SESSION['user_id']     = $userid;
+    $_SESSION['user_is_doctor']     = $$query_doctor;
     $_SESSION['valid']       = true;
     $_SESSION['timeout']     = time();
     $_SESSION['displayname'] = sanitize_plaintext($_POST['nFn']) . ' ' . sanitize_plaintext($_POST['nLn']);

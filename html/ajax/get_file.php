@@ -10,7 +10,7 @@
   *   verify that sensitive profile elements are owned by the user.
   */
 
-require('../util/db_util.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/php/util/sql.php');
 
 session_start();
 
@@ -58,7 +58,7 @@ class FileDownloadRequest{
       $this->serve_null();
       return;
     }
-    $this->serve_content($path);
+    $this->serve_content($this->filepath);
   }
 }
 

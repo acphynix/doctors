@@ -1,0 +1,11 @@
+.fc-day-grid-container.fc-scroller {
+    height: auto!important;
+    overflow-y: auto;
+}
+.fc-week-grid-container.fc-scroller {
+    height: auto!important;
+    overflow-y: auto;
+}
+.fc-basic-view .fc-body .fc-row {
+  min-height: 1em; /* ensure that all rows are at least this tall */
+}

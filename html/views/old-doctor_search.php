@@ -39,6 +39,7 @@ window.query = { search: '<?php echo $query?>' };
           <p class='clickme' style='background-color:lightgray' ng-click="r.show=!r.show; load_info(r)">
             {{r.user_first_name}} {{r.user_last_name}} <br />
             Speciality: {{r.speciality_name}} <br />
+            Log in or create an account to see more details.
             Click for more details.
             <div ng-show='r.show'>
               <b>More details about {{r.user_first_name}}</b>

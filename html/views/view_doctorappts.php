@@ -10,9 +10,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
-
-  alert('hi');
+  var healthapp = angular.module('healthapp', []);
+  healthapp.controller('PatientAppointments', function($scope){
+    $scope.appointments=[{name:"John Smith"},{name:"Pedro Garcia"},{name:"Jane Doe"},{name:"Alejandra Lopez"}];
+  });
+  $(document).ready(function() {
+    alert('yo');
+    $('#calendar').text('hello!');
+  });
 </script>
+
 <span ng-controller="patient_appointments">
 <span id= "symptoms_list_container">
     <datalist id="symptoms_list"></datalist>

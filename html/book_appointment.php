@@ -77,7 +77,7 @@
             <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
                    autofocus ng-keypress='update_dropdown()' autocomplete="off" />
           </form>
-        </div>
+        </div> 
       </div>
     </div>  
   </div>
@@ -106,7 +106,7 @@
           <td style='font-weight:bold'>St. John's Hospital, Lagos, Nigeria</td>
         </tr>
         </table>
-        <i style='font-size:0.8em'>You will be charged {{book.appt.price}} {{book.appt.currency}}.</i>
+        <i style='font-size:0.8em'>Consultation fee: {{book.appt.price}} {{book.appt.currency}}.</i>
         <br /><br />
         <form ng-submit='book_appointment()'>
           Please describe the reason for your visit.

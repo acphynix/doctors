@@ -82,6 +82,45 @@ body{
 .question {
   margin:auto;
 }
+.dashboard-container{
+  width:100%;
+}
+.dashboard-topnav{
+  /*background: linear-gradient(to right, rgb(112, 100, 50), rgb(84, 75, 37));*/
+  text-align:center;
+  background-color:rgb(112, 100, 50);
+  /*padding-bottom:2px;*/
+  /*width:100%;*/
+}
+.dashboard-navitem{
+  background-color:rgba(0,0,0,0.2);
+  font-family:'Cabin';
+  /*font-size:70%;*/
+  vertical-align:middle;
+  /*height:100%;*/
+  color:white;
+  margin:0;
+  padding-top:0.5em;
+  padding-bottom:0.5em;
+  padding-left:6.25%;
+  padding-right:6.25%;
+  display:inline-block;
+  font-size:1.33em;
+  border-bottom:solid rgba(0,0,0,0);
+  /*border-left: solid rgba(0,0,0,0.5);*/
+  /*line-height:1.5;*/
+  /*margin:10%;*/
+  /*width:100%;*/
+  cursor:pointer;
+  /*text-decoration: none;*/
+}
+.dashboard-body{
+  background-color:white;
+}
+.dashboard-navitem:hover{
+  border-bottom: solid rgba(255,255,255,0.8);
+  background-color:rgba(0,0,0,0.1);
+}
 .frontpage-body {
   /*background: linear-gradient( rgba(255,255,255, 0.5), rgba(255,255,255,1) );*/
   background: rgba(255,200,170,0.5);

@@ -24,14 +24,17 @@
 </span>
 
 <h2>My Appointments (Patient Interface)</h2>
-
+<div style='max-width:40em;text-align:center'>
+  <div style='display:inline-block;'>
+    <div id='calendar'></div>
+  </div> 
+</div>
 <table>
   <tr><th>Row number</th></tr>
   <tr ng-repeat="a in appointments"><td>{{a.name}}</td></tr>
 </table>
 
 
-<div id='calendar' width='30%'></div> 
 
 </span>
 </span>

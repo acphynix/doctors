@@ -33,7 +33,7 @@
       return;
     }
     $query = "SELECT user_first_name, user_last_name, user_id, user_email, ".
-             "user_password, user_status FROM users WHERE ".
+             "user_password, user_status, user_is_doctor FROM users WHERE ".
              "user_email='".$_POST['uname']."'";
     $result = mysqli_query($conn, $query);
     if (!$result) {
@@ -46,11 +46,12 @@
       if(same_email   ($_POST['uname'], $row['user_email'   ]) &&
          same_password($_POST['pword'], $row['user_password'])){
 
-        $_SESSION['user_id']     = $row['user_id'];
-        $_SESSION['user_email']  = $row['user_email'];
-        $_SESSION['valid']       = true;
-        $_SESSION['timeout']     = time();
-        $_SESSION['displayname'] = $row['user_first_name'] . ' ' . $row['user_last_name'];
+        $_SESSION['user_id']         = $row['user_id'];
+        $_SESSION['user_email']      = $row['user_email'];
+        $_SESSION['user_is_doctor']  = $row['user_is_doctor'];
+        $_SESSION['valid']           = true;
+        $_SESSION['timeout']         = time();
+        $_SESSION['displayname']     = $row['user_first_name'] . ' ' . $row['user_last_name'];
         echo '{"success":"true","msg":"success"}';
         return;
       }
