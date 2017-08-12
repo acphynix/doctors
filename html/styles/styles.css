@@ -29,6 +29,7 @@ body{
   min-height: 100%;
   padding:0;
 }
+
 .boat {
   /*background-image: url("../images/skater-large.jpg");*/
   background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1.0) ), url('../images/skater-large.jpg');
@@ -200,10 +201,10 @@ body{
 .right{
   float:right;
 }
-
+  
 .banner-button{
   font-family:'Cabin';
-  font-size:70%;
+  /*font-size:70%;*/
   vertical-align:middle;
   height:100%;
   color:white;
@@ -238,4 +239,107 @@ a.banner-welcome-text{
   -moz-user-select: none;
   -o-user-select: none;
   user-select: none;
+}
+.form-frontpage{
+  font-family:Cabin;
+}
+.form-frontpage table{
+  width:100%;
+  font-family:Arial;
+  border-collapse: separate;
+  border-spacing:0 0.5em;
+}
+.form-frontpage tr{
+}
+.form-frontpage td{
+  padding:0.5em;
+  border:solid black 1px;
+}
+.form-frontpage input[type='text']{
+  font-size:1.66vw;
+  border: solid gray 1px;
+  width:95%;
+  margin:0.66vw 0.66vw;
+  padding:0.66vw 0.66vw;
+  border: none;
+}
+.form-frontpage .label{
+  font-size:1.33vw;
+  font-weight:bold;
+  background-color:orange;
+  text-align:center;
+}
+.form-frontpage .field{
+  font-size:1.33vw;
+  margin:0;
+  padding:0;
+  font-weight:bold;
+  background-color:white;
+  text-align:center;
+  overflow:hidden;
+}
+.form-frontpage .button-container{
+  text-align:center;
+}
+.form-frontpage input[type='submit']{
+  font-size:1.33vw;
+  margin:1em;
+  padding:0.5vw;
+  background-color:green;
+  color:white;
+  font-weight:bold;
+  width:14em;
+  font-family:Cabin;
+  text-align:center;
+}
+.form-frontpage input[type='text']::-webkit-input-placeholder {
+    font-size:85%;
+    font-style:italic;
+}
+.form-frontpage input[type='text']:-moz-placeholder {
+    /* FF 4-18 */
+    font-size:85%;
+    font-style:italic;
+}
+.form-frontpage input[type='text']::-moz-placeholder {
+    /* FF 19+ */
+    font-size:85%;
+    font-style:italic;
+}
+.form-frontpage input[type='text']:-ms-input-placeholder {
+    /* IE 10+ */
+    font-size:85%;
+    font-style:italic;
+}
+
+.marquee img{
+  height:13vw;
+  padding-top:5vh;
+  padding-bottom:5vh;
+}
+.marquee div{
+  font-family:Cabin;
+  font-size:2vw;
+  padding-left:1vw;
+  text-align:left;
+  /*position:absolute;*/
+  width:18vw;
+}
+.marquee td{
+  overflow: hidden;
+}
+.marquee{
+  background-color:lightgray;
+  vertical-align:middle;
+  /*position:absolute;*/
+  width:100%;
+  /*bottom:50%;*/
+  /*display:table;*/
+}
+.marquee table{
+  /*height:100%;*/
+  /*width:100%;*/
+  position:relative;
+  /*top:50%;*/
+  vertical-align:center;
 }

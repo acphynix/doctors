@@ -22,9 +22,14 @@ healthapp.controller('HealthController', function($scope){
       $scope.lcurrent_view='/views/'+view+'.php';
     }
   };
+  $('#ilocation_search').attr('data-list',
+    'Abia, Adamawa, Anambra, Akwa Ibom, Bauchi, Bayelsa, Benue, Borno, Cross River, Delta, Ebonyi, Enugu, Edo, Ekiti, Gombe, Imo, Jigawa, Kaduna, Kano, Katsina, Kebbi, Kogi, Kwara, Lagos, Nasarawa, Niger, Ogun, Ondo, Osun, Oyo, Plateau, Rivers, Sokoto, Taraba, Yobe, Zamfara'
+  );
   $scope.searchbox   = document.getElementById("ikeyword_search");
+  $scope.locationbox = document.getElementById('ilocation_search');
   if($scope.searchbox != null){
     $scope.awesomplete = new Awesomplete(document.getElementById("ikeyword_search"), { list: ["heartbreak"] }); 
+    var loc_dropdown = new Awesomplete('#ilocation_search', { minChars: 0 });
   }
 });
 

@@ -9,7 +9,9 @@
 
 .awesomplete {
     /*display: inline-block;*/
-    position: relative;
+    /*position: auto;*/
+    overflow:hidden;
+    /*width:100%;*/
 }
 
 .awesomplete > input {
@@ -17,7 +19,9 @@
 }
 
 .awesomplete > ul {
+    /*width:100%;*/
     position: absolute;
+    /*height:400px;*/
     left: 0;
     z-index: 1;
     min-width: 100%;

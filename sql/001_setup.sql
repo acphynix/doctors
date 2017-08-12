@@ -16,6 +16,8 @@ CREATE TABLE `users` (
   `user_is_doctor` tinyint(4) NOT NULL COMMENT 'Boolean - specifies whether or not the user is also a doctor',
   `user_preexisting_conditions` varchar(2047) DEFAULT NULL,
   `user_email` varchar(45) DEFAULT NULL COMMENT 'One profile per email',
+  `user_bank_account_number`
+  `user_bank_routing_number`
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id_UNIQUE` (`user_id`),
   UNIQUE KEY `user_email_UNIQUE` (`user_email`)
