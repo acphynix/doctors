@@ -96,7 +96,7 @@
         <?php } ?>
           <tr>
             <td style='text-align:center;border:solid black 1px;padding:0.5em;background-color:#333333'>
-              <img src="/ajax/get_file.php?n=profile_picture&u=163" style='display:inline-block;max-height:8em;max-width:8em;border:solid white 1px' />
+              <img ng-attr-src="{{'/ajax/get_file.php?n=profile_picture&u='+r.user_id}}" style='display:inline-block;max-height:8em;max-width:8em;border:solid white 1px' />
             </td>
             <td style='width:100%;padding:1em;padding-bottom:6em;position:relative;overflow:hidden'>
                 <div style='position:absolute;top:0;height:100%;'>

@@ -55,8 +55,10 @@ class FileDownloadRequest{
 // echo 'hi!11';
     $this->get_filepath();
     if(!$this->filepath){
-      $this->serve_null();
-      return;
+      $this->filepath=$_SERVER['DOCUMENT_ROOT'].'/images/icon_blankuser.png';
+      $this->mimetype='image/png';
+      // $this->serve_null();
+      // return;
     }
     $this->serve_content($this->filepath);
   }
