@@ -14,7 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'></script>
 <script src='/lib/fullcalendar/fullcalendar.js'></script>
-<script src='http://momentjs.com/downloads/moment.min.js'></script>
+<script src='https://momentjs.com/downloads/moment.min.js'></script>
 
 <script src="/awesomplete/awesomplete.js"></script>
 <script src="/ajs_modules/dashboard.js"></script>

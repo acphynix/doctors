@@ -34,9 +34,9 @@
       mail($to,$subject,$message,$headers);
     }
     function console_log( $data ){
-      echo '<script>';
-      echo 'console.log('. json_encode( $data ) .')';
-      echo '</script>';
+      // echo '<script>';
+      // echo 'console.log('. json_encode( $data ) .')';
+      // echo '</script>';
     }
     function verify_fields_populated($fields, $inarray){
       foreach($fields as $field){
@@ -68,7 +68,7 @@
       return verify_fields_populated(['nLi','nSpc','nLoc','nChs','nQct','nAff','nNig'],$_POST);
     }
     function get_speciality_id($speciality, $db){
-      echo '~~~~~ ~~ ~ getting speciality: '.$speciality;
+      // echo '~~~~~ ~~ ~ getting speciality: '.$speciality;
       $text = sanitize_plaintext($speciality);
       $db_1 = sprintf("select speciality from specialities where speciality_name='%s'",$speciality);
       $dq_1 = mysqli_query($db, $db_1);
@@ -177,7 +177,7 @@
       }
       // perform doctor query.
       $docres = mysqli_query($database, $query_doctor);
-      echo $query_doctor;
+      // echo $query_doctor;
       // echo $query_doctor;
       if (!$docres) {
         echo '{"success":"false","msg":"We are currently unable to process your request. Please try again later."}';
@@ -195,7 +195,7 @@
     session_start();
     $_SESSION['user_email']  = $email;
     $_SESSION['user_id']     = $userid;
-    $_SESSION['user_is_doctor']     = $$query_doctor;
+    $_SESSION['user_is_doctor']     = $query_doctor;
     $_SESSION['valid']       = true;
     $_SESSION['timeout']     = time();
     $_SESSION['displayname'] = sanitize_plaintext($_POST['nFn']) . ' ' . sanitize_plaintext($_POST['nLn']);

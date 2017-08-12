@@ -43,13 +43,13 @@ function update_string($map){
 function query_insert_into( $table, $values){
   $query_terms = map_to_arrays($values);
   $query = sprintf("insert into $table (%s) values (%s)",$query_terms['keys'],$query_terms['vals']);
-  echo $query;
+  // echo $query;
   return sql_get_insert('HealthTechSchema', $query);
 }
 function query_update( $table, $values, $where){
   $query_terms = update_string($values);
   $query = "update $table set $query_terms where $where";
-  echo $query;
+  // echo $query;
   return sql_get_insert('HealthTechSchema', $query);
 }
 function query_select_from_eq( $table, $values, $where){
