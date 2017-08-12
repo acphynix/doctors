@@ -96,7 +96,7 @@ class Upload{
     exec(sprintf('identify -quiet %s',$destination),$filetype);
     $filetype = explode(" ",$filetype[0])[1];
 
-    if($filetype!='JPEG' && $filetype!='PDF' && filetype!='PNG' && $filetype!='BMP'){
+    if($filetype!='JPEG' && $filetype!='PDF' && $filetype!='PNG' && $filetype!='BMP'){
       return false;
     }
     if($this->nature === 'profile_picture')

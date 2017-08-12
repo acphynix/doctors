@@ -31,7 +31,7 @@ doctor_search.controller('search', function($scope, $window, $http){
   $scope.get_information = function(){
     $http({
       method: 'GET',
-      url: '/ajax/user.php?u='+$scope.book.doctor+'&q=fname%20lname',
+      url: '/ajax/user.php?u='+$scope.book.doctor+'&q=fname%20lname%20location',
       transformResponse: undefined
     }).then(function successCallback(response) {
       console.log('Response: ');

@@ -63,8 +63,9 @@ foreach($asking as $term){
     $output[$term] = $want->vals[0]['user_last_name'];
   }
   if($want->vals[0]['user_is_doctor']){
+    $want_dr = new Doctor(sanitize_number($_GET['u']));
     if($term == 'location'){
-      $output[$term] = $want->vals[0]['user_last_name'];
+      $output[$term] = $want_dr->vals[0]['doctor_location'];
     }
   }
   // sensitive information, only allow self to see.

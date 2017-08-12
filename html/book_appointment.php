@@ -102,8 +102,8 @@
           </td>
         </tr>
         <tr>
-          <td>At</td>
-          <td style='font-weight:bold'>St. John's Hospital, Lagos, Nigeria</td>
+          <td>In</td>
+          <td style='font-weight:bold'>{{book.info.location}}</td>
         </tr>
         </table>
         <i style='font-size:0.8em'>Consultation fee: {{book.appt.price}} {{book.appt.currency}}.</i>

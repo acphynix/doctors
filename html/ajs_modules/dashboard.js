@@ -66,7 +66,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
         disabled: 'false',
         type    : 'password' },
     ];
-    if($user.is_doctor){
+    if($scope.user.is_doctor){
       doctor_fields = [
         { heading : 'Medical Registration Information',
           title   : 'Registration',
@@ -159,6 +159,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
       data: form_data,                         
       type: 'POST',
       success: function(php_script_response){
+        location.reload();
         console.log('rrr');
         console.log(JSON.stringify(php_script_response)); // display response from the PHP script, if any
         $scope.populate_form_fields();
@@ -460,7 +461,10 @@ doctor_search.controller('navigation', function($scope, $window, $http){
           }
           // console.log($scope.schedule[i].date_start);
         }
-        refresh_calendar();
+        $('#calendar_week').fullCalendar('prev');
+        $('#calendar_week').fullCalendar('next');
+        $('#calendar_map').fullCalendar('prev');
+        $('#calendar_map').fullCalendar('next');
         $('#calendar').fullCalendar('prev');
         $('#calendar').fullCalendar('next');
       });

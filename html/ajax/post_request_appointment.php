@@ -38,10 +38,10 @@ if(!$_SESSION['valid']){
    return;
 }
 
-if($user->vals[0]['user_is_doctor'] != '1'){
-  header( "HTTP/1.1 401 Unauthorized ");
-  return;
-}
+// if($user->vals[0]['user_is_doctor'] == '1'){
+  // header( "HTTP/1.1 401 Unauthorized ");
+  // return;
+// }
 $slots_all = array_merge($user->timeslots(), $doctor->timeslots());
 
 $open      = false;
@@ -83,7 +83,7 @@ if( $booked || !$open ){
   exit;
 }
 
-if(!array_key_exists('c', $params)){
+if(!array_key_exists('c', $params) || $params['c'] != 1){
   echo '{"price":'.$price.',"currency":"'.$currency.'"}';
   return;
 }

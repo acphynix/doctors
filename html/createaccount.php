@@ -137,12 +137,9 @@
           <br />
         
         <div style='text-align:center'>
-          <a style='color:green' class="clickme unselectable" ng-show="is_doctor" id="toggle_regr_type" style="color:blue;" ng-click="is_doctor=false">
-            <div style='display:block;padding:1em;width:97%;background-color:rgba(100,255,50,0.1)'>Not a doctor? Click here to register as a patient.</div>
+          <a style='color:green' class="clickme unselectable" id="toggle_regr_type" style="color:blue;" href='/new/doctor.php'>
+            <div style='display:block;padding:1em;width:97%;background-color:rgba(100,255,50,0.1)'>Are you a medical professional? Click here to register as a doctor.</div>
           </a> 
-          <a style='color:green' class="clickme unselectable" ng-show="!is_doctor" id="toggle_regr_type" style="color:blue;" ng-click="is_doctor=true">
-            <div style='display:block;padding:1em;width:97%;background-color:rgba(100,255,50,0.1)'>Are you a medical professional? Click here to register as a provider.</div>
-          </a>
         </div>
 
           <br />
