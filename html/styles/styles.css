@@ -189,7 +189,8 @@ body{
   width:80%;
   margin-left:10%;
   /*margin-right:10%;*/
-  background-color:#eeddcc;
+  background-color:#eeeadc;
+  border-bottom:1px solid gray;
   margin-top:1em;
   /*border:1px solid;*/
   /*height:200px;*/
@@ -204,7 +205,7 @@ body{
   
 .banner-button{
   font-family:'Cabin';
-  /*font-size:70%;*/
+  font-size:80%;
   vertical-align:middle;
   height:100%;
   color:white;

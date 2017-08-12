@@ -4,6 +4,7 @@
     $login=1;
   }
   $displayname = $_SESSION['displayname'];
+  $isdoctor = $_SESSION['user_is_doctor'];
 ?>
 <html ng-app="healthapp">
 <head>
@@ -41,12 +42,16 @@
       <span class='right-container' style='float:right'>
         <span class='pane-options' style='position:absolute;right:0;height:100%;'>
           <div style='height:40px'></div>
-          <a class='highlighter' style='float:right;position:relative;right:0;background-color:orange;color:black;font-size:2vw;padding:0.25em 3.5em 0.25em 0.5em;'>
-            Are you a specialist doctor?
+          <a class='highlighter' href='/new/doctor.php' style='float:right;position:relative;right:0;background-color:orange;color:black;font-size:2vw;padding:0.25em 3.5em 0.25em 0.5em;min-width:30vw'>
+            <?php if($login>0){ ?>
+              Welcome, <?php echo $displayname ?>!
+            <?php }else{ ?>
+              Are you a specialist doctor?
+            <?php } ?>
           </a>
           <div class='options-small' style='position:absolute; bottom: 1vw;font-size:1.5vw;padding:1vw'>
             <?php if($login>0){ ?>
-              <a href='/page/home.php' class='banner-button' style='padding-right:3vw'><?php echo $displayname ?></a>
+              <a href='/page/home.php' class='banner-button' style='padding-right:3vw'>Dashboard</a>
               <a href='/logout.php' class='banner-button' style='padding-right:3vw'>Sign out</a>
             <?php }else{ ?>
               <a href='/createaccount.php' class='banner-button' style='padding-right:3vw'>Sign up </a>

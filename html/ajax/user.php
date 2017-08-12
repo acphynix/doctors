@@ -57,10 +57,15 @@ $asking = explode(' ',$_GET['q']);
 $output = array();
 foreach($asking as $term){
   if($term =='fname'){
-    $output[$term] = $user->vals[0]['user_first_name'];
+    $output[$term] = $want->vals[0]['user_first_name'];
   }
   if($term =='lname'){
-    $output[$term] = $user->vals[0]['user_last_name'];
+    $output[$term] = $want->vals[0]['user_last_name'];
+  }
+  if($want->vals[0]['user_is_doctor']){
+    if($term == 'location'){
+      $output[$term] = $want->vals[0]['user_last_name'];
+    }
   }
   // sensitive information, only allow self to see.
   if($user->user_id == $want->user_id){

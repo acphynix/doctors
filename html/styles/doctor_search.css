@@ -1,0 +1,24 @@
+a{
+  font-color:blue;
+  font-size:80%;
+  color:blue;
+  /*font-style:italic;*/
+  border-bottom:1px gray;
+}
+div.details{
+  font-family:Cabin;
+}
+.details .text{
+  font-style:italic;
+  padding-left:2em;
+}
+.details h2{
+  font-size:14pt;
+  text-align:center;
+  font-weight:bold;
+  margin:0;
+  padding:0;
+  border-bottom:1px black solid;
+  /*position:absolute;*/
+  /*left:33%;*/
+}

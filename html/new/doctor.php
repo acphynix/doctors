@@ -1,7 +1,7 @@
 <?php
   session_start();
   if($_SESSION['valid']){
-    header('Location: page/home.php') ;
+    header("Location: http://".$_SERVER['HTTP_HOST'].'/page/home.php');
   }
 ?>
 <html>

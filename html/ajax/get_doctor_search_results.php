@@ -15,8 +15,9 @@ import('php/util/sanitize.php');
   $database = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
   $query = sanitize_plaintext($_GET['q']);
   $db_1 =
-    sprintf("select user_first_name, user_last_name,doctor_prof_picture,".
-                   "doctor_speciality, specialities.speciality_name, users.user_id ".
+    sprintf("select user_first_name, user_last_name,".
+                   "doctor_speciality, specialities.speciality_name, users.user_id,".
+                   "doctor_qualifications, doctor_affiliations ".
       "from doctors,users,specialities where doctor_speciality in (select speciality from ".
       "speciality_keywords where keyword like '%s') ".
       "and doctors.user_id=users.user_id and specialities.speciality=doctor_speciality",$query);
