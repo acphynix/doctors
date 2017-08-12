@@ -24,7 +24,7 @@
             success: function(data){
               goto('index.php')
             },
-            errfor: function(data){
+            error: function(data){
               
             }
            });

@@ -23,13 +23,15 @@
   function goto(newpage){
     window.location.href = newpage;
   }
-  window.is_doctor = <?php echo $_SESSION['user_is_doctor']?'true':'false' ?>
+  window.is_doctor = <?php echo $_SESSION['user_is_doctor']?'true':'false' ?>;
+  window.user_id   = <?php echo $_SESSION['user_id']                       ?>;
 </script>
 
 
 <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../../styles/styles.css"> 
 <link rel="stylesheet" type="text/css" href="../forms.css"> 
+<link rel="stylesheet" type="text/css" href="../../styles/home.css">
 
 <title>Neolafia</title>
 </head>
@@ -46,9 +48,9 @@
   <div class='dashboard-container'>
     <div class='dashboard-topnav'>
       <div class='dashboard-navitem' onclick="goto('/views/doctor_search.php')"> search       </div>
-      <div class='dashboard-navitem' ng-click="view='appts.display'"> appointments </div>
-      <div class='dashboard-navitem' ng-click="view='profile'"> profile      </div>
-      <div class='dashboard-navitem' ng-click="view='messages'"> messages     </div>
+      <div class='dashboard-navitem' ng-class="{selected: is_show('appts')}" ng-click="view='appts.display'"> appointments </div>
+      <div class='dashboard-navitem' ng-class="{selected: is_show('profile')}" ng-click="view='profile'"> profile      </div>
+      <div class='dashboard-navitem' ng-class="{selected: is_show('messages')}" ng-click="view='messages'"> messages     </div>
     </div>
   </div>
   <div class='dashboard-body' style='bottom:0px'>
@@ -66,32 +68,7 @@
     </div>
 
     <div ng-show="is_show('profile')">
-      <div style='width:100%;text-align:center;margin-top:2em;margin:0'>
-        <div style='width:80%;min-width:35em;display:inline-block;text-align:left'>
-          <div style='display:block;width:100%;padding:2em'>
-            <div style="border:2px black solid;background-image:url({{user.image}});background-size:cover;width:8em;height:8em;margin-left:0;margin-right:1em;display:inline-block;float:left">
-            </div>
-            <div style='display:inline-block;margin:2em;margin-left:0'>
-              <div style='padding:0;margin:0;font-family:cabin;font-size:1.5em'>{{user.name}}</div>
-              <div style='padding:0;margin:0;font-family:cabin'>{{user.email}}</div>
-              <div style='padding:0;margin:0;font-family:cabin'>{{user.role}}</div>
-            </div>
-          </div>
-          <div class='clickme' style='font-family:Cabin; font-weight:bold; font-size:1.125em;
-               margin-top:0; text-align:left; width:100%; background-color:rgba(200,200,100,0.5);
-               padding:1em;padding-left:1em;' ng-click="password=!password">
-            Change Password
-          </div>
-          <div ng-show="password" style='width:100%; padding:1.125em; background-color:rgba(200,200,100,0.3)'>
-            <form>
-              
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
+      <?php include('_profile.php'); ?>
     <div ng-show="is_show('messages')">
       messages
     </div>

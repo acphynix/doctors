@@ -25,17 +25,19 @@ import('/php/util/sanitize.php');
 session_start();
 $params = json_decode(file_get_contents("php://input"), $assoc=true);
 
-require_param_in('u', $_GET, 'HTTP/1.1 400 Bad Request');
 require_param_in('q', $_GET, 'HTTP/1.1 400 Bad Request');
 
 if(!$_SESSION['valid']){
   header('HTTP/1.1 403 Forbidden');
   return;
 }
-$uid = sanitize_number($_GET['u']);
 
 $user = new User($_SESSION['user_id']);
-$want = new User($uid);
+if(has_key($_GET,'u')){
+  $want = new User(sanitize_number($_GET['u']));
+}else{
+  $want = new User($_SESSION['user_id']);
+}
 
 if(!$want->exists()){
   header('HTTP/1.1 403 Forbidden');
@@ -59,6 +61,24 @@ foreach($asking as $term){
   }
   if($term =='lname'){
     $output[$term] = $user->vals[0]['user_last_name'];
+  }
+  // sensitive information, only allow self to see.
+  if($user->user_id == $want->user_id){
+    if($term =='email'){
+      $output[$term] = $user->vals[0]['user_email'];
+    }
+    if($term =='status'){
+      $output[$term] = $user->vals[0]['user_status'];
+    }
+    if($term =='dob'){
+      $output[$term] = $user->vals[0]['user_dob'];
+    }
+    if($term =='address'){
+      $output[$term] = $user->vals[0]['user_address'];
+    }
+    if($term =='sex'){
+      $output[$term] = $user->vals[0]['user_sex'];
+    }
   }
 }
 

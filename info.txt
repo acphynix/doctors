@@ -5,3 +5,13 @@ http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.asp
 ~~~~~ notes~~~~
 
 potentially change name to Habari (hello in Swahili)
+
+
+SERVER SETUP:
+
+# install python-sql:
+
+sudo yum install mysql-devel python-devel MySQL-python
+sudo easy_install MySQL-python
+chmod g-wx,o-wx ~/.python-eggs
+

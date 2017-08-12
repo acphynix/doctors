@@ -2,14 +2,176 @@ var doctor_search = angular.module('dashboard', []);
 
 doctor_search.controller('navigation', function($scope, $window, $http){
   $scope.view='appts.display';
+  $scope.view='profile';
   $scope.edit_bounds = [undefined, undefined];
   $scope.is_show = function(show){
     return $scope.view.startsWith(show);
   }
-  $scope.user={ image:'/ajax/get_file.php?n=profile_picture&u=163'
-              , name: 'Ashwin Chetty'
-              , email: 'ashwinchetty@gmail.com'
-              , role: 'verified user'};
+  $scope.populate_form_fields=function(){
+    $scope.profile_form_fields = [
+      { heading : 'Personal Information',
+        title   : 'Date of Birth',
+        id      : 'dob',
+        name    : 'dob',
+        value   : $scope.user.dob,
+        disabled: 'true',
+        type    : 'text' },
+      { heading : '',
+        title   : 'Sex',
+        id      : 'sex',
+        name    : 'sex',
+        value   : $scope.user.sex=='M'?'Male':'Female',
+        disabled: 'true',
+        type    : 'text' },
+      { heading : '',
+        title   : 'Address',
+        id      : 'address',
+        name    : 'address',
+        value   : $scope.user.address,
+        disabled: 'true',
+        type    : 'text' },
+      { heading : 'Account Information',
+        title   : 'Account Status',
+        id      : 'status',
+        name    : 'status',
+        value   : $scope.user.role,
+        disabled: 'true',
+        type    : 'text' },
+      { heading : '',
+        title   : 'Profile Picture',
+        id      : 'picture',
+        name    : 'picture',
+        value   : 'value',
+        disabled: 'false',
+        type    : 'file' },
+      { heading : 'Change Password',
+        title   : 'Current Password',
+        id      : 'pword_current',
+        name    : 'pword_current',
+        value   : '',
+        disabled: 'false',
+        type    : 'password' },
+      { heading : '',
+        title   : 'New Password',
+        id      : 'pword_new',
+        name    : 'pword_new',
+        value   : '',
+        disabled: 'false',
+        type    : 'password' },
+      { heading : '',
+        title   : 'Confirm Password',
+        id      : 'pword_confirm',
+        name    : 'pword_confirm',
+        value   : '',
+        disabled: 'false',
+        type    : 'password' },
+    ];
+    if($user.is_doctor){
+      doctor_fields = [
+        { heading : 'Medical Registration Information',
+          title   : 'Registration',
+          id      : 'registration',
+          name    : 'registration',
+          value   : $scope.user.registration,
+          disabled: 'true',
+          type    : 'text' }, 
+        { heading : '',
+          title   : 'Registration',
+          id      : 'registration',
+          name    : 'registration',
+          value   : $scope.user.registration,
+          disabled: 'true',
+          type    : 'text' }, 
+        { heading : '',
+          title   : 'Speciality',
+          id      : 'speciality',
+          name    : 'speciality',
+          value   : $scope.user.speciality,
+          disabled: 'true',
+          type    : 'text' },
+        { heading : '',
+          title   : 'Location',
+          id      : 'location',
+          name    : 'location',
+          value   : $scope.user.location,
+          disabled: 'true',
+          type    : 'text' },
+        { heading : '',
+          title   : 'Hospital Affiliation',
+          id      : 'hospital',
+          name    : 'hospital',
+          value   : $scope.user.hospital,
+          disabled: 'true',
+          type    : 'text' },
+        { heading : '',
+          title   : 'Qualifications',
+          id      : 'qualifications',
+          name    : 'qualifications',
+          value   : $scope.user.qualification,
+          disabled: 'true',
+          type    : 'text' }
+      ];
+      $scope.profile_form_fields.push.apply($scope.profile_form_fields,doctor_fields);
+    }
+  };
+  $scope.populate_user_info=function(){
+    var ajax = new XMLHttpRequest();
+    $.ajaxSetup({ cache: false });
+    ajax.open("GET", "../ajax/user.php?q=fname lname email status dob address sex&rand="+Math.random(), true);
+    ajax.onload = function() {
+      $scope.$apply(function(){
+        console.log('response: ');
+        console.log(ajax.responseText);
+        var res = JSON.parse(ajax.responseText);
+
+        $scope.user =
+          { image:'/ajax/get_file.php?n=profile_picture&u='+$window.user_id
+          , name: res.fname+' '+res.lname
+          , email: res.email
+          , role: res.status==='verified'?'verified user':'unverified'
+          , dob: res.dob
+          , sex: res.sex
+          , address: res.address
+          ,
+          };
+        $scope.populate_form_fields();
+      });
+    };
+    ajax.send();
+  };
+  $('#form_profile').submit(function(event){
+    var file_data = $('input[name=picture]').prop('files')[0];   
+    var form_data = new FormData();
+    $.each($scope.profile_form_fields,function(k,v){
+      console.log(v.name);
+      console.log($('#'+v.id).val());
+      form_data.append(v.name,$('#'+v.id).val());
+    });
+    form_data.append('file', file_data);
+    // form_data.append('file2', file_data);
+    form_data.append('nature','profile_picture'); 
+    $.ajax({
+      url: '/ajax/update_profile.php', // point to server-side PHP script 
+      dataType: 'text',  // what to expect back from the PHP script, if anything
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,                         
+      type: 'POST',
+      success: function(php_script_response){
+        console.log('rrr');
+        console.log(JSON.stringify(php_script_response)); // display response from the PHP script, if any
+        $scope.populate_form_fields();
+      },
+      error: function(data){
+        console.log('rrr');
+        console.log(JSON.stringify(data)); // display response from the PHP script, if any   
+        $scope.populate_form_fields();     
+      }
+     });
+  });
+  $scope.populate_user_info();
+
   $scope.calendar_events = function(start, end, timezone, callback){
     console.log('pulling events');
     var events=[];

@@ -1,0 +1,6 @@
+change php.ini file to prevent this from happening:
+
+  https://stackoverflow.com/questions/205822/odd-permissions-on-file-modified-by-php-move-uploaded-file
+
+  to get location of php.ini file:
+    https://neolafia.com/phpinfo.php

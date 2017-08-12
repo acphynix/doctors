@@ -14,7 +14,19 @@
    *
    */
 
-require('../util/db_util.php');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require_once($_SERVER['DOCUMENT_ROOT']."/php/util/global.php");
+import('/php/model/doctor.php');
+import('/php/model/user.php');
+import('/php/util/sanitize.php');
+import('/php/util/auth.php');
+
+// $params = json_decode(file_get_contents("php://input"), $assoc=true);
+// $params = required_params($params, array('data','bounds'),array());
+$params = $_POST;
 
 class Upload{
   function __construct($nature, $size, $upload){
@@ -36,8 +48,8 @@ class Upload{
     return false;
   }
   function sql_nature(){
-    if (nature === 'profile_picture')return 'pfp';
-    if (nature === 'certification')return 'cfn';
+    if ($this->nature === 'profile_picture')return 'pfp';
+    if ($this->nature === 'certification')return 'cfn';
     else return 'unk';
   }
   function get_save_path(){
@@ -62,7 +74,7 @@ class Upload{
       , 'is_clean'       => 'yes'
       , 'is_relevant'    => 'pending'
     );
-    $q = query_insert_into( $database, 'uploads', $params);
+    $q = query_insert_into( 'uploads', $params);
     // echo $q;
     return mysqli_query( $database, $q);
   }
@@ -104,22 +116,80 @@ class Upload{
 session_start();
 
 if(!$_SESSION['valid']){
-  echo '{"success":"false","msg":"permission"}';
+  header( "HTTP/1.1 403 Forbidden ");
   return;
 }
-
-$upload = new Upload($_POST['nature'], $_FILES['file']['size'],$_FILES['file']['tmp_name']);
-
-
-if($err = $upload->getErrors()){
-  echo $err;
-  return;
+// var_dump($params);
+// echo '~~~~~~~~~~~~~~~~~~~~';
+// var_dump($_FILES);
+// echo '~~~~~~~~~~~~~~~~~~~~';
+// var_dump($_POST);
+// echo '~~~~~~~~~~~~~~~~~~~~';
+if(has_key($_FILES,'file') && has_key($params,'nature')){
+  $upload = new Upload($params['nature'], $_FILES['file']['size'],$_FILES['file']['tmp_name']);
+  if($err = $upload->getErrors()){
+    // echo $err;
+    // return;
+  }
+  if($upload->store()){
+    // header( "HTTP/1.1 501 Internal Error ");
+    // return;
+  }
 }
 
-if($upload->store()){
-  echo '{"success":"false","msg":"invalid"}';
-  return;
+$user   = new User($_SESSION['user_id']);
+$doctor = new Doctor($_SESSION['user_id']);
+$user_fields =
+  array(
+    'address' => array('user_address')
+  );
+$doctor_fields =
+  array(
+    'location' => array('doctor_location')
+  );
+
+$users_insert = array();
+foreach($user_fields as $field => $value){
+  if(has_key($params,$field)){
+    $array_insert[$value[0]] = sanitize_plaintext($params[$field]);
+  }
 }
+$doctors_insert = array();
+foreach($doctor_fields as $field => $value){
+  if(has_key($params,$field)){
+    $array_insert[$value[0]]  = sanitize_plaintext($params[$field]);
+  }
+}
+
+query_insert_into( 'users'  , $users_insert   );
+query_insert_into( 'doctors', $doctors_insert );
+
+// var_dump ($user->vals);
+
+echo '~~~~~~~~';
+
+if(has_key($params,'pword_current') && has_key($params,'pword_new')){
+  // echo 'password';
+  // echo $user->vals[0]['user_password'];
+  // echo password_hash(urlencode($params['pword_current']), PASSWORD_DEFAULT);
+  // if(same_password($params['pword_current'],$user->vals[0]['user_password'])){
+  //   echo 'MATCH!!!!!~~~~~';
+  // }
+  // if(same_password($_POST['pword_current'], $user->vals[0]['user_password'])){
+    // echo 'login ~~~||~~~';
+  // }
+  // echo 'given '.$_POST['pword_current'].
+  if(strlen($params['pword_new'])>=8 && same_password($params['pword_current'], $user->vals[0]['user_password'])){
+    echo 'correct';
+    $password  = urlencode($params['pword_new']);
+    $password  = password_hash($password, PASSWORD_DEFAULT);
+    query_update( 'users', array('user_password'=>$password), 'user_id = '.$_SESSION['user_id']);
+  }else{
+    echo 'incorrect';
+  }
+}
+
+
 
 echo '{"success":"true","msg":""}';
 

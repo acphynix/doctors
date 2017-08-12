@@ -31,7 +31,7 @@ class FileDownloadRequest{
                 (($this->nature==='certification' )?'cfn':
                                 'unk');
     $database = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
-    $query = sprintf("select filepath,mimetype from uploads where user_id='%s' and nature='%s' and is_clean='yes'",$this->uid,$sql_type);
+    $query = sprintf("select filepath,mimetype from uploads where user_id='%s' and nature='%s' and is_clean='yes' order by upload_id desc",$this->uid,$sql_type);
     $row = mysqli_query( $database, $query);
     $row = $row->fetch_assoc();
     if(!$row){

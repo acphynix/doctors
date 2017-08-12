@@ -1,4 +1,4 @@
-drop table if exists uploads;
+-- drop table if exists uploads;
 create table `uploads` (
   `upload_id`       int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id`         int(10),
