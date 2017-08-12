@@ -140,7 +140,7 @@
     $query_user = build_user_query();
     $query_doctor = false;
 
-    var_dump($_POST);
+    // var_dump($_POST);
 
     if(!$query_user){
       echo '{"success":"false","msg":"Please enter all fields before submitting"}';

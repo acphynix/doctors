@@ -142,49 +142,7 @@
           </a> 
         </div>
 
-          <br />
-          <table ng-show="is_doctor">
-            <tr><td style='white-space:nowrap;'>
-              Medical Registration Number:
-            </td><td style='width:100%'>
-              <input name="nLi" ng-model="nLi" id="iLi" type="text" placeholder="XXX-XXX-XXXX" ng-required="is_doctor">
-            </td></tr>
-            <tr><td style='white-space:nowrap;'>
-              Clinical Speciality:
-            </td><td style='width:100%'>
-              <input name="nSpc" ng-model="nSpc" id="iSpc" type="text" ng-required="is_doctor" placeholder="Cardiology">
-            </td></tr>
-            <tr><td style='white-space:nowrap;'>
-              Location
-            </td><td style='width:100%'>
-              <input name="nLoc" ng-model="nLoc" id="iLoc" type="text" ng-required="is_doctor" placeholder="Ibadan">
-            </td></tr>
-            <tr><td style='white-space:nowrap;'>
-              Covered Hospitals:
-            </td><td style='width:100%'>
-              <textarea name="nChs" ng-model="nChs" id="iChs" rows=6 width="100%" ng-required="is_doctor" placeholder="Lagos University"></textarea>
-            </td></tr>
-            <tr><td style='white-space:nowrap;'>
-              Qualifications &amp; Certifications:
-            </td><td style='width:100%'>
-              <textarea name="nQct" ng-model="nQct" id="iQct" rows=6 width="100%" ng-required="is_doctor" placeholder="[placeholder]"></textarea>
-            </td></tr>
-            <tr><td style='white-space:nowrap;'>
-              Professional Affiliations:
-            </td><td style='width:100%'>
-              <textarea name="nAff" ng-model="nAff" id="iAff" rows=6 width="100%" ng-required="is_doctor" placeholder="[placeholder]"></textarea>
-            </td></tr>
-          </table>
-
-          <table ng-show="is_doctor">
-            <tr><td style='white-space:nowrap;'>
-              I verify that I am currently licensed to practice medicine in Nigeria:
-            </td><td style='width:100%'>
-              <input name="nNig" ng-model="nNig" id="iNig" type="checkbox"><br /><br />
-            </td></tr>
-          </table>
-
-          <input type="hidden" name="nIsD" value="{{is_doctor}}"  />
+          <input type="hidden" name="nIsD" value="false"  />
           <br />
           <input name="nUr" id="iUr" name="create" type="submit" value="Create Account" />
 

@@ -47,7 +47,7 @@
     });
     var options = $('#iSpc').get(0).options;
     $.each(['cardiology','rheumatology'], function(key, value) {
-      options[options.length] = new Option(value, key);
+      options[options.length] = new Option(value, value);
     });
     options = $('#iLoc').get(0).options;
     $.each(['Ibadan','Lagos'], function(key, value) {
