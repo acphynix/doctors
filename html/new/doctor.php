@@ -32,7 +32,7 @@
                 console.log(result); //use this to see the response from serverside
                 value = JSON.parse(result);
                 if(value.success == "true"){
-                  location.href = 'index.php';
+                  location.href = '/index.php';
                 }
                 else{
                   console.log(value);
