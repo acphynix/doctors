@@ -255,6 +255,8 @@ a.banner-welcome-text{
   padding:0.5em;
   border:solid black 1px;
 }
+.form-frontpage input[type='password'],
+.form-frontpage input[type='email'],
 .form-frontpage input[type='text']{
   font-size:1.66vw;
   border: solid gray 1px;
@@ -292,21 +294,21 @@ a.banner-welcome-text{
   font-family:Cabin;
   text-align:center;
 }
-.form-frontpage input[type='text']::-webkit-input-placeholder {
+.form-frontpage input::-webkit-input-placeholder {
     font-size:85%;
     font-style:italic;
 }
-.form-frontpage input[type='text']:-moz-placeholder {
+.form-frontpage input:-moz-placeholder {
     /* FF 4-18 */
     font-size:85%;
     font-style:italic;
 }
-.form-frontpage input[type='text']::-moz-placeholder {
+.form-frontpage input::-moz-placeholder {
     /* FF 19+ */
     font-size:85%;
     font-style:italic;
 }
-.form-frontpage input[type='text']:-ms-input-placeholder {
+.form-frontpage input:-ms-input-placeholder {
     /* IE 10+ */
     font-size:85%;
     font-style:italic;

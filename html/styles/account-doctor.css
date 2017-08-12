@@ -1,0 +1,113 @@
+.form-frontpage{
+  font-family:Cabin;
+}
+.form-frontpage table{
+  width:100%;
+  /*padding:1em;*/
+  font-family:Arial;
+  border-collapse: separate;
+  border-spacing:0 1vh;
+  border: none;
+}
+.form-frontpage tr{
+}
+.form-frontpage td{
+  padding:0.5em 0 0.5em 0;
+  /*padding:0.5em;*/
+  padding:0;
+  margin:0;
+  border-width: 0px 0px 1px 0px;
+  /*border: none;*/
+  /*border:solid black 1px;*/
+}
+.form-frontpage .line{
+  font-size: 1vw;
+}
+.form-frontpage .line input[type='checkbox']{
+  margin:1vw;
+  margin-top:2vw;
+  transform:scale(2);
+}
+.form-frontpage input[type='password'],
+.form-frontpage input[type='email'],
+.form-frontpage input[type='text']{
+  border: solid gray 1px;
+  width:95%;
+  margin:0.33vw 0.33vw;
+  padding:0.66vw 0.66vw;
+  border: none;
+  font-size:1.33vw;
+  /*width:14em;*/
+}
+.form-frontpage .label{
+  padding: 0 1em 0 1em;
+  font-size:1vw;
+  font-weight:bold;
+  background-color:orange;
+  text-align:center;
+}
+.form-frontpage .field{
+  font-size:1.33vw;
+  margin:0;
+  padding:0;
+  font-weight:bold;
+  background-color:white;
+  text-align:center;
+  overflow:hidden;
+}
+.form-frontpage .button-container{
+  text-align:center;
+}
+.form-frontpage input[type='submit']{
+  font-size:1.33vw;
+  margin:1em;
+  padding:0.5vw;
+  background-color:green;
+  color:white;
+  font-weight:bold;
+  width:14em;
+  font-family:Cabin;
+  text-align:center;
+}
+.form-frontpage select{
+  width:100%;
+  border:none;
+  padding:0.5em;
+  font-family:Cabin;
+  font-size:1.33vw;
+}
+.form-frontpage input[type='text']::-webkit-input-placeholder {
+    font-size:85%;
+    font-style:italic;
+}
+.form-frontpage input[type='text']:-moz-placeholder {
+    /* FF 4-18 */
+    font-size:85%;
+    font-style:italic;
+}
+.form-frontpage input[type='text']::-moz-placeholder {
+    /* FF 19+ */
+    font-size:85%;
+    font-style:italic;
+}
+.form-frontpage input[type='text']:-ms-input-placeholder {
+    /* IE 10+ */
+    font-size:85%;
+    font-style:italic;
+}
+
+.banner-sell-left h3{
+  margin:0;
+  padding:0;
+  font-size:2vw;
+}
+.banner-sell-left div{
+  padding:1em;
+  font-size:1.5vw;
+}
+.banner-sell-left img{
+  width:10vw;
+}
+.banner-sell-left td{
+  padding:0vw 0 14vw 0;
+}
