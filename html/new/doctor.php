@@ -67,7 +67,7 @@
       <span class='right-container' style='float:right'>
         <span class='pane-options' style='position:absolute;right:0;height:100%;'>
           <div style='height:40px'></div>
-          <a class='highlighter' href='/createaccount.php' style='float:right;position:relative;right:0;background-color:orange;color:black;font-size:2vw;padding:0.25em 3.5em 0.25em 0.5em;'>
+          <a class='highlighter' href='/index.php' style='float:right;position:relative;right:0;background-color:orange;color:black;font-size:2vw;padding:0.25em 3.5em 0.25em 0.5em;'>
             Are you looking for a doctor?
           </a>
           <div class='options-small' style='position:absolute; bottom: 1vw;font-size:1.5vw;padding:1vw'>
