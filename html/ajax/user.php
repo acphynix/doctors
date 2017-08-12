@@ -35,8 +35,10 @@ if(!$_SESSION['valid']){
 $user = new User($_SESSION['user_id']);
 if(has_key($_GET,'u')){
   $want = new User(sanitize_number($_GET['u']));
+  $want_dr = new Doctor(sanitize_number($_GET['u']));
 }else{
   $want = new User($_SESSION['user_id']);
+  $want_dr = new Doctor(sanitize_number($_SESSION['user_id']));
 }
 
 if(!$want->exists()){
@@ -63,7 +65,7 @@ foreach($asking as $term){
     $output[$term] = $want->vals[0]['user_last_name'];
   }
   if($want->vals[0]['user_is_doctor']){
-    $want_dr = new Doctor(sanitize_number($_GET['u']));
+    
     if($term == 'location'){
       $output[$term] = $want_dr->vals[0]['doctor_location'];
     }

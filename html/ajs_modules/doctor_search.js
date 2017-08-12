@@ -54,17 +54,19 @@ doctor_search.controller('search', function($scope, $window, $http){
         doctor.events = doctor.schedule.map(function(event){
           var e = {
             qry_t : event.s,
-            start : moment.utc(event.s.split(/-|\ |:/), 'YYYY-MM-DD HH:mm:ss'),
-            end   : moment.utc(event.e.split(/-|\ |:/), 'YYYY-MM-DD HH:mm:ss'),
+            start : moment.utc(event.s),
+            end   : moment.utc(event.e),
             title : event.p+' '+event.c + ' ('+event.l+')'
           };
           return e;
         });
+        console.log(doctor.events);
         $("#calendar_"+doctor.user_id).fullCalendar({
           defaultView : 'listWeek',
           title       : false,
           height      : 300,
           events      : doctor.events,
+          timezone    : 'local',
           eventClick  : function(event, jsEvent, view){
             goto('/book_appointment.php?t='+event.qry_t+'&q='+$scope.keyword_search+'&d='+doctor.user_id);
           }
