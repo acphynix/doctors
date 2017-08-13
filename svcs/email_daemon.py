@@ -49,7 +49,7 @@ def qget(query):
 
 # get new emails
 
-new_emails = qget("SELECT * FROM emails where status='new'")
+new_emails = qget("SELECT * FROM emails where email_status='new'")
 for row in new_emails:
   uid   = row[1]
   etype = row[2]
@@ -60,18 +60,18 @@ for row in new_emails:
   subject='subject line'
   content='<html><body>hello world!</body></html>'
 
-  cur.execute("update emails set status='queued',user_email='"+email+
+  cur.execute("update emails set email_status='queued',user_email='"+email+
               "', subject='"+subject+"', content='"+content+
               "' where email_id = "+str(row[0]))
   db.commit()
   print row
 
-cur.execute("SELECT * FROM emails where status='queued'")
+cur.execute("SELECT * FROM emails where email_status='queued'")
 for row in cur.fetchall():
-  cur.execute("update emails set status='processing' where email_id = "+str(row[0]))
+  cur.execute("update emails set email_status='processing' where email_id = "+str(row[0]))
   db.commit()
   send_email( [row[3]], [], row[2], row[4])
-  cur.execute("update emails set status='sent',times_sent="+str(row[7]+1)+" where email_id = "+str(row[0]))
+  cur.execute("update emails set email_status='sent',times_sent="+str(row[7]+1)+" where email_id = "+str(row[0]))
   print row
 
 db.commit()
