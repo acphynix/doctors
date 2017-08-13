@@ -1,7 +1,7 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT']."/php/util/global.php");
-import('/php/sql.php');
+import('/php/util/sql.php');
 
 function create_email( $user_id, $type ){
   query_insert_into( 'emails',
