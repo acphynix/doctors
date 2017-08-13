@@ -48,7 +48,7 @@ cur = db.cursor()
 #   """)
 
 # cur.execute("update emails set subject='el sujeto'")
-cur.execute("SELECT * FROM emails where status='queued' limit 1")
+cur.execute("SELECT * FROM emails where status='queued'")
 
 
 # print all the first cell of all the rows
