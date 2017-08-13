@@ -13,7 +13,7 @@
     $apptime = $_GET['t'];
   }
   else{
-    header('Location: http://localhost/views/doctor_search.php');
+    header('Location: /views/doctor_search.php');
   }
 ?>
 <head>
