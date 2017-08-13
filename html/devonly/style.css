@@ -1,0 +1,17 @@
+input{
+  font-family:Courier;
+}
+textarea{
+  font-size:12pt;
+  background-color:darkgreen;
+  color:white;
+  padding:10pt;
+  line-height: 1.5em;
+}
+input[type='password'],
+input[type='text']{
+  font-size:12pt;
+  /*margin:1em;*/
+  padding:1em;
+  width:80vw;
+}

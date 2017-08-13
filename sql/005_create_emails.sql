@@ -1,10 +1,11 @@
-drop table if exists emails;
+-- drop table if exists emails;
 create table `emails` (
   `email_id`        int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id`         int(10) unsigned NOT NULL,
   `email_type`      varchar(128) NOT NULL,
   `user_email`      varchar(45),
   `subject`         varchar(255),
+  `email_idata`     text,
   `content`         text,
   `email_status`    enum('new','queued','processing','sent') default 'new',
   `times_sent`      int(5) default '0',
@@ -13,7 +14,7 @@ create table `emails` (
   PRIMARY KEY (`email_id`)
 );
 
-drop table if exists payments;
+-- drop table if exists payments;
 create table `payments` (
   `payment_id`      int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user`            int(10),

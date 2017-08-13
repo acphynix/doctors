@@ -7,9 +7,7 @@
     $success = false;
     $hash = $_GET['q'];
     $query1 = sprintf("select user_id from email_verify where verify_code='%s'",$hash);
-    echo $query1;
     $userid = mysqli_query($conn,$query1)->fetch_assoc()['user_id'];
-    echo '.' . $userid;
     if($userid){
       $query2 = sprintf("select user_first_name from users where user_id='%s'",$userid);
       $user   = mysqli_query($conn,$query2)->fetch_assoc()['user_first_name'];
@@ -19,7 +17,7 @@
       $query3 = sprintf("update users set user_status='verified' where user_id=%s",$userid);
       mysqli_query($conn,$query3);
     }else{
-      
+
     }
   }
 
