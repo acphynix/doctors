@@ -55,7 +55,7 @@ for row in new_emails:
   etype = row[2]
 
   if(etype == 'patient_account_new'):
-
+    print 'account new'
   email='ashwinchetty@gmail.com'
   subject='subject line'
   content='<html><body>hello world!</body></html>'
