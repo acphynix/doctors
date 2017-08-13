@@ -66,12 +66,12 @@ for row in new_emails:
   db.commit()
   print row
 
-cur.execute("SELECT * FROM emails where email_status='queued'")
+cur.execute("SELECT email_id, user_email, subject, content, times_sent FROM emails where email_status='queued'")
 for row in cur.fetchall():
   cur.execute("update emails set email_status='processing' where email_id = "+str(row[0]))
   db.commit()
-  send_email( [row[3]], [], row[2], row[4])
-  cur.execute("update emails set email_status='sent',times_sent="+str(row[7]+1)+" where email_id = "+str(row[0]))
+  send_email( [row[1]], [], row[2], row[3])
+  cur.execute("update emails set email_status='sent',times_sent="+str(row[4]+1)+" where email_id = "+str(row[0]))
   print row
 
 db.commit()
