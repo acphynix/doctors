@@ -56,7 +56,7 @@ for row in cur.fetchall():
   cur.execute("update emails set status='lock' where email_id = "+str(row[0]))
   db.commit()
   send_email( [row[3]], [], row[2], row[4])
-  cur.execute("update emails set status='sent',times_sent="+str(row[7])+" where email_id = "+str(row[0]))
+  cur.execute("update emails set status='sent',times_sent="+str(row[7]+1)+" where email_id = "+str(row[0]))
   print row
 
 db.commit()
