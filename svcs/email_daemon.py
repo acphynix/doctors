@@ -4,7 +4,7 @@ import MySQLdb
 import email
 import boto3
 
-client = boto3.client('ses')
+client = boto3.client('ses', region_name='us-east-1')
 
 def send_email( send_to, send_bcc, subject, body_html ):
   response = client.send_email(
