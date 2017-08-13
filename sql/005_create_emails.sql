@@ -8,12 +8,12 @@ create table `emails` (
   `nature`          varchar(5),
   `status`          enum('queued','processing','sent'),
   `times_sent`      int(5),
-  `created_on`      datetime default CURRENT_TIMESTAMP
+  `created_on`      datetime default CURRENT_TIMESTAMP,
   PRIMARY KEY (`email_id`)
 );
 
 drop table if exists payments;
-create table `emails` (
+create table `payments` (
   `payment_id`      int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user`            int(10),
   `account_number`  varchar(255),
@@ -24,6 +24,14 @@ create table `emails` (
   `label`           varchar(255),
   `type`            varchar(31),
   `status`          varchar(15),
-  `depends_on`      int(10)           -- only perfrom this transaction after depends_on is also completed.
+  `depends_on`      int(10),           -- only perfrom this transaction after depends_on is also completed.
   PRIMARY KEY (`payment_id`)
+);
+
+drop table if exists temp_apptcodes;
+create table `temp_apptcodes` (
+  `apptcode`            varchar(10),
+  `created_on`          datetime default CURRENT_TIMESTAMP,
+  `delete_on`           datetime,
+  PRIMARY KEY (`apptcode`)
 );

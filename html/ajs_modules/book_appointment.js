@@ -22,8 +22,10 @@ doctor_search.controller('search', function($scope, $window, $http){
       console.log('Response: ');
       console.log(response);
       $scope.book.appt = JSON.parse(response.data);
-      $scope.valid
+      $scope.valid = true;
     }, function errorCallback(response) {
+      $scope.valid = false;
+      window.location.href = '/views/doctor_search.php?q='+$scope.keyword_search;
       console.log('Response: ');
       console.log(response);
     });
@@ -49,11 +51,15 @@ doctor_search.controller('search', function($scope, $window, $http){
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         data: { d: $scope.book.doctor, s: $scope.book.time, c: '1' },
         transformResponse: undefined
-      }).then(function successCallback(response) {
+      }).then(function successCallback(resp) {
         console.log('Response: ');
+        console.log(resp);
+        response = JSON.parse(resp.data);
         console.log(response);
-        window.location.href = '/page/home.php#!#view_patientappts.php';
-        // doctor.schedule=JSON.parse(response.data);
+        $scope.booked = true;
+        $scope.apptcode=response.code;
+        $scope.accountno = '12345678';
+        $scope.routingno = '22446688';
       }, function errorCallback(response) {
         console.log('Response: ');
         console.log(response);

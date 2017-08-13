@@ -168,6 +168,12 @@ body{
   /*background: linear-gradient( rgba(255,255,255, 0.5), rgba(255,255,255,1) );*/
   background: rgba(255,255,255,1);
 }
+.results-body-confirm {
+  /*background: linear-gradient( rgba(255,255,255, 0.5), rgba(255,255,255,1) );*/
+  background: rgba(255,255,255,1);
+  position:absolute;
+  padding-bottom:10vw;
+}
 .results-text {
   font-style: italic;
   padding:1em;
@@ -345,4 +351,32 @@ a.banner-welcome-text{
   position:relative;
   /*top:50%;*/
   vertical-align:center;
+}
+
+table.schedule{
+  width:100%;
+  border-collapse:collapse;
+}
+.schedule td{
+  padding:0.5em;
+  /*background-color:green;*/
+}
+.schedule tr{
+  background-color:#ffffe0;
+}
+.schedule tbody{
+  /*background-color:green;*/
+  border-bottom:1px solid lightgray;
+}
+.schedule .buttons{
+  /*text-align:center;*/
+}
+.buttons a{
+  color:blue;
+  width:25%;
+  font-family:Cabin;
+  font-size:0.75em;
+  padding:0.2em;
+  margin:0 1em 0 1em;
+  /*background-color: #ffffff;*/
 }

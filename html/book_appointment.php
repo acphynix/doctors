@@ -81,7 +81,7 @@
       </div>
     </div>  
   </div>
-  <div class='results-body'>
+  <div class='results-body-confirm'>
       <h2 style='text-align:center; margin-top:0;padding-top:1em'>
         Confirm your Appointment with <span style='color:gray'>Dr. {{book.info.fname}} {{book.info.lname}}</span>
       </h2>
@@ -108,12 +108,46 @@
         </table>
         <i style='font-size:0.8em'>Consultation fee: {{book.appt.price}} {{book.appt.currency}}.</i>
         <br /><br />
-        <form ng-submit='book_appointment()'>
-          Please describe the reason for your visit.
-          <br />
-          <textarea onkeyup='adjust_textarea(this)'></textarea>
+        
+        Please describe the reason for your visit.
+        <br />
+        <textarea style='padding:1em;margin:1em 1em 0 1em' ng-disabled='booked' onkeyup='adjust_textarea(this)'></textarea>
+
+        <form style='margin:0;padding:0' ng-submit='book_appointment()' ng-show='!booked'>
           <input class='page-form' type='submit'>
         </form>
+
+        <div ng-show='booked'>
+          <p>
+            Your appointment request has been recorded. In order for your booking request to be fulfilled, you must directly deposit a sum of {{book.appt.price}} {{book.appt.currency}} into the account specified below:
+          </p>
+          <table style='padding-left:4vw;margin-bottom:2em;width:30em;border-bottom:solid black 1px'>
+            <tr>
+              <td>Account Number:</td>
+              <td>12345678</td>
+            </tr>
+            <tr>
+              <td>Routing Number:</td>
+              <td>22446688</td>
+            </tr>
+            <tr>
+              <td>Memo:</td>
+              <td>{{apptcode}}</td>
+            </tr>
+          </table>
+          <p>
+            <span style='color:red;font-weight:bold'>
+              Important:&nbsp;
+            </span>
+            Ensure that you include the code <b>{{apptcode}}</b> with your payment. If you do not, your appointment may not be booked.
+          </p>
+          <p>
+            After you complete the transaction, you will receive an email confirmation when your payment has been processed.
+          </p>
+          <p style='padding-left:10vw'>
+            <a style='color:blue' href='/page/home.php'>View Appointments</a>
+          </p>
+        </div>
       </div>
   </div>
 </body>

@@ -30,7 +30,7 @@
             </div>
             <div style='padding-right:0.5em;padding-left:1em;font-style:italic'>Code:</div>
             <div style='padding:0.5em;padding-left:2em'>
-              Make sure to provide this code to your doctor at your appointment: {{a.patientcode}}
+              Make sure to provide this code to your doctor at your appointment: {{a.apptcode}}
             </div>
           </div>
         </div>

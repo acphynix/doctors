@@ -2,7 +2,7 @@ var doctor_search = angular.module('dashboard', []);
 
 doctor_search.controller('navigation', function($scope, $window, $http){
   $scope.view='appts.display';
-  $scope.view='profile';
+  // $scope.view='profile';
   $scope.edit_bounds = [undefined, undefined];
   $scope.is_show = function(show){
     return $scope.view.startsWith(show);

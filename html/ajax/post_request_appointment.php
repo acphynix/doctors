@@ -18,6 +18,7 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/php/util/global.php");
 import('/php/model/doctor.php');
 import('/php/model/user.php');
+import('/php/util/gen.php');
 
 session_start();
 $params             = json_decode(file_get_contents("php://input"), $assoc=true);
@@ -87,13 +88,17 @@ if(!array_key_exists('c', $params) || $params['c'] != 1){
   echo '{"price":'.$price.',"currency":"'.$currency.'"}';
   return;
 }
+
+$code = gen_appt_code();
+
 $appt = query_insert_into('appointments',
           array('price'      => $take['price'],
                 'currency'   => $take['currency'],
                 'doctor_id'  => $doctor->user_id,
                 'patient_id' => $user->user_id,
-                'status'     => 'pending',
+                'status'     => 'piqued',
                 'type'       => 'appointment',
+                'apptcode'   => $code,
                 'notes'      => 'empty')
           );
 
@@ -107,7 +112,7 @@ query_insert_into('timeslots',
         'start'          => date_format($t1, $sqlformat),
         'end'            => date_format($t2, $sqlformat)));
 
-echo '{"success":"true"}';
+echo sprintf('{"success":"true","code":"%s"}',$code);
 
 // var_dump($appts_me);
 

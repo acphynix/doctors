@@ -20,7 +20,7 @@ create table `appointments` (
   `patient_id`      int(10),
   `status`      varchar(12),
   `appt_type`   varchar(12),
-  `patientcode` varchar(8),
+  `apptcode`    varchar(8),
   `notes`       varchar(512),
   PRIMARY KEY (`appointment_id`)
 );
