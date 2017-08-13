@@ -52,13 +52,21 @@ def qget(query):
 
 def queue_appt_transition_to(appt_id, status):
   if status in ['pending','paid','cancelled','approved','withdrawn','complete','closed']:
-    curr_status = qget("select status from appointments where appointment_id="+appt_id)[0]
+    curr_status = qget("select status from appointments where appointment_id="+str(appt_id))[0]
+    print 'go'
     if status != curr_status:
-      qget("update appointments set status='"+status+"' where appointment_id="+appt_id)
-      IDs = qget("select doctor_id, patient_id from appointments where appointment_id="+appt_id)
-      email_data = str(appt_id)+'|'+IDs[0]+'|'+IDS[1]
-      qget("insert into emails (user_id, email_type, data) values ('" + IDs[0] + "', '" + 'doctor_appointment_'  + status + "', '"+email_data+"') ")
-      qget("insert into emails (user_id, email_type, data) values ('" + IDs[1] + "', '" + 'patient_appointment_' + status + "', '"+email_data+"') ")
+      print('diff')
+      qget("update appointments set status='"+status+"' where appointment_id="+str(appt_id))
+      print 'bear'
+      IDs = qget("select doctor_id, patient_id from appointments where appointment_id="+str(appt_id))
+      print 'hippo'
+      print IDs
+      print appt_id
+      print str(IDs[0][0])
+      email_data = str(appt_id)+'|'+str(IDs[0][0])+'|'+str(IDs[0][1])
+      print 'yell'
+      qget("insert into emails (user_id, email_type, email_idata) values ('" + str(IDs[0][0]) + "', '" + 'doctor_appointment_'  + status + "', '"+email_data+"') ")
+      qget("insert into emails (user_id, email_type, email_idata) values ('" + str(IDs[0][1]) + "', '" + 'patient_appointment_' + status + "', '"+email_data+"') ")
 
 # process actions
 
@@ -67,22 +75,27 @@ for row in actions:
   cmd = row[1].split(' ')
   if(cmd[0] == 'Verify-Doctor'):
     try:
-      id = int(cmd[0])
-      qget("update doctors set doctor_cert_status='verified' where user_id="+id)
+      id = int(cmd[1])
+      qget("update doctors set doctor_cert_status='verified' where user_id='"+str(id)+"'")
+      db.commit()
     except:
       continue
   elif(cmd[0] == 'Appt-Status'):
+    print '1'
     try:
-      appt_id = int(cmd[0])
-      status  = cmd[1]
+      print '2'
+      appt_id = int(cmd[1])
+      status  = cmd[2]
       queue_appt_transition_to(appt_id, status)
-
+      print 'done'
     except:
       continue
   else:
     continue
+print 'out'
 
 qget("update actions set action_status='complete'")
+db.commit()
 
 # get new emails
 
@@ -93,7 +106,7 @@ for row in new_emails:
   idata = row[3]
 
   # check that this is a supported email type
-  if etype in ['patient_account_new', 'doctor_account_new', 'doctor_appointment_pending']:
+  if etype in ['patient_account_new', 'doctor_account_new', 'doctor_appointment_paid']:
     with open('/var/www/html/email/' + etype + '.html', 'r') as file:
       content = file.read()
   else:
@@ -101,11 +114,16 @@ for row in new_emails:
 
   # collect fields for email template interpolation
   fields_tt = qget("SELECT user_first_name, user_last_name, verify_code, user_email FROM users left join email_verify on (users.user_id = email_verify.user_id) where users.user_id='"+str(uid)+"'")
-  if etype in ['patient_appointment_pending, doctor_appointment_pending']:
+  print 'email'
+  print etype
+  if etype in ['patient_appointment_paid', 'doctor_appointment_paid']:
     appt_id,doctor_id,patient_id = idata.split('|')
+    print 'in if'
     fields_dr = qget("SELECT user_first_name, user_last_name from users where user_id='" + doctor_id  + "'")
     fields_pt = qget("SELECT user_first_name, user_last_name from users where user_id='" + patient_id + "'")
-
+  else:
+    fields_dr=[['','','','','','']]
+    fields_pt=[['','','','','','']]
   content = content.replace('{{fullname}}'          , str(fields_tt[0][0]) + ' ' + str(fields_tt[0][1]))
   content = content.replace('{{patient.fullname}}'  , str(fields_pt[0][0]) + ' ' + str(fields_pt[0][1]))
   content = content.replace('{{patient.firstname}}' , str(fields_pt[0][0]))
