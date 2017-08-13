@@ -56,11 +56,13 @@ for row in new_emails:
 
   if(etype == 'patient_account_new'):
     with open('/var/www/html/email/'+etype+'.html', 'r') as file:
-      content=myfile.read().replace('\n', ' ')
-    fields = qget("SELECT user_first_name, user_last_name, verify_code, user_email FROM users left join email_verify on (users.user_id = email_verify.user_id) where users.user_id='"+uid+"'")
-    content = content.replace('{{fullname}}', fields[0]+' '+fields[1])
-    content = content.replace('{{fullname}}', fields[2])
-    subject = user_email+': '+'Welcome to Neolafia!'
+      content=file.read().replace('\n', ' ')
+    fields = qget("SELECT user_first_name, user_last_name, verify_code, user_email FROM users left join email_verify on (users.user_id = email_verify.user_id) where users.user_id='"+str(uid)+"'")
+    content = content.replace('{{fullname}}', str(fields[0][0])+' '+str(fields[0][1]))
+    content = content.replace('{{link_authenticate}}', 'https://www.neolafia.com/verify_acct.php?q='+str(fields[0][2]))
+    content = content.replace('\\', '\\\\')
+    content = content.replace('\'', '\\\'')
+    subject = fields[0][3]+': '+'Welcome to Neolafia!'
     email='ashwinchetty@gmail.com'
 
   else:
