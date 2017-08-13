@@ -177,6 +177,7 @@
       }
       // perform doctor query.
       $docres = mysqli_query($database, $query_doctor);
+      $docres = mysqli_query($database, sprintf("update users set user_is_doctor='1' where user_id = %s", $userid));
       // echo $query_doctor;
       // echo $query_doctor;
       if (!$docres) {

@@ -23,6 +23,7 @@ $params = json_decode(file_get_contents("php://input"), $assoc=true);
 $params = required_params($params, array('data','bounds'),array());
 
 
+
 function get_timeslots_intersecting( $db, $start, $end){
   $sqlformat = 'Y-m-d H:i:s';
   $start_s = date_format($start, $sqlformat);
@@ -38,18 +39,21 @@ function get_timeslots_intersecting( $db, $start, $end){
 }
 
 function insert_timeslot( $db, $start, $end , $price, $currency){
+  $doctor = new Doctor($_SESSION['user_id']);
   $sqlformat = 'Y-m-d H:i:s';
   $start_s = date_format($start, $sqlformat);
   $end_s = date_format($end, $sqlformat);
 
   $params=array(
-      'user_id'        => $_SESSION['user_id']
-    , 'appointment_id' => "0"
-    , 'price'          => $price
-    , 'currency'       => $currency
-    , 'type'           => "open"
-    , 'start'          => "$start_s"
-    , 'end'            => "$end_s"
+      'user_id'           => $_SESSION['user_id']
+    , 'appointment_id'    => "0"
+    , 'price'             => $price
+    , 'currency'          => $currency
+    , 'type'              => "open"
+    , 'start'             => "$start_s"
+    , 'end'               => "$end_s"
+    , 'timeslot_location' => $doctor->vals[0]['doctor_location']
+    , 'timeslot_address'  => $doctor->vals[0]['doctor_hospitals']
   );
 
   $q = query_insert_into( 'timeslots', $params);
