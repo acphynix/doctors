@@ -48,6 +48,23 @@
       return true;
     }
 
+    function map_to_arrays_plain($map){
+      $first = true;
+      $keys = '';
+      $vals = '';
+      foreach($map as $key => $value) {
+          if ($first){
+            $keys = $key;
+            $vals = $value;
+            $first = false;
+          }
+          else{
+            $keys .= ',' . $key;
+            $vals .= ',' . $value;  
+          } 
+      }
+      return ['keys'=>$keys, 'vals'=>$vals];
+    }
     function verify_can_build_doctor_query(){
       return verify_fields_populated(['nLi','nSpc','nLoc','nChs','nQct','nAff','nNig'],$_POST);
     }
@@ -76,7 +93,7 @@
         , 'doctor_affiliations'        => "'".sanitize_plaintext($_POST['nAff'])."'"
         );
 
-      $query_terms = map_to_arrays($sql_insert);
+      $query_terms = map_to_arrays_plain($sql_insert);
       $query = sprintf("insert into doctors (%s) values (%s)",$query_terms['keys'],$query_terms['vals']);
       return $query;
     }
@@ -109,7 +126,7 @@
        , 'user_preexisting_conditions' => "''"
        , 'user_email'                  => "'".$email."'"
       );
-      $query_terms = map_to_arrays($sql_insert);
+      $query_terms = map_to_arrays_plain($sql_insert);
       $query = sprintf("insert into users (%s) values (%s)",$query_terms['keys'],$query_terms['vals']);
       return $query;
     }
