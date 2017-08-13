@@ -36,28 +36,39 @@ def send_email( send_to, send_bcc, subject, body_html ):
 
   return response
 
-db = MySQLdb.connect(host="localhost",           # your host, usually localhost
-                     user="ec2-user",            # your username
-                     passwd="",                  # your password
-                     db="HealthTechSchema")      # name of the data base
-
+db = MySQLdb.connect(
+  host="localhost",
+  user="ec2-user",
+  passwd="",
+  db="HealthTechSchema")
 cur = db.cursor()
 
+def qget(query):
+  cur.execute(query)
+  return cur.fetchall()  
 
+# get new emails
 
-# cur.execute("""
-#     insert into emails
-#     (user_id, subject, user_email, content, nature, status, times_sent) values
-#     ('163', 'subject line', 'ashwinchetty@gmail.com', '<html><body>Email <i>contents</i>.</body></html>','update','queued','0')
-#   """)
+new_emails = qget("SELECT * FROM emails where status='new'")
+for row in new_emails:
+  uid   = row[1]
+  etype = row[2]
 
-# cur.execute("update emails set subject='el sujeto'")
+  if(etype == 'patient_account_new'):
+
+  email='ashwinchetty@gmail.com'
+  subject='subject line'
+  content='<html><body>hello world!</body></html>'
+
+  cur.execute("update emails set status='queued',user_email='"+email+
+              "', subject='"+subject+"', content='"+content+
+              "' where email_id = "+str(row[0]))
+  db.commit()
+  print row
+
 cur.execute("SELECT * FROM emails where status='queued'")
-
-
-# print all the first cell of all the rows
 for row in cur.fetchall():
-  cur.execute("update emails set status='lock' where email_id = "+str(row[0]))
+  cur.execute("update emails set status='processing' where email_id = "+str(row[0]))
   db.commit()
   send_email( [row[3]], [], row[2], row[4])
   cur.execute("update emails set status='sent',times_sent="+str(row[7]+1)+" where email_id = "+str(row[0]))

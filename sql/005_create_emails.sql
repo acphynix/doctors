@@ -1,14 +1,15 @@
 drop table if exists emails;
 create table `emails` (
   `email_id`        int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id`         int(10),
-  `subject`         varchar(255),
+  `user_id`         int(10) unsigned NOT NULL,
+  `email_type`      varchar(128) NOT NULL,
   `user_email`      varchar(45),
+  `subject`         varchar(255),
   `content`         text,
-  `nature`          varchar(5),
-  `status`          enum('queued','processing','sent'),
-  `times_sent`      int(5),
+  `email_status`    enum('new','queued','processing','sent') default 'new',
+  `times_sent`      int(5) default '0',
   `created_on`      datetime default CURRENT_TIMESTAMP,
+  `sent_on`         datetime,
   PRIMARY KEY (`email_id`)
 );
 
@@ -26,12 +27,4 @@ create table `payments` (
   `status`          varchar(15),
   `depends_on`      int(10),           -- only perfrom this transaction after depends_on is also completed.
   PRIMARY KEY (`payment_id`)
-);
-
-drop table if exists temp_apptcodes;
-create table `temp_apptcodes` (
-  `apptcode`            varchar(10),
-  `created_on`          datetime default CURRENT_TIMESTAMP,
-  `delete_on`           datetime,
-  PRIMARY KEY (`apptcode`)
 );

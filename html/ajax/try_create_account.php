@@ -1,6 +1,7 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT']."/php/util/global.php");
     import('/php/util/sanitize.php');
+    import('/php/util/emails.php');
 
     function send_email($address, $validate_hash){
       $to = $address;
@@ -188,10 +189,15 @@
 
     $verify_str = bin2hex(random_bytes(10));
     $sql_addverify = sprintf("insert into email_verify (user_id, verify_code) values (%s,'%s')",$userid,$verify_str);
-    // echo 'hello, world!';
     $sres = mysqli_query($database, $sql_addverify);
-    // echo 'hello, world\n';
-    send_email($email,$verify_str);
+    
+    if($isdoctor){
+      create_email($userid, 'doctor_account_new');
+    }else{
+      create_email($userid, 'patient_account_new');
+    }
+
+    // send_email($email,$verify_str);
 
     session_start();
     $_SESSION['user_email']  = $email;
