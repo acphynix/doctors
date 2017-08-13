@@ -34,6 +34,9 @@
 <link rel="stylesheet" type="text/css" href="../../styles/home.css">
 
 <title>Neolafia</title>
+<head>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+</head>
 </head>
 <body ng-controller="navigation">
   <div class='noboat'>

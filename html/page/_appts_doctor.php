@@ -13,8 +13,8 @@
     </div>
   </div>
   <div style='width:100%;text-align:center;margin-top:2em'>
-    <div style='width:80%;min-width:35em;display:inline-block'>
-      <h1 style='margin-top:0;text-align:left'>Upcoming Appointments</h1>
+    <div style='width:80%;min-width:35em;display:inline-block;padding:4em'>
+      <h1 style='margin-top:0;text-align:left'>Appointments</h1>
         <div style='width:100%;' ng-init=get_schedule('doctor')>
           <table class='schedule'>
           <tbody ng-repeat = 'a in appointments'>
@@ -77,7 +77,6 @@
             </div>
           </div> -->
         </div>
-      <h1 style='margin-top:0;text-align:left'>Past Appointments</h1>
     </div>
   </div>
 </div>
