@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+
+print 'hello world!'
+
 import MySQLdb
 import email
 
