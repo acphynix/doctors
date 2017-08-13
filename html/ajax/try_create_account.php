@@ -48,23 +48,6 @@
       return true;
     }
 
-    function map_to_arrays($map){
-      $first = true;
-      $keys = '';
-      $vals = '';
-      foreach($map as $key => $value) {
-          if ($first){
-            $keys = $key;
-            $vals = $value;
-            $first = false;
-          }
-          else{
-            $keys .= ',' . $key;
-            $vals .= ',' . $value;  
-          } 
-      }
-      return ['keys'=>$keys, 'vals'=>$vals];
-    }
     function verify_can_build_doctor_query(){
       return verify_fields_populated(['nLi','nSpc','nLoc','nChs','nQct','nAff','nNig'],$_POST);
     }
