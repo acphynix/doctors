@@ -6,8 +6,8 @@ import boto3
 
 client = boto3.client('ses', 
           region_name='us-east-1',
-          aws_access_key_id=AKIAI3P25I4PQWG2S7QQ,
-          aws_secret_access_key=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
+          aws_access_key_id='AKIAI3P25I4PQWG2S7QQ',
+          aws_secret_access_key='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'
         )
 
 def send_email( send_to, send_bcc, subject, body_html ):
