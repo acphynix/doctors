@@ -79,7 +79,7 @@ for row in actions:
 
     except:
       continue
-  else
+  else:
     continue
 
 qget("update actions set action_status='complete'")
