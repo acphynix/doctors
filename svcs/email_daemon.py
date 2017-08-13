@@ -68,7 +68,7 @@ for row in actions:
   if(cmd[0] == 'Verify-Doctor'):
     try:
       id = int(cmd[0])
-      qget("update doctors set doctor_status='verified' where user_id="+id)
+      qget("update doctors set doctor_cert_status='verified' where user_id="+id)
     except:
       continue
   elif(cmd[0] == 'Appt-Status'):
@@ -82,7 +82,7 @@ for row in actions:
   else
     continue
 
-qget("update actions set status='complete'")
+qget("update actions set action_status='complete'")
 
 # get new emails
 
@@ -114,7 +114,7 @@ for row in new_emails:
   content = content.replace('{{link_authenticate}}' , 'https://www.neolafia.com/verify_acct.php?q='+str(fields_tt[0][2]))
   content = content.replace('\\', '\\\\')
   content = content.replace('\'', '\\\'')
-  
+
   subject = fields_tt[0][3]+': '+'Welcome to Neolafia!'
   email   = fields_tt[0][3]
    
