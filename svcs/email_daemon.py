@@ -55,11 +55,16 @@ for row in new_emails:
   etype = row[2]
 
   if(etype == 'patient_account_new'):
-    print 'account new'
-  email='ashwinchetty@gmail.com'
-  subject='subject line'
-  content='<html><body>hello world!</body></html>'
+    with open('/var/www/html/email/'+etype+'.html', 'r') as file:
+      content=myfile.read().replace('\n', ' ')
+    fields = qget("SELECT user_first_name, user_last_name, verify_code, user_email FROM users left join email_verify on (users.user_id = email_verify.user_id) where users.user_id='"+uid+"'")
+    content = content.replace('{{fullname}}', fields[0]+' '+fields[1])
+    content = content.replace('{{fullname}}', fields[2])
+    subject = user_email+': '+'Welcome to Neolafia!'
+    email='ashwinchetty@gmail.com'
 
+  else:
+    continue
   cur.execute("update emails set email_status='queued',user_email='"+email+
               "', subject='"+subject+"', content='"+content+
               "' where email_id = "+str(row[0]))
