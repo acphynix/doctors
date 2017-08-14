@@ -106,7 +106,7 @@ for row in new_emails:
   idata = row[3]
 
   # check that this is a supported email type
-  if etype in ['patient_account_new', 'doctor_account_new', 'doctor_appointment_paid']:
+  if etype in ['patient_account_new', 'doctor_account_new', 'doctor_appointment_paid', 'patient_appointment_paid']:
     with open('/var/www/html/email/' + etype + '.html', 'r') as file:
       content = file.read()
   else:
@@ -129,11 +129,27 @@ for row in new_emails:
   content = content.replace('{{patient.firstname}}' , str(fields_pt[0][0]))
   content = content.replace('{{doctor.fullname}}'   , str(fields_dr[0][0]) + ' ' + str(fields_dr[0][1]))
   content = content.replace('{{doctor.firstname}}'  , str(fields_dr[0][0]))
-  content = content.replace('{{link_authenticate}}' , 'https://www.neolafia.com/verify_acct.php?q='+str(fields_tt[0][2]))
+  content = content.replace('{{link_profile}}'      , 'https://neolafia.com/home.php')
+  content = content.replace('{{link_authenticate}}' , 'https://neolafia.com/verify_acct.php?q='+str(fields_tt[0][2]))
   content = content.replace('\\', '\\\\')
   content = content.replace('\'', '\\\'')
 
-  subject = fields_tt[0][3]+': '+'Welcome to Neolafia!'
+  subjects =  {
+       'patient_account_new'           : 'Welcome to Neolafia!'
+     , 'doctor_account_new'            : 'Welcome to Neolafia!'
+     , 'patient_appointment_pending'   : 'Thank you for requesting an appointment with Neolafia!'
+     , 'doctor_appointment_pending'    : 'A patient is interested in booking an appointment with you!'
+     , 'patient_appointment_paid'      : 'We have received your payment!'
+     , 'doctor_appointment_paid'       : (str(fields_pt[0][0])+' '+str(fields_pt[0][1])+' has booked an appointment with you!')
+     , 'patient_appointment_cancelled' : 'Appointment Cancellation'
+     , 'doctor_appointment_cancelled'  : 'Appointment Cancellation'
+     , 'patient_appointment_withdrawn' : 'Your appointment has been withdrawn'
+     , 'doctor_appointment_withdrawn'  : 'Appointment Withdrawal Notification'
+     , 'patient_appointment_complete'  : 'Thank you for choosing Neolafia!'
+     , 'doctor_appointment_complete'   : 'Appointment Payment Confirmation'
+    }
+
+  subject = fields_tt[0][3]+': '+subjects[etype]
   email   = fields_tt[0][3]
    
   email='ashwinchetty@gmail.com'
@@ -142,7 +158,7 @@ for row in new_emails:
               "', subject='"+subject+"', content='"+content+
               "' where email_id = "+str(row[0]))
   db.commit()
-  print row
+  # print row
 
 cur.execute("SELECT email_id, user_email, subject, content, times_sent FROM emails where email_status='queued'")
 for row in cur.fetchall():
@@ -150,7 +166,7 @@ for row in cur.fetchall():
   db.commit()
   send_email( [row[1]], [], row[2], row[3])
   cur.execute("update emails set email_status='sent',times_sent="+str(row[4]+1)+" where email_id = "+str(row[0]))
-  print row
+  # print row
 
 db.commit()
 db.close()
