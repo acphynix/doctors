@@ -106,7 +106,8 @@ for row in new_emails:
   idata = row[3]
 
   # check that this is a supported email type
-  if etype in ['patient_account_new', 'doctor_account_new', 'doctor_appointment_paid', 'patient_appointment_paid']:
+  if etype in ['patient_account_new', 'doctor_account_new', 'doctor_appointment_pending', 'doctor_appointment_paid', 'patient_appointment_paid',
+               'patient_appointment_approved', 'doctor_appointment_approved', 'doctor_appointment_closed']:
     with open('/var/www/html/email/' + etype + '.html', 'r') as file:
       content = file.read()
   else:

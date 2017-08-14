@@ -29,10 +29,10 @@
             <tr ng-show='a.show'>
               <td colspan='6' style='margin-bottom:0.66em'>
                 <div style='display:block;width:100%;padding:1em'>
-                  <div style="border:2px black solid;background-image:url({{user.image}});background-size:cover;width:4em;height:4em;margin-left:0;margin-right:1em;display:inline-block;float:left">
+                  <div style="border:2px black solid;background-image:url({{'/ajax/get_file.php?n=profile_picture&u='+a.user_id}});background-size:cover;width:4em;height:4em;margin-left:0;margin-right:1em;display:inline-block;float:left">
                   </div>
                   <div style='display:inline-block;margin-left:0'>
-                    <div style='padding:0;margin:0;font-family:cabin;font-size:1.5em'>Dr. {{a.user_first_name}} {{a.user_last_name}}</div>
+                    <div style='padding:0;margin:0;font-family:cabin;font-size:1.5em'>{{a.user_first_name}} {{a.user_last_name}}</div>
                     <div style='padding:0;margin:0;font-family:cabin'>{{a.timeslot_address}}</div>
                     <div style='padding:0;margin:0;font-family:cabin'>{{a.timeslot_location}}</div>
                   </div>
@@ -41,11 +41,49 @@
                 <div style='padding:0.5em;padding-left:2em;'>
                   {{a.notes}}
                 </div>
-                <!-- <div style='padding-right:0.5em;padding-left:1em;font-style:italic'>Code:</div> -->
-                <p class='buttons'>
-                  <a> Request Cancellation </a>
-                  <a> Confirm Appointment  </a>
-                </p>
+                <div style='padding-right:0.5em;padding-left:1em;font-style:italic'>Information:</div>
+                <div style='padding:0.5em;padding-left:2em;'>
+                  <div ng-if="a.status=='pending'">
+                    The payment details of {{a.user_first_name}} {{a.user_last_name}} are now being verified.
+                    After this process is complete, you will be able to confirm their appointment.
+                  </div>
+                  <div ng-if="a.status=='paid'">
+                    {{a.user_first_name}} has submitted their payment. Please confirm this appointment so that
+                    {{a.user_first_name}} knows that you are able to meet at the specified time.
+                    <p class='buttons'>
+                      <form ng-submit="appt_approve(a.appointment_id)">
+                        <input name='appt_id' type='hidden' ng-attr-value="{{a.appointment_id}}" />
+                        <input type='submit' value='Confirm Appointment' />
+                      </form>
+                    </p>
+                  </div>
+                  <div ng-if="a.status=='approved'">
+                    You're good to go! At your appointment, ask {{a.user_first_name}} for their 6-letter verification code and
+                    enter it in the box below to receive your payment. 
+
+                    <i>Important: You will not receive {{a.user_first_name}}'s payment unless you enter their code below.</i>
+                    <form class='validate' ng-attr-id="form-{{a.appointment_id}}" ng-submit="appt_complete(a.appointment_id)">
+                        <input name='code' type='text'" />
+                        <input type='submit' value='Validate' />
+                        <br />
+                        <p name='feedback'>
+                        </p>
+                    </form>
+                  </div>
+                  <div ng-if="a.status=='complete'">
+                    Your verification code was correct, and the price of this appointment
+                    will be funded into your bank account shortly. Please contact us at
+                    <a href='mailto:neolafia@neolafia.com'>neolafia@neolafia.com</a>
+                    with any questions or requests. Thank you for using Neolafia!
+                  </div>
+                </div>
+                  <div ng-if="a.status=='closed'">
+                    We have deposited the price of this appointment into your
+                    bank account. Please contact us at
+                    <a href='mailto:neolafia@neolafia.com'>neolafia@neolafia.com</a>
+                    with any questions or requests. Thank you for using Neolafia!
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>

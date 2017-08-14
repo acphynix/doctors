@@ -64,19 +64,7 @@ healthapp.controller('patient_appointments', function($scope, $http){
   $scope.date_value = 'open';
 
   $scope.schedule=[{name:"John Smith"},{name:"Pedro Garcia"},{name:"Jane Doe"},{name:"Alejandra Lopez"}];
-  $scope.get_schedule = function(){
-    var ajax = new XMLHttpRequest();
-    ajax.open("GET", "../ajax/get_schedule.php", true);
-    ajax.onload = function() {
-      console.log(ajax.responseText);
-      $scope.$apply(function(){
-        console.log('response: ');
-        console.log(ajax.responseText);
-        $scope.schedule = JSON.parse(ajax.responseText);
-      });
-    };
-    ajax.send();
-  }
+
   $scope.set_schedule = function(start,end,value){
     console.log('Submit: '+start+', '+end+', '+value);
     $http({

@@ -139,6 +139,40 @@ doctor_search.controller('navigation', function($scope, $window, $http){
     };
     ajax.send();
   };
+  $scope.appt_approve=function(appt){
+    $http({
+      method: 'POST',
+      url: '/ajax/post_approve_appointment.php',
+      data: { a: appt },
+      transformResponse: undefined
+    }).then(function successCallback(response) {
+      console.log('Response: ');
+      console.log(response);
+      $scope.get_schedule('doctor');
+      doctor.schedule=JSON.parse(response.data);
+    }, function errorCallback(response) {
+      console.log('Response: ');
+      console.log(response);
+    });
+  };
+  $scope.appt_complete=function(appt){
+    var value    = $("#form-"+appt+" input[type='text']").val();
+    var feedback = $("#form-"+appt+" p[name='feedback']")
+    $http({
+      method: 'POST',
+      url: '/ajax/post_complete_appointment.php',
+      data: { a: appt, v: value },
+      transformResponse: undefined
+    }).then(function successCallback(response) {
+      console.log('Response: ');
+      console.log(response);
+      $scope.get_schedule('doctor');
+    }, function errorCallback(response) {
+      console.log('Response: ');
+      feedback.html('Invalid code');
+      console.log(response);
+    });
+  };
   $('#form_profile').submit(function(event){
     var file_data = $('input[name=picture]').prop('files')[0];   
     var form_data = new FormData();
@@ -440,7 +474,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
       $scope.$apply(function(){
       console.log('ajax 2');
         console.log('response: ');
-        // console.log(ajax.responseText);
+        console.log(ajax.responseText);
         $scope.schedule=JSON.parse(ajax.responseText).sched;
         $scope.selections   = [];
         $scope.appointments = [];

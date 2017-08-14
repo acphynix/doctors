@@ -19,6 +19,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/php/util/global.php");
 import('/php/model/doctor.php');
 import('/php/model/user.php');
 import('/php/util/gen.php');
+import('/php/util/emails.php');
 
 session_start();
 $params             = json_decode(file_get_contents("php://input"), $assoc=true);
@@ -107,6 +108,9 @@ $appt = query_insert_into('appointments',
                 , 'apptcode'   => $code
                 , 'notes'      => 'empty')
           );
+
+create_email_for_appt( $doctor->user_id, 'doctor_appointment_pending',  $appt );
+create_email_for_appt( $user->user_id,   'patient_appointment_pending', $appt );
 
 $sqlformat = 'Y-m-d H:i:s';
 query_insert_into('timeslots',

@@ -21,7 +21,7 @@
           <tr ng-show='a.show' ng-init='a.show=true'>
             <td colspan='6' style='margin-bottom:0.66em'>
               <div style='display:block;width:100%;padding:1em'>
-                <div style="border:2px black solid;background-image:url({{user.image}});background-size:cover;width:4em;height:4em;margin-left:0;margin-right:1em;display:inline-block;float:left">
+                <div style="border:2px black solid;background-image:url({{'/ajax/get_file.php?n=profile_picture&u='+a.user_id}});background-size:cover;width:4em;height:4em;margin-left:0;margin-right:1em;display:inline-block;float:left">
                 </div>
                 <div style='display:inline-block;margin-left:0'>
                   <div style='padding:0;margin:0;font-family:cabin;font-size:1.5em'>Dr. {{a.user_first_name}} {{a.user_last_name}}</div>
@@ -70,11 +70,7 @@
                   Thank you for choosing to book your appointment with Neolafia!
                 </div>
               </div>
-              <!-- <div style='padding-right:0.5em;padding-left:1em;font-style:italic'>Code:</div> -->
-              <p class='buttons'>
-                <a> Request Cancellation </a>
-                <a> Confirm Appointment  </a>
-              </p>
+
             </td>
           </tr>
           <tr>

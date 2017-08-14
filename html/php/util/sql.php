@@ -52,9 +52,12 @@ function query_update( $table, $values, $where){
   // echo $query;
   return sql_get_insert('HealthTechSchema', $query);
 }
-function query_select_from_eq( $table, $values, $where){
+function query_select_from_eq( $table, $values, $where, $verbose=false){
   $query_terms = map_to_arrays($values);
   $query = sprintf("select %s from %s where %s", join(', ',$values), $table, $where);
+  if($verbose){
+    echo $query;
+  }
   return sql_to_assoc('HealthTechSchema', $query);
 }
 
