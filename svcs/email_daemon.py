@@ -150,6 +150,8 @@ for row in new_emails:
      , 'doctor_appointment_withdrawn'  : 'Appointment Withdrawal Notification'
      , 'patient_appointment_complete'  : 'Thank you for choosing Neolafia!'
      , 'doctor_appointment_complete'   : 'Appointment Payment Confirmation'
+     , 'patient_appointment_closed'    : 'Thank you for choosing Neolafia!'
+     , 'doctor_appointment_closed'     : 'Appointment Payment Confirmation'
     }
 
   subject = fields_tt[0][3]+': '+subjects[etype]
