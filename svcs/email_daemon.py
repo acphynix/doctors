@@ -154,10 +154,11 @@ for row in new_emails:
      , 'doctor_appointment_closed'     : 'Appointment Payment Confirmation'
     }
 
-  subject = fields_tt[0][3]+': '+subjects[etype]
+  subject = subjects[etype]
   email   = fields_tt[0][3]
    
-  email='ashwinchetty@gmail.com'
+  # subject = fields_tt[0][3]+': '+subjects[etype]
+  # email='ashwinchetty@gmail.com'
 
   cur.execute("update emails set email_status='queued',user_email='"+email+
               "', subject='"+subject+"', content='"+content+
