@@ -142,6 +142,8 @@ for row in new_emails:
      , 'doctor_appointment_pending'    : 'A patient is interested in booking an appointment with you!'
      , 'patient_appointment_paid'      : 'We have received your payment!'
      , 'doctor_appointment_paid'       : (str(fields_pt[0][0])+' '+str(fields_pt[0][1])+' has booked an appointment with you!')
+     , 'patient_appointment_approved'  : 'Your appointment has been approved!'
+     , 'doctor_appointment_approved'   : 'Appointment Confirmation'
      , 'patient_appointment_cancelled' : 'Appointment Cancellation'
      , 'doctor_appointment_cancelled'  : 'Appointment Cancellation'
      , 'patient_appointment_withdrawn' : 'Your appointment has been withdrawn'
