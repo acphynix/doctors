@@ -30,11 +30,11 @@ function get_timeslots_intersecting( $db, $start, $end){
   $end_s = date_format($end, $sqlformat);
 
   $q_1 = "select * from timeslots where ".
-         "  (start between '$start_s' and '$end_s') OR ".
-         "  (end   between '$start_s' and '$end_s') OR ".
-         "  ('$start_s' between start and end     )    ";
+         "  ( '$start_s' < start  and start < '$end_s'  ) OR ".
+         "  ( '$start_s' < end    and end   < '$end_s'  ) OR ".
+         "  ( start <= '$start_s' and '$end_s' <= end )    ";
 
-  // echo $q_1 . "\n\n";
+  echo $q_1 . "\n\n";
 
   $slots = mysqli_query($db, $q_1);
 

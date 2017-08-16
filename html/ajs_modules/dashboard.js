@@ -315,15 +315,28 @@ doctor_search.controller('navigation', function($scope, $window, $http){
         // console.log($scope.selections[i].id);
         if($scope.selections[i].id==event.id){
           $scope.selections.splice(i,1);
+          console.log('removed event');
         }
       }
+    }
+    add_event_raw = function(tstart, tend, price, currency){
+      evt = ({
+        title    : 'open',
+        start    : tstart,
+        end      : tend,
+        price    : price,
+        currency : currency,
+        id       : (++$scope.selections_ct)
+      });
+      $scope.selections.push(evt);
+      refresh_calendar();
     }
     add_event = function(tstart, tend, jsEvent, view){
       evt = ({
         title  : 'open',
         start  : tstart,
         end    : tend,
-        id     : tstart+tend
+        id     : (++$scope.selections_ct)
       });
       valid = true;
       merge = [undefined];
@@ -361,7 +374,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
           evt.price=$('#popup_appt_create input[type=text]').val();
           evt.currency=$('#popup_appt_create select').val();
 
-          if(merge && merge.price == evt.price && merge.currency == evt.currency){
+          if(merge && merge.price == evt.price && merge.currency == evt.currency && merge.type ==='open' && evt.type==='open'){
             if(evt.end-merge.start == 0){
               merge.start = evt.start;
             }
@@ -410,6 +423,20 @@ doctor_search.controller('navigation', function($scope, $window, $http){
         remove_event(calEvent);
         refresh_calendar();
       },
+      eventResize: function(event, delta, revertFunc) {
+        remove_event(event);
+        add_event_raw(event.start, event.end, event.price, event.currency);
+        update_edit_bounds(event);
+      },
+      eventDrop: function( event, delta, revertFunc ) {
+        add_event_raw(event.start, event.end, event.price, event.currency);
+        update_edit_bounds(event);
+      },
+      eventDragStart: function( event, jsEvent, ui, view ) {
+        console.log('drag end');
+        remove_event(event);
+        update_edit_bounds(event);
+      },
       editable: true,
       eventOverlap: false
     });
@@ -438,6 +465,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
     console.log('set availabilities');
     var payload = $scope.selected_as_payload(times);
     if(!payload)return;
+    console.log(payload);
     $http({
       method: 'POST',
       url: '../ajax/set_doctor_availabilities.php',
@@ -451,7 +479,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
     }, function errorCallback(response) {
       $scope.get_schedule('doctor');
       console.log('Response: ');
-      console.log(response);
+      // console.log(response);
       // console.log(response);
     });
   }
@@ -488,18 +516,28 @@ doctor_search.controller('navigation', function($scope, $window, $http){
         // console.log('f ');
         console.log(ajax.responseText);
         $scope.schedule=JSON.parse(ajax.responseText).sched;
-        $scope.selections   = [];
-        $scope.appointments = [];
+        $scope.selections_ct = $scope.schedule.length;
+        $scope.selections    = [];
+        $scope.appointments  = [];
         for(var i=0; i<$scope.schedule.length; ++i){
           $scope.schedule[i].date_start = moment.utc($scope.schedule[i].start.split(/-|\ |:/), 'YYYY-MM-DD HH:mm:ss');
           $scope.schedule[i].date_end = moment.utc($scope.schedule[i].end.split(/-|\ |:/), 'YYYY-MM-DD HH:mm:ss');
+          var title = $scope.schedule[i].price+" "+$scope.schedule[i].currency;
+          var color = 'auto';
+          if($scope.schedule[i].type === 'appt'){
+            title = $scope.schedule[i].user_first_name+' '+$scope.schedule[i].user_last_name
+            color = 'orange';
+          }
           cal_evt = {
-            title    : $scope.schedule[i].price+" "+$scope.schedule[i].currency,
+            title    : title,
             start    : $scope.schedule[i].date_start,
             end      : $scope.schedule[i].date_end,
             id       : i,
+            color    : color,
             price    : $scope.schedule[i].price,
-            currency : $scope.schedule[i].currency
+            currency : $scope.schedule[i].currency,
+            editable : $scope.schedule[i].type === 'open',
+            type     : $scope.schedule[i].type
           };
           $scope.selections.push(cal_evt);
           if($scope.schedule[i].type != 'open'){
