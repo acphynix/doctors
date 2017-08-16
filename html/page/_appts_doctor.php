@@ -6,7 +6,7 @@
     </div>
   </div>
   <div style='width:100%;text-align:center;display:inline-block'>
-    <div class='clickme' style='display:inline-block;width:35em;text-align:center;margin:0;font-size:1em;background-color:#fff0d0;font-family:Cabin;padding:0.33em;font-weight:bold' ng-click="view='appts.edit'">
+    <div class='clickme' style='display:inline-block;width:35em;text-align:center;margin:0;font-size:1em;background-color:#fff0d0;font-family:Cabin;padding:0.33em;font-weight:bold' ng-click="set_view('appts.edit')">
       <span style='font-size:1.33em'>
       Manage Schedule
       </span>
@@ -70,7 +70,7 @@
                         </p>
                     </form>
                   </div>
-                  <div ng-if="a.status=='complete'">
+                  <div ng-if="a.status=='completed'">
                     Your verification code was correct, and the price of this appointment
                     will be funded into your bank account shortly. Please contact us at
                     <a href='mailto:neolafia@neolafia.com'>neolafia@neolafia.com</a>

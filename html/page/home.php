@@ -6,12 +6,12 @@
 ?>
 <html ng-app="dashboard">
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
 
 <link rel="stylesheet" type="text/css" href="/lib/fullcalendar/fullcalendar.css">
 <link rel="stylesheet" type="text/css" href="/styles/calendar.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'></script>
 <script src='/lib/fullcalendar/fullcalendar.js'></script>
 <script src='https://momentjs.com/downloads/moment.min.js'></script>

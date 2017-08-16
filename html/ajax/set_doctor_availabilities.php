@@ -32,7 +32,10 @@ function get_timeslots_intersecting( $db, $start, $end){
   $q_1 = "select * from timeslots where ".
          "  (start between '$start_s' and '$end_s') OR ".
          "  (end   between '$start_s' and '$end_s') OR ".
-         "  ('$start_s' between start and '$end_s')    ";
+         "  ('$start_s' between start and end     )    ";
+
+  // echo $q_1 . "\n\n";
+
   $slots = mysqli_query($db, $q_1);
 
   return $slots;
@@ -83,8 +86,8 @@ function delete_timeslot( $db, $timeslot_id){
 }
 function delete_open_timeslots_between ( $db, $low, $high ){
   $query = "delete from timeslots where type='open' and start>='$low' and end <='$high'";
-  echo '~~~~~~~~~~~~~~~~~~~~~~~~~';
-  echo $query;
+  // echo '~~~~~~~~~~~~~~~~~~~~~~~~~';
+  // echo $query;
   mysqli_query( $db, $query );
 }
 
@@ -101,6 +104,7 @@ $bound2 = DateTime::createFromFormat($format, $params['bounds']['1']);
 delete_open_timeslots_between( $database, $bound1->format($sqlformat), $bound2->format($sqlformat) );
 
 foreach ($params['data'] as $event){
+  echo 'enter ' . $event['s'] . ' to ' . $event['e']."\n\n";
   $date1 = DateTime::createFromFormat($format, $event['s']);
   $date2 = DateTime::createFromFormat($format, $event['e']);
   $price =    sanitize_number($event['p']);
@@ -114,6 +118,7 @@ foreach ($params['data'] as $event){
      $date2 > $bound2 ||
      $date1 > $bound2 ||
      !($type=== 'open' || $type=== 'closed')){
+    echo ("invalid\n\n");
     continue;
   }
 
@@ -123,10 +128,12 @@ foreach ($params['data'] as $event){
     array_push($conflicts, $row);
   }
 
+  $should_add = true;
   foreach ($conflicts as $conflict){
     if($conflict['type'] === 'appt'){
-    echo '{"success":"false","msg":"conflict with appt"}';
-      return;
+      echo 'conflict: '.$conflict['start']. ' -- '.$conflict['end'];
+      $should_add = false;
+      break;
     }
     $cd1 = DateTime::createFromFormat($sqlformat, $conflict['start']);
     $cd2 = DateTime::createFromFormat($sqlformat, $conflict['end']  );
@@ -156,8 +163,10 @@ foreach ($params['data'] as $event){
       }
     }
   }
-
-  insert_timeslot($database, $date1, $date2, $price, $currency);
+  if($should_add){
+    echo "Adding ".$event['s'].' - ' . $event['e'];
+    insert_timeslot($database, $date1, $date2, $price, $currency);
+  }
 }
 
 

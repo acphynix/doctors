@@ -120,7 +120,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
     ajax.open("GET", "../ajax/user.php?q=fname lname email status dob address sex&rand="+Math.random(), true);
     ajax.onload = function() {
       $scope.$apply(function(){
-        console.log('response: ');
+        // console.log('response: ');
         console.log(ajax.responseText);
         var res = JSON.parse(ajax.responseText);
 
@@ -208,7 +208,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
   $scope.populate_user_info();
 
   $scope.calendar_events = function(start, end, timezone, callback){
-    console.log('pulling events');
+    // console.log('pulling events');
     var events=[];
     if(typeof $scope.schedule !== 'undefined'){
       for(var i=0; i<$scope.schedule.length; ++i){
@@ -279,7 +279,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
           $('#calendar_map').fullCalendar( 'select', tstart, tend );
         }
         else{
-          console.log('set!');
+          // console.log('set!');
           $scope.view_start = tstart;
           $scope.view_end   = tend;
           $('#calendar_week').fullCalendar('gotoDate', tstart);
@@ -374,13 +374,20 @@ doctor_search.controller('navigation', function($scope, $window, $http){
             $scope.selections.push(evt);
           }
 
+          $('#calendar_week').fullCalendar( 'unselect' );
           update_edit_bounds(evt);
           refresh_calendar();
           return false;
         });
+      }else{
+        $('#calendar_week').fullCalendar( 'unselect' );
       }
     }
     refresh_calendar = function(){
+      $('#calendar_week').fullCalendar( 'refetchEvents' );
+      $('#calendar_week').fullCalendar( 'rerenderEvents' );
+      $('#calendar_map').fullCalendar( 'refetchEvents' );
+      $('#calendar_map').fullCalendar( 'rerenderEvents' );
       $('#calendar_week').fullCalendar('prev');
       $('#calendar_week').fullCalendar('next');
       $('#calendar_map').fullCalendar('prev');
@@ -428,6 +435,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
     return payload;
   }
   $scope.set_availabilities = function(times){
+    console.log('set availabilities');
     var payload = $scope.selected_as_payload(times);
     if(!payload)return;
     $http({
@@ -437,43 +445,47 @@ doctor_search.controller('navigation', function($scope, $window, $http){
       transformResponse: undefined
     }).then(function successCallback(response) {
       $scope.get_schedule('doctor');
-      // console.log('Response: ');
-      // alert(JSON.stringify(response));
+      console.log('Response: ');
+      console.log(response.data);
       // console.log(response);
     }, function errorCallback(response) {
       $scope.get_schedule('doctor');
-      // console.log('Response: ');
-      // alert(JSON.stringify(response));
+      console.log('Response: ');
+      console.log(response);
       // console.log(response);
     });
   }
   $scope.set_view = function(new_view){
+      // console.log('set view '+new_view);
     if($scope.is_show('appts.edit') && !new_view.startsWith('appts.edit')){
-      console.log('saving edits');
+      // console.log('set view away');
+      // moving away from appts page.
       $scope.set_availabilities($scope.selections);
     }
     if(new_view.startsWith('appts.edit')){
       refresh_calendar();
+      // $('#calendar_week').fullCalendar( 'refresh' );
+      // $('#calendar_week').fullCalendar('prev');
+      // $('#calendar_week').fullCalendar('next');
     }
     if(new_view.startsWith('appts.display')){
       $('#calendar').fullCalendar( 'refetchEvents' );
+      $('#calendar').fullCalendar( 'rerenderEvents' );
       $('#calendar').fullCalendar('prev');
       $('#calendar').fullCalendar('next');
-      console.log('reeeefresh');
+      // console.log('reeeefresh');
     }
-    console.log(new_view);
     $scope.view = new_view;
+    // console.log(new_view);
   }
   $scope.get_schedule = function(show){
     var ajax = new XMLHttpRequest();
     $.ajaxSetup({ cache: false });
     ajax.open("GET", "../ajax/get_schedule.php?show="+show+"&rand="+Math.random(), true);
     ajax.onload = function() {
-      console.log('ajax 1');
       // console.log(ajax.responseText);
       $scope.$apply(function(){
-      console.log('ajax 2');
-        console.log('response: ');
+        // console.log('f ');
         console.log(ajax.responseText);
         $scope.schedule=JSON.parse(ajax.responseText).sched;
         $scope.selections   = [];
