@@ -117,7 +117,8 @@ for row in new_emails:
   fields_tt = qget("SELECT user_first_name, user_last_name, verify_code, user_email FROM users left join email_verify on (users.user_id = email_verify.user_id) where users.user_id='"+str(uid)+"'")
   print 'email'
   print etype
-  if etype in ['patient_appointment_paid', 'doctor_appointment_paid']:
+  if etype in ['doctor_appointment_pending', 'doctor_appointment_paid', 'patient_appointment_paid',
+               'patient_appointment_approved', 'doctor_appointment_approved', 'doctor_appointment_closed']:
     appt_id,doctor_id,patient_id = idata.split('|')
     print 'in if'
     fields_dr = qget("SELECT user_first_name, user_last_name from users where user_id='" + doctor_id  + "'")
