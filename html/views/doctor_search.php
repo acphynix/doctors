@@ -55,7 +55,7 @@
   <span ng-init='init_view()' />
   <div class='boat boat-smaller'>
     <span>
-    <h1 class='Neolafia' style='position:relative'>
+    <h1 class='clickme Neolafia' style='position:relative' onclick="goto('/index.php')">
       <img src='../images/logo.png' style='height:1em;'/>
       Neolafia
       <span class='banner-button-container' >

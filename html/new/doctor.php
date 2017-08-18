@@ -46,11 +46,11 @@
         });
     });
     var options = $('#iSpc').get(0).options;
-    $.each(['cardiology','rheumatology'], function(key, value) {
+    $.each(['Dermatology', 'Neurology', 'Respiratory medicine', 'Cardiology', 'Endocrinology', 'Clinical Heamatology', 'Rheumatology', 'Gastroenterology', 'Nephrology', 'Paediatrics', 'General Suregry', 'Orthopedics', 'Plastic Surgery', 'Urology', 'Opthalmology', 'Dentistry', 'ENT', 'Obstetrics & Gynaecology', 'Family Medicine'], function(key, value) {
       options[options.length] = new Option(value, value);
     });
     options = $('#iLoc').get(0).options;
-    $.each(['Ibadan','Lagos'], function(key, value) {
+    $.each(['Abia', 'Adamawa', 'Anambra', 'Akwa Ibom', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Enugu', 'Edo', 'Ekiti', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos: Agege', 'Lagos: Ajeromi-Ifelodun', 'Lagos: Alimosho', 'Lagos: Amuwo-Odofin', 'Lagos: Apapa', 'Lagos: Badagry', 'Lagos: Epe', 'Lagos: Eti-Osa', 'Lagos: Ibeju-Lekki', 'Lagos: Ifako-Ijaiye', 'Lagos: Ikeja', 'Lagos: Ikorodu', 'Lagos: Kosofe', 'Lagos: Lagos Island', 'Lagos: Lagos Mainland', 'Lagos: Mushin', 'Lagos: Ojo', 'Lagos: Oshodi-Isolo', 'Lagos: Somolu', 'Lagos: Surulere', 'Nasarawa', 'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara', 'Abuja (FCT)'], function(key, value) {
       options[options.length] = new Option(value, key);
     });
 });
@@ -60,7 +60,7 @@
 <body style='padding:0' ng-app="InputDOB" ng-controller="DateController">
   <div class='seg-title' style='background-color:green'>
     <div class='heading-container' style='padding:1em;padding-right:0;overflow:hidden;position:relative'>
-      <span class='pane-heading' style='float:left;position:inline-block;padding:1em;padding-left:3em'>
+      <span class='pane-heading clickme' style='float:left;position:inline-block;padding:1em;padding-left:3em' onclick="goto('/index.php')">
         <h1 class='title' style='padding:0;margin:0;font-size:6vw;color:white'>Neolafia</h1>
         <h2 class='title' style='color:gold;padding:0;margin:0;font-size:1.66vw;font-family:Cabin;font-style:italic'>Healthcare at your fingertips</h2>
       </span>
@@ -233,7 +233,7 @@
             </td>
           </tr>
           <tr>
-            <td class='label'>Hospital</td>
+            <td class='label'>Hospital Name and Address</td>
             <td class='field'>
               <input name="nChs" ng-model="nChs" id="iChs" ng-required='true' name='q' type="text"
                    autofocus placeholder="Lagos University"/>

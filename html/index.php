@@ -82,6 +82,9 @@
             <td class='field'>
               <input name='c' id="ilocation_search" type="text" ng-model="keyword_search"
                    autocomplete="off" placeholder="Eti-osa, Kosofe, Oshodi"/>
+              <select ng-model="keyword-search">
+                
+              </select>
             </td>
           </tr>
         </table>
