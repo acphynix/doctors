@@ -1,30 +1,152 @@
-1,cardiology
-1,heart
-1,heart attack
-1,arrhythmia
-1,pacemaker
-2,cardiology
-2,stroke
-2,high blood pressure
-2,low blood pressure
-2,blood pressure
-2,hypertension
-2,hypotension
-3,cardiology
-3,breathing
-3,anemia
-3,hemoglobin
-3,iron deficiency
-3,iron
-4,dermatology
-4,skin
-4,pores
-4,cancer
-4,melanoma
-4,sunburn
-4,epidermis
-5,pulmonology
-5,breathing
-5,pulmonary edema
-5,pneumonia
-5,lungs
+1,Dermatology
+1,Skin
+1,Rash
+1,Eczema
+1,Spots
+1,Acne
+1,Pimples
+1,Hair
+1,Nail
+1,Itching
+1,Pruritus
+1,Reaction
+1,Allergy
+1,Cosmetic
+2,Neurology
+2,Headache
+2,Stroke
+2,Paralysis
+2,Tremor
+2,Shaking
+2,Convulsion
+2,Seizure
+2,Fainting
+3,Pulmonology
+3,Cough
+3,Chest pain
+3,Sputum
+3,Bloody cough
+3,Brearthlessness
+3,Breath
+3,Difficulty breathing
+3,Asthma
+3,Tuberculosis
+4,Cardiology
+4,Cough
+4,Chest pain
+4,Tiredness
+4,fatigue
+4,Heart
+4,Fast heart beat
+4,Faint
+4,Dizziness
+4,Heart attack
+4,Palpitation
+4,Difficulty breathing
+4,Swollen legs
+5,Endocrinology
+5,Diabetes
+5,High blood sugar
+5,Neck swelling
+5,Weight loss
+5,Obesity
+5,Thyroid
+5,Tremor
+5,Palpitation
+5,Excess urine
+5,Excess thirst
+6,Clinical Heamatology
+6,Heamatology
+6,Sickle cell disease
+6,Anemia
+6,Low blood
+6,Blood cancer
+6,Weight loss
+6,Fever
+6,Difficulty breathing
+6,Tiredness
+6,Pale eyes
+6,Pale palms
+6,Jaundice
+7,Rheumatology
+7,Joint
+7,Rash
+7,Hair loss
+7,Fever
+7,Weight loss
+7,Cancer
+8,Gastroenterology
+8,Diarrhea
+8,Jaundice
+8,Tummy Stomach
+8,Dysentery
+8,Black stool
+8,Melena
+8,Cramps
+8,Abdomen
+8,Swollen legs
+8,Swallowing
+8,Ulcer
+8,Dyspepsia
+8,Vomitting
+8,Nausea
+8,Intestine
+9,Nephrology
+9,Urine
+9,Kidneys
+9,Bllody urine
+9,Painful urination
+9,Low urine
+9,Oliguria
+9,Swollen legs
+9,Swollen face
+9,Paediatrics
+9,Children
+9,Vaccine
+9,Nutrition
+9,Poor growth
+10,General Suregry
+10,Surgeon
+10,Surgery
+10,Breast
+10,Orthopedics
+10,Bone
+10,Fracture
+11,Plastic Surgery
+11,Tendon
+11,Skin graft
+11,Burns
+11,Cosmetic
+12,Urology
+12,Urine
+12,Prostrate
+12,Bloody urine
+12,Poor urine flow
+13,Opthalmology
+13,Eyes
+13,Blindness
+13,Vision
+13,Blurred vision
+13,Glaucoma
+13,Dentistry
+13,Teeth
+13,Halithosis
+13,Bad breath
+13,Oral
+14,ENT
+14,Ears
+14,Nose
+14,Throat
+14,Sinus
+14,Hoarseness
+14,Voice changes
+14,Hearing impairment
+14,Allergies
+15,Obstetrics & Gynaecology
+15,Period
+15,Menses
+15,PCOS
+15,Pregnancy
+15,Fertility
+16,Family Medicine
+16,General consultant

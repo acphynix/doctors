@@ -1,4 +1,4 @@
--- drop table if exists specialities;
+drop table if exists specialities;
 create table `specialities` (
   `speciality` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `speciality_name` varchar(32) NOT NULL,
@@ -13,7 +13,7 @@ load data local infile '../rsc/list_specialities.txt' into table specialities
 
 
 
--- drop table if exists speciality_keywords;
+drop table if exists speciality_keywords;
 create table `speciality_keywords` (
   `id`         int(10) unsigned NOT NULL AUTO_INCREMENT,
   `speciality` int(10) unsigned NOT NULL,
@@ -27,7 +27,7 @@ load data local infile '../rsc/map_specialities_keywords.csv' into table special
   (@spec_text,keyword)
   set speciality=(select speciality from specialities where speciality_name=@spec_text);
 
--- drop table if exists keywords;
+drop table if exists keywords;
 create table `keywords` (
   `id`            int(10) unsigned NOT NULL AUTO_INCREMENT,
   `eq_class`      int(5),
