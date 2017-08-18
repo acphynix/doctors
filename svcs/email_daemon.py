@@ -104,15 +104,22 @@ for row in new_emails:
   uid   = row[1]
   etype = row[2]
   idata = row[3]
-
   # check that this is a supported email type
-  if etype in ['patient_account_new', 'doctor_account_new', 'doctor_appointment_pending', 'doctor_appointment_paid', 'patient_appointment_paid',
-               'patient_appointment_approved', 'doctor_appointment_approved', 'doctor_appointment_closed']:
-    with open('/var/www/html/email/' + etype + '.html', 'r') as file:
-      content = file.read()
+  if etype in ['doctor_account_new', 'doctor_appointment_pending', 'doctor_appointment_paid', 
+               'doctor_appointment_cancelled', 'doctor_appointment_approved', 'doctor_appointment_withdrawn',
+               'doctor_appointment_complete', 'doctor_appointment_closed', 'patient_account_new', 
+               'patient_appointment_pending', 'patient_appointment_paid', 'patient_appointment_cancelled',
+               'patient_appointment_approved', 'patient_appointment_withdrawn', 'patient_appointment_complete',
+               'patient_appointment_closed']:
+    try:
+      with open('/var/www/html/email/' + etype + '.html', 'r') as file:
+        content = file.read()
+    except:
+      print 'no email template: '+etype
+      continue
   else:
     continue
-
+  print 'good'
   # collect fields for email template interpolation
   fields_tt = qget("SELECT user_first_name, user_last_name, verify_code, user_email FROM users left join email_verify on (users.user_id = email_verify.user_id) where users.user_id='"+str(uid)+"'")
   print 'email'
@@ -161,9 +168,13 @@ for row in new_emails:
   # subject = fields_tt[0][3]+': '+subjects[etype]
   # email='ashwinchetty@gmail.com'
 
+  print 'sending '+subject+' to '+email
+    
+
   cur.execute("update emails set email_status='queued',user_email='"+email+
               "', subject='"+subject+"', content='"+content+
               "' where email_id = "+str(row[0]))
+  print 'sent!'
   db.commit()
   # print row
 
