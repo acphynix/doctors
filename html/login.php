@@ -51,7 +51,7 @@
         <h2 class='soloheading'>Sign in to Neolafia</h2>
         <form class="form-style-8 borderless centered" role = "form" 
               id='iform_login' method = "post">
-          <input name="uname" type="text"     ng-model="uname" placeholder="Username">
+          <input name="uname" type="text"     ng-model="uname" placeholder="E-mail Address">
           <input name="pword" type="password" ng-model="pword" placeholder="Password">
           <input name="login" type="submit"   value="Sign in" />
         </form>

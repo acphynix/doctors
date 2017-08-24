@@ -61,7 +61,7 @@
       <span class='banner-button-container' >
         <?php if(isset($login) && $login>0){ ?>
           <a class='banner-welcome-text banner-button' href='/page/home.php'><?php echo $displayname ?></a>
-          <a class='banner-button' href='logout.php'>sign out</a>
+          <a class='banner-button' href='/logout.php'>sign out</a>
         <?php }else{ ?>
           <a class='banner-button' href='/createaccount.php'>sign up</a>
           <a class='banner-button' href='/login.php'>sign in</a>

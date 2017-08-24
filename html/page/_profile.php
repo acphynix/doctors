@@ -25,7 +25,7 @@
       <tbody>
         <tr>
           <td></td>
-          <td><input type='submit'></td>
+          <td><input type='submit' value='Save Changes' name='Save Changes'></td>
           <td></td>
         </tr>
       </tbody>

@@ -201,9 +201,11 @@
             <td class='field'>
               <input name="nPw" id="nPw" ng-model="pword" type='password' ng-required='true' placeholder="Password" autocomplete='off' ng-minlength='8'/>
             </td>
-            <td class='field'>
+<!--  This isn't implemented yet.
+             <td class='field'>
               <input name="nPw" id="nPw2" ng-model="pword2" type='password' ng-required='true' placeholder="Retype Password" autocomplete='off' ng-minlength='8'/>
             </td>
+-->
           </tr>
         </table>
         <br />

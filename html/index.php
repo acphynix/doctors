@@ -123,7 +123,9 @@
   </div>
   <div class='seg-footer' style='background-color:#e1efd8'>
     <div style='text-align:center;font-family:Cabin;padding:1vw'>
-      Copyright © 2017 Neolafia. All Rights Reserved.
+      Copyright © 2017 Neolafia. All Rights Reserved. <br />
+      neolafia@neolafia.com <br />
+      +234.803.464.6465 <br />
     </div>
   </div>
 <!--   <div class='boat'>

@@ -20,7 +20,8 @@ import('php/util/sanitize.php');
                    "doctor_qualifications, doctor_affiliations ".
       "from doctors,users,specialities where doctor_speciality in (select speciality from ".
       "speciality_keywords where keyword like '%s') ".
-      "and doctors.user_id=users.user_id and specialities.speciality=doctor_speciality",$query);
+      "and doctors.user_id=users.user_id and specialities.speciality=doctor_speciality ".
+      "and doctor_cert_status='verified'",$query);
 
   $dq_1 = mysqli_query($database, $db_1);
   $dr_1 = [];
