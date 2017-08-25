@@ -98,7 +98,7 @@
         <tr>
           <td style='padding-bottom:1em'>On</td>
           <td style='padding-bottom:1em;font-weight:bold'>
-            {{book.time}}
+            {{book.time}} <b>GMT</b>
           </td>
         </tr>
         <tr>
