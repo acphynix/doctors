@@ -31,7 +31,7 @@ doctor_search.controller('search', function($scope, $window, $http){
   }
   $scope.perform_search = function(){
     var ajax = new XMLHttpRequest();
-    ajax.open("GET", "../ajax/get_doctor_search_results.php?q="+$scope.keyword_search, true);
+    ajax.open("GET", "../ajax/get_doctor_search_results.php?q="+$scope.keyword_search+"&c="+loc_id, true);
     ajax.onload = function() {
       console.log(ajax.responseText);
       $scope.$apply(function(){
