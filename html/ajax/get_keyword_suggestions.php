@@ -23,5 +23,12 @@ import('php/util/sanitize.php');
   while ($row = $dq_1->fetch_assoc()) {
     array_push($dr_1, $row);
   }
+  $db_2 = 
+        sprintf("select * from users where user_first_name like '%%%s%%' or user_last_name like '%%%s%%'",$query, $query);
+  $dq_2 = mysqli_query($database, $db_2);
+  while ($row = $dq_2->fetch_assoc()) {
+    $doc['keyword']=$row['user_first_name'].' '.$row['user_last_name'];
+    array_push($dr_1, $doc);
+  }
   echo json_encode($dr_1);
 ?>
