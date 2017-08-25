@@ -19,7 +19,7 @@
 
 <script type="text/javascript" async>
   $( document ).ready(function() {
-    var input_plc = "symptoms, doctor name, speciality";
+    var input_plc = "symptoms or medical speciality";
 
     $('#ikeyword_search')
       .attr('placeholder',input_plc);
