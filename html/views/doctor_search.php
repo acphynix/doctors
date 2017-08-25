@@ -9,9 +9,14 @@
     $login=0;
   }
   $database = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
+  $query = $query2 = '';
   if(has_key($_GET,'q')){
     $query = sanitize_plaintext($_GET['q']);
-  }else $query = '';
+  }
+  if(has_key($_GET,'c')){
+    $query2 = sanitize_plaintext($_GET['c']);
+  }
+  else $query = '';
 ?>
 <head>
 <title>Neolafia</title>
@@ -74,6 +79,7 @@
           <form method='GET' action='/views/doctor_search.php' class="form-style-8 white banner_search">
             <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
                    autofocus ng-keypress='update_dropdown()' autocomplete="off" />
+		   <input type="hidden" id="loc_ent" value="<?php echo $query2 ?>"/>
           </form>
         </div>
       </div>
