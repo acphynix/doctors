@@ -16,7 +16,7 @@
   if(has_key($_GET,'c')){
     $query2 = sanitize_plaintext($_GET['c']);
   }
-  else $query = '';
+  //else $query = '';
 ?>
 <head>
 <title>Neolafia</title>
