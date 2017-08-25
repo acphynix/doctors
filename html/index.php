@@ -19,10 +19,14 @@
 
 <script type="text/javascript" async>
   $( document ).ready(function() {
-    var input_plc = "symptoms or medical speciality";
-
+    var input_plc = "symptoms, doctor name, speciality";
     $('#ikeyword_search')
       .attr('placeholder',input_plc);
+      
+      var options = $('#ilocation_search').get(0).options;
+    $.each(['Abia', 'Adamawa', 'Anambra', 'Akwa Ibom', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Enugu', 'Edo', 'Ekiti', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos: Agege', 'Lagos: Ajeromi-Ifelodun', 'Lagos: Alimosho', 'Lagos: Amuwo-Odofin', 'Lagos: Apapa', 'Lagos: Badagry', 'Lagos: Epe', 'Lagos: Eti-Osa', 'Lagos: Ibeju-Lekki', 'Lagos: Ifako-Ijaiye', 'Lagos: Ikeja', 'Lagos: Ikorodu', 'Lagos: Kosofe', 'Lagos: Lagos Island', 'Lagos: Lagos Mainland', 'Lagos: Mushin', 'Lagos: Ojo', 'Lagos: Oshodi-Isolo', 'Lagos: Somolu', 'Lagos: Surulere', 'Nasarawa', 'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara', 'Abuja (FCT)'], function(key, value) {
+      options[options.length] = new Option(value, key);
+    });
   });
 </script>
 <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin|Courgette" rel="stylesheet">
@@ -46,7 +50,7 @@
             <?php if($login>0){ ?>
               Welcome, <?php echo $displayname ?>!
             <?php }else{ ?>
-              Are you a specialist doctor?
+              Are you a specialist doctor? <span class="doc">Click to sign up</span>
             <?php } ?>
           </a>
           <div class='options-small' style='position:absolute; bottom: 1vw;font-size:1.5vw;padding:1vw'>
@@ -57,7 +61,7 @@
               <a href='/createaccount.php' class='banner-button' style='padding-right:3vw'>Sign up </a>
               <a href='/login.php' class='banner-button' style='padding-right:3vw'>Log In </a>
             <?php } ?>
-              <a href='mailto:neolafia@neolafia.com' class='banner-button' style='padding-right:3vw'>Contact Us</a>
+              <a href='/contactus.php' class='banner-button' style='padding-right:3vw'>Contact Us</a>
           </div>
         </span>
       </span>
@@ -80,8 +84,9 @@
           <tr>
             <td class='label'><div>Location</div></td>
             <td class='field'>
-              <input name='c' id="ilocation_search" type="text" ng-model="keyword_search"
-                   autocomplete="off" placeholder="Eti-osa, Kosofe, Oshodi"/>
+                <select ng-required=true id='ilocation_search' name='c'>
+                    <option value='void' disabled selected>Choose Location</option>
+                  </select>
             </td>
           </tr>
         </table>

@@ -264,7 +264,8 @@ a.banner-welcome-text{
 }
 .form-frontpage input[type='password'],
 .form-frontpage input[type='email'],
-.form-frontpage input[type='text']{
+.form-frontpage input[type='text'],
+.form-frontpage select{
   font-size:1.66vw;
   border: solid gray 1px;
   width:95%;
@@ -379,4 +380,25 @@ table.schedule{
   padding:0.2em;
   margin:0 1em 0 1em;
   /*background-color: #ffffff;*/
+}
+.contact-page .contact{
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+.contact i{
+    width: 10%;
+    color: green;
+}
+.doc{
+    font-size: 1vw;
+    position: absolute;
+    bottom: 20%;
+    margin-left: 10px;
+    text-decoration: underline;
+}
+.doc:hover{
+    font-size: 1.05vw;
+}
+.hide{
+    display: none;
 }
