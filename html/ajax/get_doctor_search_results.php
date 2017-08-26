@@ -32,7 +32,7 @@ import('php/util/sanitize.php');
       "from doctors,users,specialities where (doctor_speciality in (select speciality from ".
       "speciality_keywords where keyword like '%s') or doctor_location = '%s' or user_first_name like '$query'"
             . " or user_last_name like '$query' or (user_first_name = '$fn' and user_last_name = '$ln')) ".
-      "and doctors.user_id=users.user_id and specialities.speciality=doctor_speciality and doctor_cert_status='verified'",$query, $query2);
+      "and doctors.user_id=users.user_id and specialities.speciality=doctor_speciality",$query, $query2);
   
  /* 
   $db_1 =

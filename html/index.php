@@ -50,7 +50,7 @@
             <?php if($login>0){ ?>
               Welcome, <?php echo $displayname ?>!
             <?php }else{ ?>
-              Are you a specialist doctor? <span class="doc">Click to sign up</span>
+              Are you a specialist doctor?
             <?php } ?>
           </a>
           <div class='options-small' style='position:absolute; bottom: 1vw;font-size:1.5vw;padding:1vw'>

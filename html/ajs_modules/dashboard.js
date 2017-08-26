@@ -545,6 +545,12 @@ doctor_search.controller('navigation', function($scope, $window, $http){
           }
           // console.log($scope.schedule[i].date_start);
         }
+		$scope.pendingAppts = [];
+          angular.forEach($scope.appointments, function(v,k){
+             if(v.status === 'pending'){
+                 this.push(v); 
+             }
+          }, $scope.pendingAppts);
         $('#calendar_week').fullCalendar('prev');
         $('#calendar_week').fullCalendar('next');
         $('#calendar_map').fullCalendar('prev');

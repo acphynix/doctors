@@ -19,35 +19,81 @@
     window.location.href = newpage
   }
   $(document).ready(function () {
+      
+    var phoneRegex = /^[0]{1}(\d){10}$/;
+    var medIdRegex = /^\d{5}$/;
     $("#iUr").click(function () {
-        var formData = $("#form_req").serialize();
-        $.ajax({
-            type: "POST",
-            url: "/ajax/try_create_account.php", //serverside
-            data: formData,
-            beforeSend: function () {
-                //show loading image
-            },
-            success: function (result) {
-                console.log(result); //use this to see the response from serverside
-                value = JSON.parse(result);
-                if(value.success == "true"){
-                  location.href = '/index.php';
-                }
-                else{
-                  console.log(value);
-                  $('#error').text(value.msg);
-                }
-                console.log('done');
-            },
-            error: function (e) {
-                console.log(e); //use this to see an error in ajax request
+        var isValid = {};
+        isValid.stat = true;
+        $(".errorPhn, .errorPw").addClass('hide');
+        $("#error,  #errorPw, #errorPhn").html('');
+        $.each($('#form_req select'), function(k,v){
+            if(!$(this).val() || $(this).val()===""){
+                isValid.stat = false;
             }
         });
+        $.each($('#form_req input'), function(k,v){
+            if(!$(this).val() || $(this).val()===""){
+                isValid.stat = false;
+            }
+        });
+        if(isValid.stat === false){
+            $("#error").html('Please enter all fields before submitting');
+        }
+        if($("#nPw").val()!==$("#nPw2").val()){
+            $(".errorPw").removeClass('hide');
+            $("#errorPw").html("Passwords do not match!(Passwords are case sensitive)");
+            isValid.stat = false;
+        }
+        if($("#nPhn").val()!==""){
+            if(!phoneRegex.test($("#nPhn").val())){
+                $(".errorPhn").removeClass('hide');
+                $("#errorPhn").html("Invalid phone number!");
+                isValid.stat = false;
+            }
+        }
+        if($("#iLi").val()!==""){
+            if(!medIdRegex.test($("#iLi").val())){
+                $(".errorMId").removeClass('hide')
+                $("#errorMId").html("Invalid Id!");
+                isValid.stat = false;
+            }
+        }
+        
+        if(isValid.stat === true){
+            var formData = $("#form_req").serialize();
+            $.ajax({
+                type: "POST",
+                url: "/ajax/try_create_account.php", //serverside
+                data: formData,
+                beforeSend: function () {
+                    //show loading image
+                },
+                success: function (result) {
+                    console.log(result); //use this to see the response from serverside
+                    value = JSON.parse(result);
+                    if(value.success == "true"){
+                      location.href = '/index.php';
+                    }
+                    else{
+                      console.log(value);
+                      $('#error').text(value.msg);
+                    }
+                    console.log('done');
+                },
+                error: function (e) {
+                    console.log(e); //use this to see an error in ajax request
+                }
+            });
+        }
     });
     var options = $('#iSpc').get(0).options;
-    $.each(['Dermatology', 'Neurology', 'Respiratory medicine', 'Cardiology', 'Endocrinology', 'Clinical Heamatology', 'Rheumatology', 'Gastroenterology', 'Nephrology', 'Paediatrics', 'General Suregry', 'Orthopedics', 'Plastic Surgery', 'Urology', 'Opthalmology', 'Dentistry', 'ENT', 'Obstetrics & Gynaecology', 'Family Medicine'], function(key, value) {
-      options[options.length] = new Option(value, value);
+    function specialities(){
+        return ['anesthesiology', 'cardiology', 'cardiovascular surgery', 'dermatology', 'dietetics', 'endocrinology', 'family medicine', 'forensic medicine', 'gastroenterology', 'general surgery', 'geriatrics', 'gynecology', 'hepatology', 'hospital medicine', 'immunology', 'infectious disease', 'intensive care medicine', 'nephrology', 'neurology', 'neurosurgery', 'obstetrics and gynecology', 'oncology', 'ophthalmology', 'oral surgery', 'orthopedic surgery', 'otorhinolaryngology', 'palliative care', 'pathology', 'pediatric surgery', 'pediatrics', 'physiatry', 'plastic surgery', 'podiatry', 'proctology', 'psychiatry', 'pulmonology', 'radiology', 'respiratory', 'rheumatology', 'stomatology', 'surgical oncology', 'thoracic surgery', 'transplant surgery','urgent care medicine', 'urology', 'vascular surgery'];
+	}
+
+    $.each(specialities(), function(key, value) {
+      options[options.length] = new Option(value, key+1);
     });
     options = $('#iLoc').get(0).options;
     $.each(['Abia', 'Adamawa', 'Anambra', 'Akwa Ibom', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Enugu', 'Edo', 'Ekiti', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos: Agege', 'Lagos: Ajeromi-Ifelodun', 'Lagos: Alimosho', 'Lagos: Amuwo-Odofin', 'Lagos: Apapa', 'Lagos: Badagry', 'Lagos: Epe', 'Lagos: Eti-Osa', 'Lagos: Ibeju-Lekki', 'Lagos: Ifako-Ijaiye', 'Lagos: Ikeja', 'Lagos: Ikorodu', 'Lagos: Kosofe', 'Lagos: Lagos Island', 'Lagos: Lagos Mainland', 'Lagos: Mushin', 'Lagos: Ojo', 'Lagos: Oshodi-Isolo', 'Lagos: Somolu', 'Lagos: Surulere', 'Nasarawa', 'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara', 'Abuja (FCT)'], function(key, value) {
@@ -115,19 +161,20 @@
       </td>
     </tr>
     </table>
+	<h2 style=" font-size: 1.5vw;">&nbsp;New here? Enter details below to register right away</h2>
     <div class='answer' style='font-family:Cabin; font-size:4vw; padding:2vw 2vw 2vw 2vw;box-sizing: border-box;overflow:hidden; position:absolute; right:0; width: 60vw'>
       <form class='form-frontpage' id = "form_req" role = "form" ng-submit="form.$valid && false">
-        <div id='error' style='font-style:italic;font-weight:bold;color:red' ></div>
-        <div style='font-style:italic;font-color:gray;font-family:Cabin;font-size:1.33vw;text-align:center;padding-bottom:0.33em'>Personal</div>
+          <div id='error' style='font-style:italic;font-weight:bold;color:red;font-size: 1.25vw;' ></div>
+        <!--<div style='font-style:italic;font-color:gray;font-family:Cabin;font-size:1.33vw;text-align:center;padding-bottom:0.33em'>Personal</div>-->
         <table>
           <tr>
             <td class='label'>Name</td>
             <td class='field'>
-              <input ng-required='true' name='nFn' ng-model="nFn" type="text"
+                <input ng-required='true' id="nFn" name='nFn' ng-model="nFn" type="text"
                    autofocus placeholder="First Name"/>
             </td>
             <td class='field'>
-              <input ng-required='true' name='nLn' ng-model='nLn' type="text"
+                <input ng-required='true' id="nLn" name='nLn' ng-model='nLn' type="text"
                    autofocus placeholder="Last Name"/>
             </td>
           </tr>
@@ -185,8 +232,15 @@
             <td class='label'>Phone</td>
             <td class='field'>
               <input name="nPhn" id="nPhn" ng-model="nPhn" ng-required='true' name='q' type="text"
-                   autofocus placeholder="+2348012345678"/>
+                   autofocus placeholder="08012345678"/>
             </td>
+          </tr>
+          <tr>
+              <td colspan="3" class="errorPhn hide">
+                  <div id='errorPhn' style='font-style:italic;font-weight:bold;color:red;font-size: 1vw;'>
+                      
+                  </div>
+              </td>
           </tr>
 
           <tr>
@@ -197,19 +251,31 @@
             </td>
           </tr>
           <tr>
+              <td colspan="3" class="errorEm hide">
+                  <div id='errorEm' style='font-style:italic;font-weight:bold;color:red;font-size: 1vw;'>
+                      
+                  </div>
+              </td>
+          </tr>
+          <tr>
             <td class='label'>Password</td>
             <td class='field'>
               <input name="nPw" id="nPw" ng-model="pword" type='password' ng-required='true' placeholder="Password" autocomplete='off' ng-minlength='8'/>
             </td>
-<!--  This isn't implemented yet.
-             <td class='field'>
+            <td class='field'>
               <input name="nPw" id="nPw2" ng-model="pword2" type='password' ng-required='true' placeholder="Retype Password" autocomplete='off' ng-minlength='8'/>
             </td>
--->
+          </tr>
+          <tr class="errorPw hide">
+              <td colspan="3">
+                  <div id='errorPw' style='font-style:italic;font-weight:bold;color:red;font-size: 1vw;'>
+                      
+                  </div>
+              </td>
           </tr>
         </table>
         <br />
-        <div style='font-style:italic;font-color:gray;font-family:Cabin;font-size:1.33vw;text-align:center;padding-bottom:0.33em'>Professional</div>
+        <!--<div style='font-style:italic;font-color:gray;font-family:Cabin;font-size:1.33vw;text-align:center;padding-bottom:0.33em'>Professional</div>-->
         <table>
           <tr>
             <td class='label'>Med ID</td>
@@ -217,6 +283,13 @@
               <input name="nLi" ng-model="nLi" id="iLi" ng-required='true' name='q' type="text"
                    autofocus placeholder="Medical Registration Number"/>
             </td>
+          </tr>
+          <tr class="errorMId hide">
+              <td colspan="3">
+                  <div id='errorMId' style='font-style:italic;font-weight:bold;color:red;font-size: 1vw;'>
+                      
+                  </div>
+              </td>
           </tr>
           <tr>
             <td class='label'>Speciality</td>
