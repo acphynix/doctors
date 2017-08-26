@@ -74,7 +74,7 @@
           <div id='error' style='font-style:italic;font-weight:bold;color:red' ></div>
           <table style='width:100%;'>
             <tr><td style='white-space:nowrap;'>
-              Given Name:
+              First Name:
             </td><td style='width:100%'>
               <input name="nFn" ng-model="nFn" id="iFn" type="text" placeholder="Andrew" autocomplete="off" ng-required="true" ng-minlength="3">
             </td></tr>

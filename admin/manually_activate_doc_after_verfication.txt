@@ -1,0 +1,1 @@
+UPDATE `doctors` SET `doctor_cert_status` = 'verified' WHERE `user_id`= (SELECT `user_id` FROM users WHERE `user_first_name` = 'firstname' AND `user_last_name` = 'lastname')

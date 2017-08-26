@@ -75,7 +75,7 @@
       <form class='form-frontpage' method='GET' action='views/doctor_search.php' >
         <table>
           <tr>
-            <td class='label'><div>What are you looking for</div></td>
+            <td class='label'><div>What are you looking for?</div></td>
             <td class='field'>
               <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
                    autofocus ng-keypress='update_dropdown()' autocomplete="off" placeholder="symptoms, doctor's name, speciality"/>

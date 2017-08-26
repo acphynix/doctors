@@ -3,6 +3,22 @@
   if(!$_SESSION['valid']){
     header('Location: ../index.php') ;
   }
+  
+  $database = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
+  $query = $_SESSION['user_id'];
+  $db_1 = sprintf("select user_status from users where user_id = '%s'",$query);
+
+  $dq_1 = mysqli_query($database, $db_1);
+
+  while ($row = $dq_1->fetch_assoc()) {
+    if($row['user_status']==='pending'){
+        header('Location: ../verificationpending.php');
+    }
+    if($row['user_status']==='suspended'){
+        header('Location: ../accountsuspended.php');
+    }
+  }
+  
 ?>
 <html ng-app="dashboard">
 <head>

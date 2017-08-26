@@ -23,17 +23,14 @@
   <div class='account-body'>
     <div class='account-container'>
       <div class='account-entry' style='height:100%'>
-        <h2 class='soloheading'>Contact Us</h2>
+        <h2 class='soloheading'>Account Suspended!</h2>
 
 
         <div class="contact-page">
             <div>
-                <div class="contact">
-                    <i class="fa fa-envelope fa-2x"></i> <span>neolafia@neolafia.com</span>
-                </div>
-                <div class="contact">
-                    <i class="fa fa-phone fa-2x"></i> <span>+234 8034646465 (SMS only)</span>
-                </div>
+                <h4>We are sorry but this account is currently suspended</h4>
+                <h4>Kindly check back</h4>
+                <h4>Thank you</h4>
             </div>
         </div>
       </div>

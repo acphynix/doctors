@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="../styles/styles.css"> 
+<link rel="stylesheet" type="text/css" href="styles/styles.css"> 
 <link rel="stylesheet" type="text/css" href="forms.css"> 
 <script>
   function goto(newpage){
