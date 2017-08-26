@@ -30,11 +30,11 @@ import('php/util/sanitize.php');
                    "doctor_speciality, specialities.speciality_name, users.user_id,".
                    "doctor_qualifications, doctor_affiliations ".
       "from doctors,users,specialities where (doctor_speciality in (select speciality from ".
-      "speciality_keywords where keyword like '%s') or speciality_name like '$query\r'"
+      "speciality_keywords where keyword like '%s') or speciality_name like '$query%'"
             . " or doctor_location = '%s' or user_first_name like '$query'"
             . " or user_last_name like '$query' or (user_first_name = '$fn' and user_last_name = '$ln')) ".
       "and doctors.user_id=users.user_id and specialities.speciality=doctor_speciality"
-            . " ",$query, $query2);
+            . "",$query, $query2);
   
  /* 
   $db_1 =
