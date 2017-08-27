@@ -16,10 +16,13 @@
     <div style='width:80%;min-width:35em;display:inline-block;padding:4em'>
       <h1 style='margin-top:0;text-align:left'>Appointments</h1>
         <div style='width:100%;' ng-init=get_schedule('doctor')>
-		<div ng-if="pendingAppts.length===0">
-                <h4 style="font-size: 2vw;">No appointments booked for now</h4>
+			<div ng-if="pendingAppts.length===0">
+                <h4 style="font-size: 2vw;">No appointments scheduled</h4>
             </div>
-            <div ng-if="pendingAppts.length > 0">
+            <div ng-if="pendingAppts.length === 1">
+                <h4 style="font-size: 2vw;">You have {{pendingAppts.length}} pending appointment</h4>
+            </div>
+            <div ng-if="pendingAppts.length > 1">
                 <h4 style="font-size: 2vw;">You have {{pendingAppts.length}} pending appointments</h4>
             </div>
           <table class='schedule'>
@@ -161,7 +164,47 @@
   </div>
     <div style='float:left;max-width:30em;padding:1em'>
       <div id='calendar_map'></div>
-      <!-- hello -->
+      <h4>
+          How to use the Calendar:
+      </h4>
+      <ul>
+          <li>
+              To create an appointment, click on the grid that falls between your desired hour of day and day of week
+              presented in the calendar on the right
+          </li>
+          <li>
+              Enter appointment fee and select currency on the dialog box that appears; then click create
+          </li>
+          <li>
+              You can extend appointment time by hovering over the edge of the blue box (which was appeared after creating
+              an appointment) till mouse pointer shape changes, then drag to the right or bottom
+          </li>
+          <li>
+              You can change appointment time by hovering around the middle of the blue box till mouse pointer changes,
+              then drag and drop in desired hour-day grid
+          </li>
+          <li>
+              By clicking on any day on the 'left' calendar, whole week is highlighted and manifested on the 'right'
+              calendar
+          </li>
+          <li>
+              Click on 'Done' at the top of the page to finish setting appointments
+          </li>
+      </ul>
+      <br/>
+      <hr/>
+      <p><b>Legend:</b></p>
+      <ul>
+          <li>
+              Blue: Open appointment
+          </li>
+          <li>
+              Orange: Booked appointment
+          </li>
+          <li>
+              Green: Selected week
+          </li>
+      </ul>
     </div>
     <div style='overflow:hidden;max-width:105em;min-width:34em;padding:1em'>
       <div id='calendar_week'></div>

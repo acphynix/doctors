@@ -8,6 +8,15 @@
   <div style='width:80%;min-width:35em;display:inline-block'>
     <h1 style='margin-top:0;text-align:left'>Appointments</h1>
       <div style='width:100%;padding:2em' ng-init="get_schedule('doctor')">
+			<div ng-if="pendingAppts.length===0">
+                <h4 style="font-size: 2vw;">No appointments scheduled</h4>
+            </div>
+            <div ng-if="pendingAppts.length === 1">
+                <h4 style="font-size: 2vw;">You have {{pendingAppts.length}} pending appointment</h4>
+            </div>
+            <div ng-if="pendingAppts.length > 1">
+                <h4 style="font-size: 2vw;">You have {{pendingAppts.length}} pending appointments</h4>
+            </div>
         <table class='schedule'>
         <tbody ng-repeat = 'a in appointments'>
           <tr style='font-family:Cabin;' class='clickme' ng-click='a.show=!a.show'>

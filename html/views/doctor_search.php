@@ -59,20 +59,21 @@
 <body ng-app="doctor_search" ng-controller="search" style='margin:0'>
   <span ng-init='init_view()' />
   <div class='boat boat-smaller'>
-    <span>
-    <h1 class='clickme Neolafia' style='position:relative' onclick="goto('/index.php')">
-      <img src='../images/logo.png' style='height:1em;'/>
-      Neolafia
-      <span class='banner-button-container' >
-        <?php if(isset($login) && $login>0){ ?>
-          <a class='banner-welcome-text banner-button' href='/page/home.php'><?php echo $displayname ?></a>
-          <a class='banner-button' href='/logout.php'>sign out</a>
-        <?php }else{ ?>
-          <a class='banner-button' href='/createaccount.php'>sign up</a>
-          <a class='banner-button' href='/login.php'>sign in</a>
-        <?php } ?>
-      </span>
-    </h1>
+	<div style="background:rgba(0,100,0,0.5);">
+		<a href='/index.php' style="color:#fff; font-size:1.2vw; height:3em; padding-left:1em;">
+			<img src="../images/logo.png" style="height:2vw; display: inline"/>
+			<h1 style="display: inline">Neolafia</h1>
+		</a>
+		<span class='banner-button-container' style="font-size:2vw;">
+			<?php if(isset($login) && $login>0){ ?>
+			  <a class='banner-welcome-text banner-button' href='/page/home.php'><?php echo $displayname ?></a>
+			  <a class='banner-button' href='/logout.php'>sign out</a>
+			<?php }else{ ?>
+			  <a class='banner-button' href='/createaccount.php'>sign up</a>
+			  <a class='banner-button' href='/login.php'>sign in</a>
+			<?php } ?>
+		</span>
+	</div>
     <div>
       <div class='question-container'>
         <div class='question'>

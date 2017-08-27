@@ -42,7 +42,7 @@
         }
         if($("#nPw").val()!==$("#nPw2").val()){
             $(".errorPw").removeClass('hide');
-            $("#errorPw").html("Passwords do not match!(Passwords are case sensitive)");
+            $("#errorPw").html("Passwords do not match! (Passwords are case sensitive)");
             isValid.stat = false;
         }
         if($("#nPhn").val()!==""){

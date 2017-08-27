@@ -22,3 +22,7 @@ div.details{
   /*position:absolute;*/
   /*left:33%;*/
 }
+
+td.fc-list-item-time{
+    cursor: pointer;
+}

@@ -57,7 +57,8 @@ doctor_search.controller('search', function($scope, $window, $http){
             qry_t : event.s,
             start : moment.utc(event.s),
             end   : moment.utc(event.e),
-            title : event.p+' '+event.c + ' ('+event.l+')'
+			title : event.p+' '+event.c
+            //title : event.p+' '+event.c + ' ('+event.l+')'
           };
           return e;
         });

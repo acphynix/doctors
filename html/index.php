@@ -27,6 +27,15 @@
     $.each(['Abia', 'Adamawa', 'Anambra', 'Akwa Ibom', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Enugu', 'Edo', 'Ekiti', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos: Agege', 'Lagos: Ajeromi-Ifelodun', 'Lagos: Alimosho', 'Lagos: Amuwo-Odofin', 'Lagos: Apapa', 'Lagos: Badagry', 'Lagos: Epe', 'Lagos: Eti-Osa', 'Lagos: Ibeju-Lekki', 'Lagos: Ifako-Ijaiye', 'Lagos: Ikeja', 'Lagos: Ikorodu', 'Lagos: Kosofe', 'Lagos: Lagos Island', 'Lagos: Lagos Mainland', 'Lagos: Mushin', 'Lagos: Ojo', 'Lagos: Oshodi-Isolo', 'Lagos: Somolu', 'Lagos: Surulere', 'Nasarawa', 'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara', 'Abuja (FCT)'], function(key, value) {
       options[options.length] = new Option(value, key);
     });
+	
+	$("#searchDoc").click(function(e){
+        $("#errorNi").html('');
+        if($("#ikeyword_search").val()==='' && $("#ilocation_search").val()=== null){
+            e.preventDefault();
+            $("#errorNi").html('Please enter a search parameter');
+        }
+    });
+	
   });
 </script>
 <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin|Courgette" rel="stylesheet">
@@ -62,6 +71,7 @@
               <a href='/login.php' class='banner-button' style='padding-right:3vw'>Log In </a>
             <?php } ?>
               <a href='/contactus.php' class='banner-button' style='padding-right:3vw'>Contact Us</a>
+              <a href='/faq.php' class='banner-button' style='padding-right:3vw'>FAQ</a>
           </div>
         </span>
       </span>
@@ -90,8 +100,11 @@
             </td>
           </tr>
         </table>
+        <div id='errorNi' style='font-style:italic;font-weight:bold;color:red;font-size: 1vw;'>
+                
+            </div>
         <div class='button-container'>
-          <input type='submit' value='Search' />
+            <input type='submit' id="searchDoc" value='Search' />
         </div>
       </form>
     </div>
