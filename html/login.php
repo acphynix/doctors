@@ -22,10 +22,11 @@
         $.each($('#iform_login input'), function(k,v){
             if(!$(this).val() || $(this).val()===""){
                 isValid = false;
-                $("#error").text("Both Email address and password are required to sign in");
+                $("#error").text("Both Email address and password are required to sign in").css({color:'red'});
             }
         });
         if(isValid === true){
+            $("#error").text('Please wait...').css({color:'inherit'});
             $.ajax({
             type: "POST",
             url: "ajax/login.php",
@@ -36,10 +37,10 @@
             error: function(data){
                 console.log(data.statusText)
                 if(data.statusText === 'Internal Server Error'){
-                    $("#error").text('Oops! An error occured. Please try again later');
+                    $("#error").text('Oops! An error occured. Please try again later').css({color:'red'});
                 }
                 if(data.statusText === 'Unauthorized'){
-                    $("#error").text('Incorrect Email address or password');
+                    $("#error").text('Incorrect Email address or password').css({color:'red'});
                 }
             }
            });
