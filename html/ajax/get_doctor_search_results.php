@@ -26,15 +26,14 @@ import('php/util/sanitize.php');
   }
   
   $db_1 =
-    sprintf("select user_first_name, user_last_name,".
-                   "doctor_speciality, specialities.speciality_name, users.user_id,".
-                   "doctor_qualifications, doctor_affiliations ".
-      "from doctors,users,specialities where (doctor_speciality in (select speciality from ".
-      "speciality_keywords where keyword like '%s')"
-            . " or doctor_location = '%s' or user_first_name like '$query'"
-            . " or user_last_name like '$query' or (user_first_name = '$fn' and user_last_name = '$ln')) ".
-      "and doctors.user_id=users.user_id and specialities.speciality=doctor_speciality"
-            . " and doctor_cert_status='verified'",$query, $query2);
+    sprintf("select user_first_name, user_last_name, doctor_speciality, specialities.speciality_name, users.user_id,".
+            "doctor_qualifications, doctor_affiliations from doctors,users,specialities where "
+            . "(doctor_speciality in (select speciality from speciality_keywords where keyword like '%s')"
+            . " or specialities.speciality_name like '%s%%'"
+            . " or doctor_location = '%s' or user_first_name like '%s'"
+            . " or user_last_name like '%s' or (user_first_name = '%s' and user_last_name = '%s')) ".
+            "and doctors.user_id=users.user_id and specialities.speciality=doctor_speciality"
+            . " and doctor_cert_status='verified'",$query, $query, $query2, $query, $query, $fn, $ln);
   
  /* 
   $db_1 =
