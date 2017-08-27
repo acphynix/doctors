@@ -33,7 +33,7 @@ import('php/util/sanitize.php');
             . " or doctor_location = '%s' or user_first_name like '%s'"
             . " or user_last_name like '%s' or (user_first_name = '%s' and user_last_name = '%s')) ".
             "and doctors.user_id=users.user_id and specialities.speciality=doctor_speciality"
-            . " and doctor_cert_status='verified'",$query, $query, $query2, $query, $query, $fn, $ln);
+            . " ",$query, $query, $query2, $query, $query, $fn, $ln);
   
  /* 
   $db_1 =
