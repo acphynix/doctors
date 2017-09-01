@@ -21,43 +21,55 @@
     }
   }
 
-  header('Location: /index.php');
-
 ?>
+
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="createaccount.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"> 
+<link rel="stylesheet" type="text/css" href="styles/styles.css"> 
 <link rel="stylesheet" type="text/css" href="styles/date.css"> 
 <link rel="stylesheet" type="text/css" href="forms.css"> 
-<script>
-  function goto(newpage){
-    window.location.href = newpage
-  }
-  
-  $(document).ready(function () {
-
-  });
-</script>
-<title>Ekuojumo</title>
+<title>Neolafia</title>
 </head>
-<body style="background: #0a6a8e">
-  <div style="justify-content: center; margin:auto; width:80%; padding:10px; display:block; margin-left:auto; margin-right:auto; border:3px solid black; margin: 0 auto; background:#2a7aae; min-height:100% ">
-    <div class="form-style-8">
-    <?php if($success): ?>
-        <h2>Welcome!</h2>
-        <div>
-          Thank you, <?php echo $user?>. Your accounts has been validated. Please click <a href='login.php'>here</a> to log in to your account.
+<body style='padding:0'>
+<div class='noboat'>
+  <a href='index.php'>
+  <h1 class='Neolafia' style='position:relative'>
+      <img src='images/logo.png' style='height:1em;'/>
+    
+      Neolafia
+    <!-- </a> -->
+  </h1>
+  </a>
+  </div>
+  <div class='account-body'>
+    <div class='account-container'>
+      <div class='account-entry' style='height:100%'>
+        <h2 class='soloheading'>Account Authenticated</h2>
+		<div class="contact-page">
+            <?php if($success===true):?>
+            <h1>Welcome!</h1>
+            </p>
+                Thank you again for registering an account with Neolafia! Your account have now been authenticated!
+            </p>
+            <p>
+                Kindly click <a href="/login.php" style="color: blue;">here</a> to login in to your account
+            </p>
+            <?php else: ?>
+            <h1>Oops!</h1>
+            </p>
+                This link is either invalid or has expired
+            </p>
+            <p>
+                Kindly click <a href="/index.php" style="color: blue;">here</a> to go to the home page
+            </p>
+            <?php endif; ?>
         </div>
-        </div>
-    <?php else: ?>
-        <h2>Validation Error</h2>
-        <div>
-            The validation link is invalid or does not exist.
-        </div>
-        </div>
-    <?php endif; ?>
+      </div>
+    </div>
   </div>
 </body>
 </html>

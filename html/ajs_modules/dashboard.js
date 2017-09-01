@@ -238,6 +238,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
         }
     }
     if(isValid===true){
+        $("#errorPr").append("<li>Please wait...</li>").css({color:'inherit'});
         $.ajax({
           url: '/ajax/update_profile.php', // point to server-side PHP script 
           dataType: 'text',  // what to expect back from the PHP script, if anything

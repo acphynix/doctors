@@ -16,7 +16,21 @@
   if(has_key($_GET,'c')){
     $query2 = sanitize_plaintext($_GET['c']);
   }
-  //else $query = '';
+  
+  if(has_key($_SESSION, 'user_status')){
+      $user_status = $_SESSION['user_status'];
+  }
+  elseif (!has_key($_SESSION, 'user_status')) {
+    $id = $_SESSION['user_id'];
+    $db_1 = sprintf("select user_status from users where user_id = '%s'",$id);
+
+    $dq_1 = mysqli_query($database, $db_1);
+
+    while ($row = $dq_1->fetch_assoc()) {
+        $user_status = $row['user_status'];
+    }
+ }
+ //else $query = '';
 ?>
 <head>
 <title>Neolafia</title>
@@ -57,6 +71,7 @@
 </head>
 
 <body ng-app="doctor_search" ng-controller="search" style='margin:0'>
+    <div id="user_stat" data-user-status="<?php echo $user_status ?>"></div>
   <span ng-init='init_view()' />
   <div class='boat boat-smaller'>
 	<div style="background:rgba(0,100,0,0.5);">
@@ -96,7 +111,7 @@
       </div>
       <div class='results-entry' style="display:table;clear:both;position:relative"
            ng-repeat='r in result_list' ">
-        <?php if($login){ ?>
+        <?php if($login && $user_status==='verified'){ ?>
           <table class='clickme' ng-click="r.show=!r.show; load_info(r)">
         <?php } else{ ?>
           <table>
@@ -110,8 +125,10 @@
                   <h3 style='font-size:1.33em;padding:0;margin:0;'>{{r.user_first_name}} {{r.user_last_name}}</h3>
                   <h3 style='font-weight:none;font-style:italic;color:gray;text-transform:capitalize;font-size:0.75em'>{{r.speciality_name}}</h3>
                   <div style='font-family:Cabin;padding-top:1em' ng-show='!r.show'>
-                    <?php if($login){ ?>
+					<?php if($login && $user_status==='verified'){ ?>
                       Click to book an appointment.
+                    <?php } elseif($login && $user_status!=='verified'){ ?>
+                      Account authentication is needed to book appointment with this doctor
                     <?php } else{ ?>
                       <a href='/login.php'>Sign in</a> or <a href='/createaccount.php'>Register</a> to view more details and book an appointment.
                     <?php } ?>
