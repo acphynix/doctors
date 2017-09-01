@@ -28,8 +28,9 @@ doctor_search.controller('navigation', function($scope, $window, $http){
         id      : 'address',
         name    : 'address',
         value   : $scope.user.address,
-        disabled: 'true',
+        disabled: 'false',
         type    : 'text' },
+		/*
       { heading : 'Account Information',
         title   : 'Account Status',
         id      : 'status',
@@ -37,6 +38,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
         value   : $scope.user.role,
         disabled: 'true',
         type    : 'text' },
+		*/
       { heading : '',
         title   : 'Profile Picture',
         id      : 'picture',
@@ -114,6 +116,13 @@ doctor_search.controller('navigation', function($scope, $window, $http){
       $scope.profile_form_fields.push.apply($scope.profile_form_fields,doctor_fields);
     }
   };
+  function ngDOB(dob){
+      var dobArr = dob.split('-');
+      var date = (dobArr[2].length<2)?date='0'+dobArr[2]:date=dobArr[2];
+      var month = (dobArr[1].length===1)?dobArr[1]=0+dobArr[1]:dobArr[1];
+      var year = dobArr[0];
+      return date+'-'+month+'-'+year;
+  }
   $scope.populate_user_info=function(){
     var ajax = new XMLHttpRequest();
     $.ajaxSetup({ cache: false });
@@ -129,7 +138,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
           , name: res.fname+' '+res.lname
           , email: res.email
           , role: res.status==='verified'?'verified user':'unverified'
-          , dob: res.dob
+          , dob: ngDOB(res.dob)
           , sex: res.sex
           , address: res.address
           ,

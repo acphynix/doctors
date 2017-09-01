@@ -73,7 +73,7 @@
     </div>
   </div>
   <div class='dashboard-body' style='bottom:0px'>
-1
+<!--1-->
     <div ng-show="is_show('appts')" style='width:100%;padding-top:0em'>
 
 <?php
