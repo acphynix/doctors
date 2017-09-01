@@ -20,16 +20,7 @@
   if(has_key($_SESSION, 'user_status')){
       $user_status = $_SESSION['user_status'];
   }
-  elseif (!has_key($_SESSION, 'user_status')) {
-    $id = $_SESSION['user_id'];
-    $db_1 = sprintf("select user_status from users where user_id = '%s'",$id);
-
-    $dq_1 = mysqli_query($database, $db_1);
-
-    while ($row = $dq_1->fetch_assoc()) {
-        $user_status = $row['user_status'];
-    }
- }
+  
  //else $query = '';
 ?>
 <head>
