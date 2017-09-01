@@ -16,8 +16,7 @@
   if(has_key($_GET,'c')){
     $query2 = sanitize_plaintext($_GET['c']);
   }
-  
-  $user_status = "";
+  $user_status="";
   if(has_key($_SESSION, 'user_status')){
       $user_status = $_SESSION['user_status'];
   }

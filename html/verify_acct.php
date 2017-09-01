@@ -11,7 +11,7 @@
     if($userid){
       $query2 = sprintf("select user_first_name from users where user_id='%s'",$userid);
       $user   = mysqli_query($conn,$query2)->fetch_assoc()['user_first_name'];
-      echo $user;
+      //echo $user;
       $success = true;
       
       $query3 = sprintf("update users set user_status='verified' where user_id=%s",$userid);
