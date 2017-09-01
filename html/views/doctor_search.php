@@ -17,6 +17,7 @@
     $query2 = sanitize_plaintext($_GET['c']);
   }
   
+  $user_status = "";
   if(has_key($_SESSION, 'user_status')){
       $user_status = $_SESSION['user_status'];
   }
@@ -62,7 +63,6 @@
 </head>
 
 <body ng-app="doctor_search" ng-controller="search" style='margin:0'>
-    <div id="user_stat" data-user-status="<?php echo $user_status ?>"></div>
   <span ng-init='init_view()' />
   <div class='boat boat-smaller'>
 	<div style="background:rgba(0,100,0,0.5);">
