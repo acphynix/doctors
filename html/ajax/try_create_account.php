@@ -108,7 +108,7 @@
       $month     = sanitize_plaintext($_POST['month']);
       $day       = sanitize_plaintext($_POST['day']);
       $sex       = sanitize_plaintext($_POST['nSx']);
-      $address   = sanitize_plaintext($_POST['nAd']);
+      $address   = sanitize_plaintext($_POST['nAd'].' '.$_POST['nAd2'].' '.$_POST['nAd3']);
       $email     = sanitize_email    ($_POST['nEm']);
       $password  = urlencode($_POST['nPw']);
       $password  = password_hash($password, PASSWORD_DEFAULT);

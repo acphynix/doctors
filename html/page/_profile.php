@@ -6,11 +6,13 @@
       <div style='display:inline-block;padding-bottom:2em;margin-left:0;margin-top:0'>
         <div style='padding:0;margin:0;font-family:cabin;font-size:1.5em'>{{user.name}}</div>
         <div style='padding:0;margin:0;font-family:cabin'>{{user.email}}</div>
-        <div style='padding:0;margin:0;font-family:cabin'>{{user.role}}</div>
+        <!--<div style='padding:0;margin:0;font-family:cabin'>{{user.role}}</div>-->
+        <div style='padding:0;margin:0;font-family:cabin'><br/></div>
       </div>
     </div>
     <hr />
     <form id='form_profile'>
+        <ul id='errorPr' style='font-style:italic;font-weight:bold;color:red;font-size: 1vw;'></ul>
       <table>
       <tbody ng-repeat='f in profile_form_fields'>
         <tr ng-show="{{f.heading != ''}}">
@@ -25,7 +27,7 @@
       <tbody>
         <tr>
           <td></td>
-          <td><input type='submit' value='Save Changes' name='Save Changes'></td>
+          <td><br/><br/><input type='submit' value='Save Changes' name='Save Changes'></td>
           <td></td>
         </tr>
       </tbody>

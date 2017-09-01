@@ -173,7 +173,26 @@ doctor_search.controller('navigation', function($scope, $window, $http){
       console.log(response);
     });
   };
+  
+  $scope.appt_cancel = function(appt){
+      $http({
+      method: 'POST',
+      url: '../ajax/post_cancel_appointment.php',
+      data: { a: appt },
+      transformResponse: undefined
+    }).then(function successCallback(response) {
+      console.log('Response: ');
+      console.log(response);
+      $scope.get_schedule('doctor');
+      //doctor.schedule=JSON.parse(response.data);
+    }, function errorCallback(response) {
+      console.log('Response: ');
+      console.log(response);
+    });
+  };
   $('#form_profile').submit(function(event){
+      var isValid = true;
+      $("#errorPr").html("");
     var file_data = $('input[name=picture]').prop('files')[0];   
     var form_data = new FormData();
     $.each($scope.profile_form_fields,function(k,v){
@@ -184,27 +203,60 @@ doctor_search.controller('navigation', function($scope, $window, $http){
     form_data.append('file', file_data);
     // form_data.append('file2', file_data);
     form_data.append('nature','profile_picture'); 
-    $.ajax({
-      url: '/ajax/update_profile.php', // point to server-side PHP script 
-      dataType: 'text',  // what to expect back from the PHP script, if anything
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: form_data,                         
-      type: 'POST',
-      success: function(php_script_response){
-        location.reload();
-        console.log('rrr');
-        console.log(JSON.stringify(php_script_response)); // display response from the PHP script, if any
-        $scope.populate_form_fields();
-      },
-      error: function(data){
-        console.log('rrr');
-        console.log(JSON.stringify(data)); // display response from the PHP script, if any   
-        $scope.populate_form_fields();     
-      }
-     });
+    if(!$("#address").val() || $("#address").val()===""){
+        $("#errorPr").append("<li>Address is required</li>");
+        $("#address").val($scope.user.address);
+        isValid = false;
+    }
+    if($("#pword_new").val()){
+        if(!$("#pword_current").val()){
+            $("#errorPr").append("<li>Please enter your current password</li>");
+            isValid = false;
+        }
+        if($("#pword_new").val().length < 8){
+            $("#errorPr").append("<li>New Password must be at least 8 characters long</li>");
+            isValid = false;
+        }
+        if(!$("#pword_confirm").val()){
+            $("#errorPr").append("<li>Please confirm new password</li>");
+            isValid = false;
+        }
+        if($("#pword_new").val().length>=8 && $("#pword_confirm").val().length>0){
+            if($("#pword_new").val() !== $("#pword_confirm").val()){
+                $("#errorPr").append("<li>New passwords do not match!</li>");
+                isValid = false;
+            }
+        }
+    }
+    if(isValid===true){
+        $.ajax({
+          url: '/ajax/update_profile.php', // point to server-side PHP script 
+          dataType: 'text',  // what to expect back from the PHP script, if anything
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: form_data,                         
+          type: 'POST',
+          success: function(php_script_response){
+            if(php_script_response === "Incorrect Pass"){
+                $("#errorPr").append("<li>Your old password is incorrect!</li>");
+            }
+            else{
+                location.reload();
+                console.log('rrr');
+                console.log(JSON.stringify(php_script_response)); // display response from the PHP script, if any
+                $scope.populate_form_fields();
+            }
+          },
+          error: function(data){
+            console.log('rrr');
+            console.log(JSON.stringify(data)); // display response from the PHP script, if any   
+            $scope.populate_form_fields();     
+          }
+         });
+    }
   });
+  
   $scope.populate_user_info();
 
   $scope.calendar_events = function(start, end, timezone, callback){
@@ -551,6 +603,26 @@ doctor_search.controller('navigation', function($scope, $window, $http){
                  this.push(v); 
              }
           }, $scope.pendingAppts);
+		  
+		  $scope.plus_one_hour = function(time){
+            var timeArr = time.split(":");
+            var hour = +timeArr[0] + 1;
+            var h, a;
+            if(hour>12){
+                h = hour-12;
+                (h===12)?a='am':a='pm';
+            }
+            if(hour===12){
+                h = hour;
+                a = 'noon';
+            }
+            if(hour<12){
+                h = hour;
+                a = 'am';
+            }
+            var min = timeArr[1];
+            return h+':'+min+a;      
+        };
         $('#calendar_week').fullCalendar('prev');
         $('#calendar_week').fullCalendar('next');
         $('#calendar_map').fullCalendar('prev');

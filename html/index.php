@@ -42,7 +42,7 @@
 	
 	$("#searchDoc").click(function(e){
         $("#errorNi").html('');
-        if($("#ikeyword_search").val()==='' && $("#ilocation_search").val()=== null){
+        if($("#ikeyword_search").val()==='' && $("#ilocation_search").val()===''){
             e.preventDefault();
             $("#errorNi").html('Please enter a search parameter');
         }
@@ -66,7 +66,7 @@
         <h2 class='title' style='color:gold;padding:0;margin:0;font-size:1.66vw;font-family:Cabin;font-style:italic'>Healthcare at your fingertips</h2>
       </span>
       <span class='right-container' style='float:right'>
-        <span class='pane-options' style='position:absolute;right:0;height:100%;'>
+        <span class='pane-options' style='position:absolute;right:0;height:100%; width:600px'>
           <div style='height:40px'></div>
           <a class='highlighter' href='/new/doctor.php' style='float:right;position:relative;right:0;background-color:orange;color:black;font-size:2vw;padding:0.25em 3.5em 0.25em 0.5em;min-width:30vw'>
             <?php if($login>0){ ?>
@@ -76,6 +76,7 @@
             <?php } ?>
           </a>
           <div class='options-small' style='position:absolute; bottom: 1vw;font-size:1.5vw;padding:1vw'>
+              <a href='/aboutus.php' class='banner-button' style='padding-right:3vw'>About Us</a>
             <?php if($login>0){ ?>
               <a href='/page/home.php' class='banner-button' style='padding-right:3vw'>Dashboard</a>
               <a href='/logout.php' class='banner-button' style='padding-right:3vw'>Sign out</a>
@@ -108,7 +109,7 @@
             <td class='label'><div>Location</div></td>
             <td class='field'>
                 <select ng-required=true id='ilocation_search' name='c'>
-                    <option value='void' disabled selected>Choose Location</option>
+                    <option value=''>Choose Location</option>
                   </select>
             </td>
           </tr>

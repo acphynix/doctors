@@ -18,31 +18,102 @@
     window.location.href = newpage
   }
   $(document).ready(function () {
+    var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     $("#iUr").click(function () {
-        var formData = $("#form_req").serialize();
-        $.ajax({
-            type: "POST",
-            url: "ajax/try_create_account.php", //serverside
-            data: formData,
-            beforeSend: function () {
-                //show loading image
-            },
-            success: function (result) {
-                console.log(result); //use this to see the response from serverside
-                value = JSON.parse(result);
-                if(value.success == "true"){
-                  goto('/index.php');
-                }
-                else{
-                  console.log(value);
-                  $('#error').text(value.msg);
-                }
-                console.log('done');
-            },
-            error: function (e) {
-                console.log(e); //use this to see an error in ajax request
+        var isValid = true;
+        $("#error, #errorFn, #errorLn, #errorEm, #errorPw, #errorPwc, #errorDob, #errorSx, #errorAd").html("");
+        if(!$("#iFn").val() || $("#iFn").val()===""){
+            isValid = false;
+            $("#errorFn").html("Please enter your first name");
+        }
+        if(!$("#iLn").val() || $("#iLn").val()===""){
+            isValid = false;
+            $("#errorLn").html("Please enter your surname");
+        }
+        if(!$("#iEm").val() || $("#iEm").val()===""){
+            isValid = false;
+            $("#errorEm").html("Please enter your email address");
+        }
+        if($("#iEm").val()!==""){
+            if(!emailRegex.test($("#iEm").val())){
+                isValid = false;
+                $("#errorEm").html("Please enter a valid email address");
             }
-        });
+        }
+        if(!$("#iPw").val() || $("#iPw").val()===""){
+            isValid = false;
+            $("#errorPw").html("Please enter your password");
+        }
+        if($("#iPw").val()!==""){
+            if($("#iPw").val().length < 8){
+                isValid = false;
+                $("#errorPw").html("Password must be a minimum of 8 characters");
+            }
+        }
+        if(!$("#cPw").val() || $("#cPw").val()===""){
+            isValid = false;
+            $("#errorPwc").html("Please confirm your password");
+        }
+        if($("#iPw").val()!=="" && $("#cPw").val()!==""){
+            if($("#iPw").val()!==$("#cPw").val()){
+                $("#errorPwc").html("Passwords do not match! (Passwords are case sensitive)");
+                isValid = false;
+            }
+        }
+        if(!$("#year").val() || !$("#month").val() || !$("#day").val() || $("#year").val()==="" || $("#month").val()==="" || $("#day").val()===""){
+            isValid = false;
+            $("#errorDob").html("Please choose your date of birth");
+        }
+        if(!$("#iSx").val() || $("#iSx").val()===""){
+            isValid = false;
+            $("#errorSx").html("Please choose your sex");
+        }
+        if($("#str").val()==="" || $("#cit").val()==="" || $("#sta").val()===""){
+            isValid = false;
+            $("#errorAd").html("Please enter your full home address");
+        }
+        if(isValid===true){
+//            var formData = $("#form_req").serialize();
+            
+            $('#error').html("Please wait...").css({color:'inherit'});
+            var formData = {
+                nFn:($("#iFn").val()),
+                nLn:$("#iLn").val(),
+                year:$("#year").val(),
+                month:$("#month").val(),
+                day:$("#day").val(),
+                nSx:$("#iSx").val(),
+                nAd:$("#str").val(),
+                nAd2:$("#cit").val(),
+                nAd3:$("#sta").val(),
+                nEm:$("#iEm").val(),
+                nPw:$("#iPw").val(),
+                nIsD:$("#nIsD").val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "ajax/try_create_account.php", //serverside
+                data: formData,
+                beforeSend: function () {
+                    //show loading image
+                },
+                success: function (result) {
+                    //console.log(result); //use this to see the response from serverside
+                    value = JSON.parse(result);
+                    if(value.success == "true"){
+                      goto('index.php');
+                    }
+                    else{
+                      //console.log(value);
+                      $('#error').html(value.msg);
+                    }
+                    //console.log('done');
+                },
+                error: function (e) {
+                    //console.log(e); //use this to see an error in ajax request
+                }
+            });
+        }
     });
     $("#toggle_regr_type").click(function (){
       // $scope.is_doctor = !$scope.is_doctor;
@@ -78,21 +149,56 @@
             </td><td style='width:100%'>
               <input name="nFn" ng-model="nFn" id="iFn" type="text" placeholder="Andrew" autocomplete="off" ng-required="true" ng-minlength="3">
             </td></tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div id='errorFn' style='padding-left: 20px; font-style:italic;font-weight:bold;color:red;font-size: 1vw;'></div>
+                </td>
+            </tr>
             <tr><td style='white-space:nowrap;'>
               Surname:
             </td><td style='width:100%'>
               <input name="nLn" ng-model="nLn" id="iLn" type="text" placeholder="Smith" ng-required="true">
             </td></tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div id='errorLn' style='padding-left: 20px; font-style:italic;font-weight:bold;color:red;font-size: 1vw;'></div>
+                </td>
+            </tr>
             <tr><td style='white-space:nowrap;'>
               E-mail Address:
             </td><td style='width:100%'>
               <input name="nEm" ng-model="nEm" id="iEm" type="email" placeholder="andrew@mydomain.com" ng-required="true">
             </td></tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div id='errorEm' style='padding-left: 20px; font-style:italic;font-weight:bold;color:red;font-size: 1vw;'></div>
+                </td>
+            </tr>
             <tr><td style='white-space:nowrap;'>
               Password:
             </td><td style='width:100%'>
               <input name="nPw" ng-model="nPw" id="iPw" type="password" ng-model="pword" placeholder="Password" autocomplete="off" ng-required="true" ng-minlength="8">
             </td></tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div id='errorPw' style='padding-left: 20px; font-style:italic;font-weight:bold;color:red;font-size: 1vw;'></div>
+                </td>
+            </tr>
+            <tr><td style='white-space:nowrap;'>
+              Confirm Password:
+            </td><td style='width:100%'>
+              <input name="cPw" ng-model="cPw" id="cPw" type="password" ng-model="cpword" placeholder="Confirm Password" autocomplete="off" ng-required="true" ng-minlength="8">
+            </td></tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div id='errorPwc' style='padding-left: 20px; font-style:italic;font-weight:bold;color:red;font-size: 1vw;'></div>
+                </td>
+            </tr>
             <tr><td style='white-space:nowrap;'>
               Date of Birth:
             </td><td style='width:100%'>
@@ -119,6 +225,12 @@
               </div>  
               </td></tr></table> 
             </td></tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div id='errorDob' style='padding-left: 20px; font-style:italic;font-weight:bold;color:red;font-size: 1vw;'></div>
+                </td>
+            </tr>
             <tr><td style='white-space:nowrap;'>
               Sex:
             </td><td style='width:100%'>
@@ -128,21 +240,38 @@
                 <option value="M">Male</option>
               </select>
             </td></tr>
-            <tr><td style='white-space:nowrap;'>
-              Home Address:
-            </td><td style='width:100%'>
-              <input name="nAd" id="nAd" ng-model="nAd" type="text" placeholder="1234 Some Street" ng-required="true">
-            </td></tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div id='errorSx' style='padding-left: 20px; font-style:italic;font-weight:bold;color:red;font-size: 1vw;'></div>
+                </td>
+            </tr>
+            <tr>
+                <td style='white-space:nowrap;'>
+                    Home Address:
+                  </td>
+                  <td style='width:100%'>
+                      <input style="width: 50%" id="str" name="str" ng-model="str" type="text" placeholder="1234 Some Street" ng-required="true">
+                      <input style="width: 20%" id="cit" name="cit" ng-model="cit" type="text" placeholder="City" ng-required="true">
+                      <input style="width: 20%" id="sta" name="sta" ng-model="sta" type="text" placeholder="State" ng-required="true">
+                  </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div id='errorAd' style='padding-left: 20px; font-style:italic;font-weight:bold;color:red;font-size: 1vw;'></div>
+                </td>
+            </tr>
           </table>
           <br />
         
         <div style='text-align:center'>
-          <a style='color:green' class="clickme unselectable" id="toggle_regr_type" style="color:blue;" href='/new/doctor.php'>
+          <a style='color:green' class="clickme unselectable" id="toggle_regr_type" style="color:blue;" href='new/doctor.php'>
             <div style='display:block;padding:1em;width:97%;background-color:rgba(100,255,50,0.1)'>Are you a medical professional? Click here to register as a doctor.</div>
           </a> 
         </div>
 
-          <input type="hidden" name="nIsD" value="false"  />
+          <input type="hidden" name="nIsD" id="nIsD" value="false"  />
           <br />
           <input name="nUr" id="iUr" name="create" type="submit" value="Create Account" />
 

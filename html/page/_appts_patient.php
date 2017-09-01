@@ -23,9 +23,10 @@
             <td>{{a.status}}</td>
             <td style='width:0;padding:0;margin:0'>{{a.date_start.format("ddd")}}</td>
             <td style='width:0;padding:0;margin:0'>{{a.date_start.format("D MMMM YYYY")}}</td>
-            <td style='width:0;padding:0;margin:0'>{{a.date_start.format("HH:mm")}}</td>
+              <td style='width:0;padding:0;margin:0'>{{plus_one_hour(a.date_start.format("HH:mm"))}}</td>
             <td style='width:0;padding:0;margin:0'>{{a.user_first_name}} {{a.user_last_name}}</td>
             <td style='width:0;padding:0;margin:0'>Click for Details</td>
+            <td style='width:0;padding:0;margin:0'></td>
           </tr>
           <tr ng-show='a.show' ng-init='a.show=true'>
             <td colspan='6' style='margin-bottom:0.66em'>
@@ -81,9 +82,12 @@
               </div>
 
             </td>
+			<td>
+                <button type="button" ng-click="appt_cancel(a.appointment_id)">Cancel this appointment</button>
+            </td>
           </tr>
           <tr>
-            <td colspan='6' style='padding:0.1em'>&nbsp;</td>
+            <td colspan='7' style='padding:0.1em'>&nbsp;</td>
           </tr>
         </tbody>
         </table>

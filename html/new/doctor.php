@@ -40,7 +40,17 @@
         if(isValid.stat === false){
             $("#error").html('Please enter all fields before submitting');
         }
-        if($("#nPw").val()!==$("#nPw2").val()){
+        if($("#nPw").val()!=="" && $("#nPw").val().length < 8){
+            $(".errorPw").removeClass('hide');
+            $("#errorPw").html("Passwords must be minimum of 8 characters");
+            isValid.stat = false;
+        }
+        if($("#nPw").val().length >= 8 && !$("#nPw2").val()){
+            $(".errorPw").removeClass('hide');
+            $("#errorPw").html("Please confirm password");
+            isValid.stat = false;
+        }
+        if($("#nPw").val().length >= 8 && $("#nPw2").val()!=="" && $("#nPw").val()!==$("#nPw2").val()){
             $(".errorPw").removeClass('hide');
             $("#errorPw").html("Passwords do not match! (Passwords are case sensitive)");
             isValid.stat = false;
@@ -206,7 +216,7 @@
           <tr>
             <td class='label'>Sex</td>
             <td class='field'>
-              <select ng-required=true id='iSx' name='nSx'>
+              <select ng-required=true id='iSx' name='nSx' style="width: 95%">
                 <option value='' disabled selected>Choose Sex</option>
                 <option value='F'>Female</option>
                 <option value='M'>Male</option>
@@ -294,7 +304,7 @@
           <tr>
             <td class='label'>Speciality</td>
             <td class='field'>
-              <select ng-required=true id='iSpc' name='nSpc'>
+              <select ng-required=true id='iSpc' name='nSpc' style="width: 95%">
                 <option value='void' disabled selected>Choose Speciality</option>
               </select>
             </td>
@@ -302,7 +312,7 @@
           <tr>
             <td class='label'>Location</td>
             <td class='field'>
-              <select ng-required=true id='iLoc' name='nLoc'>
+              <select ng-required=true id='iLoc' name='nLoc' style="width: 95%">
                 <option value='void' disabled selected>Choose Location</option>
               </select>
             </td>

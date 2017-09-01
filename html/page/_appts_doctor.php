@@ -31,7 +31,7 @@
               <td>{{a.status}}</td>
               <td style='width:0;padding:0;margin:0'>{{a.date_start.format("ddd")}}</td>
               <td style='width:0;padding:0;margin:0'>{{a.date_start.format("D MMMM YYYY")}}</td>
-              <td style='width:0;padding:0;margin:0'>{{a.date_start.format("HH:mm")}}</td>
+              <td style='width:0;padding:0;margin:0'>{{plus_one_hour(a.date_start.format("HH:mm"))}}</td>
               <td style='width:0;padding:0;margin:0'>{{a.user_first_name}} {{a.user_last_name}}</td>
               <td style='width:0;padding:0;margin:0'>Click for Details</td>
             </tr>

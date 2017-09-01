@@ -28,6 +28,7 @@ import('/php/util/auth.php');
 // $params = required_params($params, array('data','bounds'),array());
 $params = $_POST;
 
+
 class Upload{
   function __construct($nature, $size, $upload){
     $this->nature = $nature;
@@ -166,9 +167,13 @@ query_insert_into( 'doctors', $doctors_insert );
 
 // var_dump ($user->vals);
 
-echo '~~~~~~~~';
 
-if(has_key($params,'pword_current') && has_key($params,'pword_new')){
+if(has_key($params,'address')){
+    $address  = sanitize_plaintext($params['address']);
+    query_update( 'users', array('user_address'=>$address), 'user_id = '.$_SESSION['user_id']);
+}
+
+if(has_key($params,'pword_current') && has_key($params,'pword_new') && !empty($params['pword_new'])){
   // echo 'password';
   // echo $user->vals[0]['user_password'];
   // echo password_hash(urlencode($params['pword_current']), PASSWORD_DEFAULT);
@@ -180,17 +185,14 @@ if(has_key($params,'pword_current') && has_key($params,'pword_new')){
   // }
   // echo 'given '.$_POST['pword_current'].
   if(strlen($params['pword_new'])>=8 && same_password($params['pword_current'], $user->vals[0]['user_password'])){
-    echo 'correct';
     $password  = urlencode($params['pword_new']);
     $password  = password_hash($password, PASSWORD_DEFAULT);
     query_update( 'users', array('user_password'=>$password), 'user_id = '.$_SESSION['user_id']);
-  }else{
-    echo 'incorrect';
+  }
+  else{
+    echo 'Incorrect Pass';
   }
 }
 
-
-
-echo '{"success":"true","msg":""}';
 
 ?>

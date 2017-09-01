@@ -22,6 +22,30 @@
    */
 
 
-echo "{'success':'false','msg':'todo'}";
+//echo "{'success':'false','msg':'todo'}";
+
+session_start();
+
+require_once($_SERVER['DOCUMENT_ROOT']."/php/util/global.php");
+import('/php/model/doctor.php');
+import('/php/model/user.php');
+import('/php/util/emails.php');
+import('/php/util/sanitize.php');
+import('/php/util/sql.php');
+
+$params = required_params(collect_params(), array('a'),array());
+
+$params['a'] = sanitize_plaintext($params['a']);
+
+$user_id=$_SESSION['user_id'];
+
+$database = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
+
+$query1 = sprintf("delete from appointments where appointment_id=%s and status='pending'",$params['a']);
+$query2 = sprintf("delete from timeslots where appointment_id=%s and type='appt'",$params['a']);
+$result1 = mysqli_query($database, $query1);
+$result2 = mysqli_query($database, $query2);
+
+echo "{'success':'true'}";
 
 ?>
