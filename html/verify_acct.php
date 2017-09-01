@@ -15,7 +15,9 @@
       $success = true;
       
       $query3 = sprintf("update users set user_status='verified' where user_id=%s",$userid);
+      $query4 = sprintf("update email_verify set verify_code='' where user_id=%s",$userid);
       mysqli_query($conn,$query3);
+      mysqli_query($conn,$query4);
     }else{
 
     }
