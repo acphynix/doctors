@@ -23,7 +23,7 @@
   <div class='account-body'>
     <div class='account-container'>
       <div class='account-entry' style='height:100%'>
-        <h2 class='soloheading'>Frequently Asked Questions</h2>
+        <h2 class='soloheading'>About Us</h2>
 
 
         <div class="contact-page">
