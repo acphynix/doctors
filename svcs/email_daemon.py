@@ -32,7 +32,7 @@ def send_email( send_from, send_to, send_bcc, subject, body_html ):
       }
     },
     ReplyToAddresses=[send_from],
-    ReturnPath=send_from,
+    ReturnPath='neolafia@neolafia.com',
   )
 
   return response
