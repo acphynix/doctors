@@ -74,6 +74,9 @@
           <input name="uname" type="text"     ng-model="uname" placeholder="E-mail Address">
           <input name="login" type="submit"   value="Send Reset Link" />
         </form>
+		<p style="text-align: center">
+            Click <a href="/login.php" style="color: blue; font-size: 1vw;">here</a> to login
+        </p>
       </div>
     </div>
   </div>
