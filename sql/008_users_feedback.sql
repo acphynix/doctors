@@ -1,4 +1,4 @@
- drop table if exists users_feedback;
+-- drop table if exists users_feedback;
 CREATE TABLE `users_feedback` (
   `user_feedback_id` 	int(10) unsigned NOT NULL,
   `user_first_name` 	varchar(45) NOT NULL,

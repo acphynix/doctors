@@ -23,7 +23,6 @@
                 $stat = $row['user_feedback_id'] + 1;
             }
         }
-        echo $stat;
     
     $sql = sprintf("insert into users_feedback (user_feedback_id, user_first_name, user_email, content) values (%s, '%s','%s','%s')",$stat, $firstname,$email,$content);
 	$sres = mysqli_query($database, $sql);
