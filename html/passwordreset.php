@@ -32,6 +32,7 @@
             url: "ajax/reset_password.php",
             data: $("#iform_reset").serialize(),
             success: function(data){
+				$("#uname").val("");
                 if(data === "Server Error"){
                     $("#error").text("Oops! We could not process your request at this time. Please try again later")
                     .css({color:'red'});
@@ -74,8 +75,8 @@
 		<div id='error' style='font-style:italic;font-weight:bold;color:red;font-size: 1.25vw; text-align:center;'></div>
         <form class="form-style-8 borderless centered" role = "form" 
               id='iform_reset' method = "post">
-          <input name="uname" type="text"     ng-model="uname" placeholder="E-mail Address">
-          <input name="login" type="submit"   value="Send Reset Link" />
+          <input name="uname" type="text"     id="uname" placeholder="E-mail Address">
+          <input name="passreset" type="submit"   value="Send Reset Link" />
         </form>
 		<p style="text-align: center">
             Click <a href="/login.php" style="color: blue; font-size: 1vw;">here</a> to login
