@@ -133,6 +133,10 @@ for row in new_emails:
     fields_pt = qget("SELECT user_first_name, user_last_name from users where user_id='" + patient_id + "'")
   elif (etype == 'app_user_feedback'):
 	fields_fb = qget("SELECT user_first_name, user_email, content FROM users_feedback where user_feedback_id='"+str(uid)+"'")
+    fields_dr=[['','','','','','']]
+    fields_pt=[['','','','','','']]
+    fields_tt=[['','','','','','']]
+    fields_kr=[['','','','','','']]
   else:
     fields_dr=[['','','','','','']]
     fields_pt=[['','','','','','']]
