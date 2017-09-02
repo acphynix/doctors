@@ -1,8 +1,5 @@
 <?php
 
-
-ini_set('sendmail_path', '/usr/sbin/sendmail -t -i');
-
 $firstname = $_POST['fname'];
 $email = $_POST['emailad'];
 $content = $_POST['msg'];
