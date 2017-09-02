@@ -13,6 +13,25 @@ doctor_search.controller('search', function($scope, $window, $http){
   function goto(newpage){
     window.location.href = newpage
   }
+  
+  $scope.update_dropdown = function(){
+    var ajax = new XMLHttpRequest();
+    console.log('searching '+$scope.searchbox.value);
+    ajax.open("GET", "../ajax/get_keyword_suggestions.php?q='"+$scope.keyword_search+"'", true);
+    ajax.onload = function() {
+      var list = JSON.parse(ajax.responseText).map(function(i) { return i.keyword; });
+      console.log(ajax.responseText);
+      $scope.awesomplete.list = list;
+      $scope.awesomplete.evaluate();
+      // new Awesomplete(document.querySelector("#ajax-example input"),{ list: list });
+    };
+    ajax.send();
+  }
+  $scope.searchbox   = document.getElementById("ikeyword_search");
+  if($scope.searchbox !== null){
+    $scope.awesomplete = new Awesomplete(document.getElementById("ikeyword_search"), { list: ["heartbreak"] });
+  }
+  
   $scope.book_appointment = function(doctor,time){
       $http({
         method: 'POST',

@@ -49,7 +49,6 @@
         $_SESSION['user_id']         = $row['user_id'];
         $_SESSION['user_email']      = $row['user_email'];
         $_SESSION['user_is_doctor']  = $row['user_is_doctor'];
-        $_SESSION['user_status']     = $row['user_status'];
         $_SESSION['valid']           = true;
         $_SESSION['timeout']         = time();
         $_SESSION['displayname']     = $row['user_first_name'] . ' ' . $row['user_last_name'];

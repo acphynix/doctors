@@ -16,10 +16,15 @@
   if(has_key($_GET,'c')){
     $query2 = sanitize_plaintext($_GET['c']);
   }
-  $user_status="";
-  if(has_key($_SESSION, 'user_status')){
-      $user_status = $_SESSION['user_status'];
-  }
+  $user_status = $userId = "";
+	if(has_key($_SESSION,'user_id')){
+      $userId = $_SESSION['user_id'];
+    }
+    $db_1 = sprintf("select user_status from users where user_id = '%s'",$userId);
+    $dq_1 = mysqli_query($database, $db_1);
+    while ($row = $dq_1->fetch_assoc()) {
+        $user_status = $row['user_status'];
+    }
   
  //else $query = '';
 ?>
@@ -46,7 +51,7 @@
   }
 
   $( document ).ready(function() {
-    var input_plc = "Enter your symptoms, a doctor\'s name, or a medical speciality";
+    var input_plc = "Enter your symptoms, a doctor\'s name, or a medical speciality, then hit 'Enter' key";
 
     $('#ikeyword_search')
       .attr('placeholder',input_plc);

@@ -1,6 +1,11 @@
 <?php
   ob_start();
   session_start();
+  
+   $userId = '';
+    if($_SESSION['user_id']){
+      $userId = $_SESSION['user_id'];
+    }
 
   if (!empty($_GET['q'])){
     $conn = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
@@ -14,8 +19,8 @@
       //echo $user;
       $success = true;
       
-      $query3 = sprintf("update users set user_status='verified' where user_id=%s",$userid);
-      $query4 = sprintf("update email_verify set verify_code='' where user_id=%s",$userid);
+      $query3 = sprintf("update users set user_status='verified' where user_id='%s'",$userid);
+      $query4 = sprintf("update email_verify set verify_code='' where user_id='%s'",$userid);
       mysqli_query($conn,$query3);
       mysqli_query($conn,$query4);
     }else{
@@ -52,13 +57,21 @@
       <div class='account-entry' style='height:100%'>
         <h2 class='soloheading'>Account Authenticated</h2>
 		<div class="contact-page">
-            <?php if($success===true):?>
+            <?php if($success===true && $userId===""):?>
             <h1>Welcome!</h1>
             </p>
                 Thank you again for registering an account with Neolafia! Your account have now been authenticated!
             </p>
             <p>
                 Kindly click <a href="/login.php" style="color: blue;">here</a> to login in to your account
+            </p>
+			<?php elseif($success===true && $userId!==""):?>
+            <h1>Welcome!</h1>
+            </p>
+                Thank you again for registering an account with Neolafia! Your account have now been authenticated!
+            </p>
+            <p>
+                Kindly click <a href="/page/home.php" style="color: blue;">here</a> to go to your dashboard
             </p>
             <?php else: ?>
             <h1>Oops!</h1>
