@@ -16,21 +16,22 @@
     window.location.href = newpage
   }
   $(document).ready(function(){
-    $("#iform_login").submit(function(e) {
+    $("#iform_reset").submit(function(e) {
         var isValid = true;
         $("#error").text('');
-        $.each($('#iform_login input'), function(k,v){
+        $.each($('#iform_reset input'), function(k,v){
             if(!$(this).val() || $(this).val()===""){
                 isValid = false;
-                $("#error").text("Both Email address and password are required to sign in").css({color:'red'});
+                $("#error").text("Please enter your email address").css({color:'red'});
             }
         });
         if(isValid === true){
             $("#error").text('Please wait...').css({color:'inherit'});
-            $.ajax({
+           /*
+		   $.ajax({
             type: "POST",
             url: "ajax/login.php",
-            data: $("#iform_login").serialize(),
+            data: $("#iform_reset").serialize(),
             success: function(data){
               goto('index.php')
             },
@@ -44,6 +45,7 @@
                 }
             }
            });
+		   */
         }
       e.preventDefault();
     });
@@ -65,20 +67,13 @@
   <div class='frontpage-body'>
     <div class='frontpage-container'>
       <div class='frontpage-entry' style='height:100%'>
-        <h2 class='soloheading'>Sign in to Neolafia</h2>
+        <h2 class='soloheading'>Password Reset</h2>
 		<div id='error' style='font-style:italic;font-weight:bold;color:red;font-size: 1.25vw; text-align:center;'></div>
         <form class="form-style-8 borderless centered" role = "form" 
-              id='iform_login' method = "post">
+              id='iform_reset' method = "post">
           <input name="uname" type="text"     ng-model="uname" placeholder="E-mail Address">
-          <input name="pword" type="password" ng-model="pword" placeholder="Password">
-          <input name="login" type="submit"   value="Sign in" />
+          <input name="login" type="submit"   value="Send Reset Link" />
         </form>
-		
-        <p style="text-align: center">
-            Forgot your password? Click 
-            <a href="/passwordreset.php" style="color: blue; font-size: 1vw;">here</a>
-            to reset it
-        </p>
       </div>
     </div>
   </div>
