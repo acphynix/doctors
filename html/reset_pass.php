@@ -56,7 +56,7 @@
 			}
 		}
         if(isValid === true){
-            $("#error").html('<li>Please wait...</li>').css({color:'inherit'});
+            $("#errorPr").html('<li>Please wait...</li>').css({color:'inherit'});
            $.ajax({
             type: "POST",
             url: "ajax/set_new_password.php",
@@ -64,11 +64,11 @@
             success: function(data){
                 $("#nPw, #cPw").val("");
                 if(data === "Server Error"){
-                    $("#error").html("<li>Oops! We could not process your request at this time. Please try again later</li>")
+                    $("#errorPr").html("<li>Oops! We could not process your request at this time. Please try again later</li>")
                     .css({color:'red'});
                 }
                 if(data === "Password Updated"){
-                    $("#error").html("Password updated successfully! You can now login with your new password")
+                    $("#errorPr").html("Password updated successfully! You can now login with your new password")
                     .css({color:'green'});
                 }
             },

@@ -41,7 +41,7 @@
             data: $("#iform_login").serialize(),
             success: function(){
               $("#status").html("We have recieved your message. Thank you").css({color:'green'});
-              $("input, textarea").val('');
+              $("#fname, #emailad, #msg").val('');
             },
             error: function(){
                 $("#status").html('Oops! Please try again').css({color:'red'});

@@ -63,7 +63,7 @@
                 Thank you again for registering an account with Neolafia! Your account have now been authenticated!
             </p>
             <p>
-                Kindly click <a href="/login.php" style="color: blue;">here</a> to login in to your account
+                Kindly click <a href="/login.php" style="color: blue;">here</a> to login to your account
             </p>
 			<?php elseif($success===true && $userId!==""):?>
             <h1>Welcome!</h1>
