@@ -131,7 +131,7 @@ for row in new_emails:
     print 'in if'
     fields_dr = qget("SELECT user_first_name, user_last_name from users where user_id='" + doctor_id  + "'")
     fields_pt = qget("SELECT user_first_name, user_last_name from users where user_id='" + patient_id + "'")
-  elif (etype === 'app_user_feedback'):
+  elif (etype == 'app_user_feedback'):
 	fields_fb = qget("SELECT user_first_name, user_email, content FROM users_feedback where users.user_id='"+str(uid)+"'")
   else:
     fields_dr=[['','','','','','']]
