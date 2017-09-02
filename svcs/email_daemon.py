@@ -121,6 +121,9 @@ for row in new_emails:
     continue
   print 'good'
   # collect fields for email template interpolation
+  fields_fb = [['','','','','','']]
+  fields_dr = [['','','','','','']]
+  fields_pt = [['','','','','','']]
   fields_tt = qget("SELECT user_first_name, user_last_name, verify_code, user_email FROM users left join email_verify on (users.user_id = email_verify.user_id) where users.user_id='"+str(uid)+"'")
   fields_kr = qget("SELECT user_first_name, user_last_name, reset_code, user_email FROM users left join password_reset on (users.user_id = password_reset.user_id) where users.user_id='"+str(uid)+"'")
   print 'email'
@@ -132,14 +135,10 @@ for row in new_emails:
     fields_dr = qget("SELECT user_first_name, user_last_name from users where user_id='" + doctor_id  + "'")
     fields_pt = qget("SELECT user_first_name, user_last_name from users where user_id='" + patient_id + "'")
   if (etype == 'app_user_feedback'):
-    fields_dr = [['','','','','','']]
-    fields_pt = [['','','','','','']]
+	fields_fb = qget("SELECT user_first_name, user_email, content FROM users_feedback where user_feedback_id='"+str(uid)+"'")
+  if (etype == 'app_user_feedback'):
     fields_tt = [['','','','','','']]
     fields_kr = [['','','','','','']]
-  else:
-    fields_dr = [['','','','','','']]
-    fields_pt = [['','','','','','']]
-    fields_fb = [['','','','','','']]
 	
   content = content.replace('{{fullname}}'          , str(fields_tt[0][0]) + ' ' + str(fields_tt[0][1]))
   content = content.replace('{{patient.fullname}}'  , str(fields_pt[0][0]) + ' ' + str(fields_pt[0][1]))
