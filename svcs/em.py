@@ -31,5 +31,5 @@ def send_email( send_to, send_bcc, subject, body_html ):
 
   return response
 
-send_email( ['ashwinchetty@gmail.com'], [], 'test email', '<html><body><p>this is <b>bolded</b> text.</p></body></html>')
+send_email( ['vjovict@gmail.com'], [], 'test email', '<html><body><p>this is <b>bolded</b> text.</p></body></html>')
 
