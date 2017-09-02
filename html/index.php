@@ -6,10 +6,7 @@
   $displayname = $_SESSION['displayname'];
   $isdoctor = $_SESSION['user_is_doctor'];
   
-  $conn = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
-    $mail = "vjovict@gmail.com";
-    $query18 = sprintf("delete from users where user_email='%s'",$mail);
-    mysqli_query($conn,$query18);
+ 
   
   
 ?>
