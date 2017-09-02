@@ -125,25 +125,22 @@ for row in new_emails:
   fields_kr = qget("SELECT user_first_name, user_last_name, reset_code, user_email FROM users left join password_reset on (users.user_id = password_reset.user_id) where users.user_id='"+str(uid)+"'")
   print 'email'
   print etype
-  if (etype in ['doctor_appointment_pending', 'doctor_appointment_paid', 'patient_appointment_paid',
-               'patient_appointment_approved', 'doctor_appointment_approved', 'doctor_appointment_closed']){
+  if etype in ['doctor_appointment_pending', 'doctor_appointment_paid', 'patient_appointment_paid',
+               'patient_appointment_approved', 'doctor_appointment_approved', 'doctor_appointment_closed']:
     appt_id,doctor_id,patient_id = idata.split('|')
     print 'in if'
     fields_dr = qget("SELECT user_first_name, user_last_name from users where user_id='" + doctor_id  + "'")
     fields_pt = qget("SELECT user_first_name, user_last_name from users where user_id='" + patient_id + "'")
-	}
-  if (etype == 'app_user_feedback'){
-	fields_fb = qget("SELECT user_first_name, user_email, content FROM users_feedback where user_feedback_id='"+str(uid)+"'")
+  if (etype == 'app_user_feedback'):
     fields_dr = [['','','','','','']]
     fields_pt = [['','','','','','']]
     fields_tt = [['','','','','','']]
     fields_kr = [['','','','','','']]
-  }
-  else{
+  else:
     fields_dr = [['','','','','','']]
     fields_pt = [['','','','','','']]
     fields_fb = [['','','','','','']]
-  }
+	
   content = content.replace('{{fullname}}'          , str(fields_tt[0][0]) + ' ' + str(fields_tt[0][1]))
   content = content.replace('{{patient.fullname}}'  , str(fields_pt[0][0]) + ' ' + str(fields_pt[0][1]))
   content = content.replace('{{patient.firstname}}' , str(fields_pt[0][0]))
