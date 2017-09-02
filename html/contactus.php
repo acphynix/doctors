@@ -38,10 +38,10 @@
             $.ajax({
             type: "POST",
             url: "ajax/user_feedback.php",
-            data: $("#iform_login").serialize(),
+            data: $("#iform_feedback").serialize(),
             success: function(data){
 				if(data==='Server Error'){
-					$("#status").text("Oops! We could not process your request at this time. Please try again later")
+					$("#status").html("Oops! We could not process your request at this time. Please try again later")
                     .css({color:'red'});
 				}
                 if(data === "Feedback Saved"){
@@ -100,7 +100,7 @@
               <span style="font-size: 0.9vw; font-style: italic;"  id="emailadErr"></span>
               <textarea name="msg" id="msg" ng-model="msg" placeholder="Message"></textarea>
               <span style="font-size: 0.9vw; font-style: italic;"  id="msgErr"></span>
-              <input name="login" type="submit"   value="Sign in" />
+              <input name="feedback" type="submit"   value="Send" />
             </form>
           </div>
         </div>
