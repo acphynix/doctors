@@ -11,9 +11,9 @@ client = boto3.client('ses',
           aws_secret_access_key='JIxR3QAfSGoj9kV4Wi6j+Iicagk1eU+bLKqKcdO3'
         )
 
-def send_email( send_to, send_bcc, subject, body_html ):
+def send_email( send_from, send_to, send_bcc, subject, body_html ):
   response = client.send_email(
-    Source='neolafia@neolafia.com',
+    Source=send_from,
     Destination={
       'ToAddresses' : send_to,
       'CcAddresses' : [],
@@ -31,8 +31,8 @@ def send_email( send_to, send_bcc, subject, body_html ):
         }
       }
     },
-    ReplyToAddresses=['neolafia@neolafia.com'],
-    ReturnPath='neolafia@neolafia.com',
+    ReplyToAddresses=[send_from],
+    ReturnPath=send_from,
   )
 
   return response
@@ -110,7 +110,7 @@ for row in new_emails:
                'doctor_appointment_complete', 'doctor_appointment_closed', 'patient_account_new', 
                'patient_appointment_pending', 'patient_appointment_paid', 'patient_appointment_cancelled',
                'patient_appointment_approved', 'patient_appointment_withdrawn', 'patient_appointment_complete',
-               'patient_appointment_closed', 'user_account_passwordreset']:
+               'patient_appointment_closed', 'user_account_passwordreset', 'app_user_feedback']:
     try:
       with open('/var/www/html/email/' + etype + '.html', 'r') as file:
         content = file.read()
@@ -123,6 +123,7 @@ for row in new_emails:
   # collect fields for email template interpolation
   fields_tt = qget("SELECT user_first_name, user_last_name, verify_code, user_email FROM users left join email_verify on (users.user_id = email_verify.user_id) where users.user_id='"+str(uid)+"'")
   fields_kr = qget("SELECT user_first_name, user_last_name, reset_code, user_email FROM users left join password_reset on (users.user_id = password_reset.user_id) where users.user_id='"+str(uid)+"'")
+  fields_fb = qget("SELECT user_first_name, user_email, content FROM users_feedback")
   print 'email'
   print etype
   if etype in ['doctor_appointment_pending', 'doctor_appointment_paid', 'patient_appointment_paid',
@@ -141,7 +142,9 @@ for row in new_emails:
   content = content.replace('{{doctor.firstname}}'  , str(fields_dr[0][0]))
   content = content.replace('{{link_profile}}'      , 'https://neolafia.com/home.php')
   content = content.replace('{{link_authenticate}}' , 'https://neolafia.com/verify_acct.php?q='+str(fields_tt[0][2]))
-  content = content.replace('{{link_passreset}}' , 'https://neolafia.com/reset_pass.php?q='+str(fields_kr[0][2]))
+  content = content.replace('{{link_passreset}}' 	, 'https://neolafia.com/reset_pass.php?q='+str(fields_kr[0][2]))
+  content = content.replace('{{userfirstname}}' 	, str(fields_fb[0][0]))
+  content = content.replace('{{usermsg}}' 			, str(fields_fb[0][2]))
   content = content.replace('\\', '\\\\')
   content = content.replace('\'', '\\\'')
 
@@ -163,16 +166,22 @@ for row in new_emails:
      , 'doctor_appointment_complete'   : 'Appointment Payment Confirmation'
      , 'patient_appointment_closed'    : 'Thank you for choosing Neolafia!'
      , 'doctor_appointment_closed'     : 'Appointment Payment Confirmation'
+     , 'app_user_feedback'     	       : 'User Feedback!'
     }
 
   subject = subjects[etype]
-  email   = fields_tt[0][3]
+  if(etype=='user_account_passwordreset'):
+	email   = fields_kr[0][3]
+	print 'sending '+subject+' to '+email
+  elif(etype=='app_user_feedback'):
+	email   = fields_fb[0][1]
+	print 'sending '+subject+' from '+email
+  else:
+	email   = fields_tt[0][3]
+	print 'sending '+subject+' to '+email
    
   # subject = fields_tt[0][3]+': '+subjects[etype]
   # email='ashwinchetty@gmail.com'
-
-  print 'sending '+subject+' to '+email
-    
 
   cur.execute("update emails set email_status='queued',user_email='"+email+
               "', subject='"+subject+"', content='"+content+
@@ -185,7 +194,10 @@ cur.execute("SELECT email_id, user_email, subject, content, times_sent FROM emai
 for row in cur.fetchall():
   cur.execute("update emails set email_status='processing' where email_id = "+str(row[0]))
   db.commit()
-  send_email( [row[1]], [], row[2], row[3])
+  if(row[2] == 'User Feedback!'):
+	send_email(  [row[1]], 'vjovict@gmail.com', [], row[2], row[3])
+  else:
+	send_email( 'neolafia@neolafia.com', [row[1]], [], row[2], row[3])
   cur.execute("update emails set email_status='sent',times_sent="+str(row[4]+1)+" where email_id = "+str(row[0]))
   # print row
 

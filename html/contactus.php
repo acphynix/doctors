@@ -39,9 +39,15 @@
             type: "POST",
             url: "ajax/user_feedback.php",
             data: $("#iform_login").serialize(),
-            success: function(){
-              $("#status").html("We have recieved your message. Thank you").css({color:'green'});
-              $("#fname, #emailad, #msg").val('');
+            success: function(data){
+				if(data==='Server Error'){
+					$("#status").text("Oops! We could not process your request at this time. Please try again later")
+                    .css({color:'red'});
+				}
+                if(data === "Feedback Saved"){
+                    $("#status").html("Thank you for your message "+$("#fname").val()).css({color:'green'});
+					$("#fname, #emailad, #msg").val('');
+                }
             },
             error: function(){
                 $("#status").html('Oops! Please try again').css({color:'red'});

@@ -1,36 +1,35 @@
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT']."/php/util/global.php");
+    import('/php/util/sanitize.php');
+    import('/php/util/emails.php');
+	
+	$firstname = sanitize_plaintext($_POST['fname']);
+	$email = sanitize_email($_POST['emailad']);
+	$content = sanitize_plaintext($_POST['msg']);
 
-$firstname = $_POST['fname'];
-$email = $_POST['emailad'];
-$content = $_POST['msg'];
+    $database = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
+    if ($database->connect_error) {
+        echo 'Server Error';
+        return;
+    }
+	
+	$query = "select * from users_feedback";
+	$qres = mysqli_query($database, $query);
+        if(mysqli_num_rows($qres)==0){
+            $stat = sanitize_number('987654321'.'1');
+        }
+        else{
+            while ($row = mysqli_fetch_assoc($qres)) {
+                $stat = sanitize_number('987654321'.($row['user_feedback_id'] + 1));
+            }
+        }
+    
+    $sql = sprintf("insert into users_feedback (user_first_name, user_email, content) values ('%s','%s','%s')",$firstname,$email,$content);
+	$sres = mysqli_query($database, $sql);
+    
+    create_email($stat, 'app_user_feedback');
 
-$to = "vjovict@gmail.com";
-      $subject = "User Feedback!";
-
-      $message = "
-        <html>
-          <head>
-            <title>User Feedback</title>
-          </head>
-          <body>
-            <p>
-                A user, <b>".$firstname."</b> sent the following message on Neolafia. Please find below:
-            </p>
-            <p>
-               ' ".$content." '
-            </p>
-            <p>
-                Regards<br /><br />
-            </p>
-          </body>
-        </html>
-      ";
-
-      // Always set content-type when sending HTML email
-      $headers  = "MIME-Version: 1.0" . "\r\n";
-      $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-      $headers .= 'From: <'.$email.'>' . "\r\n";
-      $headers .= 'X-Mailer: PHP/'.phpversion();
-      mail($to,$subject,$message,$headers);
-
+    mysqli_close($database);
+    echo 'Feedback Saved';
+    return;
 ?>
