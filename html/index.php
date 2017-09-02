@@ -5,10 +5,6 @@
   }
   $displayname = $_SESSION['displayname'];
   $isdoctor = $_SESSION['user_is_doctor'];
-  
- 
-  
-  
 ?>
 <html ng-app="healthapp">
 <head>
