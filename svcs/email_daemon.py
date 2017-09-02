@@ -141,7 +141,7 @@ for row in new_emails:
   content = content.replace('{{doctor.firstname}}'  , str(fields_dr[0][0]))
   content = content.replace('{{link_profile}}'      , 'https://neolafia.com/home.php')
   content = content.replace('{{link_authenticate}}' , 'https://neolafia.com/verify_acct.php?q='+str(fields_tt[0][2]))
-  content = content.replace('{{link_passreset}}' , 'https://neolafia.com/reset_pass.php?q='+str(fields_tt[0][2]))
+  content = content.replace('{{link_passreset}}' , 'https://neolafia.com/reset_pass.php?q='+str(fields_kr[0][2]))
   content = content.replace('\\', '\\\\')
   content = content.replace('\'', '\\\'')
 
