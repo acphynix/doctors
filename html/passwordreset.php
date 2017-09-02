@@ -27,25 +27,28 @@
         });
         if(isValid === true){
             $("#error").text('Please wait...').css({color:'inherit'});
-           /*
-		   $.ajax({
+           $.ajax({
             type: "POST",
-            url: "ajax/login.php",
+            url: "ajax/reset_password.php",
             data: $("#iform_reset").serialize(),
             success: function(data){
-              goto('index.php')
+                if(data === "Server Error"){
+                    $("#error").text("Oops! We could not process your request at this time. Please try again later")
+                    .css({color:'red'});
+                }
+                if(data === "Invalid Email"){
+                    $("#error").text("The email address you have supplied does not exist in our record")
+                    .css({color:'red'});
+                }
+                if(data === "Reset Link"){
+                    $("#error").text("Kindly click on the link in the email sent to you to continue your password change")
+                    .css({color:'green'});
+                }
             },
-            error: function(data){
-                console.log(data.statusText)
-                if(data.statusText === 'Internal Server Error'){
-                    $("#error").text('Oops! An error occured. Please try again later').css({color:'red'});
-                }
-                if(data.statusText === 'Unauthorized'){
-                    $("#error").text('Incorrect Email address or password').css({color:'red'});
-                }
+            error: function(){
+                //
             }
            });
-		   */
         }
       e.preventDefault();
     });

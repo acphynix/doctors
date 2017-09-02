@@ -110,7 +110,7 @@ for row in new_emails:
                'doctor_appointment_complete', 'doctor_appointment_closed', 'patient_account_new', 
                'patient_appointment_pending', 'patient_appointment_paid', 'patient_appointment_cancelled',
                'patient_appointment_approved', 'patient_appointment_withdrawn', 'patient_appointment_complete',
-               'patient_appointment_closed']:
+               'patient_appointment_closed', 'user_account_passwordreset']:
     try:
       with open('/var/www/html/email/' + etype + '.html', 'r') as file:
         content = file.read()
@@ -122,6 +122,7 @@ for row in new_emails:
   print 'good'
   # collect fields for email template interpolation
   fields_tt = qget("SELECT user_first_name, user_last_name, verify_code, user_email FROM users left join email_verify on (users.user_id = email_verify.user_id) where users.user_id='"+str(uid)+"'")
+  fields_kr = qget("SELECT user_first_name, user_last_name, reset_code, user_email FROM users left join password_reset on (users.user_id = password_reset.user_id) where users.user_id='"+str(uid)+"'")
   print 'email'
   print etype
   if etype in ['doctor_appointment_pending', 'doctor_appointment_paid', 'patient_appointment_paid',
@@ -140,12 +141,14 @@ for row in new_emails:
   content = content.replace('{{doctor.firstname}}'  , str(fields_dr[0][0]))
   content = content.replace('{{link_profile}}'      , 'https://neolafia.com/home.php')
   content = content.replace('{{link_authenticate}}' , 'https://neolafia.com/verify_acct.php?q='+str(fields_tt[0][2]))
+  content = content.replace('{{link_passreset}}' , 'https://neolafia.com/reset_pass.php?q='+str(fields_tt[0][2]))
   content = content.replace('\\', '\\\\')
   content = content.replace('\'', '\\\'')
 
   subjects =  {
        'patient_account_new'           : 'Welcome to Neolafia!'
      , 'doctor_account_new'            : 'Welcome to Neolafia!'
+     , 'user_account_passwordreset'    : 'Password Reset!'
      , 'patient_appointment_pending'   : 'Thank you for requesting an appointment with Neolafia!'
      , 'doctor_appointment_pending'    : 'A patient is interested in booking an appointment with you!'
      , 'patient_appointment_paid'      : 'We have received your payment!'
