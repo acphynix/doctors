@@ -13,7 +13,7 @@ client = boto3.client('ses',
 
 def send_email( send_from, send_to, send_bcc, subject, body_html ):
   response = client.send_email(
-    Source=send_from,
+    Source='neolafia@neolafia.com',
     Destination={
       'ToAddresses' : send_to,
       'CcAddresses' : [],

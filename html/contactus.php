@@ -1,3 +1,20 @@
+<?php
+
+  session_start();
+    $userId = $userfirstname = $useremail = '';
+    if($_SESSION['user_id']){
+      $userId = $_SESSION['user_id'];
+    }
+    $conn = new mysqli("localhost", "ec2-user", "", "HealthTechSchema");
+    $query = sprintf("select user_first_name, user_email from users where user_id='%s'",$userId);
+    $result = mysqli_query($conn,$query);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $userfirstname = $row['user_first_name'];
+        $useremail = $row['user_email'];
+    }
+
+?>
+
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -94,9 +111,9 @@
             <div id='status' style='font-style:italic;font-weight:bold;color:green;font-size: 1vw; text-align:center;'></div>
             <form class="form-style-8 borderless centered" role = "form" 
                   id='iform_feedback' method = "post">
-                <input name="fname" id="fname" type="text"     ng-model="fname" placeholder="First Name">
+                <input name="fname" id="fname" type="text" value="<?php echo $userfirstname; ?>"  ng-model="fname" placeholder="First Name">
               <span style="font-size: 0.9vw; font-style: italic;" id="fnameErr"></span>
-              <input name="emailad" id="emailad" type="text"     ng-model="emailad" placeholder="Email Address">
+              <input name="emailad" id="emailad" type="text" value="<?php echo $useremail; ?>" ng-model="emailad" placeholder="Email Address">
               <span style="font-size: 0.9vw; font-style: italic;"  id="emailadErr"></span>
               <textarea name="msg" id="msg" ng-model="msg" placeholder="Message"></textarea>
               <span style="font-size: 0.9vw; font-style: italic;"  id="msgErr"></span>
