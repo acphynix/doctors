@@ -119,16 +119,21 @@
 
         <div ng-show='booked'>
           <p>
-            Your appointment request has been recorded. In order for your booking request to be fulfilled, you must directly deposit a sum of {{book.appt.price}} {{book.appt.currency}} into the account specified below:
+            You are only one step away from finally booking your appointment!
+          </p>
+          <p>
+            Your appointment request has been recorded but in order for your booking request to be confirmed,
+            you must pay the consultation fee of {{book.appt.price}} {{book.appt.currency}} into the account 
+            specified below:
           </p>
           <table style='padding-left:4vw;margin-bottom:2em;width:30em;border-bottom:solid black 1px'>
             <tr>
               <td>Account Number:</td>
-              <td>12345678</td>
+              <td>3004298963</td>
             </tr>
             <tr>
-              <td>Routing Number:</td>
-              <td>22446688</td>
+              <td>Bank</td>
+              <td>FIRST BANK NIGERIA</td>
             </tr>
             <tr>
               <td>Memo:</td>
@@ -139,13 +144,19 @@
             <span style='color:red;font-weight:bold'>
               Important:&nbsp;
             </span>
-            Ensure that you include the code <b>{{apptcode}}</b> with your payment. If you do not, your appointment may not be booked.
+            Please ensure that you include the code <b>{{apptcode}}</b> with your payment. 
+            This is the code unique to this booking that would help us link your payment to your booking.
           </p>
           <p>
-            After you complete the transaction, you will receive an email confirmation when your payment has been processed.
+            You will receive an email confirmation when your payment has been processed.
+          </p>
+          <p>
+              We believe the instructions here are clear but should you have questions about payment,
+              please check the <a href="/faq.php" style="color: blue;">FAQs</a> or 
+              <a href="/contactus.php" style="color: blue;">Contact Us</a>.
           </p>
           <p style='padding-left:10vw'>
-            <a style='color:blue' href='/page/home.php'>View Appointments</a>
+            <a style='color:blue' href='page/home.php'>View Appointments</a>
           </p>
         </div>
       </div>

@@ -88,8 +88,8 @@ doctor_search.controller('search', function($scope, $window, $http){
         console.log(response);
         $scope.booked = true;
         $scope.apptcode=response.code;
-        $scope.accountno = '12345678';
-        $scope.routingno = '22446688';
+        //$scope.accountno = '12345678';
+        //$scope.routingno = '22446688';
       }, function errorCallback(response) {
         console.log('Response: ');
         console.log(response);

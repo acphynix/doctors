@@ -88,6 +88,7 @@
 
     <div ng-show="is_show('profile')">
       <?php include('_profile.php'); ?>
+	</div>
     <div ng-show="is_show('messages')">
       messages
     </div>

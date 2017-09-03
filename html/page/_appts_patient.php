@@ -50,11 +50,11 @@
                     <table style='padding-left:4vw;margin-bottom:2em;width:30em;border-bottom:solid black 1px'>
                       <tr>
                         <td>Account Number:</td>
-                        <td>12345678</td>
+                        <td>3004298963</td>
                       </tr>
                       <tr>
-                        <td>Routing Number:</td>
-                        <td>22446688</td>
+                        <td>Bank:</td>
+                        <td>FIRST BANK NIGERIA</td>
                       </tr>
                       <tr>
                         <td>Memo:</td>
