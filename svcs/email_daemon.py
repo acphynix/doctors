@@ -195,13 +195,12 @@ for row in new_emails:
   db.commit()
   # print row
 
-cur.execute("SELECT email_id, user_email, subject, content, times_sent FROM emails where email_status='processing'")
+cur.execute("SELECT email_id, user_email, subject, content, times_sent FROM emails where email_status='queued'")
 for row in cur.fetchall():
   cur.execute("update emails set email_status='processing' where email_id = "+str(row[0]))
   db.commit()
-  print row[2]
   if(row[2] == 'User Feedback!'):
-	send_email(  'neolafia@neolafia.com', 'vjovict@gmail.com', [], row[2], row[3])
+	send_email(  [row[1]], ['ta02092017@gmail.com'], [], row[2], row[3])
   else:
 	send_email( 'neolafia@neolafia.com', [row[1]], [], row[2], row[3])
   cur.execute("update emails set email_status='sent',times_sent="+str(row[4]+1)+" where email_id = "+str(row[0]))
