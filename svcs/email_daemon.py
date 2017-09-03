@@ -200,7 +200,7 @@ for row in cur.fetchall():
   cur.execute("update emails set email_status='processing' where email_id = "+str(row[0]))
   db.commit()
   if(row[2] == 'User Feedback!'):
-	send_email(  [row[1]], 'vjovict@gmail.com', [], row[2], row[3])
+	send_email(  'neolafia@neolafia.com', 'vjovict@gmail.com', [], row[2], row[3])
   else:
 	send_email( 'neolafia@neolafia.com', [row[1]], [], row[2], row[3])
   cur.execute("update emails set email_status='sent',times_sent="+str(row[4]+1)+" where email_id = "+str(row[0]))
