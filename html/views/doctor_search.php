@@ -118,7 +118,7 @@
             <td style='width:100%;padding:1em;padding-bottom:6em;position:relative;overflow:hidden'>
                 <div style='position:absolute;top:0;height:100%;'>
                   <h3 style='font-size:1.33em;padding:0;margin:0;'>{{r.user_first_name}} {{r.user_last_name}}</h3>
-                  <h3 style='font-weight:none;font-style:italic;color:gray;text-transform:capitalize;font-size:0.75em'>{{r.speciality_name}}</h3>
+                  <h3 style='font-weight:none;font-style:italic;color:gray;text-transform:capitalize;font-size:0.75em'>{{r.speciality_name}} | {{location_name(r.doctor_location)}}</h3>
                   <div style='font-family:Cabin;padding-top:1em' ng-show='!r.show'>
 					<?php if($login && $user_status==='verified'){ ?>
                       Click to book an appointment.

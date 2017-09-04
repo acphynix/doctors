@@ -31,7 +31,7 @@
 
 <script type="text/javascript" async>
   $( document ).ready(function() {
-    var input_plc = "symptoms, doctor name, speciality";
+    var input_plc = "Enter your symptom, doctor's name, speciality";
     $('#ikeyword_search')
       .attr('placeholder',input_plc);
       
@@ -102,7 +102,7 @@
             <td class='label'><div>What are you looking for?</div></td>
             <td class='field'>
               <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
-                   autofocus ng-keypress='update_dropdown()' autocomplete="off" placeholder="symptoms, doctor's name, speciality"/>
+                   autofocus ng-keypress='update_dropdown()' autocomplete="off" placeholder="Enter your symptom, doctor's name, speciality"/>
             </td>
           </tr>
           <tr>

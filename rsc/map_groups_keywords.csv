@@ -21,7 +21,7 @@
 2,Convulsion
 2,Seizure
 2,Fainting
-3,Respiratory
+3,Respiratory Medicine
 3,Pulmonology
 3,Cough
 3,Chest pain
@@ -32,6 +32,7 @@
 3,Difficulty breathing
 3,Asthma
 3,Tuberculosis
+3,Cough
 4,Cardiology
 4,Cough
 4,Chest pain
@@ -110,44 +111,44 @@
 10,Surgeon
 10,Surgery
 10,Breast
-10,Orthopedics
-10,Bone
-10,Fracture
-11,Plastic Surgery
-11,Tendon
-11,Skin graft
-11,Burns
-11,Cosmetic
-12,Urology
-12,Urine
-12,Prostrate
-12,Bloody urine
-12,Poor urine flow
-13,Opthalmology
-13,Eyes
-13,Blindness
-13,Vision
-13,Blurred vision
-13,Glaucoma
-13,Dentistry
-13,Teeth
-13,Halithosis
-13,Bad breath
-13,Oral
-14,ENT
-14,Ears
-14,Nose
-14,Throat
-14,Sinus
-14,Hoarseness
-14,Voice changes
-14,Hearing impairment
-14,Allergies
-15,Obstetrics & Gynaecology
-15,Period
-15,Menses
-15,PCOS
-15,Pregnancy
-15,Fertility
-16,Family Medicine
-16,General consultant
+11,Orthopedics
+11,Bone
+11,Fracture
+12,Plastic Surgery
+12,Tendon
+12,Skin graft
+12,Burns
+12,Cosmetic
+13,Urology
+13,Urine
+13,Prostrate
+13,Bloody urine
+13,Poor urine flow
+14,Opthalmology
+14,Eyes
+14,Blindness
+14,Vision
+14,Blurred vision
+14,Glaucoma
+15,Dentistry
+15,Teeth
+15,Halithosis
+15,Bad breath
+15,Oral
+16,ENT
+16,Ears
+16,Nose
+16,Throat
+16,Sinus
+16,Hoarseness
+16,Voice changes
+16,Hearing impairment
+16,Allergies
+17,Obstetrics & Gynaecology
+17,Period
+17,Menses
+17,PCOS
+17,Pregnancy
+17,Fertility
+18,Family Medicine
+18,General consultant

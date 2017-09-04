@@ -1,31 +1,27 @@
-Dermatology,dermatology
-dermatology,skin
-dermatology,rash
-dermatology,eczema
-dermatology,spots
-dermatology,acne
-dermatology,pimples
-dermatology,hair
-dermatology,nail
-dermatology,itching
-dermatology,pruritus
-dermatology,reaction
-dermatology,allergy
-dermatology,cosmetic
-
-neurology,neurology
-neurology,headache
-neurology,stroke
-neurology,paralysis
+Dermatology,Skin
+Dermatology,rash
+Dermatology,Eczema
+Dermatology,Spots
+Dermatology,Acne
+Dermatology,Pimples
+Dermatology,Hair
+Dermatology,Nail
+Dermatology,Itching
+Dermatology,Pruritus
+Dermatology,Reaction
+Dermatology,Allergy
+Dermatology,cosmetic
+Dermatology,Dermatology
+neurology,Neurology
+neurology,Headache
+neurology,Stroke
+neurology,Paralysis
 neurology,tremor
-neurology,shaking
-neurology,convulsion
-neurology,seizure
-neurology,fainting
-
-
-
-respiratory Medicine,respiratory Medicine
+neurology,Shaking
+neurology,Convulsion
+neurology,Seizure
+neurology,Fainting
+respiratory Medicine,Respiratory Medicine
 respiratory Medicine,chest Pain
 respiratory Medicine,sputum
 respiratory Medicine,bloody Cough
@@ -34,9 +30,7 @@ respiratory Medicine,breath
 respiratory Medicine,difficulty Breathing
 respiratory Medicine,asthma
 respiratory Medicine,tuberculosis
-
-
-
+respiratory Medicine,cough
 cardiology,cardiology
 cardiology,cough
 cardiology,chest Pain
@@ -50,7 +44,6 @@ cardiology,heart Attack
 cardiology,palpitation
 cardiology,difficulty Breathing
 cardiology,swollen Legs
-
 endocrinology,endocrinology
 endocrinology,diabetes
 endocrinology,high Blood Sugar
@@ -62,8 +55,6 @@ endocrinology,tremor
 endocrinology,palpitation
 endocrinology,excess Urine
 endocrinology,excess Thirst
-
-
 clinical Heamatology,clinical Heamatology
 clinical Heamatology,sickle Cell Disease
 clinical Heamatology,anemia
@@ -76,8 +67,6 @@ clinical Heamatology,tiredness
 clinical Heamatology,pale Eyes
 clinical Heamatology,pale Palms
 clinical Heamatology,jaundice
-
-
 rheumatology,rheumatology
 rheumatology,joint
 rheumatology,rash
@@ -85,10 +74,6 @@ rheumatology,hair Loss
 rheumatology,fever
 rheumatology,weight Loss
 rheumatology,cancer
-
-
-
-
 gastroenterology,gastroenterology
 gastroenterology,diarrhea
 gastroenterology,jaundice
@@ -105,88 +90,48 @@ gastroenterology,dyspepsia
 gastroenterology,vomitting
 gastroenterology,nausea
 gastroenterology,intestine
-gastroenterology,nephrology
-gastroenterology,urine
-gastroenterology,kidneys
-gastroenterology,bloody Urine
-gastroenterology,painful Urination
-gastroenterology,low Urine
-gastroenterology,oliguria
-gastroenterology,swollen Legs
-gastroenterology,swollen Face
-
-
-
+nephrology,nephrology
+nephrology,urine
+nephrology,kidneys
+nephrology,bloody Urine
+nephrology,painful Urination
+nephrology,low Urine
+nephrology,oliguria
+nephrology,swollen Legs
+nephrology,swollen Face
 paediatrics,paediatrics
 paediatrics,children
 paediatrics,vaccine
 paediatrics,nutrition
 paediatrics,poor Growth
-
-
-
-
-
-general Surgery
+general Surgery,general Surgery
 general Surgery,surgeon
 general Surgery,surgery
 general Surgery,breast
-
-
-
-
-
-
 orthopedics,orthopedics
 orthopedics,bone
 orthopedics,fracture
-
-
-
-
-
-
-plastic Surgery
+plastic Surgery,plastic Surgery
 plastic Surgery,tendon
 plastic Surgery,skin Graft
 plastic Surgery,burns
 plastic Surgery,cosmetic
-
-
-
-
-
 urology,urology
 urology,urine
 urology,prostate
 urology,bloody Urine
 urology,poor Urine Flow
-
-
-
-
-
 opthalmology,opthalmology
 opthalmology,eyes
 opthalmology,blindness
 opthalmology,vision
 opthalmology,blurred Vision
 opthalmology,glaucoma
-
-
-
-
-
 dentistry,dentistry
 dentistry,teeth
 dentistry,halithosis
 dentistry,bad Breath
 dentistry,oral
-
-
-
-
-
 ent,ent
 ent,ears
 ent,nose
@@ -196,19 +141,11 @@ ent,hoarseness
 ent,voice Changes
 ent,hearing Impairment
 ent,allergies
-
-
-
 obstetrics And Gynaecology,obstetrics And Gynaecology
 obstetrics And Gynaecology,period
 obstetrics And Gynaecology,menses
 obstetrics And Gynaecology,pcos
 obstetrics And Gynaecology,pregnancy
 obstetrics And Gynaecology,fertility
-
-
-
-
-
 family Medicine,family Medicine
 family Medicine,general Consultant

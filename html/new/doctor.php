@@ -99,7 +99,9 @@
     });
     var options = $('#iSpc').get(0).options;
     function specialities(){
-        return ['anesthesiology', 'cardiology', 'cardiovascular surgery', 'dermatology', 'dietetics', 'endocrinology', 'family medicine', 'forensic medicine', 'gastroenterology', 'general surgery', 'geriatrics', 'gynecology', 'hepatology', 'hospital medicine', 'immunology', 'infectious disease', 'intensive care medicine', 'nephrology', 'neurology', 'neurosurgery', 'obstetrics and gynecology', 'oncology', 'ophthalmology', 'oral surgery', 'orthopedic surgery', 'otorhinolaryngology', 'palliative care', 'pathology', 'pediatric surgery', 'pediatrics', 'physiatry', 'plastic surgery', 'podiatry', 'proctology', 'psychiatry', 'pulmonology', 'radiology', 'respiratory', 'rheumatology', 'stomatology', 'surgical oncology', 'thoracic surgery', 'transplant surgery','urgent care medicine', 'urology', 'vascular surgery'];
+        return ['Dermatology', 'Neurology', 'Respiratory medicine', 'Cardiology', 'Endocrinology', 'Clinical Heamatology',
+        'Rheumatology', 'Gastroenterology', 'Nephrology', 'Paediatrics', 'General Suregry', 'Orthopedics',
+        'Plastic Surgery', 'Urology', 'Opthalmology', 'Dentistry', 'ENT', 'Obstetrics & Gynaecology', 'Family Medicine'];
 	}
 
     $.each(specialities(), function(key, value) {

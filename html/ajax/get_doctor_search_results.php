@@ -28,7 +28,7 @@ import('php/util/sanitize.php');
   if($query!=='' && $query2!==''){
           $db_1 =
           sprintf("select user_first_name, user_last_name, doctor_speciality, specialities.speciality_name, users.user_id,".
-                  "doctor_qualifications, doctor_affiliations from doctors,users,specialities where "
+                  "doctor_qualifications, doctor_affiliations, doctor_location from doctors,users,specialities where "
                   . "(doctor_speciality in (select speciality from speciality_keywords where keyword like '%s')"
                   . " or specialities.speciality_name like '%s%%'"
                   . " or user_first_name like '%s'"
@@ -41,7 +41,7 @@ import('php/util/sanitize.php');
     if($query!=='' && ($query2===null || $query2==='')){
           $db_1 =
           sprintf("select user_first_name, user_last_name, doctor_speciality, specialities.speciality_name, users.user_id,".
-                  "doctor_qualifications, doctor_affiliations from doctors,users,specialities where "
+                  "doctor_qualifications, doctor_affiliations, doctor_location from doctors,users,specialities where "
                   . "(doctor_speciality in (select speciality from speciality_keywords where keyword like '%s')"
                   . " or specialities.speciality_name like '%s%%'"
                   . " or user_first_name like '%s'"
@@ -53,7 +53,7 @@ import('php/util/sanitize.php');
     if(($query===null || $query ==='') && $query2!==''){
           $db_1 =
           sprintf("select user_first_name, user_last_name, doctor_speciality, specialities.speciality_name, users.user_id,".
-                  "doctor_qualifications, doctor_affiliations from doctors,users,specialities where doctor_location = '%s'"
+                  "doctor_qualifications, doctor_affiliations, doctor_location from doctors,users,specialities where doctor_location = '%s'"
                   . " and doctors.user_id=users.user_id and specialities.speciality=doctor_speciality"
                   . " and doctor_cert_status='verified'", $query2);
     }

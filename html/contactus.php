@@ -99,7 +99,7 @@
                     <i class="fa fa-envelope"></i> <span>neolafia@neolafia.com</span>
                 </div>
                 <div class="contact">
-                    <i class="fa fa-phone"></i> <span>+234 8034646465 (SMS only)</span>
+                    <i class="fa fa-phone"></i> <span>+234 8034646465 (9am - 6pm)</span>
                 </div>
             </div>
             
