@@ -99,10 +99,11 @@
     });
     var options = $('#iSpc').get(0).options;
     function specialities(){
-        return ['Dermatology', 'Neurology', 'Respiratory medicine', 'Cardiology', 'Endocrinology', 'Clinical Heamatology',
-        'Rheumatology', 'Gastroenterology', 'Nephrology', 'Paediatrics', 'General Suregry', 'Orthopedics',
-        'Plastic Surgery', 'Urology', 'Opthalmology', 'Dentistry', 'ENT', 'Obstetrics & Gynaecology', 'Family Medicine'];
-	}
+        return ['Cardiology', 'Clinical Heamatology', 'Dentistry', 'Dermatology', 'Endocrinology', 'ENT',
+                'Family Medicine', 'Gastroenterology', 'General Suregry', 'Nephrology', 'Neurology',
+                'Obstetrics & Gynaecology', 'Opthalmology', 'Orthopedics', 'Paediatrics', 'Plastic Surgery',
+                'Respiratory medicine', 'Rheumatology', 'Urology'];
+    }
 
     $.each(specialities(), function(key, value) {
       options[options.length] = new Option(value, key+1);
@@ -136,7 +137,7 @@
               <a href='/createaccount.php' class='banner-button' style='padding-right:3vw'>Sign up </a>
               <a href='/login.php' class='banner-button' style='padding-right:3vw'>Log In </a>
             <?php } ?>
-              <a href='mailto:neolafia@neolafia.com' class='banner-button' style='padding-right:3vw'>Contact Us</a>
+              <a href='/contactus.php' class='banner-button' style='padding-right:3vw'>Contact Us</a>
           </div>
         </span>
       </span>
