@@ -71,7 +71,7 @@
     function get_speciality_id($speciality, $db){
       // echo '~~~~~ ~~ ~ getting speciality: '.$speciality;
       $text = sanitize_plaintext($speciality);
-      $db_1 = sprintf("select speciality from specialities where speciality_name='%s'",$speciality);
+      $db_1 = sprintf("select speciality from specialities where speciality_name like '%s%%'",$speciality);
       $dq_1 = mysqli_query($db, $db_1);
 
       if(!$dq_1) return 0;
