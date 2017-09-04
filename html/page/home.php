@@ -90,7 +90,7 @@
       <?php include('_profile.php'); ?>
 	</div>
     <div ng-show="is_show('messages')">
-      messages
+      <?php include('_messages.php'); ?>
     </div>
   </div>
 </body>
