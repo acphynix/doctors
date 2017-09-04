@@ -36,7 +36,7 @@
                 <div style='display:inline-block;margin-left:0'>
                   <div style='padding:0;margin:0;font-family:cabin;font-size:1.5em'>Dr. {{a.user_first_name}} {{a.user_last_name}}</div>
                   <div style='padding:0;margin:0;font-family:cabin'>{{a.timeslot_address}}</div>
-                  <div style='padding:0;margin:0;font-family:cabin'>{{a.timeslot_location}}</div>
+                  <div style='padding:0;margin:0;font-family:cabin'>{{location_name(a.timeslot_location)}}</div>
                 </div>
               </div>
               <div style='padding-right:0.5em;padding-left:1em;font-style:italic'>Appointment Notes:</div>
@@ -61,7 +61,7 @@
                         <td>{{a.apptcode}}</td>
                       </tr>
                     </table>
-                  Dr. {{a.user_first_name}} {{a.user_last_name}} name will not be able to confirm your appointment
+                  Dr. {{a.user_first_name}} {{a.user_last_name}} will not be able to confirm your appointment
                   until the payment has been processed. Make sure you enter the code <b>{{a.apptcode}}</b> in
                   your transfer.
                 </div>
