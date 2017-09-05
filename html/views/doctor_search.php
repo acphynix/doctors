@@ -96,9 +96,9 @@
             <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
                    autofocus ng-keypress='update_dropdown()' autocomplete="off" />
 		   <input type="hidden" id="loc_ent" value="<?php echo $query2 ?>"/>
-			<select id='loc_new' name='c' class="form-control">
+			<!--<select id='loc_new' name='c' class="form-control">
 				<option value=''>Choose Location</option>
-			</select>
+			</select>-->
           </form>
         </div>
       </div>
