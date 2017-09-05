@@ -52,6 +52,11 @@
 
   $( document ).ready(function() {
     var input_plc = "Enter your symptoms, a doctor\'s name, or a medical speciality, then hit 'Enter' key";
+	
+	var options = $('#loc_new').get(0).options;
+    $.each(['Abia', 'Adamawa', 'Anambra', 'Akwa Ibom', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Enugu', 'Edo', 'Ekiti', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos: Agege', 'Lagos: Ajeromi-Ifelodun', 'Lagos: Alimosho', 'Lagos: Amuwo-Odofin', 'Lagos: Apapa', 'Lagos: Badagry', 'Lagos: Epe', 'Lagos: Eti-Osa', 'Lagos: Ibeju-Lekki', 'Lagos: Ifako-Ijaiye', 'Lagos: Ikeja', 'Lagos: Ikorodu', 'Lagos: Kosofe', 'Lagos: Lagos Island', 'Lagos: Lagos Mainland', 'Lagos: Mushin', 'Lagos: Ojo', 'Lagos: Oshodi-Isolo', 'Lagos: Somolu', 'Lagos: Surulere', 'Nasarawa', 'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara', 'Abuja (FCT)'], function(key, value) {
+      options[options.length] = new Option(value, key);
+    });
 
     $('#ikeyword_search')
       .attr('placeholder',input_plc);
@@ -91,6 +96,9 @@
             <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
                    autofocus ng-keypress='update_dropdown()' autocomplete="off" />
 		   <input type="hidden" id="loc_ent" value="<?php echo $query2 ?>"/>
+			<select id='loc_new' name='c' class="form-control">
+				<option value=''>Choose Location</option>
+			</select>
           </form>
         </div>
       </div>
@@ -102,7 +110,7 @@
         Congratulations! We found {{result_list.length}} doctors matching your search criteria.
       </div>
       <div class='results-text' ng-if='result_list.length==0'>
-        We could not find any doctors matching your search criteria. Try searching for speciality names instead!
+        We could not find any doctors matching your search criteria.
       </div>
       <div class='results-entry' style="display:table;clear:both;position:relative"
            ng-repeat='r in result_list' ">

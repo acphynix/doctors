@@ -22,7 +22,7 @@ doctor_search.controller('search', function($scope, $window, $http){
   $scope.update_dropdown = function(){
     var ajax = new XMLHttpRequest();
     console.log('searching '+$scope.searchbox.value);
-    ajax.open("GET", "../ajax/get_keyword_suggestions.php?q='"+$scope.keyword_search+"'", true);
+    ajax.open("GET", "../ajax/get_keyword_suggestions.php?q=''", true);
     ajax.onload = function() {
       var list = JSON.parse(ajax.responseText).map(function(i) { return i.keyword; });
       console.log(ajax.responseText);
