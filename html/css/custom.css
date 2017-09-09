@@ -29,7 +29,7 @@
     padding-right: 15px;
     font-style: normal;
     font-weight: 900;
-    font-size: 1.5em;
+    font-size: 1.8em;
     margin-top: 2.5em;
     color: #fff;
     -webkit-transition: all ease-in-out 0.5s;
@@ -53,6 +53,7 @@
 }
 .navbar-default .navbar-nav>li>a{
     color: #fff;
+	font-size: 1em;
 }
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{
     color: #e90;
@@ -690,12 +691,19 @@ ul.pc-error{
     }
     footer p span{
         font-size: 1em;
-    }.nav .navbar-text{
+    }
+	.nav .navbar-text{
         display: none;
     }
     .nav-top .user-label p{
         padding-right: 0;
     }  
+	.dp-area .doc-profile-2 .doc-name{
+		font-size:1em;
+	}
+	.dp-area .doc-profile-2 .doc-spec{
+		font-size:0.8em
+	}
     .dp-area .doc-profile-2 .doc-spec{
         margin: 5px 0;
     }
@@ -795,7 +803,7 @@ ul.pc-error{
         font-size: 0.8em;
     }
     .nav-top .user-label p{
-        font-size: 1em;
+        font-size: 1.5em;
     }
     #webCarousel .carousel-caption p{
         margin-top: 2em;
@@ -834,7 +842,7 @@ ul.pc-error{
         font-size: 0.5em;
     }
     .nav-top .user-label p{
-        font-size: 0.9em;
+        font-size: 1.1em;
     }
     .doc-search .banner_search input{
         font-size: 0.8em;
