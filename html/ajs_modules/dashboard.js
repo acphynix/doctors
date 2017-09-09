@@ -193,12 +193,42 @@ doctor_search.controller('navigation', function($scope, $window, $http){
       console.log('Response: ');
       console.log(response);
       $scope.get_schedule('doctor');
+      $window.location.href = '/page/home.php';
       //doctor.schedule=JSON.parse(response.data);
     }, function errorCallback(response) {
       console.log('Response: ');
       console.log(response);
+      $window.location.href = '/page/home.php';
     });
   };
+  
+  $scope.patient_rating = 0;
+  $scope.rg = function(val){
+      $scope.patient_rating = val;
+  };
+  $scope.pst1=true;
+  $scope.pst2=$scope.pst3=false;
+  $scope.rApt = function(appt){
+      $http({
+      method: 'POST',
+      url: '../ajax/patient_rate_doc.php',
+      data: { a: appt, f: $scope.patient_rating },
+      transformResponse: undefined
+    }).then(function successCallback(response) {
+        if(response.data === 'Done'){
+            $scope.pst1=$scope.pst3=false;
+            $scope.pst2=true;
+        }
+        else{
+            $scope.pst1=$scope.pst3=true;
+            $scope.pst2=false;
+        }
+    }, function errorCallback() {
+            $scope.pst1=$scope.pst3=true;
+            $scope.pst2=false;
+    });
+  };
+  
   $('#form_profile').submit(function(event){
       var isValid = true;
       $("#errorPr").html("");
@@ -212,33 +242,52 @@ doctor_search.controller('navigation', function($scope, $window, $http){
     form_data.append('file', file_data);
     // form_data.append('file2', file_data);
     form_data.append('nature','profile_picture'); 
+    if($("#address").val() === $scope.user.address && 
+            (!$("#pword_new").val()||$("#pword_new").val()==='') &&
+            (!$("#pword_current").val()||$("#pword_current").val()==='') &&
+            (!$("#pword_confirm").val()||$("#pword_confirm").val()==='')){
+        $("#errorPr").append("<li><b class='text-success'>You didn't make any changes</b></li>");
+        isValid = false;
+    }
+    if(($("#pword_current").val()!=='') &&
+            (!$("#pword_new").val()||$("#pword_new").val()==='') &&
+            (!$("#pword_confirm").val()||$("#pword_confirm").val()==='')){
+        $("#errorPr").append("<li><b class='text-warning'>Enter new password to update password</b></li>");
+        isValid = false;
+    }
+    if(($("#pword_confirm").val()!=='') &&
+            ((!$("#pword_new").val()||$("#pword_new").val()==='') ||
+            (!$("#pword_current").val()||$("#pword_current").val()===''))){
+        $("#errorPr").append("<li><b class='text-warning'>Both current and new password are required to perform password change</b></li>");
+        isValid = false;
+    }
     if(!$("#address").val() || $("#address").val()===""){
-        $("#errorPr").append("<li>Address is required</li>");
+        $("#errorPr").append("<li><b class='text-danger'>Address is required</b></li>");
         $("#address").val($scope.user.address);
         isValid = false;
     }
     if($("#pword_new").val()){
         if(!$("#pword_current").val()){
-            $("#errorPr").append("<li>Please enter your current password</li>");
+            $("#errorPr").append("<li><b class='text-danger'>Please enter your current password</b></li>");
             isValid = false;
         }
         if($("#pword_new").val().length < 8){
-            $("#errorPr").append("<li>New Password must be at least 8 characters long</li>");
+            $("#errorPr").append("<li><b class='text-danger'>New Password must be at least 8 characters long</b></li>");
             isValid = false;
         }
         if(!$("#pword_confirm").val()){
-            $("#errorPr").append("<li>Please confirm new password</li>");
+            $("#errorPr").append("<li><b class='text-danger'>Please confirm new password</b></li>");
             isValid = false;
         }
         if($("#pword_new").val().length>=8 && $("#pword_confirm").val().length>0){
             if($("#pword_new").val() !== $("#pword_confirm").val()){
-                $("#errorPr").append("<li>New passwords do not match!</li>");
+                $("#errorPr").append("<li><b class='text-danger'>New passwords do not match!</b></li>");
                 isValid = false;
             }
         }
     }
     if(isValid===true){
-        $("#errorPr").append("<li>Please wait...</li>").css({color:'inherit'});
+        $("#errorPr").append("<li><b class='text-info'>Please wait...</b></li>");
         $.ajax({
           url: '/ajax/update_profile.php', // point to server-side PHP script 
           dataType: 'text',  // what to expect back from the PHP script, if anything

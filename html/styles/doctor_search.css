@@ -1,10 +1,10 @@
-a{
+/*a{
   font-color:blue;
   font-size:80%;
   color:blue;
-  /*font-style:italic;*/
+  font-style:italic;
   border-bottom:1px gray;
-}
+}*/
 div.details{
   font-family:Cabin;
 }

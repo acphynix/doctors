@@ -1,6 +1,12 @@
 <?php
-
+error_reporting(0);
   session_start();
+  if($_SESSION['valid']){
+    $login=1;
+  }
+  $displayname = $_SESSION['displayname'];
+  $isdoctor = $_SESSION['user_is_doctor'];
+  
     $userId = $userfirstname = $useremail = '';
     if($_SESSION['user_id']){
       $userId = $_SESSION['user_id'];
@@ -19,15 +25,23 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"> 
-<link rel="stylesheet" type="text/css" href="styles/styles.css"> 
-<link rel="stylesheet" type="text/css" href="styles/date.css"> 
-<link rel="stylesheet" type="text/css" href="forms.css"> 
-<title>Neolafia</title>
+<link rel="stylesheet" type="text/css" href="/styles/styles.css"> 
+<!--<link rel="stylesheet" type="text/css" href="styles/date.css">--> 
+<link rel="stylesheet" type="text/css" href="/forms.css">  
+<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="/css/custom.css"/>
+<title>Neolafia | Contact Us</title>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
 
 <script>
   $(document).ready(function(){
+      
+      var $pageTitle = $("#pageName").data('page-title');
+        $("ul.navbar-nav li#"+$pageTitle).addClass("active");
+        
     var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     $("#iform_feedback").submit(function(e) {
         var isValid = true;
@@ -76,53 +90,58 @@
   });
 </script>
 </head>
-<body style='padding:0'>
-<div class='noboat'>
-  <a href='index.php'>
-  <h1 class='Neolafia' style='position:relative'>
-      <img src='images/logo.png' style='height:1em;'/>
-    
-      Neolafia
-    <!-- </a> -->
-  </h1>
-  </a>
-  </div>
-  <div class='account-body'>
-    <div class='account-container'>
-      <div class='account-entry' style='height:100%'>
-        <h2 class='soloheading'>Contact Us</h2>
-
-
-        <div class="contact-page">
-            <div style="width: 30%; float: left; margin-top: 120px;">
-                <div class="contact">
-                    <i class="fa fa-envelope"></i> <span>neolafia@neolafia.com</span>
+<body>
+    <div class="full-page">
+    <div id="pageName" data-page-title="contactPage"></div>
+        <?php include 'navbar.php'; ?>
+        <div class="container-fluid simple-page">
+            <div class="container contact-us">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4>Contact Us</h4>
+                    </div>
                 </div>
-                <div class="contact">
-                    <i class="fa fa-phone"></i> <span>+234 8034646465 (9am - 6pm)</span>
+                <div class="row">
+                    <div class="col-sm-7">
+                        <p class="text-orange"><b>We would like to here from you!</b></p>
+                        <p>Please use the form below to send us a feedback</p>
+                        <form class="contact-form" role = "form" id='iform_feedback' method = "post">
+                            <div class="form-group">
+                                <input name="fname" id="fname" type="text" value="<?php echo $userfirstname; ?>"
+                                       ng-model="fname" placeholder="First Name" class="form-control">
+                                <span class="error" id="fnameErr"></span>
+                            </div>
+                            <div class="form-group">
+                                <input name="emailad" id="emailad" type="text" value="<?php echo $useremail; ?>" 
+                                       ng-model="emailad" placeholder="Email Address" class="form-control">
+                                <span class="error" id="emailadErr"></span>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="msg" rows="7" id="msg" ng-model="msg" placeholder="Message"
+                                          class="form-control"></textarea>
+                                <span class="error"  id="msgErr"></span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success pull-right">
+                                    <i class="fa fa-location-arrow"></i> Send
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-offset-1 col-sm-4">
+                        <div class="pull-right">
+                            <p class="text-success">
+                                <i class="fa fa-envelope"></i> <span>neolafia@neolafia.com</span>
+                            </p>
+                            <p class="text-success">
+                                <i class="fa fa-phone"></i> <span>+234 8034646465 (9am - 6pm)</span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <div class='frontpage-entry' style='width: 55%; float: right;'>
-                <div style="text-align: center; margin-top: -20px;">
-                    <h4>We would like to here from you!</h4>
-                    <p>Please use the form below to send us a feedback</p>
-                </div>
-            <div id='status' style='font-style:italic;font-weight:bold;color:green;font-size: 1vw; text-align:center;'></div>
-            <form class="form-style-8 borderless centered" role = "form" 
-                  id='iform_feedback' method = "post">
-                <input name="fname" id="fname" type="text" value="<?php echo $userfirstname; ?>"  ng-model="fname" placeholder="First Name">
-              <span style="font-size: 0.9vw; font-style: italic;" id="fnameErr"></span>
-              <input name="emailad" id="emailad" type="text" value="<?php echo $useremail; ?>" ng-model="emailad" placeholder="Email Address">
-              <span style="font-size: 0.9vw; font-style: italic;"  id="emailadErr"></span>
-              <textarea name="msg" id="msg" ng-model="msg" placeholder="Message"></textarea>
-              <span style="font-size: 0.9vw; font-style: italic;"  id="msgErr"></span>
-              <input name="feedback" type="submit"   value="Send" />
-            </form>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+    <?php  include 'footer.php'; ?>
 </body>
 </html>

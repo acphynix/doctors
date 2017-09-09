@@ -34,7 +34,7 @@ doctor_search.controller('search', function($scope, $window, $http){
   }
   $scope.searchbox   = document.getElementById("ikeyword_search");
   if($scope.searchbox !== null){
-    $scope.awesomplete = new Awesomplete(document.getElementById("ikeyword_search"), { list: ["heartbreak"] });
+    $scope.awesomplete = new Awesomplete(document.getElementById("ikeyword_search"), { list: [] });
   }
   
   $scope.book_appointment = function(doctor,time){
@@ -68,6 +68,7 @@ doctor_search.controller('search', function($scope, $window, $http){
   $scope.load_info = function(doctor){
     if(doctor.show){
       console.log(doctor);
+      var loc_id = $("#loc_ent").val();
       $http({
         method: 'GET',
         url: '../ajax/get_doctor_availability.php?u='+doctor.user_id,
@@ -94,7 +95,7 @@ doctor_search.controller('search', function($scope, $window, $http){
           events      : doctor.events,
           timezone    : 'local',
           eventClick  : function(event, jsEvent, view){
-            goto('/book_appointment.php?t='+event.qry_t+'&q='+$scope.keyword_search+'&d='+doctor.user_id);
+            goto('/book_appointment.php?t='+event.qry_t+'&q='+$scope.keyword_search+'&c='+loc_id+'&d='+doctor.user_id);
           }
         });
       }, function errorCallback(response) {

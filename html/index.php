@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
   session_start();
   if($_SESSION['valid']){
     $login=1;
@@ -20,17 +21,30 @@
 
 </script>
 
-<title>Neolafia</title>
+<title>Neolafia | Home - Search for specialist doctor's with ease</title>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
+<meta name="description" content="Neolafia makes it easy for you to book appointments with specialist doctors. A list of
+      doctors are presented to you based on the symptoms, speciality, doctor's name or location that you enter"/>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="app.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/app.js"></script>
 
-<link rel="stylesheet" href="awesomplete/awesomplete.css" />
-<script src="awesomplete/awesomplete.js"></script>
+<link rel="stylesheet" href="/awesomplete/awesomplete.css" />
+<script src="/awesomplete/awesomplete.js"></script>
 
 <script type="text/javascript" async>
   $( document ).ready(function() {
+      
+      var $pageTitle = $("#pageName").data('page-title');
+      $("ul.navbar-nav li#"+$pageTitle).addClass("active");
+      
+    $(window).scrollTop(0);
+    var appFunPos = $("#mainView").position().top;
+    $(".carousel-caption .btn").click(function(){
+        $("html, body").animate({scrollTop:appFunPos}, 1000);
+    });
     var input_plc = "Enter your symptom, doctor's name, speciality";
     $('#ikeyword_search')
       .attr('placeholder',input_plc);
@@ -41,168 +55,168 @@
     });
 	
 	$("#searchDoc").click(function(e){
-        $("#errorNi").html('');
+            $(this).attr('data-toggle', "");
+            $(this).attr('data-target', "");
         if($("#ikeyword_search").val()==='' && $("#ilocation_search").val()===''){
             e.preventDefault();
-            $("#errorNi").html('Please enter a search parameter');
+            $(this).attr('data-toggle', "modal");
+            $(this).attr('data-target', "#webModal");
         }
     });
-	
+    
+//    var $ulText = $(".ul-text").text();
+//    $(".ul-text").on("mouseover", function(){
+//        if($ulText === "Are you a specialist doctor?"){
+//            $(this).text("Click to continue");
+//        }
+//    });
+//    $(".ul-text").on("mouseout", function(){
+//        if($ulText === "Click to continue"){
+//            $(this).text("Are you a specialist doctor?");
+//        }            
+//    });
+    
   });
 </script>
 <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin|Courgette" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="forms.css"> 
-<link rel="stylesheet" type="text/css" href="styles/styles.css"> 
-
-
+<link rel="stylesheet" type="text/css" href="/forms.css"> 
+<link rel="stylesheet" type="text/css" href="/styles/styles.css"> 
+<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="/css/custom.css"/>
 </head>
 
-<body ng-controller="HealthController" style='margin:0'>
-  <span ng-init='init_view()' />
-  <div class='seg-title' style='background-color:green'>
-    <div class='heading-container' style='padding:1em;padding-right:0;overflow:hidden;position:relative'>
-      <span class='pane-heading' style='float:left;position:inline-block;padding:1em;padding-left:3em'>
-        <h1 class='title' style='padding:0;margin:0;font-size:6vw;color:white'>Neolafia</h1>
-        <h2 class='title' style='color:gold;padding:0;margin:0;font-size:1.66vw;font-family:Cabin;font-style:italic'>Healthcare at your fingertips</h2>
-      </span>
-      <span class='right-container' style='float:right'>
-        <span class='pane-options' style='position:absolute;right:0;height:100%; width:600px'>
-          <div style='height:40px'></div>
-          <a class='highlighter' href='/new/doctor.php' style='float:right;position:relative;right:0;background-color:orange;color:black;font-size:2vw;padding:0.25em 3.5em 0.25em 0.5em;min-width:30vw'>
-            <?php if($login>0){ ?>
-              Welcome, <?php echo $displayname ?>!
-            <?php }else{ ?>
-              Are you a specialist doctor?
-            <?php } ?>
-          </a>
-          <div class='options-small' style='position:absolute; bottom: 1vw;font-size:1.5vw;padding:1vw'>
-              <a href='/aboutus.php' class='banner-button' style='padding-right:3vw'>About Us</a>
-            <?php if($login>0){ ?>
-              <a href='/page/home.php' class='banner-button' style='padding-right:3vw'>Dashboard</a>
-              <a href='/logout.php' class='banner-button' style='padding-right:3vw'>Sign out</a>
-            <?php }else{ ?>
-              <a href='/createaccount.php' class='banner-button' style='padding-right:3vw'>Sign up </a>
-              <a href='/login.php' class='banner-button' style='padding-right:3vw'>Log In </a>
-            <?php } ?>
-              <a href='/contactus.php' class='banner-button' style='padding-right:3vw'>Contact Us</a>
-              <a href='/faq.php' class='banner-button' style='padding-right:3vw'>FAQ</a>
-          </div>
-        </span>
-      </span>
-    </div>
-  </div>
-  <div class='seg-bigsearch' style='background-color:white;overflow:hidden'>
-    <div class='question' style='font-family:Cabin; font-size:4vw; padding:8vw;overflow:hidden; float:left; width: 34vw; height:30vh; text-align:center'>
-      Need to see a specialist doctor?
-    </div>
-    <div class='answer' style='font-family:Cabin; font-size:4vw; padding:8vw 2vw 0vw 0vw;overflow:hidden; position:absolute; right:0; width: 46vw'>
-      <form class='form-frontpage' method='GET' action='views/doctor_search.php' >
-        <table>
-          <tr>
-            <td class='label'><div>What are you looking for?</div></td>
-            <td class='field'>
-              <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
-                   autofocus ng-keypress='update_dropdown()' autocomplete="off" placeholder="Enter your symptom, doctor's name, speciality"/>
-            </td>
-          </tr>
-          <tr>
-            <td class='label'><div>Location</div></td>
-            <td class='field'>
-                <select ng-required=true id='ilocation_search' name='c'>
-                    <option value=''>Choose Location</option>
-                  </select>
-            </td>
-          </tr>
-        </table>
-        <div id='errorNi' style='font-style:italic;font-weight:bold;color:red;font-size: 1vw;'>
-                
+<body ng-controller="HealthController">
+    <div id="pageName" data-page-title="homePage"></div>
+    <?php include 'navbar.php'; ?>
+    <div id="webCarousel" class="carousel" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#webCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#webCarousel" data-slide-to="1"></li>
+            <li data-target="#webCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="images/slider/banner_1.jpg" alt="banner_1"/>
+                <div class="carousel-caption">
+                    <p>Save time by skipping the long queues at the hospital</p>
+                    <button type="button" class="btn btn-lg btn-warning">
+                        START NOW
+                    </button>
+                </div>
             </div>
-        <div class='button-container'>
-            <input type='submit' id="searchDoc" value='Search' />
+            <div class="item">
+                <img src="images/slider/banner_2.jpg" alt="banner_2"/>
+                <div class="carousel-caption">
+                    <p>Save booking costs when you pay the consultation fee</p>
+                    <button type="button" class="btn btn-lg btn-warning">
+                        START NOW
+                    </button>
+                </div>
+            </div>
+            <div class="item">
+                <img src="images/slider/banner_3.jpg" alt="banner_3"/>
+                <div class="carousel-caption">
+                    <p>Get treated by specialist doctors only</p>
+                    <button type="button" class="btn btn-lg btn-warning">
+                        START NOW
+                    </button>
+                </div>
+            </div>
         </div>
-      </form>
+        <a class="carousel-control left" href="#webCarousel" data-slide="prev">
+            <i class="fa fa-caret-left"></i>
+        </a>
+        <a class="carousel-control right" href="#webCarousel" data-slide="next">
+            <i class="fa fa-caret-right"></i>
+        </a>
     </div>
-  </div>
-  <div class='marquee'>
-    <table style='width:100%'>
-      <tr>
-      <td>
-        <img style='position:inline' src='/images/icon_doctor.png' />
-      </td>
-      <td>
-        <div>
-          Get treated by specialist doctors only - the most qualified in the medical profession
+    <span ng-init='init_view()'></span>
+    <div class="container main-view" id="mainView">
+        <div class="row">
+            <div class="col-sm-5 question-user">
+                <h4>Need to see a specialist doctor?</h4>
+            </div>
+            <div class="col-sm-7 search-doctor">
+                <form method="GET" action="views/doctor_search.php">
+                    <div class="form-group">
+                        <label for="ikeyword_search" class="control-label bg-info">
+                            What are you looking for?
+                        </label>
+                        <input class="form-control" name="q" id="ikeyword_search" type="text"
+                                ng-model="keyword_search" autofocus ng-keypress="update_dropdown()"
+                                autocomplete="off" placeholder="Enter your symptom, doctor's name, speciality"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="ikeyword_search" class="control-label bg-info">
+                            Location
+                        </label>
+                        <select ng-required=true id='ilocation_search' name='c' class="form-control">
+                            <option value=''>Choose Location</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="searchDoc" class="btn btn-lg btn-success pull-right"
+                                data-toggle="" data-target="">Search
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-      </td>
-      <td>
-        <img style='position:inline' src='/images/icon_clock.png' />
-      </td>
-      <td>
-        <div>
-          Save time by skipping the long queues at the hospital
-        </div>
-      </td>
-      <td>
-        <img style='position:inline' src='/images/icon_money_usd.png' />
-      </td>
-      <td>
-        <div>
-          Save the booking costs when you pay the consultation fee
-        </div>
-      </td>
-      </tr>
-    </table>
-  </div>
-  <div class='seg-footer' style='background-color:#e1efd8'>
-    <div style='text-align:center;font-family:Cabin;padding:1vw'>
-      Copyright © 2017 Neolafia. All Rights Reserved. <br />
-      neolafia@neolafia.com <br />
-      +234.803.464.6465 <br />
     </div>
-  </div>
-<!--   <div class='boat'>
-    <span>
-    <h1 class='Neolafia' style='position:relative'>
-      <img src='../images/logo.png' style='height:1em;'/>
-      Neolafia
-      <span class='banner-button-container' >
-        <?php if($login>0){ ?>
-          <a class='banner-welcome-text banner-button' href='page/home.php'><?php echo $displayname ?></a>
-          <a class='banner-button' href='logout.php'>sign out</a>
-        <?php }else{ ?>
-          <a class='banner-button' href='createaccount.php'>sign up</a>
-          <a class='banner-button' href='login.php'>sign in</a>
-        <?php } ?>
-      </span>
-    </h1>
-    <div>
-      <div class='question-container'>
-        <div class='question'>
-          <h2>Looking for a doctor?</h2>
-          <form method='GET' action='views/doctor_search.php' class="form-style-8 white banner_search">
-            <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
-                   autofocus ng-keypress='update_dropdown()' autocomplete="off" />
-          </form>
+    <div class="container-fluid bg-success f-row">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 icon-view">
+                    <div class="card bg-danger">
+                        <h4 class="text-danger"><i class="fa fa-medkit"></i></h4>
+                        <p class="text-danger">
+                            Get treated by specialist doctors only - the most qualified in the medical profession
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-4 icon-view">
+                    <div class="card bg-white">
+                        <h4><i class="fa fa-clock-o"></i></h4>
+                        <p>Save time by skipping the long queues at the hospital</p>
+                    </div>
+                </div>
+                <div class="col-sm-4 icon-view">
+                    <div class="card bg-warning">
+                        <h4 class="text-warning"><i class="fa fa-dollar"></i></h4>
+                        <p class="text-warning">Save the booking costs when you pay the consultation fee</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>  
-  </div> -->
-<!--   <div class='frontpage-body'>
-    <div class='frontpage-container'>
-      <div class='frontpage-entry'>
-        <h2 class='frontpage-heading'>Are you a Medical Professional?</h2>
-        <div class='frontpage-text'>
-        We could use your help! Make a difference around you by lorem ispum dolor sit amet!
-        </div>
-      </div>
-      <div class='frontpage-entry'>
-        <h2 class='frontpage-heading'>Connect with Medical Specialists near You</h2>
-        <div class='frontpage-text'>
-          Cough that just won't go away? Back pain keeping you up? We make finding
-          a medical specialist easy. Lorem ipsum, sign up to try it out!
-        </div>
-      </div>
     </div>
-  </div> -->
+  <?php  include 'footer.php'; ?>
+    <div class="modal fade" id="webModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                    <h4 class="modal-title"><b>No Search Parameter Entered!</b></h4>
+                </div>
+                <div class="modal-body">
+                <p>
+                    Please enter a search parameter. You may search by:
+                </p>
+                <ol>
+                    <li>Symptoms, Speciality or Doctor's name</li>
+                    <li>Location</li>
+                    <li>A combination of <b>1</b> and <b>2</b> above</li>
+                </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

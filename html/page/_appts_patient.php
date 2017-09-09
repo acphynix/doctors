@@ -1,96 +1,164 @@
-<div style='width:100%;text-align:center;padding-top:2em;padding-bottom:2em;margin:0'>
-  <div style='max-width:35em;display:inline-block;text-align:center;margin:0'>
-    <div id='calendar'></div>
-    <!-- hello -->
-  </div> 
-</div>
-<div style='width:100%;text-align:center;margin-top:2em'>
-  <div style='width:80%;min-width:35em;display:inline-block'>
-    <h1 style='margin-top:0;text-align:left'>Appointments</h1>
-      <div style='width:100%;padding:2em' ng-init="get_schedule('doctor')">
-			<div ng-if="pendingAppts.length===0">
-                <h4 style="font-size: 2vw;">No appointments scheduled</h4>
+<div class="row db-page">
+    <div class="col-xs-12 p-title">
+        <h4 class="text-center">
+            <b>
+                <i class="fa fa-calendar-check-o"></i> APPOINTMENTS
+            </b>
+        </h4>
+        <div class="u-line"></div>
+    </div>
+    <div class="col-xs-12 p-content">
+        <div id='calendar'></div>
+        <div ng-init="get_schedule('doctor')">
+            <div ng-if="pendingAppts.length===0">
+                <h4 class="text-success howmany">No appointments scheduled</h4>
             </div>
             <div ng-if="pendingAppts.length === 1">
-                <h4 style="font-size: 2vw;">You have {{pendingAppts.length}} pending appointment</h4>
+                <h4 class="text-success howmany">You have {{pendingAppts.length}} pending appointment</h4>
             </div>
             <div ng-if="pendingAppts.length > 1">
-                <h4 style="font-size: 2vw;">You have {{pendingAppts.length}} pending appointments</h4>
+                <h4  class="text-success howmany">You have {{pendingAppts.length}} pending appointments</h4>
             </div>
-        <table class='schedule'>
-        <tbody ng-repeat = 'a in appointments'>
-          <tr style='font-family:Cabin;' class='clickme' ng-click='a.show=!a.show'>
-            <td>{{a.status}}</td>
-            <td style='width:0;padding:0;margin:0'>{{a.date_start.format("ddd")}}</td>
-            <td style='width:0;padding:0;margin:0'>{{a.date_start.format("D MMMM YYYY")}}</td>
-              <td style='width:0;padding:0;margin:0'>{{plus_one_hour(a.date_start.format("HH:mm"))}}</td>
-            <td style='width:0;padding:0;margin:0'>{{a.user_first_name}} {{a.user_last_name}}</td>
-            <td style='width:0;padding:0;margin:0'>Click for Details</td>
-            <td style='width:0;padding:0;margin:0'></td>
-          </tr>
-          <tr ng-show='a.show' ng-init='a.show=true'>
-            <td colspan='6' style='margin-bottom:0.66em'>
-              <div style='display:block;width:100%;padding:1em'>
-                <div style="border:2px black solid;background-image:url({{'/ajax/get_file.php?n=profile_picture&u='+a.user_id}});background-size:cover;width:4em;height:4em;margin-left:0;margin-right:1em;display:inline-block;float:left">
-                </div>
-                <div style='display:inline-block;margin-left:0'>
-                  <div style='padding:0;margin:0;font-family:cabin;font-size:1.5em'>Dr. {{a.user_first_name}} {{a.user_last_name}}</div>
-                  <div style='padding:0;margin:0;font-family:cabin'>{{a.timeslot_address}}</div>
-                  <div style='padding:0;margin:0;font-family:cabin'>{{location_name(a.timeslot_location)}}</div>
-                </div>
-              </div>
-              <div style='padding-right:0.5em;padding-left:1em;font-style:italic'>Appointment Notes:</div>
-              <div style='padding:0.5em;padding-left:2em;'>
-                {{a.notes}}
-              </div>
-              <div style='padding-right:0.5em;padding-left:1em;font-style:italic'>Required Tasks:</div>
-              <div style='padding:0.5em;padding-left:2em;'>
-                <div ng-if="a.status=='pending'">
-                  Please send your payment of {{a.price}} {{a.currency}} to:
-                    <table style='padding-left:4vw;margin-bottom:2em;width:30em;border-bottom:solid black 1px'>
-                      <tr>
-                        <td>Account Number:</td>
-                        <td>3004298963</td>
-                      </tr>
-                      <tr>
-                        <td>Bank:</td>
-                        <td>FIRST BANK NIGERIA</td>
-                      </tr>
-                      <tr>
-                        <td>Memo:</td>
-                        <td>{{a.apptcode}}</td>
-                      </tr>
-                    </table>
-                  Dr. {{a.user_first_name}} {{a.user_last_name}} will not be able to confirm your appointment
-                  until the payment has been processed. Make sure you enter the code <b>{{a.apptcode}}</b> in
-                  your transfer.
-                </div>
-                <div ng-if="a.status=='paid'">
-                  We have received your payment, and are waiting for Dr. {{a.user_first_name}} {{a.user_last_name}} to
-                  confirm your booking. If your booking is not confirmed within 7 days, it will be cancelled, and your
-                  payment will be refunded.
-                </div>
-                <div ng-if="a.status=='approved'">
-                  Your appointment has been approved. You have agreed to meet with Dr. {{a.user_first_name}} {{a.user_last_name}}
-                  on {{a.date_start.format("D MMMM")}} at {{a.date_start.format("HH:mm")}}. Be sure to provide your doctor
-                  with the code {{a.apptcode}} to verify that the appointment has taken place.
-                </div>
-                <div ng-if="a.status=='complete'">
-                  Dr. {{a.user_first_name}} {{a.user_last_name}} has confirmed that your appointment has taken place.
-                  Thank you for choosing to book your appointment with Neolafia!
-                </div>
-              </div>
-
-            </td>
-			<td>
-                <button type="button" ng-click="appt_cancel(a.appointment_id)">Cancel this appointment</button>
-            </td>
-          </tr>
-          <tr>
-            <td colspan='7' style='padding:0.1em'>&nbsp;</td>
-          </tr>
-        </tbody>
+            
+        <table class='schedule table table-responsive'>
+            <tbody ng-repeat = 'a in appointments'>
+                <tr class='clickme' ng-click='a.show=!a.show'>
+                    <td>{{a.status}}</td>
+                    <td class="sm-hide">{{a.date_start.format("ddd")}}</td>
+                    <td class="sm-hide">{{a.date_start.format("D MMMM YYYY")}}</td>
+                    <td class="sm-hide">{{plus_one_hour(a.date_start.format("HH:mm"))}}</td>
+                    <td>{{a.user_first_name}} {{a.user_last_name}}</td>
+                    <td>Click for Details</td>
+                </tr>
+                <tr ng-show='a.show'>
+                    <td colspan='6'>
+                        <div class="col-sm-4 col-xs-6 appt-doc-info">
+                            <img ng-src="{{'/ajax/get_file.php?n=profile_picture&u='+a.user_id}}"
+                                 class="img-responsive" alt="image"/>
+                            <div>
+                                <h4>Dr. {{a.user_first_name}} {{a.user_last_name}}</h4>
+                                <span ng-if="a.status!='pending'">{{a.timeslot_address}}</span>
+                                <span>{{location_name(a.timeslot_location)}}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 th-info">
+                            <span>{{a.status}} appointment</span>
+                            <span>{{a.date_start.format("ddd")}}, {{a.date_start.format("D MMMM YYYY")}}</span>
+                            <span>{{plus_one_hour(a.date_start.format("HH:mm"))}}</span>
+                        </div>
+                        <div class="col-sm-8 appt-info">
+                            <div class="col-xs-12 grp">
+                                <b>Appointment Notes:</b><br/>
+                                {{a.notes}}
+                            </div>
+                            <div class="col-xs-12 grp">
+                                <b>Required Tasks:</b><br/>
+                                <div ng-if="a.status=='pending'">
+                                  Please send your payment of {{a.price}} {{a.currency}} to:
+                                    <table class="table table-responsive table-hover inner-table">
+                                        <tr>
+                                          <td>Account Number:</td>
+                                          <td>3004298963</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Bank:</td>
+                                          <td>FIRST BANK NIGERIA</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Memo:</td>
+                                          <td>{{a.apptcode}}</td>
+                                        </tr>
+                                    </table>
+                                    <span>
+                                        Dr. {{a.user_first_name}} {{a.user_last_name}} will not be able to confirm your appointment
+                                        until the payment has been processed. Make sure you enter the code <b>{{a.apptcode}}</b> in
+                                        your transfer.
+                                    </span>
+                                </div>
+                                <div ng-if="a.status=='paid'">
+                                    <span>
+                                        We have received your payment, and are waiting for Dr. {{a.user_first_name}} {{a.user_last_name}} to
+                                        confirm your booking. If your booking is not confirmed within 7 days, it will be cancelled, and your
+                                        payment will be refunded.
+                                    </span>
+                                </div>
+                                <div ng-if="a.status=='approved'">
+                                    <span>
+                                        Your appointment has been approved. You have agreed to meet with Dr. {{a.user_first_name}} {{a.user_last_name}}
+                                        on {{a.date_start.format("D MMMM")}} at {{plus_one_hour(a.date_start.format("HH:mm"))}}. Be sure to provide your doctor
+                                        with the code {{a.apptcode}} to verify that the appointment has taken place.
+                                    </span>
+                                </div>
+                                <div ng-if="a.status=='completed'">
+                                    <span>
+                                        Dr. {{a.user_first_name}} {{a.user_last_name}} has confirmed that your appointment has taken place.
+                                        Thank you for choosing to book your appointment with Neolafia!
+                                    </span>
+                                    <div class="patient-rating" ng-if="!a.patient_feedback">
+                                        <span class="text-info" ng-show="pst1">
+                                            <b>Please take moment to rate this doctor during this appointment...</b>
+                                        </span>
+                                        <div class="rating" ng-show="pst1">
+                                            <span id="dp-rating"><b>Star: {{patient_rating}}</b></span><br/>
+                                            <span ng-class="{'text-orange':patient_rating===1}" class="fa fa-star" ng-click="rg(1)"></span>
+                                            <span ng-class="{'text-orange':patient_rating===2}" class="fa fa-star" ng-click="rg(2)"></span>
+                                            <span ng-class="{'text-orange':patient_rating===3}" class="fa fa-star" ng-click="rg(3)"></span>
+                                            <span ng-class="{'text-orange':patient_rating===4}" class="fa fa-star" ng-click="rg(4)"></span>
+                                            <span ng-class="{'text-orange':patient_rating===5}" class="fa fa-star" ng-click="rg(5)"></span>
+                                            <br/><br/>
+                                            <button type="button" class="btn btn-success" ng-click="rApt(a.appointment_id)">
+                                                Rate
+                                            </button>
+                                        </div>
+                                        <div class="text-success" ng-show="pst2">
+                                            <b><i class="fa fa-thumbs-up"></i> Thank you for your feedback</b>
+                                        </div>
+                                        <div class="text-warning" ng-show="pst3">
+                                            <b><i class="fa fa-refresh"></i> Oops! Please try again later</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="a.status=='pending'" class="col-xs-12 grp">
+                                <button type="button" class="btn btn-danger" 
+                                        data-toggle="modal" data-target="#webModal{{a.appointment_id}}">
+                                    <i class="fa fa-close"></i>
+                                    Cancel this appointment
+                                </button>
+                            </div>
+                            <div class="modal fade" id="webModal{{a.appointment_id}}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title"><b>Cancellation of Appointment</b></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <span>
+                                                Are you sure you want to cancel this appointment?
+                                            </span>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" ng-click="appt_cancel(a.appointment_id)">
+                                                Yes
+                                            </button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                No
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="distinct">
+                    <td colspan="6"></td>
+                </tr>
+            </tbody>
         </table>
       </div>
-  </div>
+    </div>
 </div>

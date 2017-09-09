@@ -1,44 +1,63 @@
 <?php
+error_reporting(0);
   session_start();
   if($_SESSION['valid']){
     header("Location: http://".$_SERVER['HTTP_HOST'].'/page/home.php');
   }
+  if($_SESSION['valid']){
+    $login=1;
+  }
+  $displayname = $_SESSION['displayname'];
+  $isdoctor = $_SESSION['user_is_doctor'];
 ?>
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <script src="/createaccount.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/styles/styles.css"> 
-<link rel="stylesheet" type="text/css" href="/styles/date.css"> 
+<!--<link rel="stylesheet" type="text/css" href="/styles/date.css">--> 
 <link rel="stylesheet" type="text/css" href="/forms.css">
-<link rel="stylesheet" type="text/css" href="/styles/account-doctor.css">  
+<link rel="stylesheet" type="text/css" href="/styles/account-doctor.css">   
+<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="/css/custom.css"/>
 <script>
   function goto(newpage){
     window.location.href = newpage
   }
   $(document).ready(function () {
       
+      var $pageTitle = $("#pageName").data('page-title');
+        $("ul.navbar-nav li#"+$pageTitle).addClass("active");
+      
     var phoneRegex = /^[0]{1}(\d){10}$/;
     var medIdRegex = /^\d{5}$/;
+    var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    var nameRegex = /^[a-zA-Z]+$/;
     $("#iUr").click(function () {
         var isValid = {};
         isValid.stat = true;
-        $(".errorPhn, .errorPw").addClass('hide');
-        $("#error,  #errorPw, #errorPhn").html('');
+        $("#error, #errorPw, #errorPhn, #errorEm, #errorMId, #errorLic, \n\
+            #errorAd, #errorNm, #errorQct, #errorChs, #errroAff").html('');
         $.each($('#form_req select'), function(k,v){
             if(!$(this).val() || $(this).val()===""){
                 isValid.stat = false;
             }
         });
         $.each($('#form_req input'), function(k,v){
-            if(!$(this).val() || $(this).val()===""){
+            if(!$(this).val().trim() || $(this).val().trim()===""){
                 isValid.stat = false;
             }
         });
-        if(isValid.stat === false){
-            $("#error").html('Please enter all fields before submitting');
+        if($("#nFn").val().trim()!=="" && $("#nLn").val().trim()!==""){
+            if(!nameRegex.test($("#nFn").val().trim()) || $("#nFn").val().trim().length < 2 ||
+                !nameRegex.test($("#nLn").val().trim()) || $("#nLn").val().trim().length < 2){
+                isValid.stat = false;
+                $("#errorNm").html("First and last names must be valid names");
+            }
         }
         if($("#nPw").val()!=="" && $("#nPw").val().length < 8){
             $(".errorPw").removeClass('hide');
@@ -46,31 +65,64 @@
             isValid.stat = false;
         }
         if($("#nPw").val().length >= 8 && !$("#nPw2").val()){
-            $(".errorPw").removeClass('hide');
             $("#errorPw").html("Please confirm password");
             isValid.stat = false;
         }
         if($("#nPw").val().length >= 8 && $("#nPw2").val()!=="" && $("#nPw").val()!==$("#nPw2").val()){
-            $(".errorPw").removeClass('hide');
             $("#errorPw").html("Passwords do not match! (Passwords are case sensitive)");
             isValid.stat = false;
         }
         if($("#nPhn").val()!==""){
             if(!phoneRegex.test($("#nPhn").val())){
-                $(".errorPhn").removeClass('hide');
                 $("#errorPhn").html("Invalid phone number!");
+                isValid.stat = false;
+            }
+        }
+        if($("#nEm").val()!==""){
+            if(!emailRegex.test($("#nEm").val())){
+                $("#errorEm").html("Invalid email address!");
                 isValid.stat = false;
             }
         }
         if($("#iLi").val()!==""){
             if(!medIdRegex.test($("#iLi").val())){
-                $(".errorMId").removeClass('hide')
                 $("#errorMId").html("Invalid Id!");
                 isValid.stat = false;
             }
         }
-        
+        if($("#nAd").val().trim()!=="" && $("#nAd2").val().trim()!=="" && $("#nAd3").val().trim()!==""){
+            if($("#nAd").val().trim().length < 2 || $("#nAd2").val().trim().length < 2 || $("#nAd3").val().trim().length < 2){
+                isValid = false;
+                $("#errorAd").html("Please enter a valid address");
+            }
+        }
+        if($("#iChs").val().trim()!==""){
+            if($("#iChs").val().trim().length < 2){
+                isValid.stat = false;
+                $("#errorChs").html("Please enter a valid hospital name and address");
+            }
+        }
+        if($("#iQct").val().trim()!==""){
+            if($("#iQct").val().trim().length < 2){
+                isValid.stat = false;
+                $("#errorQct").html("Please enter valid qualifications and ceritifications");
+            }
+        }
+        if($("#iAff").val().trim()!==""){
+            if($("#iAff").val().trim().length < 2){
+                isValid.stat = false;
+                $("#errorAff").html("Please enter valid professional affiliations");
+            }
+        }
+        if(!$("#iNig").is(":checked")){
+            $("#errorLic").html("You must be licensed to register!");
+            isValid.stat = false;
+        }
+        if(isValid.stat === false){
+            $("#error").html('<b class="text-danger">Please correctly supply information for ALL fields before submitting</b>');
+        }
         if(isValid.stat === true){
+            $("#error").html('<b class="text-success">Getting you started...</b>');
             var formData = $("#form_req").serialize();
             $.ajax({
                 type: "POST",
@@ -87,7 +139,7 @@
                     }
                     else{
                       console.log(value);
-                      $('#error').text(value.msg);
+                      $('#error').html('<b class="text-danger">'+value.msg+'</b>');
                     }
                     console.log('done');
                 },
@@ -114,250 +166,251 @@
     });
 });
 </script>
-<title>Neolafia</title>
+<title>Neolafia | Doctor's Sign up</title>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
 </head>
-<body style='padding:0' ng-app="InputDOB" ng-controller="DateController">
-  <div class='seg-title' style='background-color:green'>
-    <div class='heading-container' style='padding:1em;padding-right:0;overflow:hidden;position:relative'>
-      <span class='pane-heading clickme' style='float:left;position:inline-block;padding:1em;padding-left:3em' onclick="goto('/index.php')">
-        <h1 class='title' style='padding:0;margin:0;font-size:6vw;color:white'>Neolafia</h1>
-        <h2 class='title' style='color:gold;padding:0;margin:0;font-size:1.66vw;font-family:Cabin;font-style:italic'>Healthcare at your fingertips</h2>
-      </span>
-      <span class='right-container' style='float:right'>
-        <span class='pane-options' style='position:absolute;right:0;height:100%;'>
-          <div style='height:40px'></div>
-          <a class='highlighter' href='/index.php' style='float:right;position:relative;right:0;background-color:orange;color:black;font-size:2vw;padding:0.25em 3.5em 0.25em 0.5em;'>
-            Are you looking for a doctor?
-          </a>
-          <div class='options-small' style='position:absolute; bottom: 1vw;font-size:1.5vw;padding:1vw'>
-            <?php if($login>0){ ?>
-              <a href='/page/home.php' class='banner-button' style='padding-right:3vw'><?php echo $displayname ?></a>
-              <a href='/logout.php' class='banner-button' style='padding-right:3vw'>Sign out</a>
-            <?php }else{ ?>
-              <a href='/createaccount.php' class='banner-button' style='padding-right:3vw'>Sign up </a>
-              <a href='/login.php' class='banner-button' style='padding-right:3vw'>Log In </a>
-            <?php } ?>
-              <a href='/contactus.php' class='banner-button' style='padding-right:3vw'>Contact Us</a>
-          </div>
-        </span>
-      </span>
-    </div>
-  </div>
-
-  <div class='seg-bigsearch' style='background-color:white;overflow:hidden'>
-    <table class='banner-sell-left' style='font-family:Cabin; font-size:2vw; padding:4vw 4vw 4vw 6vw;box-sizing: border-box;overflow:hidden; float:left; width: 40vw; height:34vh; background-color:lightgray; text-align:center'>
-    <tr>
-      <td>
-        <img style='position:inline' src='/images/icon_clock.png' />
-      </td>
-      <td>
-        <h3>We value your time</h3>
-        <div>All appointments are paid for before service</div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <img style='position:inline' src='/images/icon_doctor.png' />
-      </td>
-      <td>
-        <h3>We value your business</h3>
-        <div>Expand your practice with access to more clients</div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <img style='position:inline' src='/images/icon_money_usd.png' />
-      </td>
-      <td>
-        <h3>We make you money</h3>
-        <div>Make some extra cash to supplement your practice</div>
-      </td>
-    </tr>
-    </table>
-	<h2 style=" font-size: 1.5vw;">&nbsp;New here? Enter details below to register right away</h2>
-    <div class='answer' style='font-family:Cabin; font-size:4vw; padding:2vw 2vw 2vw 2vw;box-sizing: border-box;overflow:hidden; position:absolute; right:0; width: 60vw'>
-      <form class='form-frontpage' id = "form_req" role = "form" ng-submit="form.$valid && false">
-          <div id='error' style='font-style:italic;font-weight:bold;color:red;font-size: 1.25vw;' ></div>
-        <!--<div style='font-style:italic;font-color:gray;font-family:Cabin;font-size:1.33vw;text-align:center;padding-bottom:0.33em'>Personal</div>-->
-        <table>
-          <tr>
-            <td class='label'>Name</td>
-            <td class='field'>
-                <input ng-required='true' id="nFn" name='nFn' ng-model="nFn" type="text"
-                   autofocus placeholder="First Name"/>
-            </td>
-            <td class='field'>
-                <input ng-required='true' id="nLn" name='nLn' ng-model='nLn' type="text"
-                   autofocus placeholder="Last Name"/>
-            </td>
-          </tr>
-          <tr>
-            <td class='label'>DOB</td>
-            <td>
-              <div id="dob-year" class="input-wrapper small-4 columns" style="padding-left: 0;">
-                <select ng-required=true name="year" id="year" ng-model="year" ng-change="updateDate('year')" onchange="changeMe(this)" ng-required="true">
-                  <option value='' disabled>Year</option>
-                  <option ng-repeat="y in years" value="{{y}}">{{y}}</option>
-                </select>
-              </div>
-              </td><td>
-              <div id="dob-month" class="input-wrapper small-4 columns">
-                <select ng-required=true name="month" id="month" ng-model="month" ng-change="updateDate('month')" onchange="changeMe(this)" ng-required="true">
-                  <option value='' disabled>Month</option>
-                  <option ng-repeat="m in months" value="{{m.id}}">{{m.name}}</option>
-                </select>
-              </div>
-              </td><td>
-              <div id="dob-day" class="input-wrapper small-4 columns" style="padding-right: 0;">
-                <select ng-required=true name="day" id="day" ng-model="day" ng-change="updateDate('day')" onchange="changeMe(this)" required>
-                  <option value='' disabled>Day</option>
-                  <option ng-repeat="d in days | daysInMonth:year:month | validDays:year:month" value="{{d}}">{{d}}</option>
-                </select>
-              </div>  
-            </td>
-          </tr>
-          <tr>
-            <td class='label'>Sex</td>
-            <td class='field'>
-              <select ng-required=true id='iSx' name='nSx' style="width: 95%">
-                <option value='' disabled selected>Choose Sex</option>
-                <option value='F'>Female</option>
-                <option value='M'>Male</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class='label'>Address</td>
-            <td class='field'>
-              <input name="nAd" id="nAd" ng-model="nAd" ng-required='true' name='q' type="text"
-                   autofocus placeholder="Street Address"/>
-            </td>
-            <td class='field'>
-              <input name="nAd2" id="nAd2" ng-model="nAd2" ng-required='true' name='q' type="text"
-                   autofocus placeholder="City"/>
-            </td>
-            <td class='field'>
-              <input name="nAd3" id="nAd3" ng-model="nAd3" ng-required='true' name='q' type="text"
-                   autofocus placeholder="State"/>
-            </td>
-          </tr>
-          <tr>
-            <td class='label'>Phone</td>
-            <td class='field'>
-              <input name="nPhn" id="nPhn" ng-model="nPhn" ng-required='true' name='q' type="text"
-                   autofocus placeholder="08012345678"/>
-            </td>
-          </tr>
-          <tr>
-              <td colspan="3" class="errorPhn hide">
-                  <div id='errorPhn' style='font-style:italic;font-weight:bold;color:red;font-size: 1vw;'>
-                      
-                  </div>
-              </td>
-          </tr>
-
-          <tr>
-            <td class='label'>E-mail</td>
-            <td class='field'>
-              <input name="nEm" id="nEm" ng-model="nEm" ng-required='true' name='q' type="email"
-                   autofocus placeholder="doctor@yahoo.com"/>
-            </td>
-          </tr>
-          <tr>
-              <td colspan="3" class="errorEm hide">
-                  <div id='errorEm' style='font-style:italic;font-weight:bold;color:red;font-size: 1vw;'>
-                      
-                  </div>
-              </td>
-          </tr>
-          <tr>
-            <td class='label'>Password</td>
-            <td class='field'>
-              <input name="nPw" id="nPw" ng-model="pword" type='password' ng-required='true' placeholder="Password" autocomplete='off' ng-minlength='8'/>
-            </td>
-            <td class='field'>
-              <input name="nPw" id="nPw2" ng-model="pword2" type='password' ng-required='true' placeholder="Retype Password" autocomplete='off' ng-minlength='8'/>
-            </td>
-          </tr>
-          <tr class="errorPw hide">
-              <td colspan="3">
-                  <div id='errorPw' style='font-style:italic;font-weight:bold;color:red;font-size: 1vw;'>
-                      
-                  </div>
-              </td>
-          </tr>
-        </table>
-        <br />
-        <!--<div style='font-style:italic;font-color:gray;font-family:Cabin;font-size:1.33vw;text-align:center;padding-bottom:0.33em'>Professional</div>-->
-        <table>
-          <tr>
-            <td class='label'>Med ID</td>
-            <td class='field'>
-              <input name="nLi" ng-model="nLi" id="iLi" ng-required='true' name='q' type="text"
-                   autofocus placeholder="Medical Registration Number"/>
-            </td>
-          </tr>
-          <tr class="errorMId hide">
-              <td colspan="3">
-                  <div id='errorMId' style='font-style:italic;font-weight:bold;color:red;font-size: 1vw;'>
-                      
-                  </div>
-              </td>
-          </tr>
-          <tr>
-            <td class='label'>Speciality</td>
-            <td class='field'>
-              <select ng-required=true id='iSpc' name='nSpc' style="width: 95%">
-                <option value='void' disabled selected>Choose Speciality</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class='label'>Location</td>
-            <td class='field'>
-              <select ng-required=true id='iLoc' name='nLoc' style="width: 95%">
-                <option value='void' disabled selected>Choose Location</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class='label'>Hospital Name and Address</td>
-            <td class='field'>
-              <input name="nChs" ng-model="nChs" id="iChs" ng-required='true' name='q' type="text"
-                   autofocus placeholder="Lagos University"/>
-            </td>
-          </tr>
-          <tr>
-            <td class='label'>Certifications</td>
-            <td class='field'>
-              <input name="nQct" ng-model="nQct" id="iQct" ng-required='true' name='q' type="text"
-                   autofocus placeholder="Qualifications and Certifications"/>
-            </td>
-          </tr>
-          <tr>
-            <td class='label'>Professional Affilations</td>
-            <td class='field'>
-              <input name="nAff" ng-model="nAff" id="iAff" ng-required='true' name='q' type="text"
-                   autofocus placeholder="Professional Affilations"/>
-            </td>
-          </tr>
-        </table>
-        <input type='hidden' name='nIsD' value='true' />
-
-        <table class='line'>
-          <tr><td style='white-space:nowrap;'>
-            I verify that I am currently licensed to practice medicine in Nigeria:
-          </td><td style='width:100%'>
-            <input ng-required='true' name="nNig" ng-model="nNig" id="iNig" type="checkbox"><br /><br />
-          </td></tr>
-        </table>
-
-        <div class='button-container'>
-          <input ng-required='true' id="iUr" name='create' type='submit' value='Create Account' />
+<body ng-app="InputDOB" ng-controller="DateController" ng-cloak>
+    <div class="full-page">
+    <div id="pageName" data-page-title="signupPage"></div>
+        <?php include '../navbar.php'; ?>
+        <div class="container-fluid simple-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4>Doctor's Registration</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 doc-signup">
+                        <h4 class="text-orange"><b>New here? Enter details below to register right away</b></h4>
+                        <form class='contact-form' id = "form_req" role = "form" ng-submit="form.$valid && false">
+                            <input type='hidden' name='nIsD' value='true' />
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label class="control-label">Name: </label>
+                                </div>
+                                <div class="col-sm-4 col-xs-12">
+                                    <input ng-required='true' id="nFn" name='nFn' ng-model="nFn" type="text"
+                                           ng-app=""autofocus placeholder="First Name" class="form-control"/>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input ng-required='true' id="nLn" name='nLn' ng-model='nLn' type="text"
+                                    autofocus placeholder="Last Name" class="form-control"/>
+                                </div>
+                                <div id='errorNm' class="col-sm-offset-3 pad-left text-danger"></div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label class="control-label">DOB: </label>
+                                </div>
+                                <div id="dob-year" class="col-sm-3">
+                                    <select ng-required=true name="year" id="year" ng-model="year" 
+                                            ng-change="updateDate('year')" onchange="changeMe(this)" 
+                                            ng-required="true" class="form-control">
+                                        <option value='' disabled>Year</option>
+                                        <option ng-repeat="y in years" value="{{y}}">{{y}}</option>
+                                    </select>
+                                </div>
+                                <div id="dob-month" class="col-sm-3">
+                                    <select ng-required=true name="month" id="month" ng-model="month" 
+                                            ng-change="updateDate('month')" onchange="changeMe(this)" 
+                                            ng-required="true" class="form-control">
+                                        <option value='' disabled>Month</option>
+                                        <option ng-repeat="m in months" value="{{m.id}}">{{m.name}}</option>
+                                    </select>
+                                </div>
+                                <div id="dob-day" class="col-sm-3">
+                                    <select ng-required=true name="day" id="day" ng-model="day" class="form-control"
+                                            ng-change="updateDate('day')" onchange="changeMe(this)" 
+                                            required>
+                                        <option value='' disabled>Day</option>
+                                        <option ng-repeat="d in days | daysInMonth:year:month | validDays:year:month" value="{{d}}">{{d}}</option>
+                                    </select>
+                                </div>
+                                <!--<div id='errorDob' class="col-sm-offset-3 pad-left text-danger"></div>-->
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label for="iSx" class="control-label">Sex: </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <select ng-required=true id='iSx' name='nSx' class="form-control">
+                                        <option value='' disabled selected>Choose Sex</option>
+                                        <option value='F'>Female</option>
+                                        <option value='M'>Male</option>
+                                    </select>
+                                </div>
+                                <!--<div id='errorSx' class="col-sm-offset-3 pad-left text-danger"></div>-->
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label class="control-label">Address: </label>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input name="nAd" id="nAd" ng-model="nAd" ng-required='true' name='q' type="text"
+                                            autofocus placeholder="Street Address" class="form-control"/>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input name="nAd2" id="nAd2" ng-model="nAd2" ng-required='true' name='q' type="text"
+                                            autofocus placeholder="City" class="form-control"/>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input name="nAd3" id="nAd3" ng-model="nAd3" ng-required='true' name='q' type="text"
+                                            autofocus placeholder="State" class="form-control"/>
+                                </div>
+                                <div id='errorAd' class="col-sm-offset-3 pad-left text-danger"></div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label for="nPhn" class="control-label">Phone: </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input name="nPhn" id="nPhn" ng-model="nPhn" ng-required='true' name='q' type="text"
+                                        autofocus placeholder="08012345678" class="form-control"/>
+                                </div>
+                                <div id='errorPhn' class="col-sm-offset-3 pad-left text-danger"></div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label for="nEm" class="control-label">Email: </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input name="nEm" id="nEm" ng-model="nEm" ng-required='true' name='q' type="email"
+                                        autofocus placeholder="doctor@yahoo.com" class="form-control"/>
+                                </div>
+                                <div id='errorEm' class="col-sm-offset-3 pad-left text-danger"></div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label class="control-label">Password: </label>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input name="nPw" id="nPw" ng-model="pword" type='password' ng-required='true'
+                                        placeholder="Password" autocomplete='off' ng-minlength='8' class="form-control"/>
+                                </div>
+                                <div class="col-sm-4 col-xs-12">
+                                    <input name="nPw" id="nPw2" ng-model="pword2" type='password' ng-required='true'
+                                           placeholder="Retype Password" autocomplete='off' ng-minlength='8' class="form-control"/>
+                                </div>
+                                <div id='errorPw' class="col-sm-offset-3 pad-left text-danger"></div>
+                            </div>
+                            <br/><hr/>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label for="iLi" class="control-label">Med ID: </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input name="nLi" ng-model="nLi" id="iLi" ng-required='true' name='q' type="text"
+                                           autofocus placeholder="Medical Registration Number" class="form-control"/>
+                                </div>
+                                <div id='errorMId' class="col-sm-offset-3 pad-left text-danger"></div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label for="iSpc" class="control-label">Speciality: </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <select ng-required=true id='iSpc' name='nSpc' class="form-control">
+                                        <option value='void' disabled selected>Choose Speciality</option>
+                                    </select>
+                                </div>
+                                <!--<div id='errorMId' class="col-sm-offset-3 pad-left text-danger"></div>-->
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label for="iLoc" class="control-label">Location: </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <select ng-required=true id='iLoc' name='nLoc' class="form-control">
+                                        <option value='void' disabled selected>Choose Location</option>
+                                    </select>
+                                </div>
+                                <!--<div id='errorMId' class="col-sm-offset-3 pad-left text-danger"></div>-->
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label for="iChs" class="control-label">Hospital Name and Address: </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input name="nChs" ng-model="nChs" id="iChs" ng-required='true' name='q' type="text"
+                                           autofocus placeholder="Lagos University" class="form-control"/>
+                                </div>
+                                <div id='errorChs' class="col-sm-offset-3 pad-left text-danger"></div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label for="iQct" class="control-label">Certifications: </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input name="nQct" ng-model="nQct" id="iQct" ng-required='true' name='q' type="text"
+                                           autofocus placeholder="Qualifications and Certifications" class="form-control"/>
+                                </div>
+                                <div id='errorQct' class="col-sm-offset-3 pad-left text-danger"></div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label for="iAff" class="control-label">Professional Affilations: </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input name="nAff" ng-model="nAff" id="iAff" ng-required='true' name='q' type="text"
+                                           autofocus placeholder="Professional Affilations" class="form-control"/>
+                                </div>
+                                <div id='errorAff' class="col-sm-offset-3 pad-left text-danger"></div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <p class="help-block">
+                                        I verify that I am currently licensed to practice medicine in Nigeria:
+                                    </p>
+                                    <input ng-required='true' name="nNig" ng-model="nNig" id="iNig" 
+                                           type="checkbox" class="checkbox">
+                                    <div id='errorLic' class="text-danger"></div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="form-group row">
+                                <div id='error'></div>
+                                <div class="col-sm-12">
+                                    <input ng-required='true' id="iUr" name='create' type='submit' value='Create Account'
+                                           class="btn btn-success pull-right"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="visible-xs">
+                        <br/><hr/>
+                    </div>
+                    <div class="col-sm-offset-1 col-sm-3 side-perks">
+                        <div class="">
+                            <div class="row">
+                                <h4 class="text-info"><i class="fa fa-clock-o"></i></h4>
+                                <p>
+                                    <span class="text-info">We value your time</span><br/>
+                                    All appointments are paid for before service
+                                </p>
+                            </div>
+                            <hr/>
+                            <div class="row">
+                                <h4 class="text-danger"><i class="fa fa-medkit"></i></h4>
+                                <p>
+                                    <span class="text-danger">We value your business</span><br/>
+                                    Expand your practice with access to more clients
+                                </p>
+                            </div>
+                            <hr/>
+                            <div class="row">
+                                <h4 class="text-success"><i class="fa fa-dollar"></i></h4>
+                                <p>
+                                    <span class="text-success">We make you money</span><br/>
+                                    Make some extra cash to supplement your practice
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </form>
     </div>
-  </div>
-
+    <?php  include '../footer.php'; ?>
 </body>
 </html>

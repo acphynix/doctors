@@ -1,37 +1,45 @@
-<div style='width:100%;text-align:center;margin-top:2em;margin:0'>
-  <div style='width:80%;min-width:35em;display:inline-block;text-align:left'>
-    <div style='display:block;width:100%;padding:2em'>
-      <div style="border:2px black solid;background-image:url({{user.image}});background-size:cover;width:8em;height:8em;margin-left:0;margin-right:1em;display:inline-block;float:left">
-      </div>
-      <div style='display:inline-block;padding-bottom:2em;margin-left:0;margin-top:0'>
-        <div style='padding:0;margin:0;font-family:cabin;font-size:1.5em'>{{user.name}}</div>
-        <div style='padding:0;margin:0;font-family:cabin'>{{user.email}}</div>
-        <!--<div style='padding:0;margin:0;font-family:cabin'>{{user.role}}</div>-->
-        <div style='padding:0;margin:0;font-family:cabin'><br/></div>
-      </div>
+<div class="row db-page">
+    <div class="col-xs-12 p-title">
+        <h4 class="text-center">
+            <b>
+                <i class="fa fa-user"></i> PROFILE
+            </b>
+        </h4>
+        <div class="u-line"></div>
     </div>
-    <hr />
-    <form id='form_profile'>
-        <ul id='errorPr' style='font-style:italic;font-weight:bold;color:red;font-size: 1vw;'></ul>
-      <table>
-      <tbody ng-repeat='f in profile_form_fields'>
-        <tr ng-show="{{f.heading != ''}}">
-          <td colspan='3'>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>{{f.heading}}</td>
-          <td>{{f.title}}</td>
-          <td><input ng-attr-id="{{f.id}}" ng-attr-type="{{f.type}}" ng-attr-name="{{f.name}}" ng-attr-value="{{f.value}}" ng-disabled='{{f.disabled}}' /></td>
-        </tr>
-      </tbody>
-      <tbody>
-        <tr>
-          <td></td>
-          <td><br/><br/><input type='submit' value='Save Changes' name='Save Changes'></td>
-          <td></td>
-        </tr>
-      </tbody>
-      </table>
-    </form>
-  </div>
+    <div class="col-xs-12 p-content">
+        <div class="row">
+            <div class="col-md-4 profile-pic">
+                <img ng-src="{{user.image}}" class="img-responsive" alt="user_image"/>
+                <div class="text-left">
+                    <h4>{{user.name}}</h4>
+                    <p class="text-info">{{user.email}}</p>
+                </div>
+            </div>
+            <div class="col-md-8 profile-form">
+                <form id='form_profile'>
+                    <ul id='errorPr' class="pc-error"></ul>
+                    <table class="">
+                        <tbody ng-repeat='f in profile_form_fields'>
+                            <tr ng-show="{{f.heading != ''}}">
+                                <td colspan='3'>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td><b class="text-info visible-md visible-lg">{{f.heading}}</b></td>
+                                <td><span class="text-right field-label">{{f.title}}:</span></td>
+                                <td>
+                                    <input ng-attr-id="{{f.id}}" ng-attr-type="{{f.type}}"
+                                           ng-attr-name="{{f.name}}" ng-attr-value="{{f.value}}"
+                                           ng-disabled='{{f.disabled}}' class="form-control"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <hr/>
+                    <input type='submit' value='Save Changes' name='Save Changes' class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

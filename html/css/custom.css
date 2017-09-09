@@ -1,0 +1,980 @@
+.full-page{
+    min-height: 100%;
+}
+.navbar, .top-nav{
+    background: green;
+    border: green;
+    border-radius: 0;
+}
+.nav-top{
+    margin-bottom: 3em;
+}
+.nav-top h4{
+    margin: 0;
+    font-weight: 900;
+    font-size: 3.5em;
+    color: #fff;
+}
+.nav-top p{
+    margin: 0;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 1em;
+    color: #e90;
+}
+.nav-top .user-label a{
+    text-decoration: none;
+}
+.nav-top .user-label p{
+    padding-right: 15px;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 1.5em;
+    margin-top: 2.5em;
+    color: #fff;
+    -webkit-transition: all ease-in-out 0.5s;
+    -moz-transition: all ease-in-out 0.5s;
+    -ms-transitioin: all ease-in-out 0.5s;
+    -o-transition: all ease-in-out 0.5s;
+    transition: all ease-in-out 0.5s;
+}
+.nav-top .user-label p:hover{
+    color: #e90;
+}
+.navbar{
+    box-shadow: 1px 1px 1px 1px #345;
+    margin-bottom: 5px;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover{
+    background: transparent;
+    color: #fff;
+    border-bottom: #e90 solid 2px;
+}
+.navbar-default .navbar-nav>li>a{
+    color: #fff;
+}
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{
+    color: #e90;
+}
+.navbar-default .navbar-nav>li.navbar-text{
+    color: #fff;
+}
+.navbar-default .navbar-toggle{
+    border-color: #e90;
+    background: #e90;
+}
+.navbar-default .navbar-toggle .icon-bar{
+    background: #fff;
+}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
+    background: green;
+}
+.navbar-collapse{
+    border: 0;
+}
+#webCarousel{
+    margin-bottom: 20px;
+}
+#webCarousel .carousel-inner img{
+    width: 100%;
+}
+#webCarousel .carousel-control i{
+    position: absolute;
+    top: 40%;
+    background: green;
+    opacity: 0.8;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1.5em;
+}
+#webCarousel .carousel-caption{
+    position: absolute;
+    margin: auto;
+    bottom: 10%;
+    background: rgba(27,141,61,0.7);
+    padding: 10px;
+}
+#webCarousel .carousel-caption p{
+    color: #fff;
+    font-size: 2em;
+    font-family: 'Open Sans Condensed', arial, sans;
+    font-weight: 900;
+}
+#webCarousel .carousel-caption .btn-warning{
+    background: #e90;
+    border-color: #e90;
+    box-shadow: 1px 1px 1px 2px #345;
+    -webkit-transition: all ease-in-out 0.5s;
+    -moz-transition: all ease-in-out 0.5s;
+    -ms-transitioin: all ease-in-out 0.5s;
+    -o-transition: all ease-in-out 0.5s;
+    transition: all ease-in-out 0.5s;
+}
+#webCarousel .carousel-caption .btn-warning:hover{
+    background: green;
+    border-color: green;
+}
+#webCarousel .carousel-indicators{
+    margin-bottom: -20px;
+}
+#webCarousel .carousel-indicators li{
+    background: #e90;
+    border-color: #e90;
+}
+#webCarousel .carousel-indicators li.active{
+    background: green;
+    border-color: green;
+}
+
+footer{
+    border-top: green solid 5px;
+    background: #000;
+    color: #fff;
+    padding-top: 1em;
+    text-align: center;
+    font-family: 'Open Sans Condensed', arial, sans;
+    height: 5em;
+    margin-top: 2em;
+}
+footer p span{
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+.error{
+    color: red;
+    font-size: 0.95em;
+}
+.main-view{
+    margin: 50px auto;
+}
+.question-user h4{
+    font-size: 2em;
+    font-weight: 900;
+    font-family: 'Open Sans Condensed', arial, sans;
+    margin-top: 2.5em;
+}
+.search-doctor{
+    font-family: 'Open Sans Condensed', arial, sans;
+}
+.search-doctor .form-group{
+    width: 100%;
+}
+.search-doctor .control-label{
+    width: 40%;
+    float: left;
+    padding-top: 1.8em;
+    text-align: center;
+    margin-bottom: 20px;
+    height: 5em;
+    font-size: 1.2em;
+}
+.search-doctor .form-control{
+    width: 100%;
+    float: left;
+    border-radius: 0;
+    margin-bottom: 20px;
+    height: 5em;
+    font-size: 1.2em;
+}
+.f-row{
+    margin-bottom: -2em;
+}
+.icon-view{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-family: 'Open Sans Condensed', arial, sans;
+}
+.icon-view .card {
+    text-align: center;
+    padding: 20px;
+    padding-top: 30px;
+    min-height: 20em;
+    border-radius: 20px;
+/*    -webkit-box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.75);*/
+}
+.icon-view .card h4{
+    font-size: 7em;
+}
+.icon-view .card p{
+    font-size: 1.3em;
+}
+.bg-white{
+    background: #fff;
+}
+.awesomplete > ul{
+    top: 5em;
+    max-height: 20em;
+    overflow: auto;
+}
+.doc-search{
+    background: url('../images/doc_search_bg.jpg') palegreen no-repeat;
+    min-height: 22em;
+    background-size: cover;
+}
+.doc-search .banner_search{
+    background: rgba(255,255,255,0.9);
+    width: 100%;
+}
+.doc-search .banner_search .btn{
+    font-size: 1.2em;
+}
+.doc-search .awesomplete > ul{
+    top: auto!important;
+}
+.dp-area{
+    min-height: 40%;
+}
+.dp-area .results-text p{
+    font-style: normal;
+    font-family: 'Open Sans Condensed', arial, sans;
+    font-weight: 900;
+}
+.dp-area .results-entry{
+    display:table;
+    clear:both;
+    position:relative
+}
+.dp-area .doc-profile{
+    text-align:center;
+    border:solid black 1px;
+    padding:0.5em;
+    background-color:#333333
+}
+.dp-area .doc-profile img{
+    display:inline-block;
+    max-height:8em;
+    max-width:8em;
+    border:solid white 1px
+}
+.dp-area .doc-profile-2{
+    width:100%;
+    padding:1em;
+    padding-bottom:6em;
+    position:relative;
+    overflow:hidden
+}
+.dp-area .doc-profile-2-div-1{
+    position:absolute;
+    top:0;
+    height:100%;
+}
+.dp-area .doc-profile-2 .doc-name{
+    font-size:1.33em;
+    padding:0;
+    margin:0;
+}
+.dp-area .doc-profile-2 .doc-spec{
+    font-weight:300;
+    font-style:italic;
+    color:gray;
+    text-transform:capitalize;
+    font-size:0.9em
+}
+.dp-area .doc-profile-2-div-2{
+    font-family:Cabin;
+    padding-top:1em
+}
+.dp-area .doc-availabilities{
+    height:300px
+}
+.simple-page, .faq-page{
+    font-family: 'Open Sans Condensed', arial, sans;
+}
+.simple-page h4, .faq-page h4.page-title{
+    text-align: center;
+    font-weight: 900;
+    font-size: 2em;
+    margin: 20px auto;
+}
+.simple-page p{
+    font-size: 1.1em;
+}
+.faq-page .panel-title a{
+    display: block;
+    width: 100%;
+    text-decoration: none;
+}
+.faq-page .panel-body ul{
+    list-style-type: none;
+    padding: 0;
+}
+.faq-page .panel-body ul li{
+    padding: 5px 0;
+}
+.contact-us p.text-success{
+    font-weight: 900;
+}
+.contact-form .form-control{
+    border: 0;
+    border-bottom: rgba(19,94,0,0.5) solid 2px;
+    box-shadow: none;
+}
+.contact-form .form-control{
+    font-weight: 900;
+}
+.contact-form .form-control:hover, .contact-form .form-control:focus,
+.contact-form .form-control:active, .contact-form .form-control:active:hover{
+    box-shadow: 1px 1px 1px green;
+}
+.text-orange{
+    color: #e90;
+}
+.login-form{
+    margin-top: 4em;
+    box-shadow: 1px 1px 1px 2px #ccc;
+    padding: 5em 3em;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+.login-form:hover{
+    border-radius: 0;
+    -webkit-transition: all ease-in-out 0.5s;
+    -moz-transition: all ease-in-out 0.5s;
+    -ms-transitioin: all ease-in-out 0.5s;
+    -o-transition: all ease-in-out 0.5s;
+    transition: all ease-in-out 0.5s;
+}
+.signup-form .pad-left{
+    padding-left: 20px;
+    font-size: 0.9em;
+}
+.signup-form{
+    padding: 3em;
+}
+.signup-form .med-prof{
+    text-align: center;
+}
+.signup-form .control-label{
+    padding-top: 5px;
+    color: green;
+}
+.doc-signup .contact-form .form-control{
+    font-weight: normal;
+}
+.doc-signup .text-orange{
+    font-size: 1.2em;
+    text-align: left;
+}
+.doc-signup .pad-left{
+    padding-left: 20px;
+}
+.side-perks{
+    font-family: monospace;
+}
+.side-perks h4{
+    text-align: center;
+}
+.side-perks h4 i{
+    font-size: 4em;
+}
+.side-perks p{
+    text-align: center;
+    font-size: 1.2em;
+}
+.side-perks p span{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.other-pages{
+    font-family: monospace;
+    text-align: center;
+    padding-top: 5em;
+}
+.other-pages h1{
+    font-weight: 900;
+    font-size: 3em;
+}
+.other-pages p{
+    font-weight: 900;
+    font-size: 1.5em;
+}
+.pass-reset{
+    list-style-type: none;
+}
+.loc-search .form-control{
+    box-shadow: none;
+}
+.book_appt{
+    background: url('../images/book_appt.jpg') palegreen no-repeat;
+    min-height: 22em;
+    background-size: cover;
+}
+.cf-appt{
+    margin-top: 2em;
+    font-family: 'Open Sans Condensed', arial, sans;
+    margin-bottom: 5em;
+}
+.cf-appt .row-1 .intro{
+    font-size: 1.5em;
+    text-align: center;
+}
+.cf-appt .u-line{
+    background: #e6e7e8;
+    height: 2px;
+    width: 40%;
+    margin: 2px auto 40px auto;
+}
+.cf-appt .row-1, .cf-appt .row-2{
+    font-size: 1.2em;
+}
+.cf-appt .text-gray{
+    color: #aaa;
+    font-family: monospace;
+    font-weight: 900;
+    margin-top: 2em;
+}
+.cf-appt .row-2 .text-orange{
+    font-size: 1.2em;
+    font-weight: 900;
+}
+.dashboard-topnav{
+    background: #e90;
+}
+.db-page .u-line{
+    background: #e6e7e8;
+    height: 2px;
+    width: 40%;
+    margin: 2px auto 40px auto;
+}
+.db-page .p-title h4{
+    margin-top: 1em;
+    font-weight: 900;
+    font-size: 2.2em;
+    color: #ccc;
+}
+.db-page .p-content p{
+    font-size: 1.5em;
+}
+.db-page .p-content .profile-form table{
+    width: 100%;
+}
+.db-page .p-content .profile-form .form-control{
+    margin-bottom: 5px;
+}
+.db-page .p-content .profile-form table tr td{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.db-page .p-content .profile-form span.text-right{
+    float: right;
+}
+.db-page .p-content .profile-pic h4{
+    font-size: 2em;
+    font-weight: 900;
+}
+.db-page .p-content .profile-pic p{
+    font-size: 1.2em;
+}
+.db-page .p-content .profile-form .text-info, .db-page .p-content .profile-pic .text-info{
+    color: #e90;
+}
+.db-page .p-content .profile-form .btn{
+    background: #e90;
+    border-color: #e90;
+}
+.db-page .p-content .profile-form .btn:hover{
+    background: #EA7B00;
+    border-color: #EA7B00;
+}
+ul.pc-error{
+    padding: 0;
+}
+.p-content h4.howmany{
+    font-family: monospace;
+    font-size: 1.5em;
+    font-weight: 900;
+}
+.p-content .schedule{
+    font-family: 'Open Sans Condensed', arial, sans;
+}
+.p-content .schedule tr{
+    background: rgba(184, 241, 201, 0.2);
+    border-color: rgba(184, 241, 201, 1);
+}
+.p-content .schedule tr td{
+    padding-top: 20px!important;
+    padding-bottom: 20px!important;
+}
+.p-content table.schedule tr.distinct{
+    background: transparent;
+}
+.p-content table.schedule tr.distinct td{
+    padding: 5px!important;
+}
+.p-content table.schedule .inner-table{
+    margin-top: 10px;
+}
+.p-content table.schedule .inner-table tr td{
+    padding: 5px!important;
+}
+.appt-info div.grp{
+    margin-bottom: 2.5em;
+}
+.appt-doc-info{
+    margin-bottom: 20px;
+}
+.appt-doc-info h4{
+    font-size: 1.2em;
+    font-weight: 900;
+    margin-bottom: 0;
+}
+.appt-doc-info span{
+    color: #aaa;
+    display: block;
+}
+.th-info{
+    display: none;
+}
+.th-info span{
+    display: block;
+    padding-bottom: 10px;
+}
+.patient-rating{
+    text-align: center;
+    margin-top: 10px;
+    background: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+}
+.patient-rating span{
+    cursor: pointer;
+}
+.full-width{
+    width: 100%;
+}
+.mg-sc{
+    margin-top: 10px;
+    font-weight: 900;
+    font-size: 1.2em;
+    font-family: 'Open Sans Condensed', arial, sans;
+}
+.calendar-view{
+    background-color: #D9FFFE;
+}
+.time-val{
+    font-family:Cabin;
+    width:30em;
+    height:15em;
+    background-color:rgba(255,255,230,0.95);
+    position:absolute;
+    margin: auto;
+    box-shadow: 0px 1px 6px 1px #aaa;
+    border-radius: 10px;
+    border: #ccc solid 2px;
+    padding:20px;
+    visibility:hidden
+}
+.time-val h3{
+    font-size: 1.2em;
+}
+.set-appt{
+    margin-top: 2em;
+}
+.set-appt .txt-apt{
+    text-align: center;
+    font-weight: 900;
+    font-size: 2em;
+    font-family: 'Open Sans Condensed', arial, sans;
+}
+.set-appt .mg-sc{
+    margin-bottom: 2em;
+}
+.calen-faq{
+    background: #fff;
+    padding: 15px;
+    text-align: justify;
+    font-family: 'Open Sans Condensed', arial, sans;
+    box-shadow: 0px 1px 6px 0px #ccc;
+}
+.calen-faq ul{
+    list-style-type: none;
+    padding: 0;
+}
+.calen-faq ul li{
+    padding-bottom: 10px;
+}
+.alert.doc-appt{
+    font-family: monospace;
+}
+
+/*Responsive*/
+@media(max-width: 1199px){
+    #webCarousel .carousel-caption p{
+        font-size: 1.5em;
+    }
+    .search-doctor .control-label{
+        font-size: 1em;
+    }
+    .search-doctor .form-control{
+        font-size: 1em;
+    }
+}
+@media(max-width: 992px){
+    .search-doctor .control-label{
+        width: 35%;
+    }
+}
+@media(max-width: 991px){
+    .db-page .p-content .profile-pic img{
+        margin: auto;
+    }
+    .db-page .p-content .profile-pic div.text-left{
+        text-align: center;
+    }
+    .profile-form .btn{
+        float: right;
+    }
+}
+@media(max-width: 840px){   
+    #webCarousel .carousel-caption{
+        width: 100%;
+        left: 0;
+        top: 0;
+        height: 100%;
+        bottom: 0;
+        background: rgba(27,141,61,0.4);
+    }
+    #webCarousel .carousel-indicators{
+        margin-bottom: 0;
+    }
+    #webCarousel .carousel-control i{
+        background: green;
+        opacity: 1;
+        left: 35%;
+    }
+    #webCarousel .carousel-caption p{
+        margin-top: 4em;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media(min-width:768px){
+    .navbar-default .navbar-nav>li>a{
+        padding-bottom: 2px;
+    }
+    .btn-small{
+        display: none;
+    }
+    .to-faq{
+        display: none;
+    }
+    .time-val{
+        left: 25%!important;
+    }
+}
+@media(max-width: 767px){
+    .btn-big{
+        display: none;
+    }
+    .navbar-default .navbar-nav>li>a{
+        font-size: 0.9em;
+    }
+    .question-user h4{
+        font-size: 1.2em;
+        margin-top: 0;
+    }
+    .icon-view .card {
+        padding: 20px;
+        min-height: 18em;
+        border-radius: 20px;
+    }
+    .icon-view{
+        padding-top: 20px;
+    }
+    footer p span{
+        font-size: 1em;
+    }.nav .navbar-text{
+        display: none;
+    }
+    .nav-top .user-label p{
+        padding-right: 0;
+    }  
+    .dp-area .doc-profile-2 .doc-spec{
+        margin: 5px 0;
+    }
+    .dp-area .results-entry{
+        width: 100%;
+        margin: auto;
+        margin-top: 10px;
+    }
+    .simple-page h4, .faq-page h4.page-title{
+        font-size: 1.5em;
+    }
+    .simple-page p{
+        font-size: 1em;
+    }
+    .contact-us .col-sm-4{
+        margin-top: 4em;
+        float: left;
+    }
+    .other-pages h1{
+        font-size: 1.8em;
+    }
+    .other-pages p{
+        font-size: 1.2em;
+    }
+    .cf-appt .text-gray{
+        margin-top: 0;
+    }
+    .cf-appt .row-1, .cf-appt .row-2{
+        font-size: 1em;
+    }
+    .cf-appt .row-1 .intro{
+        font-size: 1.2em;
+        text-align: center;
+    }
+    .cf-appt .row-2 .text-orange{
+        font-size: 1em;
+    }
+    .loc-search .form-control{
+        font-size: 1em;
+    }
+    .dashboard-navitem{
+        font-size: 1em;
+    }
+    .db-page .p-content .profile-pic h4{
+        font-size: 1.2em;
+    }
+    .db-page .p-content .profile-pic p{
+        font-size: 1em;
+    }
+    .db-page .p-title h4{
+        font-size: 1.5em;
+    }
+    .db-page .p-content p{
+        font-size: 1em;
+    }
+    .profile-form .field-label{
+        font-size: 0.8em;
+    }
+    .th-info{
+        display: block;
+    }
+    .sm-hide{
+        display: none;
+    }
+    .schedule{
+        font-size: 1em;
+    }
+    h4.text-success.howmany{
+        font-size: 1.1em;
+    }
+    .appt-doc-info h4{
+        font-size: 1.05em;
+    }
+    .schedule .inner-table{
+        font-size: 1em;
+    }
+    .calen-faq{
+        display: none;
+    }
+    .time-val{
+        width:15em;
+        height:15em;
+        left: 20%!important;
+    }
+    .time-val h3{
+        font-size: 1em;
+    }
+    .set-appt .txt-apt{
+        font-size: 1.1em;
+    }
+}
+@media(max-width:700px){
+    .nav-top h4{
+        font-size: 2.5em;
+    }
+    .nav-top p{
+        font-size: 0.8em;
+    }
+    .nav-top .user-label p{
+        font-size: 1em;
+    }
+    #webCarousel .carousel-caption p{
+        margin-top: 2em;
+        width: 80%;
+    }
+}
+@media(max-width: 560px){   
+    #webCarousel .carousel-caption{
+        padding-bottom: 20px;
+    }
+    #webCarousel .carousel-caption p{
+        font-size: 1.1em;
+    }
+    .icon-view .card {
+        padding: 20px;
+        min-height: 15em;
+    }
+    .icon-view .card h4{
+        font-size: 7em;
+    }
+    .icon-view .card p{
+        font-size: 1em;
+    }
+    footer p span{
+        font-size: 0.9em;
+    }
+    .loc-search .form-control{
+        font-size: 0.9em;
+    }
+}
+@media(max-width:555px){
+    .nav-top h4{
+        font-size: 2em;
+    }
+    .nav-top p{
+        font-size: 0.5em;
+    }
+    .nav-top .user-label p{
+        font-size: 0.9em;
+    }
+    .doc-search .banner_search input{
+        font-size: 0.8em;
+    }
+    .doc-search .banner_search .btn{
+        font-size: 0.8em;
+    }
+}
+@media(max-width: 500px){   
+    #webCarousel .carousel-caption{
+        padding-bottom: 0;
+    }
+    #webCarousel .carousel-caption p{
+        margin-bottom: 20px;
+    }
+    #webCarousel .carousel-caption .btn-lg{
+        font-size: 0.8em;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 2px;
+    }
+    #webCarousel .carousel-indicators{
+        display: none;
+    }
+    #webCarousel .carousel-control i{
+        left: 20%;
+        font-size: 1em;
+    }
+    .dp-area .doc-profile-2-div-2{
+        font-size: 0.8em;
+    }
+}
+@media(max-width:470px){
+    .nav-top h4{
+        font-size: 1.5em;
+    }
+    .nav-top p{
+        font-size: 0.5em;
+    }
+    .nav-top .user-label p{
+        font-size: 0.9em;
+    }  
+    .nav-top{
+        margin-bottom: 1em;
+    }
+}
+@media(max-width: 450px){   
+    #webCarousel .carousel-caption{
+        padding: 0;
+    }
+    #webCarousel .carousel-caption p{
+        font-size: 1em;
+    }
+    #webCarousel .carousel-caption .btn-lg{
+        font-size: 0.8em;
+        padding: 5px 10px;
+        margin-bottom: 5px;
+        margin-top: 0;
+    }
+    .question-user h4{
+        font-size: 1.1em;
+        margin-top: 0;
+    }
+    .search-doctor .control-label{
+        width: 40%;
+        padding-top: 1.2em;
+        height: 4em;
+        font-size: 0.8em;
+        margin-bottom: 10px;
+    }
+    .search-doctor .form-control{
+        height: 4em;
+        font-size: 0.8em;
+        margin-bottom: 10px;
+    }
+    .search-doctor .btn-lg{
+        font-size: 1em;
+    }
+    .awesomplete > ul{
+        top: 3.2em;
+    }
+    .awesomplete > ul > li{
+        padding: 0.5em;
+        font-size: 0.7em;
+    }
+    .appt-doc-info span{
+        font-size: 0.9em;
+    }
+    .th-info span{
+        font-size: 0.9em;
+        padding-bottom: 5px;
+        border-bottom: #ccc dotted 1px;
+    }
+}
+@media(max-width:400px){
+    .doc-search .banner_search input{
+        font-size: 0.6em;
+    }
+    .doc-search .banner_search .btn{
+        font-size: 0.7em;
+    }
+    div.fc-left h2{
+        font-size:1em;
+    }
+    div.fc-button-group{
+        font-size: 0.9em;
+    }
+}
+@media(max-width: 380px){
+    .search-doctor .control-label{
+        width: 28%;
+        padding-top: 1em;
+    }
+}
+@media(max-width:358px){
+    .nav-top{
+        margin-bottom: 1.2em;
+    }
+    .nav-top h4{
+        font-size: 1.2em;
+    }
+    .nav-top p{
+        font-size: 0.4em;
+    }
+    .nav-top .user-label p{
+        margin-top: 2em;
+        font-size: 0.8em;
+    }
+}
+@media(max-width: 350px){
+    #webCarousel .carousel-caption p{
+        font-size: 0.8em;
+    }
+    #webCarousel .carousel-caption .btn-lg{
+        font-size: 0.8em;
+        padding: 5px;
+        margin-bottom: 5px;
+        margin-top: -10px;
+    }
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none!important;
+}

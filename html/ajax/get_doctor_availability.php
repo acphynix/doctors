@@ -48,7 +48,13 @@ $sqlformat = 'Y-m-d H:i:s';
 $min_appt_length = new DateInterval('PT1H'); // 1 hour.
 
 
-// todo: optimize this.
+$unavailableSlots = [];
+foreach ($evts as $evt){
+    if($evt['type'] !== 'open'){
+        array_push($unavailableSlots, $evt['user_id']."__".$evt['start']."__".$evt['end']);
+    }
+}
+
 foreach ($evts as $evt){
   if($evt['type'] === 'open'){
     $start     = DateTime::createFromFormat($sqlformat, $evt['start']);
@@ -58,13 +64,15 @@ foreach ($evts as $evt){
     while($start_fwd <= $end){
       $start_s = date_format($start,     $sqlformat);
       $end_s   = date_format($start_fwd, $sqlformat);
-      array_push($availabilities,
-        array(  's'=>$start_s
-              , 'e'=>$end_s
-              , 'p'=>$evt['price']
-              , 'c'=>$evt['currency']
-              , 'l'=>$evt['timeslot_location']
-      ));
+      if(!in_array(($evt['user_id']."__".$start_s."__".$end_s), $unavailableSlots)){
+          array_push($availabilities,
+            array(  's'=>$start_s
+                  , 'e'=>$end_s
+                  , 'p'=>$evt['price']
+                  , 'c'=>$evt['currency']
+                  , 'l'=>$evt['timeslot_location']
+          ));
+      }
       $start =     date_add($start, $min_appt_length);
       $start_fwd = date_add($start_fwd, $min_appt_length);
     }

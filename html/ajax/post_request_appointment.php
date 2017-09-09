@@ -20,6 +20,7 @@ import('/php/model/doctor.php');
 import('/php/model/user.php');
 import('/php/util/gen.php');
 import('/php/util/emails.php');
+import('/php/util/sanitize.php');
 
 session_start();
 $params             = json_decode(file_get_contents("php://input"), $assoc=true);
@@ -96,6 +97,7 @@ if(!array_key_exists('c', $params) || $params['c'] != 1){
 }
 
 $code = gen_appt_code();
+$note = sanitize_plaintext($params['n']);
 
 $appt = query_insert_into('appointments',
           array(  
@@ -106,7 +108,7 @@ $appt = query_insert_into('appointments',
                 , 'status'     => 'pending'
                 , 'appt_type'  => 'appointment'
                 , 'apptcode'   => $code
-                , 'notes'      => 'empty')
+                , 'notes'      => $note)
           );
 
 create_email_for_appt( $doctor->user_id, 'doctor_appointment_pending',  $appt );

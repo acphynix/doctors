@@ -2,6 +2,12 @@
   ob_start();
   session_start();
   
+  if($_SESSION['valid']){
+    $login=1;
+  }
+  $displayname = $_SESSION['displayname'];
+  $isdoctor = $_SESSION['user_is_doctor'];
+  
    $userId = '';
     if($_SESSION['user_id']){
       $userId = $_SESSION['user_id'];
@@ -34,57 +40,58 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand|Zilla+Slab|Cabin" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"> 
-<link rel="stylesheet" type="text/css" href="styles/styles.css"> 
-<link rel="stylesheet" type="text/css" href="styles/date.css"> 
-<link rel="stylesheet" type="text/css" href="forms.css"> 
+<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"> 
+<link rel="stylesheet" type="text/css" href="/styles/styles.css"> 
+<!--<link rel="stylesheet" type="text/css" href="styles/date.css">--> 
+<link rel="stylesheet" type="text/css" href="/forms.css"> 
+<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="/css/custom.css"/>
 <title>Neolafia</title>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
 </head>
-<body style='padding:0'>
-<div class='noboat'>
-  <a href='index.php'>
-  <h1 class='Neolafia' style='position:relative'>
-      <img src='images/logo.png' style='height:1em;'/>
-    
-      Neolafia
-    <!-- </a> -->
-  </h1>
-  </a>
-  </div>
-  <div class='account-body'>
-    <div class='account-container'>
-      <div class='account-entry' style='height:100%'>
-        <h2 class='soloheading'>Account Authenticated</h2>
-		<div class="contact-page">
-            <?php if($success===true && $userId===""):?>
-            <h1>Welcome!</h1>
-            </p>
-                Thank you again for registering an account with Neolafia! Your account have now been authenticated!
-            </p>
-            <p>
-                Kindly click <a href="/login.php" style="color: blue;">here</a> to login to your account
-            </p>
-			<?php elseif($success===true && $userId!==""):?>
-            <h1>Welcome!</h1>
-            </p>
-                Thank you again for registering an account with Neolafia! Your account have now been authenticated!
-            </p>
-            <p>
-                Kindly click <a href="/page/home.php" style="color: blue;">here</a> to go to your dashboard
-            </p>
-            <?php else: ?>
-            <h1>Oops!</h1>
-            </p>
-                This link is either invalid or has expired
-            </p>
-            <p>
-                Kindly click <a href="/index.php" style="color: blue;">here</a> to go to the home page
-            </p>
-            <?php endif; ?>
+<body>
+    <div class="full-page">
+        <?php include 'navbar.php'; ?>
+        <div class="container-fluid other-pages">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <?php if($success===true && $userId===""):?>
+                        <h1 class="text-success">Welcome!</h1>
+                        <p>
+                            Thank you again for registering an account with Neolafia! Your account have now been
+                            authenticated!
+                        </p>
+                        <p>
+                            Kindly click <a href="/login.php">here</a> to login to your account
+                        </p>
+                        <?php elseif($success===true && $userId!==""):?>
+                        <h1 class="text-success">Welcome!</h1>
+                        <p>
+                            Thank you again for registering an account with Neolafia! Your account have now been
+                            authenticated!
+                        </p>
+                        <p>
+                            Kindly click <a href="/page/home.php">here</a> to go to your
+                            dashboard
+                        </p>
+                        <?php else: ?>
+                        <h1 class="text-warning">Oops!</h1>
+                        <p>
+                            This link is either invalid or has expired
+                        </p>
+                        <p>
+                            Kindly click <a href="/index.php">here</a> to go to the home page
+                        </p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+    <?php  include 'footer.php'; ?>
 </body>
 </html>

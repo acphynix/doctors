@@ -28,7 +28,7 @@ healthapp.controller('HealthController', function($scope){
   $scope.searchbox   = document.getElementById("ikeyword_search");
   $scope.locationbox = document.getElementById('ilocation_search');
   if($scope.searchbox != null){
-    $scope.awesomplete = new Awesomplete(document.getElementById("ikeyword_search"), { list: ["heartbreak"] }); 
+    $scope.awesomplete = new Awesomplete(document.getElementById("ikeyword_search"), { list: [] }); 
     var loc_dropdown = new Awesomplete('#ilocation_search', { minChars: 0 });
   }
 });

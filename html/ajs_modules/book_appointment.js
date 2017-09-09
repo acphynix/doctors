@@ -41,6 +41,23 @@ doctor_search.controller('search', function($scope, $window, $http){
     $scope.book={'doctor':doctor,'time':time};
     console.log($scope.book);
   }
+  $scope.update_dropdown = function(){
+    var ajax = new XMLHttpRequest();
+    console.log('searching '+$scope.searchbox.value);
+    ajax.open("GET", "../ajax/get_keyword_suggestions.php?q=''", true);
+    ajax.onload = function() {
+      var list = JSON.parse(ajax.responseText).map(function(i) { return i.keyword; });
+      console.log(ajax.responseText);
+      $scope.awesomplete.list = list;
+      $scope.awesomplete.evaluate();
+      // new Awesomplete(document.querySelector("#ajax-example input"),{ list: list });
+    };
+    ajax.send();
+  }
+  $scope.searchbox   = document.getElementById("ikeyword_search");
+  if($scope.searchbox !== null){
+    $scope.awesomplete = new Awesomplete(document.getElementById("ikeyword_search"), { list: [] });
+  }
   $scope.check_appointment = function(){
     $http({
       method: 'POST',
@@ -75,11 +92,13 @@ doctor_search.controller('search', function($scope, $window, $http){
     });
   }
   $scope.book_appointment = function(doctor,time){
+      var apptnote;
+      ($scope.apptNote)?apptnote=$scope.apptNote:apptnote='Empty';
       $http({
         method: 'POST',
         url: '../ajax/post_request_appointment.php',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        data: { d: $scope.book.doctor, s: $scope.book.time, c: '1' },
+        data: { d: $scope.book.doctor, s: $scope.book.time, c: '1', n:apptnote },
         transformResponse: undefined
       }).then(function successCallback(resp) {
         console.log('Response: ');

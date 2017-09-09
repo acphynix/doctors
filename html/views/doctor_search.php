@@ -29,18 +29,21 @@
  //else $query = '';
 ?>
 <head>
-<title>Neolafia</title>
+<title>Neolafia | Search for specialist doctors</title>
 
-<link rel="stylesheet" type="text/css" href="/lib/fullcalendar/fullcalendar.css">
-<link rel="stylesheet" type="text/css" href="/styles/calendar.css">
-<link rel="stylesheet" href="/awesomplete/awesomplete.css" />
+<meta name="description" content="Neolafia makes it easy for you to book appointments with specialist doctors. A list of
+      doctors are presented to you based on the symptoms, speciality, doctor's name or location that you have entered"/>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
+<link rel="stylesheet" type="text/css" href="../lib/fullcalendar/fullcalendar.css">
+<link rel="stylesheet" type="text/css" href="../styles/calendar.css">
+<link rel="stylesheet" href="../awesomplete/awesomplete.css" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'></script>
 <script src='/lib/fullcalendar/fullcalendar.js'></script>
 <script src='https://momentjs.com/downloads/moment.min.js'></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <script src="/ajs_modules/doctor_search.js"></script>
 
 <script src="/awesomplete/awesomplete.js"></script>
@@ -51,13 +54,13 @@
   }
 
   $( document ).ready(function() {
-    var input_plc = "Enter your symptoms, a doctor\'s name, or a medical speciality, then hit 'Enter' key";
-	/*
-	var options = $('#loc_new').get(0).options;
+    var input_plc = "Enter your symptoms, a doctor\'s name, or a medical speciality";
+    
+    var options = $('#loc_new').get(0).options;
     $.each(['Abia', 'Adamawa', 'Anambra', 'Akwa Ibom', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Enugu', 'Edo', 'Ekiti', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos: Agege', 'Lagos: Ajeromi-Ifelodun', 'Lagos: Alimosho', 'Lagos: Amuwo-Odofin', 'Lagos: Apapa', 'Lagos: Badagry', 'Lagos: Epe', 'Lagos: Eti-Osa', 'Lagos: Ibeju-Lekki', 'Lagos: Ifako-Ijaiye', 'Lagos: Ikeja', 'Lagos: Ikorodu', 'Lagos: Kosofe', 'Lagos: Lagos Island', 'Lagos: Lagos Mainland', 'Lagos: Mushin', 'Lagos: Ojo', 'Lagos: Oshodi-Isolo', 'Lagos: Somolu', 'Lagos: Surulere', 'Nasarawa', 'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara', 'Abuja (FCT)'], function(key, value) {
       options[options.length] = new Option(value, key);
     });
-*/
+
     $('#ikeyword_search')
       .attr('placeholder',input_plc);
   });
@@ -68,91 +71,96 @@
 <link rel="stylesheet" type="text/css" href="/forms.css"> 
 <link rel="stylesheet" type="text/css" href="/styles/styles.css"> 
 <link rel="stylesheet" type="text/css" href="/styles/doctor_search.css"> 
+<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="/css/custom.css"/>
 
 </head>
 
-<body ng-app="doctor_search" ng-controller="search" style='margin:0'>
-  <span ng-init='init_view()' />
-  <div class='boat boat-smaller'>
-	<div style="background:rgba(0,100,0,0.5);">
-		<a href='/index.php' style="color:#fff; font-size:1.2vw; height:3em; padding-left:1em;">
-			<img src="../images/logo.png" style="height:2vw; display: inline"/>
-			<h1 style="display: inline">Neolafia</h1>
-		</a>
-		<span class='banner-button-container' style="font-size:2vw;">
-			<?php if(isset($login) && $login>0){ ?>
-			  <a class='banner-welcome-text banner-button' href='/page/home.php'><?php echo $displayname ?></a>
-			  <a class='banner-button' href='/logout.php'>sign out</a>
-			<?php }else{ ?>
-			  <a class='banner-button' href='/createaccount.php'>sign up</a>
-			  <a class='banner-button' href='/login.php'>sign in</a>
-			<?php } ?>
-		</span>
-	</div>
-    <div>
-      <div class='question-container'>
-        <div class='question'>
-          <form method='GET' action='/views/doctor_search.php' class="form-style-8 white banner_search">
-            <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
-                   autofocus ng-keypress='update_dropdown()' autocomplete="off" />
-		   <input type="hidden" id="loc_ent" value="<?php echo $query2 ?>"/>
-			<!--<select id='loc_new' name='c' class="form-control">
-				<option value=''>Choose Location</option>
-			</select>-->
-          </form>
-        </div>
-      </div>
-    </div>  
-  </div>
-  <div class='results-body'>
-    <div class='results-container'>
-      <div class='results-text' ng-if='result_list.length>0'>
-        Congratulations! We found {{result_list.length}} doctors matching your search criteria.
-      </div>
-      <div class='results-text' ng-if='result_list.length==0'>
-        We could not find any doctors matching your search criteria.
-      </div>
-      <div class='results-entry' style="display:table;clear:both;position:relative"
-           ng-repeat='r in result_list' ">
-        <?php if($login && $user_status==='verified'){ ?>
-          <table class='clickme' ng-click="r.show=!r.show; load_info(r)">
-        <?php } else{ ?>
-          <table>
-        <?php } ?>
-          <tr>
-            <td style='text-align:center;border:solid black 1px;padding:0.5em;background-color:#333333'>
-              <img ng-attr-src="{{'/ajax/get_file.php?n=profile_picture&u='+r.user_id}}" style='display:inline-block;max-height:8em;max-width:8em;border:solid white 1px' />
-            </td>
-            <td style='width:100%;padding:1em;padding-bottom:6em;position:relative;overflow:hidden'>
-                <div style='position:absolute;top:0;height:100%;'>
-                  <h3 style='font-size:1.33em;padding:0;margin:0;'>{{r.user_first_name}} {{r.user_last_name}}</h3>
-                  <h3 style='font-weight:none;font-style:italic;color:gray;text-transform:capitalize;font-size:0.75em'>{{r.speciality_name}} | {{location_name(r.doctor_location)}}</h3>
-                  <div style='font-family:Cabin;padding-top:1em' ng-show='!r.show'>
-					<?php if($login && $user_status==='verified'){ ?>
-                      Click to book an appointment.
-                    <?php } elseif($login && $user_status!=='verified'){ ?>
-                      Account authentication is needed to book appointment with this doctor
-                    <?php } else{ ?>
-                      <a href='/login.php'>Sign in</a> or <a href='/createaccount.php'>Register</a> to view more details and book an appointment.
-                    <?php } ?>
-                  </div>
+<body ng-app="doctor_search" ng-controller="search" ng-cloak>
+    <div class="full-page">
+        <?php include '../navbar.php'; ?>
+        <span ng-init='init_view()'></span>
+        <div>
+            <div class="container-fluid doc-search">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form method='GET' action='doctor_search.php' class="form-style-8 white banner_search">
+                                <div class="form-group">
+                                    <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
+                                       autofocus ng-keypress='update_dropdown()' autocomplete="off" />
+                                </div>
+                                <div class="form-group loc-search">
+                                    <input type="hidden" id="loc_ent" value="<?php echo $query2 ?>"/>
+                                    <select id='loc_new' name='c' class="form-control">
+                                        <option value=''>Choose Location</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="center-block btn btn-primary">
+                                        Search
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </td>
-          </tr>
-        </table>
-        <div class='details' ng-show='r.show'>
-          <h4>Qualifications and Certifications:</h4>
-            <div class='text'>{{r.doctor_qualifications}}</div>
-          <h4>Affiliations:</h4>
-            <div class='text'>{{r.doctor_affiliations}}</div>
-          <br />
-          <h4>Availabilities:</h4>
-          <div style='height:300px'>
-            <div ng-attr-id="calendar_{{r.user_id}}"></div>
-          </div>
+            </div>
+            <div class="container-fluid dp-area">
+                <div class='results-body'>
+                    <div class='results-container'>
+                        <div class='results-text' ng-if='result_list.length>0'>
+                            <p class="text-success">Congratulations! We found {{result_list.length}} doctors matching your search criteria.</p>
+                        </div>
+                        <div class='results-text' ng-if='result_list.length==0'>
+                            <p class="text-danger">We could not find any doctors matching your search criteria.</p>
+                        </div>
+                        <div class='results-entry bg-success' ng-repeat='r in result_list'>
+                          <?php if($login && $user_status==='verified'){ ?>
+                          <table class='clickme' ng-click="r.show=!r.show; load_info(r)">
+                          <?php } else{ ?>
+                          <table>
+                          <?php } ?>
+                                <tr>
+                                    <td class="doc-profile">
+                                        <img ng-attr-src="{{'/ajax/get_file.php?n=profile_picture&u='+r.user_id}}"/>
+                                    </td>
+                                    <td class="doc-profile-2">
+                                        <div class="doc-profile-2-div-1">
+                                            <h3 class="doc-name">{{r.user_first_name}} {{r.user_last_name}}</h3>
+                                            <h3 class="doc-spec">{{r.speciality_name}} | {{location_name(r.doctor_location)}}</h3>
+                                            <div class="doc-profile-2-div-2" ng-show='!r.show'>
+                                                <?php if($login && $user_status==='verified'){ ?>
+                                                Click to book an appointment.
+                                                <?php } elseif($login && $user_status!=='verified'){ ?>
+                                                  Account authentication is needed to book appointment with this doctor
+                                                <?php } else{ ?>
+                                                  <a href='/login.php'>Sign in</a> or <a href='/createaccount.php'>Register</a>
+                                                  to view more details and book an appointment.
+                                                <?php } ?>
+                                          </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class='details' ng-show='r.show'>
+                                <h4>Qualifications and Certifications:</h4>
+                                  <div class='text'>{{r.doctor_qualifications}}</div>
+                                <h4>Affiliations:</h4>
+                                  <div class='text'>{{r.doctor_affiliations}}</div>
+                                <br />
+                                <h4>Availabilities:</h4>
+                                <div class="doc-availabilities">
+                                  <div ng-attr-id="calendar_{{r.user_id}}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+    <?php  include '../footer.php'; ?>
 </body>
 </html>

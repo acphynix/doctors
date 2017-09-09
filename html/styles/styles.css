@@ -266,7 +266,7 @@ a.banner-welcome-text{
 .form-frontpage input[type='email'],
 .form-frontpage input[type='text'],
 .form-frontpage select{
-  font-size:1.1vw;
+  font-size:1.66vw;
   border: solid gray 1px;
   width:95%;
   margin:0.66vw 0.66vw;
@@ -401,4 +401,10 @@ table.schedule{
 }
 .hide{
     display: none;
+}
+div.fc-row.fc-week.fc-widget-content{
+    overflow: auto;
+}
+div.fc-highlight{
+    background: #000;
 }
