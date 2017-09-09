@@ -29,7 +29,7 @@
     padding-right: 15px;
     font-style: normal;
     font-weight: 900;
-    font-size: 1.8em;
+    font-size: 1.5em;
     margin-top: 2.5em;
     color: #fff;
     -webkit-transition: all ease-in-out 0.5s;
@@ -803,7 +803,7 @@ ul.pc-error{
         font-size: 0.8em;
     }
     .nav-top .user-label p{
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
     #webCarousel .carousel-caption p{
         margin-top: 2em;
@@ -841,9 +841,7 @@ ul.pc-error{
     .nav-top p{
         font-size: 0.5em;
     }
-    .nav-top .user-label p{
-        font-size: 1.1em;
-    }
+    C
     .doc-search .banner_search input{
         font-size: 0.8em;
     }
@@ -883,7 +881,7 @@ ul.pc-error{
         font-size: 0.5em;
     }
     .nav-top .user-label p{
-        font-size: 0.9em;
+        font-size: 0.8em;
     }  
     .nav-top{
         margin-bottom: 1em;
@@ -951,6 +949,15 @@ ul.pc-error{
         font-size: 0.9em;
     }
 }
+@media(max-width: 395px){
+	.navbar-brand{
+		padding: 15px 0;
+	}
+	div.logo-label.col-xs-6, div.user-label.col-xs-6{
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
 @media(max-width: 380px){
     .search-doctor .control-label{
         width: 28%;
@@ -969,7 +976,7 @@ ul.pc-error{
     }
     .nav-top .user-label p{
         margin-top: 2em;
-        font-size: 0.8em;
+        font-size: 0.7em;
     }
 }
 @media(max-width: 350px){
