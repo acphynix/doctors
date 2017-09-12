@@ -134,11 +134,11 @@ error_reporting(0);
     </div>
     <span ng-init='init_view()'></span>
     <div class="container main-view" id="mainView">
-        <div class="row">
+        <div class="row" id="startNow">
             <div class="col-sm-5 question-user">
                 <h4>Need to see a specialist doctor?</h4>
             </div>
-            <div class="col-sm-7 search-doctor" id="startNow">
+            <div class="col-sm-7 search-doctor">
                 <form method="GET" action="views/doctor_search.php">
                     <div class="form-group">
                         <label for="ikeyword_search" class="control-label bg-gray">

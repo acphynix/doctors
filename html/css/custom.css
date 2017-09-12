@@ -961,16 +961,24 @@ ul.pc-error{
         height: 4em;
         font-size: 0.65em;
         padding-top: 10px;
+		display: none;
     }
     .search-doctor .form-control{
         height: 4em;
         font-size: 0.65em;
     }
+	.doc-search .banner_search .form-group{
+        margin-bottom: 0;
+    }
     .doc-search .banner_search input{
+        font-size: 0.6em;
+    }
+    .loc-search .form-control{
         font-size: 0.6em;
     }
     .doc-search .banner_search .btn{
         font-size: 0.7em;
+		margin-bottom: 10px;
     }
     div.fc-left h2{
         font-size:1em;
