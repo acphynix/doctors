@@ -62,8 +62,7 @@ error_reporting(0);
 
 <title>Neolafia | Dashboard</title>
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
-<meta name="description" content="Neolafi - Manage your doctor's appointment, profile, book new appointments with 
-      our specialist doctors"/>
+<meta name="description" content="...book or set new appointments, manage your profile on Neolafia"/>
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 </head>
 <body ng-controller="navigation" ng-cloak>
@@ -110,6 +109,7 @@ error_reporting(0);
             </div>
         </div>
     </div>
+    <div class="mobile-mgb"></div>
     <?php  include '../footer.php'; ?>
 </body>
 </html>

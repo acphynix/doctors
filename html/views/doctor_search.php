@@ -32,7 +32,7 @@
 <title>Neolafia | Search for specialist doctors</title>
 
 <meta name="description" content="Neolafia makes it easy for you to book appointments with specialist doctors. A list of
-      doctors are presented to you based on the symptoms, speciality, doctor's name or location that you have entered"/>
+      doctors are presented to you based on the symptoms, specialty, doctor's name or location that you have entered"/>
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
 <link rel="stylesheet" type="text/css" href="../lib/fullcalendar/fullcalendar.css">
 <link rel="stylesheet" type="text/css" href="../styles/calendar.css">
@@ -110,11 +110,14 @@
             <div class="container-fluid dp-area">
                 <div class='results-body'>
                     <div class='results-container'>
-                        <div class='results-text' ng-if='result_list.length>0'>
+                        <div class='results-text' ng-if='result_list.length>1'>
                             <p class="text-success">Congratulations! We found {{result_list.length}} doctors matching your search criteria.</p>
                         </div>
+                        <div class='results-text' ng-if='result_list.length==1'>
+                            <p class="text-success">Congratulations! We found {{result_list.length}} doctor matching your search criteria.</p>
+                        </div>
                         <div class='results-text' ng-if='result_list.length==0'>
-                            <p class="text-danger">We could not find any doctors matching your search criteria.</p>
+                            <p class="text-danger">We could not find any doctor matching your search criteria.</p>
                         </div>
                         <div class='results-entry bg-success' ng-repeat='r in result_list'>
                           <?php if($login && $user_status==='verified'){ ?>
@@ -136,7 +139,14 @@
                                                 <?php } elseif($login && $user_status!=='verified'){ ?>
                                                   Account authentication is needed to book appointment with this doctor
                                                 <?php } else{ ?>
-                                                  <a href='/login.php'>Sign in</a> or <a href='/createaccount.php'>Register</a>
+                                                  <form method="post" action="/login.php" class="in-line">
+                                                      <input type="hidden" name="q_s" value="<?php echo $query ?>"/>
+                                                      <input type="hidden" name="c_s" value="<?php echo $query2 ?>"/>
+                                                      <button type="submit" class="btn btn-link">
+                                                          <b>Sign in</b>
+                                                      </button>
+                                                  </form>
+                                                  or <a href='/createaccount.php'>Register</a>
                                                   to view more details and book an appointment.
                                                 <?php } ?>
                                           </div>

@@ -66,7 +66,7 @@
       return ['keys'=>$keys, 'vals'=>$vals];
     }
     function verify_can_build_doctor_query(){
-      return verify_fields_populated(['nLi','nSpc','nLoc','nChs','nQct','nAff','nNig'],$_POST);
+      return verify_fields_populated(['nLi','nSpc','nLoc','nChs1','nChs2','nQct','nAff','nNig'],$_POST);
     }
     function get_speciality_id($speciality, $db){
       // echo '~~~~~ ~~ ~ getting speciality: '.$speciality;
@@ -79,6 +79,12 @@
     }
     function build_doctor_query($userid, $db){
       if(!verify_can_build_doctor_query())return false;
+      if(strlen($_POST['nLi'])<5 || strlen($_POST['nChs1'])<2 || strlen($_POST['nChs2'])<2 ||
+                strlen($_POST['nQct'])<2 || strlen($_POST['nAff'])<2){
+          return false; 
+      }
+      
+      $hospital=sanitize_plaintext($_POST['nChs1'])."|".sanitize_plaintext($_POST['nChs2']);
 
       $sql_insert = array(
           'user_id'        => "'${userid}'",
@@ -88,7 +94,7 @@
         , 'doctor_suspension_status'   => "''"
         , 'doctor_speciality'          => "'". get_speciality_id($_POST['nSpc'],$db)."'"
         , 'doctor_location'            => "'".sanitize_plaintext($_POST['nLoc'])."'"
-        , 'doctor_hospitals'           => "'".sanitize_plaintext($_POST['nChs'])."'"
+        , 'doctor_hospitals'           => "'".$hospital."'"
         , 'doctor_qualifications'      => "'".sanitize_plaintext($_POST['nQct'])."'"
         , 'doctor_affiliations'        => "'".sanitize_plaintext($_POST['nAff'])."'"
         );
@@ -102,6 +108,12 @@
     }
     function build_user_query(){
       if(!verify_fields_populated(['nFn','nLn','nEm','nPw','year','month','day','nSx','nAd'],$_POST))return false;
+      if(strlen($_POST['nFn'])<2 || strlen($_POST['nLn'])<2 || strlen($_POST['nEm'])<5 ||
+            strlen($_POST['nPw'])<8 || strlen($_POST['year'])<2 || strlen($_POST['month'])<1 ||
+                strlen($_POST['day'])<1 || strlen($_POST['nSx'])<1 || strlen($_POST['nAd'])<2 ||
+                    strlen($_POST['nAd2'])<2 || strlen($_POST['nAd3'])<2){
+          return false; 
+      }
       $firstname = sanitize_plaintext($_POST['nFn']);
       $lastname  = sanitize_plaintext($_POST['nLn']);
       $year      = sanitize_plaintext($_POST['year']);
@@ -145,11 +157,11 @@
     // var_dump($_POST);
 
     if(!$query_user){
-      echo '{"success":"false","msg":"Please enter all fields before submitting"}';
+      echo '{"success":"false","msg":"Please correctly supply information for ALL fields before submitting"}';
       return;
     }
     if($isdoctor && !verify_can_build_doctor_query()){
-      echo '{"success":"false","msg":"Please enter all fields before submitting"}';
+      echo '{"success":"false","msg":"Please correctly supply information for ALL fields before submitting"}';
       return;
     }
 
@@ -173,7 +185,7 @@
       // construct doctor query
       $query_doctor = build_doctor_query($userid, $database);
       if(!$query_doctor){
-        echo '{"success":"false","msg":"Please enter all fields before submitting"}';
+        echo '{"success":"false","msg":"Please correctly supply information for ALL fields before submitting"}';
         return;
       }
       // perform doctor query.

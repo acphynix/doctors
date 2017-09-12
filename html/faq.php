@@ -38,19 +38,24 @@ error_reporting(0);
                 <div class="row">
                     <div class="col-xs-12">
                         <h4 class="page-title">Frequently Asked Questions</h4>
-                        <div class="panel-group" id="accordion">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4 class="faq-type"><b>PATIENTS</b></h4>
+                        <div class="panel-group" id="accordionP">
                             <div class="panel panel-success">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#faq1">
+                                        <a data-toggle="collapse" data-parent="#accordionP" href="#faq1">
                                             How do I book an appointment?
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="faq1" class="panel-collapse collapse in">
+                                <div id="faqP1" class="panel-collapse collapse in">
                                     <div class="panel-body">
                                         <p>
-                                            To book an appointment make a search for a speciality, symptom, doctor's name or location
+                                            To book an appointment make a search for a specialty, symptom, doctor's name or location
                                             of your chosen. The profile of one or more doctors matching your search criteria will be
                                             provided from which you can select. Click on "Click to book an appointment" to book 
                                             appointment with your desired doctor.
@@ -58,15 +63,23 @@ error_reporting(0);
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4 class="faq-type"><b>DOCTORS</b></h4>
+                        <div class="panel-group" id="accordionD">
                             <div class="panel panel-success">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#faq2">
+                                        <a data-toggle="collapse" data-parent="#accordionD" href="#faq2">
                                             How do I use the Calendar?
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="faq2" class="panel-collapse collapse">
+                                <div id="faqD1" class="panel-collapse collapse in">
                                     <div class="panel-body">
                                         <ul>
                                             <li>
@@ -104,6 +117,7 @@ error_reporting(0);
             </div>
         </div>
     </div>
+    <div class="mobile-mgb"></div>
     <?php  include 'footer.php'; ?>
 </body>
 </html>

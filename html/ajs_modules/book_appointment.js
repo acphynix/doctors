@@ -35,6 +35,31 @@ doctor_search.controller('search', function($scope, $window, $http){
       var min = timeArr[1];
       return month+' '+day+', '+year+' @ '+h+':'+min+a;      
   };
+  $scope.good_time = function(datetime){
+      var datetimeArr = datetime.split(" ");
+      var dateArr = datetimeArr[0].split("-");
+      var year = dateArr[0];
+      var monthIndex = dateArr[1] - 1;
+      var month = $scope.year_months[monthIndex];
+      var day = dateArr[2];
+      var timeArr = datetimeArr[1].split(":");
+      var hour = +timeArr[0];
+      var h, a;
+      if(hour>12){
+          h = hour-12;
+          (h===12)?a='am':a='pm';
+      }
+      if(hour===12){
+          h = hour;
+          a = 'noon';
+      }
+      if(hour<12){
+          h = hour;
+          a = 'am';
+      }
+      var min = timeArr[1];
+      return month+' '+day+', '+year+' @ '+h+':'+min+a;      
+  };
   $scope.action='search';
   $scope.action_book = function(doctor,time){
     $scope.action = 'book';

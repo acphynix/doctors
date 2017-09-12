@@ -26,7 +26,7 @@
                     <td>{{a.status}}</td>
                     <td class="sm-hide">{{a.date_start.format("ddd")}}</td>
                     <td class="sm-hide">{{a.date_start.format("D MMMM YYYY")}}</td>
-                    <td class="sm-hide">{{plus_one_hour(a.date_start.format("HH:mm"))}}</td>
+                    <td class="sm-hide">{{(a.date_start.format("HH:mm"))}}</td>
                     <td>{{a.user_first_name}} {{a.user_last_name}}</td>
                     <td>Click for Details</td>
                 </tr>
@@ -38,13 +38,13 @@
                             <div>
                                 <h4>Dr. {{a.user_first_name}} {{a.user_last_name}}</h4>
                                 <span ng-if="a.status!='pending'">{{a.timeslot_address}}</span>
-                                <span>{{location_name(a.timeslot_location)}}</span>
+                                <span><b>{{location_name(a.timeslot_location)}}</b></span>
                             </div>
                         </div>
                         <div class="col-xs-6 th-info">
                             <span>{{a.status}} appointment</span>
                             <span>{{a.date_start.format("ddd")}}, {{a.date_start.format("D MMMM YYYY")}}</span>
-                            <span>{{plus_one_hour(a.date_start.format("HH:mm"))}}</span>
+                            <span>{{(a.date_start.format("HH:mm"))}}</span>
                         </div>
                         <div class="col-sm-8 appt-info">
                             <div class="col-xs-12 grp">
@@ -85,7 +85,7 @@
                                 <div ng-if="a.status=='approved'">
                                     <span>
                                         Your appointment has been approved. You have agreed to meet with Dr. {{a.user_first_name}} {{a.user_last_name}}
-                                        on {{a.date_start.format("D MMMM")}} at {{plus_one_hour(a.date_start.format("HH:mm"))}}. Be sure to provide your doctor
+                                        on {{a.date_start.format("D MMMM")}} at {{(a.date_start.format("HH:mm"))}}. Be sure to provide your doctor
                                         with the code {{a.apptcode}} to verify that the appointment has taken place.
                                     </span>
                                 </div>
@@ -141,7 +141,8 @@
                                             </span>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" ng-click="appt_cancel(a.appointment_id)">
+                                            <button type="button" class="btn btn-danger" 
+                                                    ng-click="appt_cancel(a.appointment_id+'__'+a.doctor_id+'__'+a.patient_id)">
                                                 Yes
                                             </button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">

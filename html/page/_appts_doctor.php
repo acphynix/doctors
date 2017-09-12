@@ -27,10 +27,11 @@
         </div>
     </div>
     <div class="col-sm-offset-2 col-sm-8">
-        <div id='calendar'></div>
         <div class='clickme' ng-click="set_view('appts.edit')">
             <button class="btn btn-warning center-block full-width mg-sc"><i class="fa fa-gears"></i> Manage Schedule</button>
         </div>
+        <br/><br/>
+        <div id='calendar'></div>
         <hr/>
     </div>
     <div class="col-xs-12 p-content">
@@ -41,7 +42,7 @@
                         <td>{{a.status}}</td>
                         <td class="sm-hide">{{a.date_start.format("ddd")}}</td>
                         <td class="sm-hide">{{a.date_start.format("D MMMM YYYY")}}</td>
-                        <td class="sm-hide">{{plus_one_hour(a.date_start.format("HH:mm"))}}</td>
+                        <td class="sm-hide">{{(a.date_start.format("HH:mm"))}}</td>
                         <td>{{a.user_first_name}} {{a.user_last_name}}</td>
                         <td>Click for Details</td>
                     </tr>
@@ -60,7 +61,7 @@
                             <div class="col-xs-6 th-info">
                                 <span>{{a.status}} appointment</span>
                                 <span>{{a.date_start.format("ddd")}}, {{a.date_start.format("D MMMM YYYY")}}</span>
-                                <span>{{plus_one_hour(a.date_start.format("HH:mm"))}}</span>
+                                <span>{{(a.date_start.format("HH:mm"))}}</span>
                             </div>
                             <div class="col-sm-8 appt-info">
                                 <div class="col-xs-12 grp">
@@ -114,8 +115,8 @@
                                     </div>
                                     <div ng-if="a.status=='completed'">
                                         <span>
-                                            Your verification code was correct, and the price of this appointment
-                                            will be funded into your bank account shortly. Please contact us at
+                                            Your verification code is correct, and the consultation fee will be
+                                            paid into your bank account shortly. Please contact us at
                                             <a href='mailto:neolafia@neolafia.com'>neolafia@neolafia.com</a>
                                             with any questions or requests. Thank you for using Neolafia!
                                         </span>

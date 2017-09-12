@@ -92,13 +92,13 @@ error_reporting(0);
         }
         if($("#nAd").val().trim()!=="" && $("#nAd2").val().trim()!=="" && $("#nAd3").val().trim()!==""){
             if($("#nAd").val().trim().length < 2 || $("#nAd2").val().trim().length < 2 || $("#nAd3").val().trim().length < 2){
-                isValid = false;
+                isValid.stat = false;
                 $("#errorAd").html("Please enter a valid address");
             }
         }
-        if($("#iChs").val().trim()!==""){
-            if($("#iChs").val().trim().length < 2){
-                isValid.stat = false;
+        if($("#iChs1").val().trim()!=="" && $("#iChs2").val().trim()!==""){
+            if($("#iChs1").val().trim().length < 2 || $("#iChs2").val().trim().length < 2){
+                isValid = false;
                 $("#errorChs").html("Please enter a valid hospital name and address");
             }
         }
@@ -247,15 +247,15 @@ error_reporting(0);
                                     <label class="control-label">Address: </label>
                                 </div>
                                 <div class="col-sm-5">
-                                    <input name="nAd" id="nAd" ng-model="nAd" ng-required='true' name='q' type="text"
+                                    <input name="nAd" id="nAd" ng-model="nAd" ng-required='true' type="text"
                                             autofocus placeholder="Street Address" class="form-control"/>
                                 </div>
                                 <div class="col-sm-2">
-                                    <input name="nAd2" id="nAd2" ng-model="nAd2" ng-required='true' name='q' type="text"
+                                    <input name="nAd2" id="nAd2" ng-model="nAd2" ng-required='true' type="text"
                                             autofocus placeholder="City" class="form-control"/>
                                 </div>
                                 <div class="col-sm-2">
-                                    <input name="nAd3" id="nAd3" ng-model="nAd3" ng-required='true' name='q' type="text"
+                                    <input name="nAd3" id="nAd3" ng-model="nAd3" ng-required='true' type="text"
                                             autofocus placeholder="State" class="form-control"/>
                                 </div>
                                 <div id='errorAd' class="col-sm-offset-3 pad-left text-danger"></div>
@@ -275,7 +275,7 @@ error_reporting(0);
                                     <label for="nEm" class="control-label">Email: </label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input name="nEm" id="nEm" ng-model="nEm" ng-required='true' name='q' type="email"
+                                    <input name="nEm" id="nEm" ng-model="nEm" ng-required='true' type="email"
                                         autofocus placeholder="doctor@yahoo.com" class="form-control"/>
                                 </div>
                                 <div id='errorEm' class="col-sm-offset-3 pad-left text-danger"></div>
@@ -329,11 +329,15 @@ error_reporting(0);
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-3">
-                                    <label for="iChs" class="control-label">Hospital Name and Address: </label>
+                                    <label class="control-label">Hospital Name and Address: </label>
                                 </div>
-                                <div class="col-sm-9">
-                                    <input name="nChs" ng-model="nChs" id="iChs" ng-required='true' name='q' type="text"
-                                           autofocus placeholder="Lagos University" class="form-control"/>
+                                <div class="col-sm-4">
+                                    <input name="nChs1" ng-model="nChs1" id="iChs1" ng-required='true' type="text"
+                                           autofocus placeholder="Hospital Name" class="form-control"/>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input name="nChs2" ng-model="nChs2" id="iChs2" ng-required='true' type="text"
+                                           autofocus placeholder="Hospital Address" class="form-control"/>
                                 </div>
                                 <div id='errorChs' class="col-sm-offset-3 pad-left text-danger"></div>
                             </div>
@@ -352,7 +356,7 @@ error_reporting(0);
                                     <label for="iAff" class="control-label">Professional Affilations: </label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input name="nAff" ng-model="nAff" id="iAff" ng-required='true' name='q' type="text"
+                                    <input name="nAff" ng-model="nAff" id="iAff" ng-required='true' type="text"
                                            autofocus placeholder="Professional Affilations" class="form-control"/>
                                 </div>
                                 <div id='errorAff' class="col-sm-offset-3 pad-left text-danger"></div>
@@ -411,6 +415,7 @@ error_reporting(0);
             </div>
         </div>
     </div>
+    <div class="mobile-mgb"></div>
     <?php  include '../footer.php'; ?>
 </body>
 </html>

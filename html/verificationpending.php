@@ -57,6 +57,7 @@
             </div>
         </div>
     </div>
+    <div class="mobile-mgb"></div>
     <?php  include 'footer.php'; ?>
 </body>
 </html>

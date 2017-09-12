@@ -23,7 +23,7 @@ error_reporting(0);
 <title>Neolafia | About Us</title>
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
 <meta name="description" content="Neolafia makes it easy for you to book appointments with specialist doctors. A list of
-      doctors are presented to you based on the symptoms, speciality, doctor's name or location that you enter"/>
+      doctors are presented to you based on the symptoms, specialty, doctor's name or location that you enter"/>
 <script>
     $(function(){
         var $pageTitle = $("#pageName").data('page-title');
@@ -54,6 +54,7 @@ error_reporting(0);
             </div>
         </div>
     </div>
+    <div class="ms-about-us"></div>
     <?php  include 'footer.php'; ?>
 </body>
 </html>

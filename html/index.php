@@ -21,13 +21,15 @@ error_reporting(0);
 
 </script>
 
-<title>Neolafia | Home - Search for specialist doctor's with ease</title>
+<title>Neolafia | Home - Search for specialist doctors with ease</title>
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
 <meta name="description" content="Neolafia makes it easy for you to book appointments with specialist doctors. A list of
-      doctors are presented to you based on the symptoms, speciality, doctor's name or location that you enter"/>
+      doctors are presented to you based on the symptoms, specialty, doctor's name or location that you enter"/>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>-->
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/angular.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/app.js"></script>
 
@@ -41,10 +43,11 @@ error_reporting(0);
       $("ul.navbar-nav li#"+$pageTitle).addClass("active");
       
     $(window).scrollTop(0);
-    var appFunPos = $("#mainView").position().top;
-    $(".carousel-caption .btn").click(function(){
-        $("html, body").animate({scrollTop:appFunPos}, 1000);
-    });
+//    var appFunPos = $("#mainView").position().top;
+//    $(".carousel-caption .btn").click(function(){
+//        $("html, body").animate({scrollTop:appFunPos}, 1000);
+//    });
+    
     var input_plc = "Enter your symptom, doctor's name, speciality";
     $('#ikeyword_search')
       .attr('placeholder',input_plc);
@@ -100,27 +103,27 @@ error_reporting(0);
                 <img src="images/slider/banner_1.jpg" alt="banner_1"/>
                 <div class="carousel-caption">
                     <p>Save time by skipping the long queues at the hospital</p>
-                    <button type="button" class="btn btn-lg btn-warning">
+                    <a href="#startNow" class="btn btn-lg btn-warning">
                         START NOW
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="item">
                 <img src="images/slider/banner_2.jpg" alt="banner_2"/>
                 <div class="carousel-caption">
                     <p>Save booking costs when you pay the consultation fee</p>
-                    <button type="button" class="btn btn-lg btn-warning">
+                    <a href="#startNow" class="btn btn-lg btn-warning">
                         START NOW
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="item">
                 <img src="images/slider/banner_3.jpg" alt="banner_3"/>
                 <div class="carousel-caption">
                     <p>Get treated by specialist doctors only</p>
-                    <button type="button" class="btn btn-lg btn-warning">
+                    <a href="#startNow" class="btn btn-lg btn-warning">
                         START NOW
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -137,10 +140,10 @@ error_reporting(0);
             <div class="col-sm-5 question-user">
                 <h4>Need to see a specialist doctor?</h4>
             </div>
-            <div class="col-sm-7 search-doctor">
+            <div class="col-sm-7 search-doctor" id="startNow">
                 <form method="GET" action="views/doctor_search.php">
                     <div class="form-group">
-                        <label for="ikeyword_search" class="control-label bg-info">
+                        <label for="ikeyword_search" class="control-label bg-gray">
                             What are you looking for?
                         </label>
                         <input class="form-control" name="q" id="ikeyword_search" type="text"
@@ -148,7 +151,7 @@ error_reporting(0);
                                 autocomplete="off" placeholder="Enter your symptom, doctor's name, speciality"/>
                     </div>
                     <div class="form-group">
-                        <label for="ikeyword_search" class="control-label bg-info">
+                        <label for="ikeyword_search" class="control-label bg-gray">
                             Location
                         </label>
                         <select ng-required=true id='ilocation_search' name='c' class="form-control">
@@ -164,7 +167,7 @@ error_reporting(0);
             </div>
         </div>
     </div>
-    <div class="container-fluid bg-success f-row">
+    <div class="container-fluid f-row">
         <div class="container">
             <div class="row">
                 <div class="col-sm-4 icon-view">

@@ -93,7 +93,7 @@ doctor_search.controller('search', function($scope, $window, $http){
           title       : false,
           height      : 300,
           events      : doctor.events,
-          timezone    : 'local',
+          timezone    : false,
           eventClick  : function(event, jsEvent, view){
             goto('/book_appointment.php?t='+event.qry_t+'&q='+$scope.keyword_search+'&c='+loc_id+'&d='+doctor.user_id);
           }

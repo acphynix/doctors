@@ -9,6 +9,8 @@ error_reporting(0);
   }
   $displayname = $_SESSION['displayname'];
   $isdoctor = $_SESSION['user_is_doctor'];
+  $q_s = $_POST['q_s'];
+  $c_s = $_POST['c_s'];
 ?>
 <html>
 <head>
@@ -26,6 +28,8 @@ error_reporting(0);
     window.location.href = newpage
   }
   $(document).ready(function(){
+      var q = $("#q_s").data('q-val');
+      var c = $("#c_s").data('c-val');
       
       var $pageTitle = $("#pageName").data('page-title');
         $("ul.navbar-nav li#"+$pageTitle).addClass("active");
@@ -46,7 +50,12 @@ error_reporting(0);
             url: "ajax/login.php",
             data: $("#iform_login").serialize(),
             success: function(data){
-              goto('index.php')
+                if(!q && !c){
+                    goto('index.php');
+                }
+                else{
+                    goto('/views/doctor_search.php?q='+q+'&c='+c);
+                }
             },
             error: function(data){
                 if(data.statusText === 'Internal Server Error'){
@@ -68,6 +77,8 @@ error_reporting(0);
 <body>
     <div class="full-page">
     <div id="pageName" data-page-title="signinPage"></div>
+    <div id="q_s" data-q-val="<?php echo $q_s; ?>"></div>
+    <div id="c_s" data-c-val="<?php echo $c_s; ?>"></div>
         <?php include 'navbar.php'; ?>
         <div class="container-fluid simple-page">
             <div class="container">
@@ -102,6 +113,7 @@ error_reporting(0);
             </div>
         </div>
     </div>
+    <div class="mobile-mgb"></div>
     <?php  include 'footer.php'; ?>
 </body>
 </html>

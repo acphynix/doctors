@@ -126,7 +126,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="text-right"><b>On:</b></td>
-                                        <td><span>{{plus_one_hour(book.time)}}</span></td>
+                                        <td><span>{{good_time(book.time)}}</span></td>
                                     </tr>
                                     <tr>
                                         <td class="text-right"><b>In:</b></td>
@@ -228,6 +228,7 @@
             </div>
         </div>
     </div>
+    <div class="mobile-mgb"></div>
     <?php  include 'footer.php'; ?>
 </body>
 </html>

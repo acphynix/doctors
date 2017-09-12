@@ -1,11 +1,13 @@
 <html>
 <body style='border:1px solid lightgray'>
 <div style='font-family:Arial'>
-<h1>{{patient.fullname}} wants to see you!</h1>
+<h1>{{patient.fullname}} wants to see you</h1>
 <p style='font-weight:bold'>
 Dear {{fullname}}, 
 </p>
-Congratulations! We are writing to inform you that {{patient.fullname}} has booked an appointment with you. {{patient.firstname}}'s payment information has been verified, and it is now up to you to confirm their appointment!
+<p>
+Congratulations! We are writing to inform you that {{patient.fullname}} has booked an appointment with you. 
+{{patient.firstname}}'s payment information has been verified, and it is now up to you to confirm their appointment!
 </p>
 <p>
   <a href='{{link_profile}}'>My Profile</a>

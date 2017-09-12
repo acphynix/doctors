@@ -139,6 +139,7 @@ error_reporting(0);
             </div>
         <?php endif; ?>
     </div>
+    <div class="mobile-mgb"></div>
     <?php  include 'footer.php'; ?>
 </body>
 </html>

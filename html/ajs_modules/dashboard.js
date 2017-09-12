@@ -183,11 +183,15 @@ doctor_search.controller('navigation', function($scope, $window, $http){
     });
   };
   
-  $scope.appt_cancel = function(appt){
+  $scope.appt_cancel = function(appt_param){
+      var appt_param_array = appt_param.split("__");
+      var appt=appt_param_array[0];
+      var doc=appt_param_array[1];
+      var pat=appt_param_array[2];
       $http({
       method: 'POST',
       url: '../ajax/post_cancel_appointment.php',
-      data: { a: appt },
+      data: { a: appt, d: doc, p: pat },
       transformResponse: undefined
     }).then(function successCallback(response) {
       console.log('Response: ');
@@ -352,7 +356,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
       events: $scope.calendar_events,
       displayEventEnd:true,
       width: 20,
-      timezone:'local',
+      timezone:false,
       aspectRatio: 1
       // put your options and callbacks here
     });
@@ -369,7 +373,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
         }
         // cell.css("background-color", "lightgreen");
       },
-      timezone:'local',
+      timezone:false,
       selectable:true,
       displayEventEnd:true,
       events: function(start, end, timezone, callback) {
@@ -523,7 +527,7 @@ doctor_search.controller('navigation', function($scope, $window, $http){
       selectable:true,
       slotDuration:'01:00:00',
       businessHours:true,
-      timezone:'local',
+      timezone:false,
       select: function( tstart, tend, jsEvent, view ) {
         add_event(tstart, tend, jsEvent, view);
       },
