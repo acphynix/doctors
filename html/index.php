@@ -26,10 +26,8 @@ error_reporting(0);
 <meta name="description" content="Neolafia makes it easy for you to book appointments with specialist doctors. A list of
       doctors are presented to you based on the symptoms, specialty, doctor's name or location that you enter"/>
 
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>-->
-<script src="/js/jquery-3.2.1.min.js"></script>
-<script src="/js/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/app.js"></script>
 

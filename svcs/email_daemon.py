@@ -129,7 +129,8 @@ for row in new_emails:
   print 'email'
   print etype
   if etype in ['doctor_appointment_pending', 'doctor_appointment_paid', 'patient_appointment_paid',
-               'patient_appointment_approved', 'doctor_appointment_approved', 'doctor_appointment_closed']:
+               'patient_appointment_approved', 'doctor_appointment_approved', 'doctor_appointment_closed',
+			   'patient_appointment_cancelled', 'doctor_appointment_cancelled']:
     appt_id,doctor_id,patient_id = idata.split('|')
     print 'in if'
     fields_dr = qget("SELECT user_first_name, user_last_name from users where user_id='" + doctor_id  + "'")
@@ -145,7 +146,7 @@ for row in new_emails:
   content = content.replace('{{patient.firstname}}' , str(fields_pt[0][0]))
   content = content.replace('{{doctor.fullname}}'   , str(fields_dr[0][0]) + ' ' + str(fields_dr[0][1]))
   content = content.replace('{{doctor.firstname}}'  , str(fields_dr[0][0]))
-  content = content.replace('{{link_profile}}'      , 'https://neolafia.com/home.php')
+  content = content.replace('{{link_profile}}'      , 'https://neolafia.com/page/home.php')
   content = content.replace('{{link_authenticate}}' , 'https://neolafia.com/verify_acct.php?q='+str(fields_tt[0][2]))
   content = content.replace('{{link_passreset}}' 	, 'https://neolafia.com/reset_pass.php?q='+str(fields_kr[0][2]))
   content = content.replace('{{userfirstname}}' 	, str(fields_fb[0][0]))
