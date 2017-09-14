@@ -91,7 +91,7 @@
                                     </div>
                                     <div ng-if="a.status=='approved'">
                                         <span>
-                                            You're good to go! At your appointment, ask {{a.user_first_name}} for their 6-letter 
+                                            You're good to go! At your appointment, please ask {{a.user_first_name}} for his/her 6-letter 
                                             verification code and enter it in the box below to receive your payment.
                                         </span>
                                         <br/><br/>
@@ -179,11 +179,12 @@
                         </form>
                     </div>
                 </div>
+                <a href="/page/home.php" class="btn btn-link cal-bk">Back</a>
                 <h4 class="txt-apt">Manage Schedule</h4>
                 <div class="col-sm-12">
                     <div id='calendar'></div>
+                    <a href="/faq.php" class="btn btn-warning to-faq">FAQs</a>
                     <div class='clickme' ng-click="set_view('appts.display')">
-                        <a href="/faq.php" class="btn btn-warning to-faq">FAQs</a>
                         <button class="btn btn-success center-block full-width mg-sc">
                             <i class="fa fa-check-circle"></i> Done
                         </button>

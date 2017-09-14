@@ -622,6 +622,10 @@ ul.pc-error{
 .alert.doc-appt{
     font-family: monospace;
 }
+.cal-bk.btn-link{
+    color: green;
+    font-weight: 900;
+}
 
 /*Responsive*/
 @media(max-width: 1199px){
@@ -695,6 +699,9 @@ ul.pc-error{
     }
     .navbar-default .navbar-nav>li>a{
         font-size: 0.9em;
+    }
+    #webCarousel .carousel-caption .btn-warning{
+        display: none;
     }
     .question-user h4{
         font-size: 1.2em;
@@ -826,7 +833,7 @@ ul.pc-error{
         font-size: 1.2em;
     }
     #webCarousel .carousel-caption p{
-        margin-top: 2em;
+        margin-top: 3em;
         width: 80%;
     }
 }
@@ -835,7 +842,7 @@ ul.pc-error{
         padding-bottom: 20px;
     }
     #webCarousel .carousel-caption p{
-        font-size: 1.1em;
+        font-size: 1.2em;
     }
     .icon-view .card {
         padding: 20px;
@@ -988,13 +995,13 @@ ul.pc-error{
     }
 }
 @media(max-width: 395px){
-	.navbar-brand{
-		padding: 15px 0;
-	}
-	div.logo-label.col-xs-6, div.user-label.col-xs-6{
-		padding-left: 0;
-		padding-right: 0;
-	}
+    .navbar-brand{
+            padding: 15px 0;
+    }
+    div.logo-label.col-xs-6, div.user-label.col-xs-6{
+            padding-left: 0;
+            padding-right: 0;
+    }
 }
 @media(max-width: 380px){
     .search-doctor .control-label{
@@ -1019,13 +1026,14 @@ ul.pc-error{
 }
 @media(max-width: 350px){
     #webCarousel .carousel-caption p{
-        font-size: 0.8em;
+        font-size: 1em;
     }
     #webCarousel .carousel-caption .btn-lg{
         font-size: 0.8em;
         padding: 5px;
         margin-bottom: 5px;
         margin-top: -10px;
+        display: none;
     }
     .search-doctor .control-label{
         width: 22%;

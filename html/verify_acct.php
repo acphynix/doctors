@@ -62,7 +62,7 @@
                         <?php if($success===true && $userId===""):?>
                         <h1 class="text-success">Welcome!</h1>
                         <p>
-                            Thank you again for registering an account with Neolafia! Your account have now been
+                            Thank you again for registering an account with Neolafia! Your account has now been
                             authenticated!
                         </p>
                         <p>
@@ -71,7 +71,7 @@
                         <?php elseif($success===true && $userId!==""):?>
                         <h1 class="text-success">Welcome!</h1>
                         <p>
-                            Thank you again for registering an account with Neolafia! Your account have now been
+                            Thank you again for registering an account with Neolafia! Your account has now been
                             authenticated!
                         </p>
                         <p>

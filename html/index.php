@@ -46,7 +46,7 @@ error_reporting(0);
 //        $("html, body").animate({scrollTop:appFunPos}, 1000);
 //    });
     
-    var input_plc = "Enter your symptom, doctor's name, speciality";
+    var input_plc = "Enter your symptom, doctor's name, specialty";
     $('#ikeyword_search')
       .attr('placeholder',input_plc);
       
@@ -132,7 +132,7 @@ error_reporting(0);
             <i class="fa fa-caret-right"></i>
         </a>
     </div>
-    <span ng-init='init_view()'></span>
+    <!--<span ng-init='init_view()'></span>-->
     <div class="container main-view" id="mainView">
         <div class="row" id="startNow">
             <div class="col-sm-5 question-user">
@@ -146,7 +146,7 @@ error_reporting(0);
                         </label>
                         <input class="form-control" name="q" id="ikeyword_search" type="text"
                                 ng-model="keyword_search" autofocus ng-keypress="update_dropdown()"
-                                autocomplete="off" placeholder="Enter your symptom, doctor's name, speciality"/>
+                                autocomplete="off" placeholder="Enter your symptom, doctor's name, specialty"/>
                     </div>
                     <div class="form-group">
                         <label for="ikeyword_search" class="control-label bg-gray">

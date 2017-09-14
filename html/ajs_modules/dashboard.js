@@ -324,33 +324,51 @@ doctor_search.controller('navigation', function($scope, $window, $http){
 
   $scope.calendar_events = function(start, end, timezone, callback){
     // console.log('pulling events');
+    var $booked = [];
     var events=[];
+    if(typeof $scope.schedule !== 'undefined'){
+      for(var i=0; i<$scope.schedule.length; ++i){
+        var evt   = $scope.schedule[i];
+        var start = evt.date_start;
+        var end   = evt.date_end;
+        if(evt.type == 'appt'){
+            $booked.push(start+"__"+end);
+        }            
+      }
+    }
     if(typeof $scope.schedule !== 'undefined'){
       for(var i=0; i<$scope.schedule.length; ++i){
         var evt   = $scope.schedule[i];
         var title = evt.user_first_name + ' ' + $scope.schedule[i].user_last_name;
         var start = evt.date_start;
+        var start_fwd = start + 3600000;
         var end   = evt.date_end;
         var color;
-        if(evt.type == 'open'){
-          color = 'gray';
-          title = 'open';
-        }else if(evt.type == 'pend'){
-          color='orange';
-        }else{
-          color='auto';
+        while(start_fwd <= end){
+            if(evt.type == 'open'){
+              color = 'gray';
+              title = 'open';
+            }
+            else if(evt.type == 'pend'){
+              color='orange';
+            }
+            else{
+              color='auto';
+            }
+            if(evt.type == 'appt'){
+                events.push({title: title, start: start, end: start_fwd , color: color});
+            }
+            if((evt.type != 'appt') && ($.inArray(start+"__"+start_fwd, $booked)===-1)){
+                events.push({title: title, start: start, end: start_fwd , color: color});
+            }
+            start = start_fwd;
+            start_fwd = start_fwd + 3600000;
         }
-        events.push(
-          { title : title
-          , start : start
-          , end   : end
-          , color : color
-          }
-        );
+            
       }
     }
     callback(events);
-  }
+  };
   if($window.is_doctor){
     $('#calendar').fullCalendar({
       events: $scope.calendar_events,
@@ -634,14 +652,16 @@ doctor_search.controller('navigation', function($scope, $window, $http){
         $scope.selections_ct = $scope.schedule.length;
         $scope.selections    = [];
         $scope.appointments  = [];
+        var $booked = [];
         for(var i=0; i<$scope.schedule.length; ++i){
           $scope.schedule[i].date_start = moment.utc($scope.schedule[i].start.split(/-|\ |:/), 'YYYY-MM-DD HH:mm:ss');
           $scope.schedule[i].date_end = moment.utc($scope.schedule[i].end.split(/-|\ |:/), 'YYYY-MM-DD HH:mm:ss');
           var title = $scope.schedule[i].price+" "+$scope.schedule[i].currency;
           var color = 'auto';
           if($scope.schedule[i].type === 'appt'){
-            title = $scope.schedule[i].user_first_name+' '+$scope.schedule[i].user_last_name
+            title = $scope.schedule[i].user_first_name+' '+$scope.schedule[i].user_last_name;
             color = 'orange';
+            $booked.push($scope.schedule[i].date_start+'__'+$scope.schedule[i].date_end);
           }
           cal_evt = {
             title    : title,
@@ -654,7 +674,13 @@ doctor_search.controller('navigation', function($scope, $window, $http){
             editable : $scope.schedule[i].type === 'open',
             type     : $scope.schedule[i].type
           };
-          $scope.selections.push(cal_evt);
+          if($scope.schedule[i].type !== 'open'){
+                $scope.selections.push(cal_evt);
+            }
+          if($scope.schedule[i].type === 'open' && 
+            $.inArray(($scope.schedule[i].date_start+'__'+$scope.schedule[i].date_end), $booked)===-1){
+                $scope.selections.push(cal_evt);
+            }
           if($scope.schedule[i].type != 'open'){
             $scope.appointments.push($scope.schedule[i]);
           }

@@ -24,7 +24,8 @@ import('php/util/sanitize.php');
     array_push($dr_1, $row);
   }
   $db_2 = 
-        sprintf("select * from users where user_first_name like '%%%s%%' or user_last_name like '%%%s%%'",$query, $query);
+        sprintf("select * from users where (user_first_name like '%%%s%%' or user_last_name like '%%%s%%')"
+                . "and user_is_doctor=1",$query, $query);
   $dq_2 = mysqli_query($database, $db_2);
   while ($row = $dq_2->fetch_assoc()) {
     $doc['keyword']=$row['user_first_name'].' '.$row['user_last_name'];
