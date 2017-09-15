@@ -38,7 +38,9 @@
 <link rel="stylesheet" type="text/css" href="../styles/calendar.css">
 <link rel="stylesheet" href="../awesomplete/awesomplete.css" />
 
+<link href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'></script>
 <script src='/lib/fullcalendar/fullcalendar.js'></script>
 <script src='https://momentjs.com/downloads/moment.min.js'></script>
@@ -48,12 +50,15 @@
 
 <script src="/awesomplete/awesomplete.js"></script>
 
+<script src="/js/search-aid.js"></script>
 <script type="text/javascript" async>
   function goto(newpage){
     window.location.href = newpage
   }
 
   $( document ).ready(function() {
+      
+  $("#ikeyword_search").tooltip();
     var input_plc = "Enter your symptoms, a doctor\'s name, or a medical specialty";
     
     var options = $('#loc_new').get(0).options;
@@ -89,7 +94,8 @@
                             <form method='GET' action='doctor_search.php' class="form-style-8 white banner_search">
                                 <div class="form-group">
                                     <input name='q' id="ikeyword_search" type="text" ng-model="keyword_search"
-                                       autofocus ng-keypress='update_dropdown()' autocomplete="off" />
+                                       autofocus ng-keypress='update_dropdown()' autocomplete="off" 
+                                       title="Enter your symptoms, a doctor's name, or a medical specialty"/>
                                 </div>
                                 <div class="form-group loc-search">
                                     <input type="hidden" id="loc_ent" value="<?php echo $query2 ?>"/>

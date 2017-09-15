@@ -18,7 +18,7 @@ doctor_search.controller('search', function($scope, $window, $http){
   $scope.location_name = function(val){
       return $scope.location_names[val];
   };
-  
+  /*
   $scope.update_dropdown = function(){
     var ajax = new XMLHttpRequest();
     console.log('searching '+$scope.searchbox.value);
@@ -32,6 +32,7 @@ doctor_search.controller('search', function($scope, $window, $http){
     };
     ajax.send();
   }
+  */
   $scope.searchbox   = document.getElementById("ikeyword_search");
   if($scope.searchbox !== null){
     $scope.awesomplete = new Awesomplete(document.getElementById("ikeyword_search"), { list: [] });

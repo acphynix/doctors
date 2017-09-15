@@ -183,6 +183,17 @@ footer p span{
     height: 5em;
     font-size: 1.2em;
 }
+.ui-widget-content{
+    background: #F1F1F1!important;
+    color: #333333!important;
+}
+.ui-menu-item-wrapper{
+    font-size: 1em!important;
+    font-family: inherit;
+}
+.ui-menu-item-wrapper:hover{
+    background: #e6e7e8!important;
+}
 .f-row{
     margin-bottom: -2em;
     background: #F1F1F1;
@@ -631,6 +642,9 @@ ul.pc-error{
 @media(max-width: 1199px){
     #webCarousel .carousel-caption p{
         font-size: 1.5em;
+    }    
+    #webCarousel .carousel-caption .btn-warning{
+        display: none;
     }
     .search-doctor .control-label{
         font-size: 1em;
@@ -699,9 +713,6 @@ ul.pc-error{
     }
     .navbar-default .navbar-nav>li>a{
         font-size: 0.9em;
-    }
-    #webCarousel .carousel-caption .btn-warning{
-        display: none;
     }
     .question-user h4{
         font-size: 1.2em;
@@ -889,6 +900,9 @@ ul.pc-error{
     .search-doctor .form-control{
         font-size: 0.7em;
     }
+    .ui-menu-item-wrapper{
+        font-size: 0.8em!important;
+    }
 }
 @media(max-width: 500px){   
     #webCarousel .carousel-caption{
@@ -968,13 +982,16 @@ ul.pc-error{
         height: 4em;
         font-size: 0.65em;
         padding-top: 10px;
-		display: none;
+        display: none;
     }
     .search-doctor .form-control{
         height: 4em;
         font-size: 0.65em;
     }
-	.doc-search .banner_search .form-group{
+    .ui-menu-item-wrapper{
+        font-size: 0.7em!important;
+    }
+    .doc-search .banner_search .form-group{
         margin-bottom: 0;
     }
     .doc-search .banner_search input{
@@ -1054,9 +1071,9 @@ ul.pc-error{
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none!important;
 }
-.ms-about-us{
-    height: 12em;
+.ms-mh{
+    height: 20em;
 }
 .mobile-mgb{
-    height: 4em;
+    height: 10em;
 }

@@ -54,7 +54,7 @@ error_reporting(0);
             </div>
         </div>
     </div>
-    <div class="ms-about-us"></div>
+    <div class="ms-mh"></div>
     <?php  include 'footer.php'; ?>
 </body>
 </html>

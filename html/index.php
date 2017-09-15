@@ -25,12 +25,13 @@ error_reporting(0);
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
 <meta name="description" content="Neolafia makes it easy for you to book appointments with specialist doctors. A list of
       doctors are presented to you based on the symptoms, specialty, doctor's name or location that you enter"/>
-
+<link href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/app.js"></script>
-
+<script src="/js/search-aid.js"></script>
 <link rel="stylesheet" href="/awesomplete/awesomplete.css" />
 <script src="/awesomplete/awesomplete.js"></script>
 
@@ -39,6 +40,8 @@ error_reporting(0);
       
       var $pageTitle = $("#pageName").data('page-title');
       $("ul.navbar-nav li#"+$pageTitle).addClass("active");
+      
+      $("#ikeyword_search").tooltip();
       
     $(window).scrollTop(0);
 //    var appFunPos = $("#mainView").position().top;
@@ -146,7 +149,8 @@ error_reporting(0);
                         </label>
                         <input class="form-control" name="q" id="ikeyword_search" type="text"
                                 ng-model="keyword_search" autofocus ng-keypress="update_dropdown()"
-                                autocomplete="off" placeholder="Enter your symptom, doctor's name, specialty"/>
+                                autocomplete="off" placeholder="Enter your symptom, doctor's name, specialty"
+                                title="Enter your symptom, doctor's name, specialty"/>
                     </div>
                     <div class="form-group">
                         <label for="ikeyword_search" class="control-label bg-gray">
