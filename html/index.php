@@ -21,10 +21,13 @@ error_reporting(0);
 
 </script>
 
-<title>Neolafia | Home - Search for specialist doctors with ease</title>
+<title>Neolafia | Home - Search for specialist doctors in Nigeria with ease</title>
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
-<meta name="description" content="Neolafia makes it easy for you to book appointments with specialist doctors. A list of
-      doctors are presented to you based on the symptoms, specialty, doctor's name or location that you enter"/>
+<meta name="description" content="Neolafia makes it easy for you to book appointments with 
+      specialist doctors. A list of doctors is presented to you based on the symptoms, specialty,
+      doctor's name or location that you enter as your search criteria, and from this list you can
+      see what times the specialist of your choice is available and schedule your appointment for 
+      a time convenient for you."/>
 <link href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>

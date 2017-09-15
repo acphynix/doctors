@@ -62,7 +62,8 @@ error_reporting(0);
 
 <title>Neolafia | Dashboard</title>
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
-<meta name="description" content="...book or set new appointments, manage your profile on Neolafia"/>
+<meta name="description" content="Manage your doctor's appointment, profile, and book new
+      appointments with our specialist doctors."/>
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 </head>
 <body ng-controller="navigation" ng-cloak>

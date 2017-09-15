@@ -31,8 +31,9 @@
 <head>
 <title>Neolafia | Search for specialist doctors</title>
 
-<meta name="description" content="Neolafia makes it easy for you to book appointments with specialist doctors. A list of
-      doctors are presented to you based on the symptoms, specialty, doctor's name or location that you have entered"/>
+<meta name="description" content="Neolafia makes it easy for you to book appointments with
+      specialist doctors. A list of doctors is presented to you based on the symptoms, specialty,
+      doctor's name or location that you have entered as your search criteria."/>
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
 <link rel="stylesheet" type="text/css" href="../lib/fullcalendar/fullcalendar.css">
 <link rel="stylesheet" type="text/css" href="../styles/calendar.css">
