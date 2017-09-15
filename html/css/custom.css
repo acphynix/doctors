@@ -186,6 +186,8 @@ footer p span{
 .ui-widget-content{
     background: #F1F1F1!important;
     color: #333333!important;
+    max-height: 20em!important;
+    overflow: auto!important;
 }
 .ui-menu-item-wrapper{
     font-size: 1em!important;
