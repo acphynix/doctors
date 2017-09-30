@@ -151,7 +151,7 @@ error_reporting(0);
                             What are you looking for?
                         </label>
                         <input class="form-control" name="q" id="ikeyword_search" type="text"
-                                ng-model="keyword_search" autofocus ng-keypress="update_dropdown()"
+                                ng-model="keyword_search" ng-keypress="update_dropdown()"
                                 autocomplete="off" placeholder="Enter your symptom, doctor's name, specialty"
                                 title="Enter your symptom, doctor's name, specialty"/>
                     </div>
