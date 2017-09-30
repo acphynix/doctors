@@ -46,7 +46,7 @@ error_reporting(0);
       
       $("#ikeyword_search").tooltip();
       
-    $(window).scrollTop(0);
+    $("html, body").scrollTop(0);
 //    var appFunPos = $("#mainView").position().top;
 //    $(".carousel-caption .btn").click(function(){
 //        $("html, body").animate({scrollTop:appFunPos}, 1000);

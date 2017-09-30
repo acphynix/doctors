@@ -26,7 +26,7 @@ error_reporting(0);
 <link rel="stylesheet" href="/css/custom.css"/>
 <script>
   function goto(newpage){
-    window.location.href = newpage
+    window.location.href = newpage;
   }
   $(document).ready(function () {
       
@@ -40,7 +40,7 @@ error_reporting(0);
     $("#iUr").click(function () {
         var isValid = {};
         isValid.stat = true;
-        $("#error, #errorPw, #errorPhn, #errorEm, #errorMId, #errorLic, \n\
+        $("#reg-info, #error, #errorPw, #errorPhn, #errorEm, #errorMId, #errorLic, \n\
             #errorAd, #errorNm, #errorQct, #errorChs, #errroAff").html('');
         $.each($('#form_req select'), function(k,v){
             if(!$(this).val() || $(this).val()===""){
@@ -119,6 +119,10 @@ error_reporting(0);
             isValid.stat = false;
         }
         if(isValid.stat === false){
+            var sto = $("#reg-info").offset().top;
+            var st = sto - 40;
+            $("html, body").scrollTop(st);
+            $("#reg-info").html("<span class='text-danger'><i>*Kindly correctly fill all fields to register</i></span>");
             $("#error").html('<b class="text-danger">Please correctly supply information for ALL fields before submitting</b>');
         }
         if(isValid.stat === true){
@@ -183,15 +187,16 @@ error_reporting(0);
                 <div class="row">
                     <div class="col-sm-8 doc-signup">
                         <h4 class="text-orange"><b>New here? Enter details below to register right away</b></h4>
+                        <div id="reg-info"></div>
                         <form class='contact-form' id = "form_req" role = "form" ng-submit="form.$valid && false">
                             <input type='hidden' name='nIsD' value='true' />
                             <div class="form-group row">
                                 <div class="col-sm-3">
                                     <label class="control-label">Name: </label>
                                 </div>
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-4">
                                     <input ng-required='true' id="nFn" name='nFn' ng-model="nFn" type="text"
-                                           ng-app=""autofocus placeholder="First Name" class="form-control"/>
+                                           autofocus placeholder="First Name" class="form-control"/>
                                 </div>
                                 <div class="col-sm-5">
                                     <input ng-required='true' id="nLn" name='nLn' ng-model='nLn' type="text"
