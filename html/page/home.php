@@ -28,6 +28,11 @@ error_reporting(0);
 <html ng-app="dashboard">
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="/js/touchpunch.js"></script>
+<script>
+    $("#widget").draggable();
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../lib/fullcalendar/fullcalendar.css">
