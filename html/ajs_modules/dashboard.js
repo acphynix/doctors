@@ -421,6 +421,9 @@ doctor_search.controller('navigation', function($scope, $window, $http){
         }
       }
     });
+    $("#calendar").addTouch();
+    $("#calendar_map").addTouch();
+    $("#calendar_week").addTouch();
     $scope.selections=[];
 
     update_edit_bounds = function(event){
